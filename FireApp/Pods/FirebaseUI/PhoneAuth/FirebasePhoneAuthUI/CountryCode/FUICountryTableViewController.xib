@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FUICountryTableViewController">
+            <connections>
+                <outlet property="tableView" destination="hg9-yI-N8Q" id="iLe-xV-T7Y"/>
+                <outlet property="view" destination="YSO-gq-Bsm" id="kL7-u3-M1t"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="YSO-gq-Bsm">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5d-Cl-q5h">
+                    <rect key="frame" x="131" y="16" width="113" height="20"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOG-Ea-C7c">
+                    <rect key="frame" x="10" y="16" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="HAP-Rc-20G"/>
+                        <constraint firstAttribute="height" constant="20" id="p9f-u2-wqB"/>
+                    </constraints>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="arrow.backward" catalog="system"/>
+                    <connections>
+                        <action selector="backBtnAction:" destination="-1" eventType="touchUpInside" id="rK5-dR-Ufm"/>
+                    </connections>
+                </button>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYT-k6-GET">
+                    <rect key="frame" x="0.0" y="48" width="375" height="0.5"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="usY-Dg-B0S"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hg9-yI-N8Q">
+                    <rect key="frame" x="0.0" y="48.5" width="375" height="618.5"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="PfW-Z4-lXH"/>
+                        <outlet property="delegate" destination="-1" id="8PV-om-trg"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="hg9-yI-N8Q" secondAttribute="bottom" id="5uY-yC-Sbi"/>
+                <constraint firstAttribute="trailing" secondItem="hg9-yI-N8Q" secondAttribute="trailing" id="NbC-PZ-M9d"/>
+                <constraint firstItem="hg9-yI-N8Q" firstAttribute="top" secondItem="NYT-k6-GET" secondAttribute="bottom" id="O6V-sW-zYF"/>
+                <constraint firstItem="hg9-yI-N8Q" firstAttribute="leading" secondItem="YSO-gq-Bsm" secondAttribute="leading" id="Tky-AD-NeZ"/>
+                <constraint firstItem="fOG-Ea-C7c" firstAttribute="top" secondItem="YSO-gq-Bsm" secondAttribute="top" constant="16" id="XYS-hA-jEE"/>
+                <constraint firstItem="fOG-Ea-C7c" firstAttribute="leading" secondItem="YSO-gq-Bsm" secondAttribute="leading" constant="10" id="YY6-7I-386"/>
+                <constraint firstItem="V5d-Cl-q5h" firstAttribute="centerY" secondItem="fOG-Ea-C7c" secondAttribute="centerY" id="ffh-GR-EzM"/>
+                <constraint firstItem="NYT-k6-GET" firstAttribute="top" secondItem="fOG-Ea-C7c" secondAttribute="bottom" constant="12" id="iRy-y7-Oq8"/>
+                <constraint firstAttribute="trailing" secondItem="NYT-k6-GET" secondAttribute="trailing" id="unP-cT-vYS"/>
+                <constraint firstItem="NYT-k6-GET" firstAttribute="leading" secondItem="YSO-gq-Bsm" secondAttribute="leading" id="xvi-1r-Ob4"/>
+                <constraint firstItem="V5d-Cl-q5h" firstAttribute="centerX" secondItem="YSO-gq-Bsm" secondAttribute="centerX" id="ztg-O5-HLe"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <point key="canvasLocation" x="354.39999999999998" y="5.8470764617691158"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="98"/>
+    </resources>
+</document>

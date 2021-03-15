@@ -1,0 +1,6 @@
+framework module CircleProgressButton {
+  umbrella header "CircleProgressButton-umbrella.h"
+
+  export *
+  module * { export * }
+}

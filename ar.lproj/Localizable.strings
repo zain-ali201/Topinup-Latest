@@ -1,0 +1,240 @@
+/* 
+  Localizable.strings
+  FireApp
+
+  Created by Zain Ali on 11/15/19.
+  Copyright © 2019 SprintSols. All rights reserved.
+*/
+"copy" = "نسخ";
+"forward" = "تحويل";
+"reply" = "رد";
+"delete" = "حذف";
+"cancel" = "الغاء";
+"delete_for_me" = "حذف";
+"share" = "مشاركة";
+"confirmation" = "تأكيد";
+"delete_item_confirmation" = "هل تريد حذف هذا العنصر؟";
+
+"no" = "لا";
+"yes" = "نعم";
+"you" = "أنت";
+"all_media" = "جميع الوسائط";
+"select" = "اختيار";
+"is" = "هو ";
+"more" = "المزيد";
+"unmute" = "الغاء الكتم";
+"mute" = "كتم";
+"clear_chat" = "مسح الدردشة";
+"delete_messages" = "حذف الرسائل";
+"delete_chat" = "حذف الدردشة";
+"info" = "حول";
+"confirmation" = "تأكيد";
+"unblock" = "الغاء الحظر";
+"block" = "حظر";
+"clear_chat_confirmation_message" = "هل تريد مسح هذه الدردشة؟";
+"take_photo" = "التقاط صورة";
+"pick_image" = "اختيار صورة";
+"done" = "تم";
+"created_at" = "تم الإنشاء في";
+"all_members_can_post" = "جميع الأعضاء يمكنهم الرد";
+"only_admins_can_post" = "فقط المدير يمكنهم الرد";
+"enter_group_name" = "أدخل اسم المجموعة";
+"group_name" = "اسم المجموعة";
+"update" = "تحديث";
+"settings" = "الإعدادات";
+"enter_your_status" = "أدخل حالتك";
+"status" = "الحالة";
+"ok" = "حسناً";
+"enter_your_name" = "أدخل اسمك";
+"name" = "الإسم";
+"restore_default_wallpaper" = "استرجاع الخلفية الإفتراضية";
+"choose_from_camera_roll" = "اختيار من الكاميرا رول";
+"wallpaper_changed" = "تم تغيير الخلفية";
+"wallpaper_restored" =  "تم استعادة الخلفية";
+"calls" = "المكالمات";
+"message_is_too_big" = "الرسالة كبيرة جدا";
+"choose_anumber" = "اختر رقم";
+"user_does_not_have_fireapp" = "المستخدم لا يملك %@";
+"contacts" = "الأسماء";
+"file_not_exists" = "الملف غير موجود";
+"chats" = "الدردشات";
+"new_group" = "مجموعة جديدة";
+"new_broadcast" = "رسالة جماعية جديدة";
+"add_participants" = "اضافة أعضاء";
+"create" = "إنشاء";
+"add" = "أضف";
+"enter_broadcast_name" = "أدخل اسماً للرسالة الجماعية";
+"broadcast_name" = "اسم الرسالة الجماعية";
+"create_broadcast" = "إنشاء رسالة جماعية";
+"create_group" = "إنشاء مجموعة";
+"message" = "رسالة";
+"remove_from_group" = "إزالة من المجموعة";
+"remove_member_confirmation_message" = "هل أنت متأكد انك تريد إزالة هذا العضو؟";
+"make" = "إجعل";
+"an_admin" = "مديراً";
+"make_admin_confirmation" = "هل أنت متأكد أنك تريد جعل هذا العضو مديراً؟";
+"revoke_admin" = "إزالة صلاحيات المدير";
+"revoke_admin_confirmation" = "Are you sure you want to revoke this member?";
+"already_added" = "تمت إضافته";
+"no_link_generated" = "لم يتم توليد رابط";
+"copied_to_clipboard" = "تم النسخ";
+"error" = "خطأ";
+"uploading_status" = "جاري نشر الحالة...";
+"uploading_text_status" = "جاري نشر الحالة النصية";
+"error_uploading_text_status" = "خطأ أثناء نشر الحالة";
+"recent_updates" = "آخر التحديثات";
+"viewed_updates" = "التحديثات التي تمت مشاهدتها";
+"type_astatus" = "اكتب حالة";
+"my_statuses" = "حالاتي";
+"delete_status" = "حذف حالة";
+"error_deleting_status" = "خطأ أثناء حذف الحالة";
+"fireapp_call" = "%@ مكالمة";
+"connecting" = "جاري الإتصال";
+"denied" = "تم الرفض";
+"cancelled" = "تم الالغاء";
+"user_hung_up" = "المستخدم أغلق";
+"no_answer" = "لا يوجد رد";
+"ended" = "تم الانهاء";
+"default_status" = "أنا استخدم %@";
+"user_name_empty" = "اسم المستخدم فارغ";
+"permissions_contacts_not_determined" = "Contacts - NotDetermined";
+"permissions_contacts_authorized" = "Contacts - Authorized";
+"permissions_contacts_denied" = "Contacts - Denied";
+"permissions_camera_not_determined" = "Camera - NotDetermined";
+"permissions_camera_authorized" = "Camera - Authorized";
+"permissions_camera_denied" = "Camera - Denied";
+"permissions_mic_not_determined" = "Microphone - NotDetermined";
+"permissions_mic_authorized" = "Microphone - Authorized";
+"permissions_mic_denied" = "Microphone - Denied";
+"permissions_photos_not_determined" = "Photos - NotDetermined";
+"permissions_photos_authorized" = "Photos - Authorized";
+"permissions_photos_denied" = "Photos - Denied";
+"permissions_notifications_not_determined" = "Notifications - NotDetermined";
+"permissions_notifications_authorized" = "Notifications - Authorized";
+"permissions_notifications_denied" = "Notifications - Denied";
+"are_now_an_admin" = "أصبح مديراً";
+"is_now_an_admin" = "أصبح مديراً";
+"no_longer_an_admin" = "لم يعد مديراً";
+"is_longer_an_admin" = "لم يعد مديراً";
+"added" = "تمت إضافته";
+"you_left" = "أنت غادرت";
+"left_group" = "غادر المجموعة";
+"you_removed" = "أنت أزلت";
+"removed" = "أزال";
+"you_created_this_group" = "أنت أنشأت هذه المجموعة";
+"created_this_group" = "أنشأ هذه المجموعة";
+"you_changed_group_preferences" = "أنت غيرت إعدادات المجموعة";
+"changed_group_preferences" = "قام بتغيير إعدادات المجموعة";
+"joined_via_link" = "انضم بواسطة رابط";
+"typing" = "يقوم بالكتابة ...";
+"recording" = "يقوم بالتسجيل ...";
+"online" = "متصل";
+"photos" = "الصور";
+"audio" = "الموسيقى";
+"videos" = "الفيديو";
+"documents" = "المستندات";
+"never" = "أبداً";
+"wifi" = "وايفاي";
+"wifi_cellular" = "وايفاي والبيانات";
+"photo" = "صورة";
+"video" = "فيديو";
+"voice_message" = "رسالة صوتية";
+"audio" = "موسيقى";
+"file" = "ملف";
+"location" = "موقع";
+"just_now" = "الآن";
+"minutes_ago" = "دقائق";
+"hours_ago" = "ساعات";
+"today" = "اليوم";
+"days_ago" = "أيام";
+"weeks_ago" = "أسابيع";
+"today_at" = "اليوم في";
+"yesterday_at" = "البارحة في";
+"at" = "في";
+"yesterday" = "البارحة";
+"exit_group_confirmation" = "are you sure you want to exit this Group?";
+"exit_group" = "مغادرة المجموعة";
+"cant_send_messages_to_group" = "you can't send messages to this group!";
+"delete_for_everyone" = "حذف للجميع";
+"video_is_long" = "الفيديو طويل جداً";
+"you_deleted_this_message" = "لقد قمت بحذف هذه الرسالة";
+"this_message_deleted" = "تم حذف هذه الرسالة";
+"app_desc" = "%@ is a Chat App that that connects people with each other with a simple and great UI";
+"created_by" = "تم الإنشاء من قبل";
+
+"my_status" = "حالتي";
+"add_to_my_status" = "أضف الى حالتي";
+"status" = "الحالة";
+"about_and_phone_number" = "حول ورقم الهاتف";
+"show_notifications" = "إظهار الإشعارات";
+"sound" = "الصوت";
+"wallpaper" = "الخلفية";
+"save_to_camera_roll" = "حفظ الى ألبوم الكاميرا";
+"profile" = "الملف الشخصي";
+"notifications" = "الإشعارات";
+"about" = "حول";
+"required_permissions" = "The app requires the following permissions.";
+"no_items" = "لا يوجد عناصر";
+"media" = "الوسائط";
+"search" = "بحث";
+"block_user" = "حظر المستخدم";
+"add_to_contacts" = "أضف الى الأسماء";
+"anyone_has_link_can_join" = "أي شخص يستطيع الإنضمام باستخدام هذا الرابط";
+"share_link" = "مشاركة الرابط";
+"copy_link" = "نسخ الرابط";
+"revoke_link" = "حذف الرابط";
+"invite_to_group_link" = "دعوة للإنضمام عبر الرابط";
+"show_participants" = "عرض الأشخاص";
+"chat_settings" = "إعدادات الدردشة";
+"media_auto_download" = "التحميل التلقائي";
+"chat" = "الدردشة";
+"group_admin" = "مدير المجموعة";
+"invite_to_app" = "دعوة الى %@";
+"invite_text" = "Download now %@ App for Instant messaging,groups support,Video Calls, and more.";
+"camera" = "الكاميرا";
+"contact" = "جهة اتصال";
+"photo_and_video" = "صور و فيديو";
+"privacy_policy_info" = "By Tapping the below button you are acepting our %@";
+"privacy_policy" = "Privacy Policy";
+"agree_and_continue" = "موافقة ومتابعة";
+"notifications_settings_blocked" = "Please allow Notifications permissons";
+"voice_call" = "%@ مكالمة صوتية";
+"video_call" = "%@ مكالمة فيديو";
+"please_wait" = "يرجى الإنتظار...";
+
+"missed_call" = "مكالمة فائتة";
+"join_group" = "إنضم للمجموعة";
+
+"cant_join_this_group" = "لا يمكنك الإنضمام";
+"already_in_group" = "أنت منضم فعلاً";
+"invalid_group_link" = "رابط غير صالح";
+"unknown_error" = "خطأ غير معروف";
+"participants" = "المشاركين";
+"you_added_to_group" = "تمت اضافتك للمجموعة";
+"write_message" = "اكتب رسالة";
+"save_contact" = "حفظ جهة الإتصال";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

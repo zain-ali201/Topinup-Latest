@@ -1,0 +1,6 @@
+framework module Pods_Topinup {
+  umbrella header "Pods-Topinup-umbrella.h"
+
+  export *
+  module * { export * }
+}

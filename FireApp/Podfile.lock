@@ -1,0 +1,355 @@
+PODS:
+  - AgoraRtcEngine_iOS (3.1.2)
+  - ALCameraViewController (3.1)
+  - AlertBar (0.5.0)
+  - BadgeSwift (8.0.0)
+  - BottomPopup (0.6.0)
+  - BubbleTransition (4.0.0)
+  - CircleProgressButton (0.5.1)
+  - CircleProgressView (1.2.0)
+  - ContextMenu (0.4.0)
+  - DateTimePicker (2.4.1)
+  - EnhancedCircleImageView (0.1)
+  - Firebase/Auth (6.33.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 6.9.2)
+  - Firebase/CoreOnly (6.33.0):
+    - FirebaseCore (= 6.10.3)
+  - Firebase/Database (6.33.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 6.6.0)
+  - Firebase/Functions (6.33.0):
+    - Firebase/CoreOnly
+    - FirebaseFunctions (~> 2.9.0)
+  - Firebase/Messaging (6.33.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.7.0)
+  - Firebase/Storage (6.33.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 3.9.0)
+  - FirebaseAuth (6.9.2):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseCore (6.10.3):
+    - FirebaseCoreDiagnostics (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+  - FirebaseCoreDiagnostics (1.7.0):
+    - GoogleDataTransport (~> 7.4)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+    - nanopb (~> 1.30906.0)
+  - FirebaseDatabase (6.6.0):
+    - FirebaseCore (~> 6.10)
+    - leveldb-library (~> 1.22)
+  - FirebaseFunctions (2.9.0):
+    - FirebaseCore (~> 6.10)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseInstallations (1.7.0):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (4.8.0):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+  - FirebaseMessaging (4.7.1):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstanceID (~> 4.7)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Reachability (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+    - Protobuf (>= 3.9.2, ~> 3.9)
+  - FirebaseStorage (3.9.1):
+    - FirebaseCore (~> 6.10)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseUI/Auth (8.5.1):
+    - Firebase/Auth (~> 6.0)
+    - GoogleUtilities/UserDefaults
+  - FirebaseUI/Phone (8.5.1):
+    - FirebaseUI/Auth
+  - GoogleDataTransport (7.5.1):
+    - nanopb (~> 1.30906.0)
+  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.7.2):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.7.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/Network (6.7.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/Reachability (6.7.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.7.2):
+    - GoogleUtilities/Logger
+  - GrowingTextView (0.7.2)
+  - GTMSessionFetcher/Core (1.5.0)
+  - Hero (1.5.0)
+  - ImageScrollView (1.9.1)
+  - iOSPhotoEditor (1.0.0)
+  - IQKeyboardManagerSwift (6.5.6)
+  - iRecordView (0.1.3)
+  - JFContactsPicker (2.0.0)
+  - Kingfisher (5.15.5):
+    - Kingfisher/Core (= 5.15.5)
+  - Kingfisher/Core (5.15.5)
+  - LBTATools (1.0.12)
+  - leveldb-library (1.22.1)
+  - libPhoneNumber-iOS (0.9.15)
+  - LocationPicker (1.4.2)
+  - MarqueeLabel (4.0.5)
+  - nanopb (1.30906.0):
+    - nanopb/decode (= 1.30906.0)
+    - nanopb/encode (= 1.30906.0)
+  - nanopb/decode (1.30906.0)
+  - nanopb/encode (1.30906.0)
+  - NotificationBannerSwift (3.0.2):
+    - MarqueeLabel (~> 4.0.0)
+    - SnapKit (~> 5.0.0)
+  - NotificationView (0.2.4)
+  - Permission/Camera (3.1.2):
+    - Permission/Core
+  - Permission/Contacts (3.1.2):
+    - Permission/Core
+  - Permission/Core (3.1.2)
+  - Permission/MediaLibrary (3.1.2):
+    - Permission/Core
+  - Permission/Microphone (3.1.2):
+    - Permission/Core
+  - Permission/Notifications (3.1.2):
+    - Permission/Core
+  - Permission/Photos (3.1.2):
+    - Permission/Core
+  - PromisesObjC (1.2.12)
+  - Protobuf (3.14.0)
+  - Realm (5.4.5):
+    - Realm/Headers (= 5.4.5)
+  - Realm/Headers (5.4.5)
+  - RealmSwift (5.4.5):
+    - Realm (= 5.4.5)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxFirebase/Database (0.3.8):
+    - RxFirebaseDatabase (~> 0.3)
+  - RxFirebase/Functions (0.3.8):
+    - RxFirebaseFunctions (~> 0.3)
+  - RxFirebase/Storage (0.3.8):
+    - RxFirebaseStorage (~> 0.3)
+  - RxFirebaseDatabase (0.3.8):
+    - FirebaseDatabase (~> 6)
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - RxFirebaseFunctions (0.3.8):
+    - FirebaseFunctions (~> 2.5)
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - RxFirebaseStorage (0.3.8):
+    - FirebaseStorage (~> 3)
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - RxOptional (4.1.0):
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - SnapKit (5.0.1)
+  - SwiftEventBus (5.0.0)
+  - SwiftyCam (4.0.0)
+  - TTCardView (0.1.1)
+  - UIColor_Hex_Swift (5.1.0)
+  - "UITextView+Placeholder (1.4.0)"
+  - WXImageCompress (0.1.3)
+
+DEPENDENCIES:
+  - AgoraRtcEngine_iOS (= 3.1.2)
+  - ALCameraViewController (= 3.1)
+  - AlertBar (= 0.5.0)
+  - BadgeSwift (= 8.0.0)
+  - BottomPopup (= 0.6.0)
+  - BubbleTransition (= 4.0.0)
+  - CircleProgressButton (= 0.5.1)
+  - CircleProgressView (= 1.2.0)
+  - ContextMenu (= 0.4.0)
+  - DateTimePicker (= 2.4.1)
+  - EnhancedCircleImageView (= 0.1)
+  - Firebase/Auth (= 6.33.0)
+  - Firebase/Database (= 6.33.0)
+  - Firebase/Functions (= 6.33.0)
+  - Firebase/Messaging (= 6.33.0)
+  - Firebase/Storage (= 6.33.0)
+  - FirebaseUI/Phone (= 8.5.1)
+  - GrowingTextView (= 0.7.2)
+  - Hero (= 1.5.0)
+  - ImageScrollView (= 1.9.1)
+  - iOSPhotoEditor (= 1.0.0)
+  - IQKeyboardManagerSwift (= 6.5.6)
+  - iRecordView (= 0.1.3)
+  - JFContactsPicker (= 2.0.0)
+  - Kingfisher (= 5.15.5)
+  - LBTATools (= 1.0.12)
+  - libPhoneNumber-iOS (= 0.9.15)
+  - LocationPicker (= 1.4.2)
+  - NotificationBannerSwift (= 3.0.2)
+  - NotificationView (= 0.2.4)
+  - Permission/Camera (= 3.1.2)
+  - Permission/Contacts (= 3.1.2)
+  - Permission/MediaLibrary (= 3.1.2)
+  - Permission/Microphone (= 3.1.2)
+  - Permission/Notifications (= 3.1.2)
+  - Permission/Photos (= 3.1.2)
+  - RealmSwift (= 5.4.5)
+  - RxCocoa (= 5.1.1)
+  - RxFirebase/Database (= 0.3.8)
+  - RxFirebase/Functions (= 0.3.8)
+  - RxFirebase/Storage (= 0.3.8)
+  - RxOptional (= 4.1.0)
+  - RxSwift (= 5.1.1)
+  - SwiftEventBus (= 5.0.0)
+  - SwiftyCam (= 4.0.0)
+  - TTCardView (= 0.1.1)
+  - UIColor_Hex_Swift (= 5.1.0)
+  - "UITextView+Placeholder (= 1.4.0)"
+  - WXImageCompress (= 0.1.3)
+
+SPEC REPOS:
+  trunk:
+    - AgoraRtcEngine_iOS
+    - ALCameraViewController
+    - AlertBar
+    - BadgeSwift
+    - BottomPopup
+    - BubbleTransition
+    - CircleProgressButton
+    - CircleProgressView
+    - ContextMenu
+    - DateTimePicker
+    - EnhancedCircleImageView
+    - Firebase
+    - FirebaseAuth
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseDatabase
+    - FirebaseFunctions
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - FirebaseStorage
+    - FirebaseUI
+    - GoogleDataTransport
+    - GoogleUtilities
+    - GrowingTextView
+    - GTMSessionFetcher
+    - Hero
+    - ImageScrollView
+    - iOSPhotoEditor
+    - IQKeyboardManagerSwift
+    - iRecordView
+    - JFContactsPicker
+    - Kingfisher
+    - LBTATools
+    - leveldb-library
+    - libPhoneNumber-iOS
+    - LocationPicker
+    - MarqueeLabel
+    - nanopb
+    - NotificationBannerSwift
+    - NotificationView
+    - Permission
+    - PromisesObjC
+    - Protobuf
+    - Realm
+    - RealmSwift
+    - RxCocoa
+    - RxFirebase
+    - RxFirebaseDatabase
+    - RxFirebaseFunctions
+    - RxFirebaseStorage
+    - RxOptional
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - SwiftEventBus
+    - SwiftyCam
+    - TTCardView
+    - UIColor_Hex_Swift
+    - "UITextView+Placeholder"
+    - WXImageCompress
+
+SPEC CHECKSUMS:
+  AgoraRtcEngine_iOS: 0628532d3475471d1c352ba548cee98492850cc0
+  ALCameraViewController: 144dea45fd749a623aafd8cb7b10cea88499fcc3
+  AlertBar: 5134161e088a7be32b76d5daddcc7326744015cf
+  BadgeSwift: a81547ffde1f462bb5fc02e3fa3fdcbc1b888354
+  BottomPopup: 1d5649a3b29396238f0e8f3c82075a7bfcf37ba7
+  BubbleTransition: 9d96f31375e0db46684e2060d3a601fa47d9f9c1
+  CircleProgressButton: 43585e5a2b1c96622f854d504bb5fe7a2ea0851f
+  CircleProgressView: 6b5b091d59dc5e5d2fda84e637a40498cdc39937
+  ContextMenu: f835e09a93f1c28c631b76ee94396d9570397fd1
+  DateTimePicker: 997176ea28954f3c18817b9565a53b28ee4400b8
+  EnhancedCircleImageView: 1069bbc14526d89502cc0e48b45f5da6a3317a47
+  Firebase: 8db6f2d1b2c5e2984efba4949a145875a8f65fe5
+  FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
+  FirebaseCore: d889d9e12535b7f36ac8bfbf1713a0836a3012cd
+  FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
+  FirebaseDatabase: 13a865a4b85897462b930eb683bda8f52583713f
+  FirebaseFunctions: 27518fdd14d8b3a849e2443f921cd1b471ab7acd
+  FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
+  FirebaseInstanceID: bd3ffc24367f901a43c063b36c640b345a4a5dd1
+  FirebaseMessaging: 5eca4ef173de76253352511aafef774caa1cba2a
+  FirebaseStorage: 15e0f15ef3c7fec3d1899d68623e47d4447066b4
+  FirebaseUI: 9df84336a56f1d755ae4c37d5885c237d3084b6b
+  GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
+  GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
+  GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
+  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  Hero: b7385b75e7259da62f4f85462f59a5082d66b058
+  ImageScrollView: 21e04457d565405b856e5af3f18ef594ae943b66
+  iOSPhotoEditor: 2951f35246a31dcb428b6292248a9c065582d03e
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  iRecordView: 1204da2240abe68644b950a3477634ba344fccd2
+  JFContactsPicker: 2d2a8aeaf15932bd81a384d4f847c8d13200dfd9
+  Kingfisher: e3ec347a5ab8817b7585ef46923a2d2b9a7d8fbe
+  LBTATools: 389a901a01b9a56bea5682c40cd6e23530f40015
+  leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
+  LocationPicker: 9af49409ec3ca13fdf4bf6b39e1a3c7dec029f4a
+  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
+  nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  NotificationBannerSwift: 713e20f21b6105f4a36a00e5d9fa414a930d3d8e
+  NotificationView: 1fe16a62d2b1866dc9b0e83782b4b97b385021b2
+  Permission: 4821359fb4d4367fb59aa16df38fbba5722ac842
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  Protobuf: 0cde852566359049847168e51bd1c690e0f70056
+  Realm: 155c60aec98b1044a05d676017be6900a9ee93b6
+  RealmSwift: fa80dc70fa91f762c2bc3d09328da92214b36bbb
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxFirebase: 45e6448c69c7212e21f8ba89144443f916437861
+  RxFirebaseDatabase: 5c1d3d31c9858f05ff6ad92e5b4b696354d1497b
+  RxFirebaseFunctions: c32622f9bb7c75c01a2489a38e376b5038e2d6f3
+  RxFirebaseStorage: 271184ff8f8d3660bfc751dcafdbb4dd01d0b8a1
+  RxOptional: b1fcd60856807a564c0215c2184b8d33e7826dc2
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftEventBus: b30f617a6aca5a9336464b4d3f5931034762f2d5
+  SwiftyCam: 6e57914771d972fbe508e759dc9d0150a44a93fd
+  TTCardView: 99cebbf2673d8df592f3264a51105b294d31c7ca
+  UIColor_Hex_Swift: 8be7432edacb7fa91c78aa05ef3c30b66e4f9415
+  "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
+  WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
+
+PODFILE CHECKSUM: 10f1334c6771051422acbc72dc2db34eab85e52a
+
+COCOAPODS: 1.10.1
