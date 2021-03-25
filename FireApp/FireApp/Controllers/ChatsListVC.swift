@@ -13,8 +13,8 @@ import Contacts
 import NotificationBannerSwift
 import NotificationView
 
-class ChatsListVC: BaseSearchableVC {
-
+class ChatsListVC: BaseSearchableVC
+{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBarContainer: UIView!
 
@@ -29,13 +29,18 @@ class ChatsListVC: BaseSearchableVC {
 
     var notificationToken: NotificationToken?
 
-    fileprivate func listenForTypingState() {
-        for chat in chats {
-            if let user = chat.user {
-                if user.isGroupBool && user.group?.isActive ?? false {
+    fileprivate func listenForTypingState()
+    {
+        for chat in chats
+        {
+            if let user = chat.user
+            {
+                if user.isGroupBool && user.group?.isActive ?? false
+                {
                     _ = GroupTyping(groupId: user.uid, users: user.group!.users, disposeBag: disposeBag, delegate: self)
-                } else if !user.isBroadcastBool {
-
+                }
+                else if !user.isBroadcastBool
+                {
                     FireManager.listenForTypingState(uid: user.uid).subscribe(onNext: { (state) in
                         self.updateChatLastMessageOrStateLbl(uid: user.uid, state: state)
 
@@ -45,29 +50,26 @@ class ChatsListVC: BaseSearchableVC {
         }
     }
 
-    fileprivate func attachListeners() {
+    fileprivate func attachListeners()
+    {
         listenForTypingState()
         addMessageStateListener()
         addVoiceMessageStateListener()
     }
 
-    fileprivate func setupSearchController() {
+    fileprivate func setupSearchController()
+    {
         searchController = UISearchController(searchResultsController: nil)
-
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
-
-
-
-
         searchBarContainer.addSubview(searchController.searchBar)
-
-
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
+        
         chats = RealmHelper.getInstance(appRealm).getChats()
         searchResults = chats
 
@@ -76,16 +78,10 @@ class ChatsListVC: BaseSearchableVC {
 
         setupSearchController()
 
-
-
-
         notificationToken = chats?.observe { [weak self] (changes: RealmCollectionChange) in
             guard let strongSelf = self else { return }
             changes.updateTableView(tableView: strongSelf.tableView)
         }
-
-
-
 
         if RealmHelper.getInstance(appRealm).getUser(uid: FireManager.getUid()) == nil {
             let user = User()
@@ -93,12 +89,8 @@ class ChatsListVC: BaseSearchableVC {
             RealmHelper.getInstance(appRealm).saveObjectToRealm(object: user)
         }
 
-
-
-
         UserDefaultsManager.setFetchingUnDeliveredMessages(bool: false)
     }
-
 
     func goToChatVC(user: User) {
         performSegue(withIdentifier: "toChatVC", sender: user)
@@ -224,7 +216,6 @@ class ChatsListVC: BaseSearchableVC {
         tabBarController?.navigationItem.title = "Chats"
 
         attachListeners()
-        
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -241,6 +232,10 @@ class ChatsListVC: BaseSearchableVC {
             isInSearchMode = false
             searchController.isActive = false
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     deinit {

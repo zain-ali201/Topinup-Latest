@@ -162,7 +162,9 @@ NS_ASSUME_NONNULL_BEGIN
   UINavigationController *navigationController =
       [[UINavigationController alloc] initWithRootViewController:controller];
     [navigationController setNavigationBarHidden:TRUE];
-  [presentingViewController presentViewController:navigationController animated:YES completion:nil];
+    [navigationController setModalPresentationStyle:UIModalPresentationFullScreen];
+    [presentingViewController presentViewController:navigationController animated:YES completion:nil];
+    [presentingViewController.navigationController pushViewController:navigationController animated:TRUE];
 }
 
 - (void)signOut {

@@ -15,7 +15,7 @@ enum ButtonState {
 }
 
 let micImage = UIImage(named: "mic_none")
-let sendImage = UIImage(named: "send")
+let sendImage = UIImage(named: "send_button")
 
 class SendButton: RecordButton {
     
@@ -43,24 +43,28 @@ class SendButton: RecordButton {
         let translationY: CGFloat = 350
 
         let newImage = currentState == .toRecord ? micImage : sendImage
-
-        let animationDuration = 0.15
-
-        UIView.animate(withDuration: animationDuration, animations: {
-            self.transform = CGAffineTransform(translationX: translationY, y: 0)
-        }) { (_) in
-            UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
-                self.transform = CGAffineTransform(translationX: 0, y: 0)
+        
+        UIView.animate(withDuration: 0.5) {
+            if self.image(for: .normal) != newImage {
                 self.setImage(newImage, for: .normal)
-
-            }, completion: { (_) in
-                    if self.image(for: .normal) != newImage {
-                        self.setImage(newImage, for: .normal)
-                    }
-
-                })
-
-
+            }
         }
+
+//        UIView.animate(withDuration: animationDuration, animations: {
+//            self.transform = CGAffineTransform(translationX: translationY, y: 0)
+//        }) { (_) in
+//            UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
+//                self.transform = CGAffineTransform(translationX: 0, y: 0)
+//                self.setImage(newImage, for: .normal)
+//
+//            }, completion: { (_) in
+//                    if self.image(for: .normal) != newImage {
+//                        self.setImage(newImage, for: .normal)
+//                    }
+//
+//                })
+//
+//
+//        }
     }
 }

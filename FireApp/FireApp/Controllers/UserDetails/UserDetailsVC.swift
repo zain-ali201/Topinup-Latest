@@ -13,34 +13,19 @@ import DateTimePicker
 
 
 
-class UserDetailsVC: UserDetailsBase {
-
-
+class UserDetailsVC: UserDetailsBase
+{
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-
     }
-
-
-
-
-
-
-
-
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             return addUserImageHeader()
         }
         return super.tableView(tableView, viewForHeaderInSection: section)
     }
-
-
-
-
-
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let cell = tableView.cellForRow(at: indexPath) {
 
@@ -58,11 +43,6 @@ class UserDetailsVC: UserDetailsBase {
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
-
-
-
-
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
@@ -93,9 +73,6 @@ class UserDetailsVC: UserDetailsBase {
                 cell.textLabel?.text = user.isBlocked ? Strings.unblock : Strings.block
             }
         }
-
-
-
         return cell
     }
 
@@ -129,12 +106,7 @@ class UserDetailsVC: UserDetailsBase {
                 self.present(alertController, animated: true, completion: nil)
             }
             break
-
-
-
-
-
-
+            
         case CellTags.blockUser:
             //block user
 
@@ -161,7 +133,6 @@ class UserDetailsVC: UserDetailsBase {
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
 
-
         case CellTags.clearChat:
             let alertController = UIAlertController(title: nil, message: Strings.clear_chat_confirmation_message, preferredStyle: .actionSheet)
 
@@ -175,16 +146,10 @@ class UserDetailsVC: UserDetailsBase {
             alertController.addAction(deleteAction)
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
-
             break
 
         case CellTags.scheduleMessage:
-
-     
-            
             let min = NSCalendar.current.date(byAdding: .minute, value: 5, to: Date())
-
-
             let max = NSCalendar.current.date(byAdding: .day, value: 29, to: Date())
 
             let picker = DateTimePicker.create(minimumDate: min, maximumDate: max)
@@ -194,13 +159,8 @@ class UserDetailsVC: UserDetailsBase {
 
                 self.navigationController?.popViewController(animated: true)
             }
-
-
             picker.show()
-
             break
-
-
         default:
             break
         }

@@ -7,6 +7,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-DISPLAY-REGULAR-58A92BB8F09F3.TTF">
+            <string>SFUIDisplay-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,13 +23,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NeQ-ZZ-Jp8">
-                        <rect key="frame" x="8" y="8" width="302" height="142"/>
+                        <rect key="frame" x="8" y="8" width="296.5" height="142"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCy-iR-ivh">
-                                <rect key="frame" x="2" y="0.0" width="300" height="142"/>
+                                <rect key="frame" x="0.0" y="0.0" width="296.5" height="142"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUV-NH-b6H" userLabel="Reply Container" customClass="ReplyView" customModule="Topinup" customModuleProvider="target">
-                                        <rect key="frame" x="6" y="6" width="288" height="50"/>
+                                        <rect key="frame" x="6" y="6" width="284.5" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="NCb-cY-pG6"/>
@@ -36,26 +41,26 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Hello World Lorem ipsum" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gx7-z7-bxi" userLabel="Message TextView">
-                                        <rect key="frame" x="0.0" y="56" width="300" height="61.5"/>
+                                        <rect key="frame" x="0.0" y="56" width="296.5" height="60"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="apq-0n-tp7"/>
                                         </constraints>
                                         <color key="textColor" red="0.1176470588" green="0.14117647059999999" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="8q1-wN-1Jq">
-                                        <rect key="frame" x="247" y="119.5" width="45" height="14.5"/>
+                                        <rect key="frame" x="246.5" y="118" width="42" height="16"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oak-VR-g9z">
-                                                <rect key="frame" x="0.0" y="0.0" width="31.5" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="31" height="16"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="9PD-j0-fFo">
-                                                <rect key="frame" x="33.5" y="0.0" width="11.5" height="14.5"/>
+                                                <rect key="frame" x="33" y="0.0" width="9" height="16"/>
                                             </imageView>
                                         </subviews>
                                         <userDefinedRuntimeAttributes>
@@ -73,7 +78,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.84705882349999995" green="0.90588235289999997" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="nUV-NH-b6H" firstAttribute="top" secondItem="jCy-iR-ivh" secondAttribute="top" constant="6" id="6xL-ir-JDg"/>
                                     <constraint firstItem="Gx7-z7-bxi" firstAttribute="trailing" secondItem="8q1-wN-1Jq" secondAttribute="trailing" constant="8" id="FXW-72-teb"/>
@@ -86,16 +91,28 @@
                                     <constraint firstItem="Gx7-z7-bxi" firstAttribute="leading" secondItem="jCy-iR-ivh" secondAttribute="leading" id="pEn-tT-shZ"/>
                                     <constraint firstItem="Gx7-z7-bxi" firstAttribute="top" secondItem="nUV-NH-b6H" secondAttribute="bottom" id="x8o-Hr-zC4"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="b-corner" translatesAutoresizingMaskIntoConstraints="NO" id="Jpc-dL-aLG">
+                        <rect key="frame" x="304.5" y="132" width="8.5" height="11"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="Jpc-dL-aLG" firstAttribute="leading" secondItem="NeQ-ZZ-Jp8" secondAttribute="trailing" id="8n7-67-6Ud"/>
                     <constraint firstAttribute="bottom" secondItem="NeQ-ZZ-Jp8" secondAttribute="bottom" id="cEh-0F-5du"/>
+                    <constraint firstAttribute="bottom" secondItem="Jpc-dL-aLG" secondAttribute="bottom" constant="7" id="cHv-Xy-bMU"/>
                     <constraint firstItem="NeQ-ZZ-Jp8" firstAttribute="top" secondItem="0GR-80-c9L" secondAttribute="top" constant="8" id="sUP-07-8Qt"/>
-                    <constraint firstAttribute="trailing" secondItem="NeQ-ZZ-Jp8" secondAttribute="trailing" constant="8" id="tXk-rg-GTX"/>
                     <constraint firstItem="NeQ-ZZ-Jp8" firstAttribute="leading" secondItem="0GR-80-c9L" secondAttribute="leading" constant="8" id="uCB-aM-3Vz"/>
+                    <constraint firstAttribute="trailing" secondItem="Jpc-dL-aLG" secondAttribute="trailing" constant="5" id="ygw-4K-4hT"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="0Bh-fJ-Liz"/>
@@ -110,6 +127,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="tick" width="11.5" height="9.5"/>
+        <image name="b-corner" width="8.5" height="11"/>
+        <image name="tick" width="9" height="7.5"/>
     </resources>
 </document>

@@ -49,14 +49,11 @@ class StatusVC: BaseVC, UIViewControllerTransitioningDelegate {
         super.viewDidLoad()
 
         user = RealmHelper.getInstance(appRealm).getUser(uid: FireManager.getUid())
-
         statusesList = RealmHelper.getInstance(appRealm).getAllStatuses()
-
         searchResults = statusesList
 
         seenStatusesList = RealmHelper.getInstance(appRealm).getAllStatuses(true)
         nonSeenStatusesList = RealmHelper.getInstance(appRealm).getAllStatuses(false)
-
 
         textStatusLbl.clipsToBounds = true
 
@@ -68,14 +65,12 @@ class StatusVC: BaseVC, UIViewControllerTransitioningDelegate {
             guard let strongSelf = self else { return }
 
             strongSelf.tableView.reloadData()
-
         }
 
         btnCamera.addTarget(self, action: #selector(cameraTapped), for: .touchUpInside)
         btnTextStatus.addTarget(self, action: #selector(textStatusTapped), for: .touchUpInside)
         cardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cardViewTapped)))
         btnPlus.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cardViewTapped)))
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -86,14 +81,16 @@ class StatusVC: BaseVC, UIViewControllerTransitioningDelegate {
 //        StatusManager.fetchStatuses(users: RealmHelper.getInstance(appRealm).getUsers()).subscribe(onCompleted: nil) { (error) in
 //
 //              }.disposed(by: disposeBag)
-
     }
-
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     @objc private func cameraTapped() {
         performSegue(withIdentifier: "toCameraVC", sender: nil)
     }
+    
     @objc private func textStatusTapped() {
         performSegue(withIdentifier: "toTextStatus", sender: nil)
     }
@@ -380,6 +377,7 @@ extension StatusVC: UITableViewDataSource, UITableViewDelegate {
         if isInSearchMode {
             return nil
         }
+        
 
         if section == 0 && nonSeenStatusesList.count > 0 {
             return Strings.recent_updates
@@ -389,26 +387,45 @@ extension StatusVC: UITableViewDataSource, UITableViewDelegate {
 
         return nil
     }
-}
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        //add user image header
+//        if section == 1 || section == 2
+//        {
+//            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 25))
+//            view.backgroundColor = .lightGray
+//            let lbl = UILabel(frame: CGRect(x: 15, y: 0, width: 0, height: 25))
+//
+//            if section == 0 && nonSeenStatusesList.count > 0 {
+//                lbl.text = "RECENT UPDATES"
+//            } else if section == 1 && seenStatusesList.count > 0 {
+//                lbl.text = "VIEWED UPDATES"
+//            }
+//            lbl.backgroundColor = .clear
+//            lbl.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+//
+//            view.addSubview(lbl)
+//
+//            return view
+//        }
+//
+//        return nil
+//    }
+//}
 
 extension StatusVC: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isInSearchMode = false
         tableView.reloadData()
-
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-
         searchResults = RealmHelper.getInstance(appRealm).searchForStatus(text: searchText)
         isInSearchMode = searchText.isNotEmpty
         tableView.reloadData()
-
     }
 }
-
 
 class StatusCell: UITableViewCell {
     @IBOutlet weak var userImg: UIImageView!

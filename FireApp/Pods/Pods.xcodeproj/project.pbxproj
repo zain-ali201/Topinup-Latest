@@ -257,6 +257,18 @@
 		17F396481F7A85130A1F70117295473C /* FIRInstanceIDTokenDeleteOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE93A240370B437DBE9D3BD7D659BBB /* FIRInstanceIDTokenDeleteOperation.m */; };
 		1802AEF626EBA41E2243902F5E70F1AF /* GtalkExtensions.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = BD31185F84E8DB6F26CE168556240C41 /* GtalkExtensions.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		184CB5B7861C6E39D232C2ABBE670B5A /* FIRComponentContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = FB16C27EC629B25CD196AA7B46AB979F /* FIRComponentContainer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		18506F95260B5FD8003C2BBC /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18506F93260B5FD6003C2BBC /* button@2x.png */; };
+		18506F96260B5FD8003C2BBC /* button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18506F94260B5FD7003C2BBC /* button@3x.png */; };
+		1863130B260C8B0A008DAAFB /* 1emoji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18631301260C8B00008DAAFB /* 1emoji@3x.png */; };
+		1863130C260C8B0A008DAAFB /* 1crop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18631302260C8B01008DAAFB /* 1crop@2x.png */; };
+		1863130D260C8B0A008DAAFB /* 1pen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18631303260C8B01008DAAFB /* 1pen@3x.png */; };
+		1863130E260C8B0A008DAAFB /* 1pen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18631304260C8B03008DAAFB /* 1pen@2x.png */; };
+		1863130F260C8B0A008DAAFB /* 1cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18631305260C8B03008DAAFB /* 1cross@2x.png */; };
+		18631310260C8B0A008DAAFB /* 1emoji@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18631306260C8B04008DAAFB /* 1emoji@2x.png */; };
+		18631311260C8B0A008DAAFB /* 1text@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18631307260C8B04008DAAFB /* 1text@2x.png */; };
+		18631312260C8B0A008DAAFB /* 1text@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18631308260C8B05008DAAFB /* 1text@3x.png */; };
+		18631313260C8B0A008DAAFB /* 1cross@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18631309260C8B05008DAAFB /* 1cross@3x.png */; };
+		18631314260C8B0A008DAAFB /* 1crop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1863130A260C8B0A008DAAFB /* 1crop@3x.png */; };
 		18797B51A65531AA744D68AD7A19D41A /* FIRComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = EE4CC4F02EBD8DFE0089E0DF5D3AF347 /* FIRComponent.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		188017F725B43970E7ACE6AB8EF78536 /* RLMProperty_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 03D4D56BCC7E793B1D03A668012E369C /* RLMProperty_Private.h */; };
 		18819715B82A82D582D3EB0C14A09F55 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0927858749C57B233D9A62FCFA6740 /* Security.framework */; };
@@ -1828,7 +1840,6 @@
 		AEF3053BE26C6657CA8208CD704A2F9F /* CGRect+DominantCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C41945878B8A6D436EB7379B87EC53 /* CGRect+DominantCorner.swift */; };
 		AF0FC57321A891C2E67DC82496D2AF4F /* FBLPromise+Timeout.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FC24D4DD9C5EE96626D7B1437C2DF0B /* FBLPromise+Timeout.h */; };
 		AF1310A56A622C588835F6953B8BC982 /* FWriteRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C27BFABA75D97F0BBE9F9FD21ADC89 /* FWriteRecord.m */; };
-		AF2483CA3CFFD91C0FE2BBA26D56FCFE /* button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9F92B56C1DAC0EDF2D63464056D3D9 /* button@3x.png */; };
 		AF47207CCF70C6B0599CCFEDB47665CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367CD7206324169D9ABCE8E8DB7F8086 /* Foundation.framework */; };
 		AF7F468786F1C39BF5818929BE61385C /* RLMSyncConfiguration.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 856DB6CB7D7AF12FE9F73AA5E353C411 /* RLMSyncConfiguration.h */; };
 		AF9B7369EB19526695FDCCF81B69CF2A /* FIRMessagingDataMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D18805250928F6198F9A41227746784F /* FIRMessagingDataMessageManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -2490,7 +2501,6 @@
 		F007659D966A0A33DF1D492A27812A00 /* GULAppDelegateSwizzler_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 26426EB63F642ECDC12F75839D938CD2 /* GULAppDelegateSwizzler_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F0200F1187776BA61EB0E8C5E0BD124F /* FIRDatabaseQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 74261DD1FC94794A82DAD3F30749DC1C /* FIRDatabaseQuery.m */; };
 		F05B78B26D1D5DE9C46DD8A78FA1F06D /* FLevelDBStorageEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 72F3A4C9F4D8FDCB0A72D8587634B5B0 /* FLevelDBStorageEngine.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F05E91CD8AD90B61D429C6BC43478CA1 /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 591496F88DD20636B9960CAB52071C13 /* button@2x.png */; };
 		F080F5152394387D647549FE347963F5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39E1E0B06A23D4BD7417260C65F68D19 /* Images.xcassets */; };
 		F08E56048DDC0E5A8CBA07AB168B6B9B /* FIRMultiFactorSession+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = F7A2999027E6D45D829EEDC8F1C2D89E /* FIRMultiFactorSession+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F0D9BDDC4454C2102E6C63E97BE70DFC /* schema.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A3CE53214958D5806F5AA96A6E911BA7 /* schema.cpp */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"5.4.5\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC"; }; };
@@ -4114,6 +4124,18 @@
 		1809492FBE09078548839375FD83CD2F /* FIRStorageConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRStorageConstants.h; path = FirebaseStorage/Sources/Public/FirebaseStorage/FIRStorageConstants.h; sourceTree = "<group>"; };
 		180CC4B2AFBB2F3DAAF491E3F2475620 /* UITabBarItem+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITabBarItem+Rx.swift"; path = "RxCocoa/iOS/UITabBarItem+Rx.swift"; sourceTree = "<group>"; };
 		1837450B2C721A19A56CB4655DCDC3A3 /* FUIPrivacyAndTermsOfServiceView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FUIPrivacyAndTermsOfServiceView.h; path = Auth/FirebaseAuthUI/FUIPrivacyAndTermsOfServiceView.h; sourceTree = "<group>"; };
+		18506F93260B5FD6003C2BBC /* button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button@2x.png"; sourceTree = "<group>"; };
+		18506F94260B5FD7003C2BBC /* button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button@3x.png"; sourceTree = "<group>"; };
+		18631301260C8B00008DAAFB /* 1emoji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1emoji@3x.png"; sourceTree = "<group>"; };
+		18631302260C8B01008DAAFB /* 1crop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1crop@2x.png"; sourceTree = "<group>"; };
+		18631303260C8B01008DAAFB /* 1pen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1pen@3x.png"; sourceTree = "<group>"; };
+		18631304260C8B03008DAAFB /* 1pen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1pen@2x.png"; sourceTree = "<group>"; };
+		18631305260C8B03008DAAFB /* 1cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1cross@2x.png"; sourceTree = "<group>"; };
+		18631306260C8B04008DAAFB /* 1emoji@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1emoji@2x.png"; sourceTree = "<group>"; };
+		18631307260C8B04008DAAFB /* 1text@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1text@2x.png"; sourceTree = "<group>"; };
+		18631308260C8B05008DAAFB /* 1text@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1text@3x.png"; sourceTree = "<group>"; };
+		18631309260C8B05008DAAFB /* 1cross@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1cross@3x.png"; sourceTree = "<group>"; };
+		1863130A260C8B0A008DAAFB /* 1crop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1crop@3x.png"; sourceTree = "<group>"; };
 		186969D36EE4ADE172E10335BD7D81C4 /* FIRSetAccountInfoResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRSetAccountInfoResponse.m; path = FirebaseAuth/Sources/Backend/RPC/FIRSetAccountInfoResponse.m; sourceTree = "<group>"; };
 		188B0D9278004E3A5928FE11A2081BFF /* SearchHistoryManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SearchHistoryManager.swift; path = LocationPicker/SearchHistoryManager.swift; sourceTree = "<group>"; };
 		18A5478125FD9A4F00AC42AB /* send_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_pic@2x.png"; sourceTree = "<group>"; };
@@ -4624,7 +4646,6 @@
 		467B9A0ECE49A2F5858AE5EA0AEE2657 /* Event.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Event.swift; path = RxSwift/Event.swift; sourceTree = "<group>"; };
 		46BE7E0E3F41592670F1F66980066BC5 /* FIRAuthNotificationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRAuthNotificationManager.m; path = FirebaseAuth/Sources/SystemService/FIRAuthNotificationManager.m; sourceTree = "<group>"; };
 		46E722E1750BC6858E1D3AB3CEFF5F7D /* ConstraintMakerRelatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerRelatable.swift; path = Source/ConstraintMakerRelatable.swift; sourceTree = "<group>"; };
-		46FCCDB18117F04257450F20F8AA8C1F /* button@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "button@2x.png"; path = "hu.lproj/button@2x.png"; sourceTree = "<group>"; };
 		4717164BDB9FCC47BD9DBE33088062E2 /* FIRStorageTaskSnapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRStorageTaskSnapshot.h; path = FirebaseStorage/Sources/Public/FirebaseStorage/FIRStorageTaskSnapshot.h; sourceTree = "<group>"; };
 		47690EDE2A6E8D669093089BE223B4F9 /* GULHeartbeatDateStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULHeartbeatDateStorage.h; path = GoogleUtilities/Environment/Private/GULHeartbeatDateStorage.h; sourceTree = "<group>"; };
 		478EFC7880A395B1F26A485D03D1DA91 /* FPersistenceManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FPersistenceManager.h; path = FirebaseDatabase/Sources/Persistence/FPersistenceManager.h; sourceTree = "<group>"; };
@@ -6487,7 +6508,6 @@
 		EF623DDDC77FBD4B0270955178C9885E /* Never.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Never.swift; path = RxSwift/Observables/Never.swift; sourceTree = "<group>"; };
 		EF6EFFD85F540D5345FDC863E89436F0 /* FIRCoreDiagnosticsConnector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRCoreDiagnosticsConnector.h; path = FirebaseCore/Sources/Private/FIRCoreDiagnosticsConnector.h; sourceTree = "<group>"; };
 		EF9DBC8C86E03156D546449A8C785591 /* nanopb-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "nanopb-dummy.m"; sourceTree = "<group>"; };
-		EF9F92B56C1DAC0EDF2D63464056D3D9 /* button@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "button@3x.png"; path = "PhoneAuth/FirebasePhoneAuthUI/Resources/button@3x.png"; sourceTree = "<group>"; };
 		F00A6FB4F2BA18709C631FA8D5209288 /* FormatIndicatedCacheSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormatIndicatedCacheSerializer.swift; path = Sources/Cache/FormatIndicatedCacheSerializer.swift; sourceTree = "<group>"; };
 		F03027AFD72D7CC3B8DEB62DFD93A7B3 /* GDTCOREvent+GDTCCTSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "GDTCOREvent+GDTCCTSupport.m"; path = "GoogleDataTransport/GDTCCTLibrary/GDTCOREvent+GDTCCTSupport.m"; sourceTree = "<group>"; };
 		F03CBC8554698695D041443FC6E83510 /* RecordView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecordView.swift; path = Source/RecordView.swift; sourceTree = "<group>"; };
@@ -8805,10 +8825,10 @@
 				E429D61416E257359B4B84219967A820 /* ar.lproj */,
 				BBF95B7C0A5E9D90C022AA3593126DCA /* bg.lproj */,
 				C9E9DC036A73B9418859EC2A18642F32 /* bn.lproj */,
-				591496F88DD20636B9960CAB52071C13 /* button@2x.png */,
-				EF9F92B56C1DAC0EDF2D63464056D3D9 /* button@3x.png */,
 				26AA574394477ECEB83A9D6253BC95C6 /* ca.lproj */,
 				02A33831F0AEA17F5C965D115D2684A3 /* country-codes.json */,
+				18506F93260B5FD6003C2BBC /* button@2x.png */,
+				18506F94260B5FD7003C2BBC /* button@3x.png */,
 				61E5B0A200C2C2B6BF233AFF57B869A9 /* cs.lproj */,
 				C5555CED48BCB4975EB7A71FC3EAEAA9 /* da.lproj */,
 				308467D90DA09EB6EF350A5AD5DDE631 /* de.lproj */,
@@ -9489,6 +9509,16 @@
 				FFFE6DC31F37F925B739DACC8F39B915 /* PhotoCropEditorBorder@3x.png */,
 				18A5478125FD9A4F00AC42AB /* send_pic@2x.png */,
 				18A5478225FD9A5300AC42AB /* send_pic@3x.png */,
+				18631302260C8B01008DAAFB /* 1crop@2x.png */,
+				1863130A260C8B0A008DAAFB /* 1crop@3x.png */,
+				18631305260C8B03008DAAFB /* 1cross@2x.png */,
+				18631309260C8B05008DAAFB /* 1cross@3x.png */,
+				18631306260C8B04008DAAFB /* 1emoji@2x.png */,
+				18631301260C8B00008DAAFB /* 1emoji@3x.png */,
+				18631304260C8B03008DAAFB /* 1pen@2x.png */,
+				18631303260C8B01008DAAFB /* 1pen@3x.png */,
+				18631307260C8B04008DAAFB /* 1text@2x.png */,
+				18631308260C8B05008DAAFB /* 1text@3x.png */,
 				B2DC980A9707D84D5D014D82A4500427 /* PhotoEditorViewController.xib */,
 				5F3E2544A01D4585EA798D025B00EEC6 /* StickerCollectionViewCell.xib */,
 				E4C10F817DA6ADC3AE975CB9D9A32571 /* StickersViewController.xib */,
@@ -14708,8 +14738,6 @@
 				E6510E03DC0B3BA45E46F20090DFD1C3 /* ar.lproj in Resources */,
 				41A0697B7C521B7707FC734EAFD5276B /* bg.lproj in Resources */,
 				239331A6C6F2CBC34739B38277FEF264 /* bn.lproj in Resources */,
-				F05E91CD8AD90B61D429C6BC43478CA1 /* button@2x.png in Resources */,
-				AF2483CA3CFFD91C0FE2BBA26D56FCFE /* button@3x.png in Resources */,
 				ED41E27EF20739BE82F10B7E52598354 /* ca.lproj in Resources */,
 				50E2C1B60CEF5C616566E86A84E6724B /* country-codes.json in Resources */,
 				C70D90802987D2882CBB751C8434AFBC /* cs.lproj in Resources */,
@@ -14737,6 +14765,7 @@
 				0A0FD8C931994AACF5AF8F596F13A455 /* es-GT.lproj in Resources */,
 				997913665F1DE6F0C38330D3825687C2 /* es-HN.lproj in Resources */,
 				0DB7FB3DB649F3C2C8B306DCA7AF4685 /* es-MX.lproj in Resources */,
+				18506F95260B5FD8003C2BBC /* button@2x.png in Resources */,
 				F10A0CC3D140C48B6F774D282B64D207 /* es-NI.lproj in Resources */,
 				627A7CAFE97920F8629B19CDCE788324 /* es-PA.lproj in Resources */,
 				04474B7035D72C4EA7D5DE4BC537543A /* es-PE.lproj in Resources */,
@@ -14749,6 +14778,7 @@
 				C095D8F2C7EC279085A8C06E3F7B7632 /* es.lproj in Resources */,
 				A2DA43F0E6623EB48F0CCD4F9A275E71 /* fa.lproj in Resources */,
 				42E8728512C1E7743434E1E86816DDF1 /* fi.lproj in Resources */,
+				18506F96260B5FD8003C2BBC /* button@3x.png in Resources */,
 				89D055C43B9AF3CC1B589CBCF72FDA41 /* fil.lproj in Resources */,
 				D497BBA98D19337EBEF37C0583156BD2 /* fr-CH.lproj in Resources */,
 				4003D5ABF6FBC128DEDD8D8164DB0E36 /* fr.lproj in Resources */,
@@ -14835,13 +14865,23 @@
 			files = (
 				E27A71A4B731A4E88AEB51EB88EAF3F6 /* ColorCollectionViewCell.xib in Resources */,
 				341142E4E7688A1C40D0227FC3F60A19 /* EmojiCollectionViewCell.xib in Resources */,
+				1863130C260C8B0A008DAAFB /* 1crop@2x.png in Resources */,
 				18A5478325FD9A5300AC42AB /* send_pic@2x.png in Resources */,
 				9D536FB31ACBC98160CFB8C5297E4033 /* icomoon.ttf in Resources */,
+				18631311260C8B0A008DAAFB /* 1text@2x.png in Resources */,
 				A9A96547C0B9CC70A3CF6A1CF3DF8E86 /* LaunchScreen.storyboard in Resources */,
 				ECE986DA98949144AE599E114E161F2E /* PhotoCropEditorBorder.png in Resources */,
+				18631310260C8B0A008DAAFB /* 1emoji@2x.png in Resources */,
 				22083D23B25B1FA6B6EDAE33A01F43F3 /* PhotoCropEditorBorder@2x.png in Resources */,
 				8BBD921A8CBEB5C4739DFD2855A2B20D /* PhotoCropEditorBorder@3x.png in Resources */,
+				18631313260C8B0A008DAAFB /* 1cross@3x.png in Resources */,
+				1863130B260C8B0A008DAAFB /* 1emoji@3x.png in Resources */,
+				18631312260C8B0A008DAAFB /* 1text@3x.png in Resources */,
 				978E9AE6C8A3A246C302C19A898C80A9 /* PhotoEditorViewController.xib in Resources */,
+				18631314260C8B0A008DAAFB /* 1crop@3x.png in Resources */,
+				1863130D260C8B0A008DAAFB /* 1pen@3x.png in Resources */,
+				1863130E260C8B0A008DAAFB /* 1pen@2x.png in Resources */,
+				1863130F260C8B0A008DAAFB /* 1cross@2x.png in Resources */,
 				D5A9F04C12BAC49DAA718B19823E924A /* StickerCollectionViewCell.xib in Resources */,
 				18A5478425FD9A5300AC42AB /* send_pic@3x.png in Resources */,
 				8F3575468FCC7ED41620A18FCBCBF184 /* StickersViewController.xib in Resources */,
@@ -17611,18 +17651,6 @@
 			targetProxy = 6357B5146A48FCB5C79194B00776D1AA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		591496F88DD20636B9960CAB52071C13 /* button@2x.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				46FCCDB18117F04257450F20F8AA8C1F /* button@2x.png */,
-			);
-			name = "button@2x.png";
-			path = PhoneAuth/FirebasePhoneAuthUI/Strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00AB4BDAFBF3F369977DD1D9590E2355 /* Release */ = {

@@ -17,7 +17,6 @@ class MainVC: UIViewController
 {
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     @IBAction func privacyBtnTapped(_ sender: AnyObject)

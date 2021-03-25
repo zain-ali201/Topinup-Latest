@@ -15,9 +15,8 @@ protocol DismissViewController {
     func presentCompletedViewController(user: User)
 }
 
-class UsersVC: BaseSearchableVC {
-
-
+class UsersVC: BaseSearchableVC
+{
     var notificationToken: NotificationToken?
 
     var refreshControl = UIRefreshControl()
@@ -25,9 +24,6 @@ class UsersVC: BaseSearchableVC {
     var delegate: DismissViewController?
 
     var searchController: UISearchController!
-
-
-
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noUsersView: UIView!
@@ -62,12 +58,11 @@ class UsersVC: BaseSearchableVC {
         }
     }
 
-
-
-
-
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        
+        self.title = "New Message"
 
         users = RealmHelper.getInstance(appRealm).getUsers()
 
@@ -83,7 +78,6 @@ class UsersVC: BaseSearchableVC {
         searchController.searchBar.delegate = self
         searchContainer.addSubview(searchController.searchBar)
 
-
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
         tableView.refreshControl = refreshControl
 
@@ -92,22 +86,21 @@ class UsersVC: BaseSearchableVC {
                 return
             }
             changes.updateTableView(tableView: strongSelf.tableView, section: 1)
-
         }
-
 
         //Sync Contacts for the first time
         if users.isEmpty {
             syncContacts()
         }
-
-
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissVc))
 
         updateNoUsersView()
         setupNoUsersView()
     }
-    private func updateNoUsersView() {
+    
+    private func updateNoUsersView()
+    {
         tableView.isHidden = users.isEmpty
         noUsersView.isHidden = !users.isEmpty
     }
@@ -117,79 +110,76 @@ class UsersVC: BaseSearchableVC {
         inviteBtn.addTarget(self, action: #selector(btnInviteTapped), for: .touchUpInside)
     }
 
-
     @objc private func btnInviteTapped() {
         showInviteDialog()
     }
 
-
-    @objc private func dismissVc() {
+    @objc private func dismissVc()
+    {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @objc func refresh(sender: AnyObject) {
+    @objc func refresh(sender: AnyObject)
+    {
         syncContacts()
     }
 
-    deinit {
+    deinit
+    {
         notificationToken = nil
     }
 
-    private func showInviteDialog() {
-
+    private func showInviteDialog()
+    {
         let text = Strings.invite_text
-
         let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-
-
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
     }
-
 }
 
-extension UsersVC: UITableViewDelegate, UITableViewDataSource {
+extension UsersVC: UITableViewDelegate, UITableViewDataSource
+{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         if section == 0 {
-
-            return isInSearchMode ? 0 : 3
+            return isInSearchMode ? 0 : 2
         }
-
         return getDataSource().count
     }
 
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "nonUserCell") {
-                if indexPath.row == 0 {
-                    let text = Strings.new_group
+        if indexPath.section == 0
+        {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "nonUserCell") as? nonUserCell
+            {
+                if indexPath.row == 0
+                {
+                    let text = "New Group"
                     let imageName = "people"
                     let image = UIImage(named: imageName)
                     cell.textLabel?.text = text
                     cell.imageView?.image = image
-                } else if indexPath.row == 1 {
-
-                    let text = Strings.new_broadcast
-                    let imageName = "rss"
-                    let image = UIImage(named: imageName)
-                    cell.textLabel?.text = text
-                    cell.imageView?.image = image
-                } else if indexPath.row == 2 {
-                    let text = Strings.invite_to_app
+                }
+                else if indexPath.row == 1
+                {
+                    let text = "New Contact"
                     let imageName = "invite"
                     let image = UIImage(named: imageName)
                     cell.textLabel?.text = text
                     cell.imageView?.image = image
                 }
-
-
+//                else if indexPath.row == 2 {
+//                    let text = Strings.invite_to_app
+//                    let imageName = "invite"
+//                    let image = UIImage(named: imageName)
+//                    cell.textLabel?.text = text
+//                    cell.imageView?.image = image
+//                }
 
                 return cell
             }
-
         } else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as? UserCell {
                 let user = getDataSource()[indexPath.row]
@@ -197,11 +187,8 @@ extension UsersVC: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         }
-
         return UITableViewCell()
-
     }
-
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
@@ -218,26 +205,16 @@ extension UsersVC: UITableViewDelegate, UITableViewDataSource {
             if isInSearchMode {
                 self.dismiss(animated: true, completion: nil)
             }
-
-
+            
             if let user = getDataSource().getItemSafely(index: indexPath.row) as? User {
-
-
-
                 self.dismiss(animated: true)
                 self.delegate?.presentCompletedViewController(user: user)
-
-
             }
         }
-
-
     }
 
-
-
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -249,7 +226,36 @@ extension UsersVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
+        if indexPath.section == 0
+        {
+            return 44
+        }
+        else
+        {
+            return 70.0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        //add user image header
+        if section == 1 || section == 2
+        {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 25))
+            view.backgroundColor = .lightGray
+            let lbl = UILabel(frame: CGRect(x: 15, y: 0, width: 0, height: 25))
+            lbl.text = "APP CONTACTS"
+            lbl.backgroundColor = .clear
+            lbl.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+            
+            view.addSubview(lbl)
+            
+            return view
+        }
+        else
+        {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+            return view
+        }
     }
 
     private func getDataSource() -> Results<User> {
@@ -257,26 +263,24 @@ extension UsersVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension UsersVC: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+extension UsersVC: UISearchBarDelegate
+{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
         searchResults = RealmHelper.getInstance(appRealm).searchForUser(query: searchText)
 
         isInSearchMode = searchText.isNotEmpty
         tableView.reloadData()
-
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isInSearchMode = false
         tableView.reloadData()
-
     }
 }
 
 class UsersVCNavController: UINavigationController, UINavigationControllerDelegate {
     var navigationDelegate: DismissViewController?
-
 
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if let usersVc = viewController as? UsersVC {
@@ -288,5 +292,10 @@ class UsersVCNavController: UINavigationController, UINavigationControllerDelega
         super.viewDidLoad()
         delegate = self
     }
+}
 
+class nonUserCell:UITableViewCell
+{
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var lblTitle: UILabel!
 }

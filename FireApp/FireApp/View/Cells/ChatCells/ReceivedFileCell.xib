@@ -8,6 +8,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-DISPLAY-REGULAR-58A92BB8F09F3.TTF">
+            <string>SFUIDisplay-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="S25-Ff-6Gr">
-                        <rect key="frame" x="8" y="8" width="312" height="142"/>
+                        <rect key="frame" x="13.5" y="8" width="312" height="142"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="msM-5K-QcC" customClass="UIViewWithRoundedCorners" customModule="Topinup" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="312" height="142"/>
@@ -56,20 +61,20 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9n-bA-KS2" userLabel="Text Container" customClass="UIViewWithRoundedCorners" customModule="Topinup" customModuleProvider="target">
-                                        <rect key="frame" x="4" y="87" width="304" height="28.5"/>
+                                        <rect key="frame" x="4" y="87" width="304" height="27"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Hello World Lorem ipsum" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbg-7w-rmO" userLabel="File Name">
-                                                <rect key="frame" x="33" y="0.0" width="280" height="28.5"/>
+                                                <rect key="frame" x="33" y="0.0" width="280" height="27"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="280" id="eSo-i6-bh8"/>
                                                 </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lpu-FD-HEm">
-                                                <rect key="frame" x="4" y="2" width="25" height="25"/>
+                                                <rect key="frame" x="4" y="1" width="25" height="25"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="file" translatesAutoresizingMaskIntoConstraints="NO" id="AFf-Zt-Eb0">
                                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -95,7 +100,7 @@
                                                 </constraints>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FzW-Uu-IfG" customClass="CustomProgressButton" customModule="Topinup" customModuleProvider="target">
-                                                <rect key="frame" x="4" y="2" width="25" height="25"/>
+                                                <rect key="frame" x="4" y="1" width="25" height="25"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="ISA-RY-Tyo"/>
@@ -122,12 +127,12 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="sKp-xw-r17">
-                                        <rect key="frame" x="276.5" y="123.5" width="31.5" height="14.5"/>
+                                        <rect key="frame" x="277" y="122" width="31" height="16"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9H-Eq-p6y">
-                                                <rect key="frame" x="0.0" y="0.0" width="31.5" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="31" height="16"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -146,18 +151,18 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UTH-K0-3Px">
-                                        <rect key="frame" x="8" y="123.5" width="71" height="14.5"/>
+                                        <rect key="frame" x="8" y="122" width="70" height="16"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nel-bx-rXy">
-                                                <rect key="frame" x="0.0" y="0.0" width="31.5" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="31" height="16"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDz-fG-uU8">
-                                                <rect key="frame" x="39.5" y="0.0" width="31.5" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="39" y="0.0" width="31" height="16"/>
+                                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -201,13 +206,18 @@
                             </view>
                         </subviews>
                     </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w-corner" translatesAutoresizingMaskIntoConstraints="NO" id="Tus-XN-N56">
+                        <rect key="frame" x="5" y="130" width="8.5" height="13"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="S25-Ff-6Gr" secondAttribute="trailing" constant="8" id="1pm-eI-EDY"/>
                     <constraint firstItem="S25-Ff-6Gr" firstAttribute="top" secondItem="iOs-E7-n3H" secondAttribute="top" constant="8" id="Dv6-rn-qPm"/>
+                    <constraint firstItem="Tus-XN-N56" firstAttribute="leading" secondItem="iOs-E7-n3H" secondAttribute="leading" constant="5" id="I5n-Rf-ha4"/>
                     <constraint firstAttribute="bottom" secondItem="S25-Ff-6Gr" secondAttribute="bottom" id="OSN-wO-yhV"/>
-                    <constraint firstItem="S25-Ff-6Gr" firstAttribute="leading" secondItem="iOs-E7-n3H" secondAttribute="leading" constant="8" id="xrh-OD-zQg"/>
+                    <constraint firstItem="S25-Ff-6Gr" firstAttribute="leading" secondItem="Tus-XN-N56" secondAttribute="trailing" id="Qsc-aa-hwI"/>
+                    <constraint firstAttribute="bottom" secondItem="Tus-XN-N56" secondAttribute="bottom" constant="7" id="gr4-bF-n8A"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="mXs-nd-L12"/>
@@ -229,6 +239,7 @@
     </objects>
     <resources>
         <image name="file" width="36" height="36"/>
+        <image name="w-corner" width="8.5" height="13"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -74,7 +74,8 @@ class SetupUserVC: BaseVC
         //save current user info
         RealmHelper.getInstance(appRealm).saveObjectToRealm(object: user, update: true)
     }
-    private func completeSetup() {
+    private func completeSetup()
+    {
         if textField.text?.isEmpty ?? true {
             showAlert(type: .error, message: Strings.user_name_empty)
             return

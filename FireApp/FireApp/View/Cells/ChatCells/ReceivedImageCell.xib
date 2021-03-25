@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNg-kB-fT2" userLabel="Container" customClass="UIViewWithRoundedCorners" customModule="Topinup" customModuleProvider="target">
-                        <rect key="frame" x="8" y="8" width="275" height="275"/>
+                        <rect key="frame" x="13.5" y="8" width="275" height="275"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="tI5-ZH-ahz">
                                 <rect key="frame" x="4" y="4" width="267" height="267"/>
@@ -120,6 +120,9 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="w-corner" translatesAutoresizingMaskIntoConstraints="NO" id="hjQ-tU-jNh">
+                                <rect key="frame" x="-8.5" y="255" width="8.5" height="13"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -128,7 +131,9 @@
                             <constraint firstAttribute="width" constant="275" id="RhU-ep-qAl"/>
                             <constraint firstItem="tI5-ZH-ahz" firstAttribute="leading" secondItem="pNg-kB-fT2" secondAttribute="leading" constant="4" id="Sed-5J-t5A"/>
                             <constraint firstItem="tI5-ZH-ahz" firstAttribute="top" secondItem="pNg-kB-fT2" secondAttribute="top" constant="4" id="V3b-3M-o9r"/>
+                            <constraint firstAttribute="bottom" secondItem="hjQ-tU-jNh" secondAttribute="bottom" constant="7" id="YEg-iC-wbm"/>
                             <constraint firstAttribute="trailing" secondItem="tI5-ZH-ahz" secondAttribute="trailing" constant="4" id="mdG-ty-o8C"/>
+                            <constraint firstItem="hjQ-tU-jNh" firstAttribute="leading" secondItem="pNg-kB-fT2" secondAttribute="leading" constant="-8.5" id="tBH-4f-MGe"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
@@ -140,7 +145,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="pNg-kB-fT2" firstAttribute="leading" secondItem="pGi-we-Cg3" secondAttribute="leading" constant="8" id="WDC-ai-OXu"/>
+                    <constraint firstItem="pNg-kB-fT2" firstAttribute="leading" secondItem="pGi-we-Cg3" secondAttribute="leading" constant="13.5" id="WDC-ai-OXu"/>
                     <constraint firstAttribute="bottom" secondItem="pNg-kB-fT2" secondAttribute="bottom" id="nnQ-er-Ur9"/>
                     <constraint firstItem="pNg-kB-fT2" firstAttribute="top" secondItem="pGi-we-Cg3" secondAttribute="top" constant="8" id="ruz-0K-fsj"/>
                 </constraints>
@@ -165,6 +170,7 @@
         </designable>
     </designables>
     <resources>
+        <image name="w-corner" width="8.5" height="13"/>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

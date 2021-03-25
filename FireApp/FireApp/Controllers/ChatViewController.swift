@@ -253,7 +253,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var schedulingModeView: UIView!
     @IBOutlet weak var cancelSchedulingModeBtn: UIButton!
 
-    @IBAction func btnSend(_ sender: Any) {
+    @IBAction func btnSend(_ sender: Any)
+    {
         sendMessage(textMessage: textView!.text!)
         cancelReplyDidClick()
     }
@@ -925,14 +926,15 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         //disable auto keyboard management if it's in search mode
         IQKeyboardManager.shared.enable = !isInSearchMode
 
-        if showSearchBar {
+        if showSearchBar
+        {
             //get notifications for keyboardWillShow and keyboardWillHide
             listenForKeyboard = true
 
             searchBar.translatesAutoresizingMaskIntoConstraints = false
             searchBar.widthAnchor.constraint(equalToConstant: view.frame.width - 25).isActive = true
             searchBar.heightAnchor.constraint(equalToConstant: 30).isActive = true
-
+            
 
             let leftNavBarButton = UIBarButtonItem(customView: searchBar)
             self.navigationItem.leftBarButtonItem = leftNavBarButton
@@ -952,37 +954,41 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             searchBar.inputAccessoryView = arrowsToolbar
 
 
-        } else {
+        }
+        else
+        {
             listenForKeyboard = false
             navigationItem.leftItemsSupplementBackButton = true
             self.navigationController?.navigationBar.backItem?.title = " "
             self.navigationItem.title = " "
 
-            if userImgView == nil {
+            if userImgView == nil
+            {
                 userImgView = EnhancedCircleImageView()
                 userImgView.contentMode = .scaleAspectFit
                 userImgView.isUserInteractionEnabled = true
-
                 userImgView.hero.id = user.uid
                 userImgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userImgTapped)))
             }
 
-            if userNameLbl == nil {
+            if userNameLbl == nil
+            {
                 userNameLbl = UILabel(text: "Demo User")
-                userNameLbl.font = userNameLbl.font.withSize(15)
+                userNameLbl.font = UIFont.systemFont(ofSize: 16, weight: .medium)
                 userNameLbl.isUserInteractionEnabled = true
                 userNameLbl.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userNameStackTapped)))
                 userNameLbl.textColor = .white
             }
 
             typingStateLbl = UILabel(text: "")
-            typingStateLbl.font = typingStateLbl.font.withSize(10)
+            typingStateLbl.textColor = .white
+            typingStateLbl.font = typingStateLbl.font.withSize(13)
             typingStateLbl.isUserInteractionEnabled = true
             typingStateLbl.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userNameStackTapped)))
 
             availableStateLbl = UILabel(text: "")
             availableStateLbl.textColor = .white
-            availableStateLbl.font = availableStateLbl.font.withSize(12)
+            availableStateLbl.font = availableStateLbl.font.withSize(13)
 
             let statesLblsStack = UIStackView(arrangedSubviews: [typingStateLbl, availableStateLbl])
             statesLblsStack.isUserInteractionEnabled = true
@@ -1011,7 +1017,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
             userNameAndStateStack.leftAnchor.constraint(equalTo: userImgView.rightAnchor, constant: 8).isActive = true
 
-            userNameAndStateStack.topAnchor.constraint(equalTo: leftItemsContainer.topAnchor, constant: 4).isActive = true
+            userNameAndStateStack.topAnchor.constraint(equalTo: leftItemsContainer.topAnchor, constant: 0).isActive = true
             userNameAndStateStack.rightAnchor.constraint(equalTo: leftItemsContainer.rightAnchor, constant: 4).isActive = true
 
 

@@ -6,6 +6,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-DISPLAY-SEMIBOLD-58A936FE2A8AC.TTF">
+            <string>SFUIDisplay-Semibold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FUIPhoneEntryViewController">
             <connections>
@@ -24,7 +29,7 @@
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="q6G-1n-Xee"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                    <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -35,7 +40,7 @@
                         <constraint firstAttribute="height" constant="186" id="nck-n8-62R"/>
                     </constraints>
                     <view key="tableFooterView" contentMode="scaleToFill" id="1jX-mt-zck">
-                        <rect key="frame" x="0.0" y="766" width="375" height="100"/>
+                        <rect key="frame" x="0.0" y="767" width="375" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="By tapping Verify Phone Number, an SMS may be sent. Message &amp; data rates may apply." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kGX-Qm-s2k" userLabel="Tos View" customClass="FUIPrivacyAndTermsOfServiceView">
@@ -61,8 +66,8 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCr-IN-SsH">
-                    <rect key="frame" x="70" y="382" width="235" height="44"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <rect key="frame" x="70" y="382" width="235" height="42"/>
+                    <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="16"/>
                     <state key="normal" title="Next" backgroundImage="button.png"/>
                     <connections>
                         <action selector="nextBtnAction:" destination="-1" eventType="touchUpInside" id="fyo-Ms-uhd"/>
@@ -86,6 +91,6 @@
         </view>
     </objects>
     <resources>
-        <image name="button.png" width="247" height="44"/>
+        <image name="button.png" width="248.5" height="42"/>
     </resources>
 </document>

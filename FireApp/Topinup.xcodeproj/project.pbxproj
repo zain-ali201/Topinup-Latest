@@ -435,6 +435,14 @@
 
 /* Begin PBXFileReference section */
 		18327FD81DC395A1C7670A45 /* Pods-myshareextension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myshareextension.release.xcconfig"; path = "Target Support Files/Pods-myshareextension/Pods-myshareextension.release.xcconfig"; sourceTree = "<group>"; };
+		18506FDD260B6118003C2BBC /* SF-UI-DISPLAY-MEDIUM-58A92BE187E3C.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-MEDIUM-58A92BE187E3C.TTF"; sourceTree = "<group>"; };
+		18506FDE260B6118003C2BBC /* SF-UI-DISPLAY-REGULAR-58A92BB8F09F3.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-REGULAR-58A92BB8F09F3.TTF"; sourceTree = "<group>"; };
+		18506FDF260B6118003C2BBC /* SF-UI-DISPLAY-LIGHT-58A92BBA4886D.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-LIGHT-58A92BBA4886D.TTF"; sourceTree = "<group>"; };
+		18506FE0260B6118003C2BBC /* SF-UI-DISPLAY-BOLD-58A92BBC0F658.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-BOLD-58A92BBC0F658.TTF"; sourceTree = "<group>"; };
+		18506FE1260B6118003C2BBC /* SF-UI-DISPLAY-SEMIBOLD-58A936FE2A8AC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-SEMIBOLD-58A936FE2A8AC.TTF"; sourceTree = "<group>"; };
+		18506FE2260B6118003C2BBC /* SF-UI-DISPLAY-THIN-58A92C49E8348.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-THIN-58A92C49E8348.TTF"; sourceTree = "<group>"; };
+		18506FE3260B6118003C2BBC /* SF-UI-DISPLAY-ULTRALIGHT-58A92B89103AF.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-ULTRALIGHT-58A92B89103AF.TTF"; sourceTree = "<group>"; };
+		18506FE4260B6118003C2BBC /* SF-UI-DISPLAY-BLACK-58A92C053F9AE.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-BLACK-58A92C053F9AE.TTF"; sourceTree = "<group>"; };
 		18599AD025C994F100C83DD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18599AD825C99A2C00C83DD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2264B28632FCA5B0C13D8F6F /* Pods-FireApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireApp.release.xcconfig"; path = "Target Support Files/Pods-FireApp/Pods-FireApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -793,6 +801,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18506FDC260B6118003C2BBC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				18506FDD260B6118003C2BBC /* SF-UI-DISPLAY-MEDIUM-58A92BE187E3C.TTF */,
+				18506FDE260B6118003C2BBC /* SF-UI-DISPLAY-REGULAR-58A92BB8F09F3.TTF */,
+				18506FDF260B6118003C2BBC /* SF-UI-DISPLAY-LIGHT-58A92BBA4886D.TTF */,
+				18506FE0260B6118003C2BBC /* SF-UI-DISPLAY-BOLD-58A92BBC0F658.TTF */,
+				18506FE1260B6118003C2BBC /* SF-UI-DISPLAY-SEMIBOLD-58A936FE2A8AC.TTF */,
+				18506FE2260B6118003C2BBC /* SF-UI-DISPLAY-THIN-58A92C49E8348.TTF */,
+				18506FE3260B6118003C2BBC /* SF-UI-DISPLAY-ULTRALIGHT-58A92B89103AF.TTF */,
+				18506FE4260B6118003C2BBC /* SF-UI-DISPLAY-BLACK-58A92C053F9AE.TTF */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		18C2061925C93D48005523FE /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -1308,6 +1331,7 @@
 				A814CDC1232155EC0071C0FB /* Assets.xcassets */,
 				A8CCFDE12439471700B4F541 /* FireApp.entitlements */,
 				A8A0E99B23C2832900AFCE7D /* stickers.bundle */,
+				18506FDC260B6118003C2BBC /* Fonts */,
 				18C2061925C93D48005523FE /* Storyboards */,
 				18C2061A25C93D64005523FE /* AppDelegate */,
 				A8A941DC23A407C70036172E /* Extensions */,

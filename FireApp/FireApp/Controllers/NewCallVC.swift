@@ -32,7 +32,11 @@ class NewCallVC: BaseSearchableVC {
         searchController.searchBar.delegate = self
         searchViewContainer.addSubview(searchController.searchBar)
         
-        tabBarController?.navigationItem.title = "New Call"
+        self.title = "New Call"
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 

@@ -53,6 +53,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-3940256099942544~1458002511</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
@@ -71,11 +73,14 @@
 	<string>This will  let the app send Images and Videos from your Photo Library</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>RobotoMono-Regular.ttf</string>
-		<string>Roboto-Medium.ttf</string>
-		<string>Bryndan-Write.ttf</string>
-		<string>Norican-Regular.ttf</string>
-		<string>Oswald-Heavy.ttf</string>
+		<string>SF-UI-DISPLAY-MEDIUM-58A92BE187E3C.TTF</string>
+		<string>SF-UI-DISPLAY-REGULAR-58A92BB8F09F3.TTF</string>
+		<string>SF-UI-DISPLAY-LIGHT-58A92BBA4886D.TTF</string>
+		<string>SF-UI-DISPLAY-BOLD-58A92BBC0F658.TTF</string>
+		<string>SF-UI-DISPLAY-SEMIBOLD-58A936FE2A8AC.TTF</string>
+		<string>SF-UI-DISPLAY-THIN-58A92C49E8348.TTF</string>
+		<string>SF-UI-DISPLAY-ULTRALIGHT-58A92B89103AF.TTF</string>
+		<string>SF-UI-DISPLAY-BLACK-58A92C053F9AE.TTF</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
@@ -116,7 +121,5 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-3940256099942544~1458002511</string>
 </dict>
 </plist>

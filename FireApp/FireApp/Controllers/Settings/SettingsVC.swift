@@ -37,6 +37,10 @@ class SettingsVC: UIViewController {
         tabBarController?.navigationItem.title = "Settings"
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @IBAction func clickBtnACtion(_ button: UIButton)
     {
         if button.tag == 1

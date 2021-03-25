@@ -9,13 +9,11 @@
 import UIKit
 import RealmSwift
 
-class CallsVC: BaseSearchableVC {
-
+class CallsVC: BaseSearchableVC
+{
     @IBOutlet weak var searchContainer: UIView!
     @IBOutlet weak var tableView: UITableView!
-
     private var isInSearchMode = false
-
     private var searchController: UISearchController!
 
     private var calls: Results<FireCall>!
@@ -29,12 +27,12 @@ class CallsVC: BaseSearchableVC {
          set { }
      }
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
         calls = RealmHelper.getInstance(appRealm).getCalls()
         searchResults = calls
-
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -57,8 +55,6 @@ class CallsVC: BaseSearchableVC {
         tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "call-plus"), style: .plain, target: self, action: #selector(rightBarBtnTapped))
 
         tabBarController?.navigationItem.title = "Calls"
-
-
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,20 +69,20 @@ class CallsVC: BaseSearchableVC {
         super.viewDidDisappear(animated)
         tabBarController?.navigationItem.rightBarButtonItem = nil
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     @objc private func rightBarBtnTapped() {
         performSegue(withIdentifier: "toNewCallVC", sender: nil)
     }
-    
 
     fileprivate func setupSearchController() {
         searchController = UISearchController(searchResultsController: nil)
-
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
-
         searchContainer.addSubview(searchController.searchBar)
-
     }
 
     deinit {
@@ -99,27 +95,19 @@ class CallsVC: BaseSearchableVC {
     }
 }
 
-
 extension CallsVC: UISearchBarDelegate {
-
-
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isInSearchMode = false
         tableView.reloadData()
-
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-
         searchResults = RealmHelper.getInstance(appRealm).searchForCall(text: searchText)
         isInSearchMode = searchText.isNotEmpty
         tableView.reloadData()
-
     }
 }
-
 
 extension CallsVC: UITableViewDelegate, UITableViewDataSource {
 
@@ -151,9 +139,7 @@ extension CallsVC: UITableViewDelegate, UITableViewDataSource {
             actionPerformed(true)
 //            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
-        
         return UISwipeActionsConfiguration(actions: [deleteAction])
-
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -162,12 +148,9 @@ extension CallsVC: UITableViewDelegate, UITableViewDataSource {
             exitSearchModeExplicitly()
             makeACall(user: user, callType: call.callType)
         }
-
-
-
     }
-
 }
+
 extension CallsVC: CallCellDelegate {
     func btnTapped(call: FireCall) {
         if let user = call.user {
@@ -180,7 +163,9 @@ extension CallsVC: CallCellDelegate {
 protocol CallCellDelegate {
     func btnTapped(call: FireCall)
 }
-class CallCell: UITableViewCell {
+
+class CallCell: UITableViewCell
+{
     @IBOutlet weak var userImg: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var callTypeImgView: UIImageView!
@@ -190,18 +175,18 @@ class CallCell: UITableViewCell {
     private var call: FireCall!
     var delegate: CallCellDelegate?
 
-    func bind(call: FireCall) {
+    func bind(call: FireCall)
+    {
         self.call = call
         if let user = call.user{
-        userImg.image = user.thumbImg.toUIImage()
-        userName.text = user.userName
-        callTimeLbl.text = TimeHelper.getCallTime(timestamp: call.timestamp.toDate())
-        callBtn.addTarget(self, action: #selector(btnCallTapped), for: .touchUpInside)
-        let imageName = call.isVideo ? "vid" : "call"
-        callBtn.setImage(UIImage(named: imageName), for: .normal)
-        callTypeImgView.image = getCallStateType(callDirection: call.callDirection)
+            userImg.image = user.thumbImg.toUIImage()
+            userName.text = user.userName
+            callTimeLbl.text = TimeHelper.getCallTime(timestamp: call.timestamp.toDate())
+            callBtn.addTarget(self, action: #selector(btnCallTapped), for: .touchUpInside)
+            let imageName = call.isVideo ? "vid" : "call"
+            callBtn.setImage(UIImage(named: imageName), for: .normal)
+            callTypeImgView.image = getCallStateType(callDirection: call.callDirection)
         }
-
     }
 
     @objc private func btnCallTapped() {
@@ -223,9 +208,6 @@ class CallCell: UITableViewCell {
 
         case .OUTGOING:
             return madeCall
-
-
         }
     }
-
 }

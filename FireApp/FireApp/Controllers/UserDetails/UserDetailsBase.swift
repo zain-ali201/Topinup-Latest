@@ -129,14 +129,10 @@ class UserDetailsBase: BaseTableVC {
         } else {
             imageView.image = user.thumbImg.toUIImage()
         }
-
+        
+        imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userImageTapped)))
-
-
-
-
-
 
         uiView.addSubview(imageView)
 

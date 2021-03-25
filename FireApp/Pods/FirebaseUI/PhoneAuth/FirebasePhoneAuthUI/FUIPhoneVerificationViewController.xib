@@ -6,6 +6,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-DISPLAY-REGULAR-58A92BB8F09F3.TTF">
+            <string>SFUIDisplay-Regular</string>
+        </array>
+        <array key="SF-UI-DISPLAY-SEMIBOLD-58A936FE2A8AC.TTF">
+            <string>SFUIDisplay-Semibold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FUIPhoneVerificationViewController">
             <connections>
@@ -28,10 +36,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the code we sent to" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ND2-cc-05r">
                             <rect key="frame" x="20" y="49.999999999999993" width="374" height="28.666666666666664"/>
-                            <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="xV4-wG-lLz"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                            <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="24"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -40,7 +45,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="8oS-Wo-7iq"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                            <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="24"/>
                             <state key="normal" title="Phone number">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -70,6 +75,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="8Gd-RE-Qv3"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
                             <state key="normal" title="Resend code">
                                 <color key="titleColor" red="0.0" green="0.37647058823529411" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -78,17 +84,17 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resend code in" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHW-Rm-HAw">
-                            <rect key="frame" x="20" y="228.66666666666666" width="374" height="18"/>
+                            <rect key="frame" x="20" y="223.66666666666666" width="374" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="dhl-OS-L3V"/>
+                                <constraint firstAttribute="height" constant="30" id="dhl-OS-L3V"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
                             <color key="textColor" red="0.32941176470588235" green="0.32941176470588235" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3m-2G-iHI">
-                            <rect key="frame" x="70" y="326.66666666666669" width="274" height="47.666666666666686"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                            <rect key="frame" x="70" y="333.66666666666669" width="274" height="46.333333333333314"/>
+                            <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="16"/>
                             <state key="normal" title="Next" backgroundImage="button.png"/>
                             <connections>
                                 <action selector="nextbtnACtion:" destination="-1" eventType="touchUpInside" id="hZ2-T2-isj"/>
@@ -109,7 +115,7 @@
                         <constraint firstItem="WHW-Rm-HAw" firstAttribute="centerX" secondItem="ND2-cc-05r" secondAttribute="centerX" id="am3-Zw-DRc"/>
                         <constraint firstItem="ND2-cc-05r" firstAttribute="leading" secondItem="dye-T3-FoY" secondAttribute="leading" constant="20" id="d4U-su-icR"/>
                         <constraint firstAttribute="trailing" secondItem="WHW-Rm-HAw" secondAttribute="trailing" constant="20" id="dJO-pk-zhO"/>
-                        <constraint firstItem="WHW-Rm-HAw" firstAttribute="top" secondItem="WCV-7f-nzd" secondAttribute="bottom" constant="30" id="gmO-lX-GmB"/>
+                        <constraint firstItem="WHW-Rm-HAw" firstAttribute="top" secondItem="WCV-7f-nzd" secondAttribute="bottom" constant="25" id="gmO-lX-GmB"/>
                         <constraint firstItem="ND2-cc-05r" firstAttribute="top" secondItem="dye-T3-FoY" secondAttribute="top" constant="50" id="isu-X4-ahE"/>
                         <constraint firstItem="WCV-7f-nzd" firstAttribute="centerX" secondItem="dye-T3-FoY" secondAttribute="centerX" id="k8O-qS-evd"/>
                         <constraint firstItem="b3m-2G-iHI" firstAttribute="leading" secondItem="dye-T3-FoY" secondAttribute="leading" constant="70" id="oT8-y2-e8D"/>
@@ -130,6 +136,6 @@
         </view>
     </objects>
     <resources>
-        <image name="button.png" width="272.33334350585938" height="47.666667938232422"/>
+        <image name="button.png" width="273.33334350585938" height="46.333332061767578"/>
     </resources>
 </document>

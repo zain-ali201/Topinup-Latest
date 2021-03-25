@@ -24,7 +24,7 @@ class Colors {
     static let chatsListIconColor = UIColor.gray
 
     //the default colors for read tags(pending,sent,received) in ChatVC
-    static let readTagsDefaultChatViewColor = "#507f48".toColor
+    static let readTagsDefaultChatViewColor = "#307BF8".toColor
 
     static let readTagsPendingColor = UIColor.gray
     static let readTagsSentColor = UIColor.gray

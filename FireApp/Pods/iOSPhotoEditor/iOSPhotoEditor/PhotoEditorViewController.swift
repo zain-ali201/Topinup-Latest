@@ -69,7 +69,6 @@ public final class PhotoEditorViewController: UIViewController {
     var imageViewToPan: UIImageView?
     var isTyping: Bool = false
     
-    
     var stickersViewController: StickersViewController!
 
     //Register Custom font before we load XIB
@@ -78,7 +77,8 @@ public final class PhotoEditorViewController: UIViewController {
         super.loadView()
     }
     
-    override public func viewDidLoad() {
+    override public func viewDidLoad()
+    {
         super.viewDidLoad()
         self.setImageView(image: image!)
         
@@ -99,13 +99,13 @@ public final class PhotoEditorViewController: UIViewController {
         NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillChangeFrame(_:)),
                                                name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
-        
         configureCollectionView()
         stickersViewController = StickersViewController(nibName: "StickersViewController", bundle: Bundle(for: StickersViewController.self))
         hideControls()
     }
     
-    func configureCollectionView() {
+    func configureCollectionView()
+    {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 30, height: 30)
         layout.scrollDirection = .horizontal

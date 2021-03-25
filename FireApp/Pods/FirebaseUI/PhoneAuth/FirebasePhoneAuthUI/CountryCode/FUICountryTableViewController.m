@@ -37,20 +37,32 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FUICountryTableViewController
 
-- (instancetype)initWithCountryCodes:(FUICountryCodes *)countryCodes {
-  if ((self = [super initWithNibName:NSStringFromClass([self class])
-                              bundle:[FUIAuthUtils bundleNamed:FUIPhoneAuthBundleName]])) {
-    _countryCodes = countryCodes;
-    _collationForCountries =
-        [[FUICollationForCountries alloc] initWithCountryCodes:self.countryCodes];
-    _cachedNumberOfCountriesInSection = [NSMutableDictionary new];
-    _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    self.searchController.searchResultsUpdater = self;
-    self.searchController.dimsBackgroundDuringPresentation = NO;
-    
-    self.definesPresentationContext = YES;
-  }
-  return self;
+- (instancetype)initWithCountryCodes:(FUICountryCodes *)countryCodes
+{
+    if ((self = [super initWithNibName:NSStringFromClass([self class])
+                              bundle:[FUIAuthUtils bundleNamed:FUIPhoneAuthBundleName]]))
+    {
+        _countryCodes = countryCodes;
+        _collationForCountries =
+            [[FUICollationForCountries alloc] initWithCountryCodes:self.countryCodes];
+        _cachedNumberOfCountriesInSection = [NSMutableDictionary new];
+        _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+        self.searchController.searchResultsUpdater = self;
+        self.searchController.dimsBackgroundDuringPresentation = NO;
+
+        self.definesPresentationContext = YES;
+      
+        [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                [UIColor colorWithRed:48.0/255.0 green: 123.0/255.0 blue: 248.0/255.0 alpha:1],
+                                                                NSForegroundColorAttributeName,
+                                                                [UIColor colorWithRed:48.0/255.0 green: 123.0/255.0 blue: 248.0/255.0 alpha:1],
+                                                                UITextAttributeTextShadowColor,
+                                                                [NSValue valueWithUIOffset:UIOffsetMake(0, 0)],
+                                                                UITextAttributeTextShadowOffset,
+                                                                nil]
+                                                      forState:UIControlStateNormal];
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -59,6 +71,10 @@ NS_ASSUME_NONNULL_BEGIN
   self.tableView.tableHeaderView = self.searchController.searchBar;
     
     [self.navigationController setNavigationBarHidden:TRUE];
+}
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -90,11 +106,17 @@ NS_ASSUME_NONNULL_BEGIN
     [detailTextLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     detailTextLabel.textColor = [UIColor grayColor];
     detailTextLabel.tag = detailTextLabelTag;
+    [detailTextLabel setFont:[UIFont systemFontOfSize:15.0 weight:UIFontWeightRegular]];
     [cell.contentView addSubview:detailTextLabel];
     
     textLabel = [[UILabel alloc] init];
     [textLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     textLabel.tag = textLabelTag;
+      if (@available(iOS 8.2, *)) {
+          [textLabel setFont:[UIFont systemFontOfSize:16.0 weight:UIFontWeightRegular]];
+      } else {
+          // Fallback on earlier versions
+      }
     [cell.contentView addSubview:textLabel];
 
     NSDictionary *views = NSDictionaryOfVariableBindings(detailTextLabel, textLabel);
@@ -214,6 +236,12 @@ NS_ASSUME_NONNULL_BEGIN
   self.searchResults = [self.countryCodes searchCountriesByName:searchController.searchBar.text];
 
   [self.tableView reloadData];
+}
+
+-(void) searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    self.searchResults = self.countryCodes;
+    [self.tableView reloadData];
 }
 
 - (BOOL)isSearchActive {
