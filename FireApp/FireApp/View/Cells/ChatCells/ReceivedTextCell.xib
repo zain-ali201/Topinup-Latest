@@ -41,7 +41,7 @@
                                                     <constraint firstAttribute="height" constant="25" id="HAj-9M-1Gl"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JKl-5o-6T6" userLabel="Reply Container" customClass="ReplyView" customModule="Topinup" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JKl-5o-6T6" userLabel="Reply Container" customClass="ReplyView" customModule="Topinup" customModuleProvider="target">
                                                 <rect key="frame" x="6" y="31" width="300" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -64,7 +64,7 @@
                                         </constraints>
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Hello World Lorem ipsum" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fWA-ND-BqT" userLabel="Message TextView" customClass="UnSelectableTextView" customModule="Topinup" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="87" width="300" height="31"/>
+                                        <rect key="frame" x="0.0" y="87" width="300" height="38"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="AOE-wR-Wh3"/>
@@ -76,7 +76,7 @@
                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLR-gs-jO1">
-                                        <rect key="frame" x="261" y="122" width="31" height="16"/>
+                                        <rect key="frame" x="261" y="120" width="31" height="16"/>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
                                         <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.55294117647058827" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -86,9 +86,9 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="CLR-gs-jO1" secondAttribute="trailing" constant="8" id="0fN-0L-42x"/>
                                     <constraint firstItem="IoX-Ww-noU" firstAttribute="top" secondItem="V69-eO-pZs" secondAttribute="top" constant="2" id="2wC-ln-EYS"/>
-                                    <constraint firstItem="CLR-gs-jO1" firstAttribute="top" secondItem="fWA-ND-BqT" secondAttribute="bottom" constant="4" id="4qT-QZ-etO"/>
-                                    <constraint firstAttribute="bottom" secondItem="CLR-gs-jO1" secondAttribute="bottom" constant="4" id="CvV-hm-3I8"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="JQo-oZ-uzk"/>
+                                    <constraint firstItem="CLR-gs-jO1" firstAttribute="top" secondItem="fWA-ND-BqT" secondAttribute="bottom" constant="-5" id="4qT-QZ-etO"/>
+                                    <constraint firstAttribute="bottom" secondItem="CLR-gs-jO1" secondAttribute="bottom" constant="6" id="CvV-hm-3I8"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="JQo-oZ-uzk"/>
                                     <constraint firstAttribute="trailing" secondItem="IoX-Ww-noU" secondAttribute="trailing" id="OU2-h9-eUf"/>
                                     <constraint firstItem="fWA-ND-BqT" firstAttribute="leading" secondItem="V69-eO-pZs" secondAttribute="leading" id="QXF-Ld-hXK"/>
                                     <constraint firstAttribute="trailing" secondItem="fWA-ND-BqT" secondAttribute="trailing" id="m3f-7S-Y7Y"/>

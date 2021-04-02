@@ -284,6 +284,7 @@ static NSString *const kLinkPlaceholderPattern = @"\\[([^\\]]+)\\]";
 
 - (void) touchesBegan: (NSSet *) touches withEvent: (nullable UIEvent *) event {
     [_codeField resignFirstResponder];
+    [self.view endEditing:TRUE];
 }
 
 #pragma mark - UIKeyboard observer methods

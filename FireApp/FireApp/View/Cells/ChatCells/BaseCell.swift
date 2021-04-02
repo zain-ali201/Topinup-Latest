@@ -7,7 +7,8 @@
 //
 
 import UIKit
-protocol CellDelegate {
+protocol CellDelegate
+{
     func didClickCell(indexPath: IndexPath?)
     func didClickProgressBtn(indexPath: IndexPath)
     func didLongClickCell(indexPath: IndexPath?, view: UIView?)
@@ -15,16 +16,14 @@ protocol CellDelegate {
     func didClickQuotedMessage(at indexPath: IndexPath)
 }
 
-class BaseCell: UITableViewCell {
-
+class BaseCell: UITableViewCell
+{
     @IBOutlet weak var replyView: ReplyView!
     @IBOutlet weak var timeLbl: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var progressButton: CustomProgressButton!
     //this might be null if the inherited class does not have sizeLbl
     @IBOutlet weak var sizeLbl: UILabel!
-
-
     var isInSelectMode = false
     var isMessageSelected = false
 
@@ -48,12 +47,7 @@ class BaseCell: UITableViewCell {
             replyView.isUserInteractionEnabled = true
             replyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(replyViewTapped)))
         }
-
-
-
     }
-
-
 
     @objc private func replyViewTapped() {
         cellDelegate?.didClickQuotedMessage(at: indexPath)
@@ -70,27 +64,31 @@ class BaseCell: UITableViewCell {
         }
     }
 
-
-    func bind(message: Message,user:User) {
+    func bind(message: Message,user:User)
+    {
         timeLbl.text = TimeHelper.getTimeOnly(date: message.timestamp.toDate())
         initProgressButton(message: message)
-        if replyView != nil {
+        if replyView != nil
+        {
             replyView.isHidden = message.quotedMessage == nil
-            if let quotedMessage = message.quotedMessage {
+            if let quotedMessage = message.quotedMessage
+            {
                 replyView.bind(quotedMessage: quotedMessage, user: user)
             }
         }
         
-        if sizeLbl != nil{
-              if message.downloadUploadState == .FAILED || message.downloadUploadState == .CANCELLED{
+        if sizeLbl != nil
+        {
+            if message.downloadUploadState == .FAILED || message.downloadUploadState == .CANCELLED
+            {
                       sizeLbl.isHidden = false
                       sizeLbl.text = message.metatdata
-                  }else{
+            }
+            else
+            {
                       sizeLbl.isHidden = true
-                  }
-          }
-
-
+            }
+        }
     }
 
     private func initProgressButton(message: Message) {
@@ -109,12 +107,11 @@ class BaseCell: UITableViewCell {
         if progressButton == nil {
             return
         }
-
-        progressButton.strokeMode = .border(width: 4)
-        progressButton.inProgressStrokeColor = .red
+        
+        progressButton.strokeMode = .border(width: 2)
+        progressButton.inProgressStrokeColor = Colors.readTagsReadColor
         progressButton.resume()
         progressButton.progress = progress
-
     }
 
     override func prepareForReuse() {
@@ -122,10 +119,4 @@ class BaseCell: UITableViewCell {
         progressToken?.dispose()
 
     }
-
-
-
-
-
-
 }

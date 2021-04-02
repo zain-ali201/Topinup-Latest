@@ -7,16 +7,15 @@
 //
 import UIKit
 
-
-class SentBaseCell: BaseCell {
-
+class SentBaseCell: BaseCell
+{
     @IBOutlet weak var stateImage: UIImageView!
-
-
-
     private var selectBtn: UIButton!
-    override var isMessageSelected: Bool {
-        didSet {
+    
+    override var isMessageSelected: Bool
+    {
+        didSet
+        {
             let imageName = isMessageSelected ? "check_circle" : "circle"
             let image = UIImage(named: imageName)
             if selectBtn != nil {
@@ -24,13 +23,17 @@ class SentBaseCell: BaseCell {
             }
         }
     }
-    override var isInSelectMode: Bool {
-        didSet {
+    
+    override var isInSelectMode: Bool
+    {
+        didSet
+        {
             selectBtn.isHidden = !isInSelectMode
         }
     }
 
-    override func bind(message: Message, user: User) {
+    override func bind(message: Message, user: User)
+    {
         super.bind(message: message, user: user)
         stateImage.image = StateImageHelper.getStateImage(state: message.messageState)
 
@@ -60,10 +63,7 @@ class SentBaseCell: BaseCell {
         containerView.backgroundColor = Colors.sentMsgBgColor
     }
 
-
     @objc private func selectTapped() {
         cellDelegate?.didSelectItem(at: indexPath)
     }
-
-
 }

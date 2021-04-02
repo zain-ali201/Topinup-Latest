@@ -137,6 +137,58 @@ extension UITextView {
     }
 }
 
+extension UILabel {
+
+    func clear() {
+        self.text = ""
+    }
+
+    func highlightText(text: String) {
+
+        let range = (text as NSString).range(of: text)
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttribute(NSAttributedString.Key.backgroundColor, value: Colors.highlightMessageColor, range: range)
+        attributedString.addAttribute(NSAttributedString.Key.font, value: self.font!, range: range)
+        self.attributedText = attributedString
+    }
+
+    func resizeFont()
+    {
+        let textView = self
+
+        if (textView.text!.isEmpty || textView.bounds.size.equalTo(.zero)) {
+            return;
+        }
+
+        let textViewSize = textView.frame.size;
+        let fixedWidth = textViewSize.width - 200
+        let expectSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat(MAXFLOAT)))
+
+        var expectFont = textView.font;
+        if (expectSize.height > textViewSize.height)
+        {
+            while (textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat(MAXFLOAT))).height > textViewSize.height && textView.font!.pointSize < maxFontSize) {
+
+                let fontSize = textView.font!.pointSize - 1
+
+                expectFont = textView.font!.withSize(fontSize)
+                textView.font = expectFont
+            }
+        }
+        else
+        {
+            while (textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat(MAXFLOAT))).height < textViewSize.height && textView.font!.pointSize < maxFontSize) {
+
+
+                let fontSize = textView.font!.pointSize + 1
+                expectFont = textView.font;
+                textView.font = textView.font!.withSize(fontSize)
+            }
+            textView.font = expectFont;
+        }
+    }
+}
+
 
 
 extension CGFloat {
@@ -225,15 +277,14 @@ extension UINavigationController {
 
 extension Results {
     func getItemSafely(index: Int) -> Object? {
-        if self.indices.contains(index) {
+        if self.indices.contains(index)
+        {
             return self[index] as! Object
         }
         return nil
     }
 
     func lastIndex() -> Int {
-
-
         if self.count > 0 {
             return self.count - 1
         }

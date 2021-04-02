@@ -17,14 +17,12 @@ enum ClickedItem{
 protocol ChooseActionAlertDelegate {
     func didClick(clickedItem:ClickedItem)
 }
-class ChooseActionAlertController: UIAlertController {
-    
-
-    
+class ChooseActionAlertController: UIAlertController
+{
     var delegate:ChooseActionAlertDelegate?
-   
     
-    func setup() {
+    func setup()
+    {
         title = nil
         message = nil
         
@@ -53,16 +51,12 @@ class ChooseActionAlertController: UIAlertController {
         }
         let cameraImage = UIImage(named: "ic_camera")!.resized(to: imageSize)
         
-        
         cameraAction.setValue(cameraImage, forKey: "image")
         
         addAction(cameraAction)
         addAction(imageAction)
         addAction(locationAction)
         addAction(contactAction)
-
         
     }
-    
-    
 }

@@ -80,10 +80,6 @@ public class RecordView: UIView, CAAnimationDelegate {
         return label
     }()
 
-
-    
-
-
     private func setup() {
         bucketImageView = BucketImageView(frame: frame)
         bucketImageView.animationDelegate = self
@@ -121,6 +117,8 @@ public class RecordView: UIView, CAAnimationDelegate {
         mTransform = CGAffineTransform(scaleX: 2.0, y: 2.0)
 
         audioPlayer = AudioPlayer()
+        
+        self.backgroundColor = UIColor(red: 241.0/255.0, green: 241.0/255.0, blue: 241.0/255.0, alpha: 1)
     }
 
     override init(frame: CGRect) {

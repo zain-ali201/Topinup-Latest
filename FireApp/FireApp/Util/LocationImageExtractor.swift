@@ -13,23 +13,12 @@ class LocationImageExtractor {
     static func getMapImage(location: CLLocation, complete: (@escaping (UIImage?) -> Void)) {
 
         let mapSnapshotOptions = MKMapSnapshotter.Options()
-
-
-
         let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapSnapshotOptions.region = region
-
-        // Set the scale of the image. We'll just use the scale of the current device, which is 2x scale on Retina screens.
         mapSnapshotOptions.scale = UIScreen.main.scale
-
-        // Set the size of the image output.
-        mapSnapshotOptions.size = CGSize(width: 300, height: 300)
-
-        // Show buildings and Points of Interest on the snapshot
+        mapSnapshotOptions.size = CGSize(width: 600, height: 600)
         mapSnapshotOptions.showsBuildings = true
         mapSnapshotOptions.showsPointsOfInterest = true
-
-
 
         let snapShotter = MKMapSnapshotter(options: mapSnapshotOptions)
 

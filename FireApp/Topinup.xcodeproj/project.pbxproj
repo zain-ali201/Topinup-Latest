@@ -903,8 +903,8 @@
 			isa = PBXGroup;
 			children = (
 				A8A0E92F23BE4E0500AFCE7D /* Base */,
-				A8024B7E23869D7B00747946 /* UserDetails */,
 				A8957D7C23804F0400B0CAB8 /* Settings */,
+				A8024B7E23869D7B00747946 /* UserDetails */,
 				A81B87C62320533800CD342A /* ContextMenuViewController.swift */,
 				A8CAF7AF228F57F100BB3FF6 /* CallsVC.swift */,
 				A8CAF7C32290514800BB3FF6 /* ChatViewController.swift */,
@@ -2181,7 +2181,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupNotificationService Dev v1";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupNotificationService Dev v2";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2208,7 +2208,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupNotificationService Dist v1";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupNotificationService Dist v2";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2234,7 +2234,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Dev v1";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Dev v2";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2261,7 +2261,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Dist v1";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Dist v2";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2407,7 +2407,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Topinup Dev v1";
+				PROVISIONING_PROFILE_SPECIFIER = "Topinup Dev v2";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2434,7 +2434,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Topinup Dist v1";
+				PROVISIONING_PROFILE_SPECIFIER = "Topinup Dist v2";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

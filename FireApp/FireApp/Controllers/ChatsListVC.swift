@@ -301,9 +301,7 @@ extension ChatsListVC: UITableViewDelegate, UITableViewDataSource {
             })
 
 
-
             let clearChatAction = UIAlertAction(title: Strings.clearChat, style: .default, handler: { (_) in
-
 
                 let confirmationAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 let deleteAction = UIAlertAction(title: Strings.deleteMessages, style: .destructive, handler: { (_) in
@@ -317,13 +315,7 @@ extension ChatsListVC: UITableViewDelegate, UITableViewDataSource {
                 confirmationAlert.addAction(cancelAction)
 
                 self.present(confirmationAlert, animated: true, completion: nil)
-
-
-
-
             })
-
-
 
             let exitGroupAction = UIAlertAction(title: Strings.exit_group, style: .destructive, handler: { (_)in
 
@@ -339,11 +331,7 @@ extension ChatsListVC: UITableViewDelegate, UITableViewDataSource {
                 exitGroupAlert.addAction(cancelAction)
                 exitGroupAlert.addAction(exitGroupAction)
                 self.present(exitGroupAlert, animated: true, completion: nil)
-
             })
-
-
-
 
             let deleteChatAction = UIAlertAction(title: Strings.deleteChat, style: .destructive, handler: { (_) in
 
@@ -373,8 +361,6 @@ extension ChatsListVC: UITableViewDelegate, UITableViewDataSource {
 
             })
 
-
-
             let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil)
 
             alert.addAction(muteAction)
@@ -399,10 +385,10 @@ extension ChatsListVC: UITableViewDelegate, UITableViewDataSource {
             }
 
         }
-        let resizedSize = CGSize(width: 24, height: 24)
-        moreAction.backgroundColor = .blue
-        infoAction.image = UIImage(named: "info")?.tinted(with: .white)?.resized(to: resizedSize)
-        moreAction.image = UIImage(named: "more")?.tinted(with: .white)?.resized(to: resizedSize)
+     
+        moreAction.backgroundColor = UIColor(red: 67.0/255.0, green: 111.0/255.0, blue: 163.0/255.0, alpha: 1)
+        infoAction.image = UIImage(named: "info")?.tinted(with: .white)?.resized(to: CGSize(width: 30, height: 30))
+        moreAction.image = UIImage(named: "more")?.tinted(with: .white)?.resized(to: CGSize(width: 35, height: 35))
 
         return UISwipeActionsConfiguration(actions: [moreAction, infoAction])
     }

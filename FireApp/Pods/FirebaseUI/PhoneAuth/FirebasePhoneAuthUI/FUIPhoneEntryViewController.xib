@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your phone number to get started" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkf-gP-ZmX">
-                    <rect key="frame" x="40" y="50" width="295" height="57.5"/>
+                    <rect key="frame" x="40" y="80" width="295" height="57.5"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="q6G-1n-Xee"/>
                     </constraints>
@@ -34,13 +34,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZXV-PY-1fK">
-                    <rect key="frame" x="0.0" y="156" width="375" height="186"/>
+                    <rect key="frame" x="0.0" y="186" width="375" height="186"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="186" id="nck-n8-62R"/>
                     </constraints>
                     <view key="tableFooterView" contentMode="scaleToFill" id="1jX-mt-zck">
-                        <rect key="frame" x="0.0" y="767" width="375" height="100"/>
+                        <rect key="frame" x="0.0" y="766" width="375" height="100"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="By tapping Verify Phone Number, an SMS may be sent. Message &amp; data rates may apply." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kGX-Qm-s2k" userLabel="Tos View" customClass="FUIPrivacyAndTermsOfServiceView">
@@ -66,7 +66,7 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCr-IN-SsH">
-                    <rect key="frame" x="70" y="382" width="235" height="42"/>
+                    <rect key="frame" x="70" y="412" width="235" height="42"/>
                     <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="16"/>
                     <state key="normal" title="Next" backgroundImage="button.png"/>
                     <connections>
@@ -77,7 +77,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ZXV-PY-1fK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5lu-fS-qBc"/>
-                <constraint firstItem="qkf-gP-ZmX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="Hqc-aM-Wv1"/>
+                <constraint firstItem="qkf-gP-ZmX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="Hqc-aM-Wv1"/>
                 <constraint firstAttribute="trailing" secondItem="ZXV-PY-1fK" secondAttribute="trailing" id="WUH-x0-znJ"/>
                 <constraint firstAttribute="trailing" secondItem="wCr-IN-SsH" secondAttribute="trailing" constant="70" id="cMT-xx-OH9"/>
                 <constraint firstAttribute="trailing" secondItem="qkf-gP-ZmX" secondAttribute="trailing" constant="40" id="cV7-FP-G0J"/>

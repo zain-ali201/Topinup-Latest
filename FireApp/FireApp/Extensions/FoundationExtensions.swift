@@ -242,9 +242,6 @@ extension UIImage {
         }
     }
 
-
-
-
     func toData(_ jpegQuality: JPEGQuality, compress: Bool = false) -> Data? {
 //        return self.pngData()!
         let image = compress ? self.wxCompress() : self

@@ -26,8 +26,6 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
     private var panGR = UIPanGestureRecognizer()
     private var messageId: String!
 
-
-
     private var selectedIndex: IndexPath? {
         didSet {
             currentItemPosition = self.selectedIndex!.row
@@ -44,10 +42,8 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
             return
         }
 
-
         startTimeLbl.text = currentProgress.seconds.timeFormat()
         endTimeLbl.text = duration?.seconds.timeFormat()
-
 
         self.videoSlider.value = Float(currentProgress.seconds / videoDuration.seconds)
     }
@@ -65,8 +61,6 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
         if playerCurrentState != .playing {
             return
         }
-
-
 
         let hide = toolbar.alpha == 1
 
@@ -145,8 +139,6 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
     @IBOutlet weak var startTimeLbl: UILabel!
     @IBOutlet weak var endTimeLbl: UILabel!
     @IBOutlet weak var toolbar: UIToolbar!
-
-
 
     @IBAction func trashTapped(_ sender: Any) {
         let alert = UIAlertController(title: Strings.confirmation, message: Strings.deleteItemConfirmation, preferredStyle: .alert)

@@ -1060,17 +1060,13 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         return indexPath
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         let message = messages[indexPath.row]
 
         if message.typeEnum == .DATE_HEADER {
             return
         }
-
-
-
-
-
 
         if !selectedItems.contains(message) {
             selectedItems.append(message)
@@ -1082,13 +1078,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         if let cell = tblView.cellForRow(at: indexPath) as? BaseCell {
             cell.isMessageSelected = true
         }
-
     }
 
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
+    {
         let message = messages[indexPath.row]
-
-
 
         selectedItems.removeAll(where: { $0.messageId == message.messageId })
 
@@ -1098,15 +1092,10 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             cell.isMessageSelected = false
         }
 
-
         if selectedItems.count == 0 {
             isInSelectMode = false
         }
-
-
     }
-
-
 
     func initCell(cell: BaseCell, indexPath: IndexPath) {
         cell.isInSelectMode = isInSelectMode
@@ -1369,9 +1358,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         setTypingState(typingState: .NOT_TYPING)
         //set the button back to Record
         recordButton.animate(state: .toRecord)
-
     }
-
 
     //isFromCamera is used to determine whether to delete the source file,since it will be saved in 'tmp' directory.
     func sendVideo(video: AVPlayerItem?, isFromCamera: Bool) {
@@ -1379,12 +1366,12 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             return
         }
 
-
         let videoExt = assetUrl.url.pathExtension
         let outputUrl = DirManager.generateFile(type: .SENT_VIDEO)
         //if it's not an MP4 Video we need to convert it to MP4 so Androdi Devices can play the Video
         //since MOV files are not supported on Android
-        if videoExt != "mp4" {
+        if videoExt != "mp4"
+        {
             VideoUtil.exportAsMp4(inputUrl: assetUrl.url, outputUrl: outputUrl) {
 
                 DispatchQueue.main.async {
@@ -1400,30 +1387,22 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                     if isFromCamera {
                         try? assetUrl.url.deleteFile()
                     }
-
-                 
-
                     self.cancelReplyDidClick()
-
                 }
-
             }
-
-        } else {
+        }
+        else
+        {
             let message = MessageCreator(user: user, type: .SENT_VIDEO, appRealm: appRealm).quotedMessage(getQuotedMessage()).schedulingMode(bool: isInSchedulingMode).path(assetUrl.url.path).copyVideo(true, deleteVideoOnComplete: isFromCamera).build()
 
             if isInSchedulingMode{
              sendScheduledMessage(message)
             }else{
-            UploadManager.upload(message: message, callback: nil, appRealm: appRealm)
+                UploadManager.upload(message: message, callback: nil, appRealm: appRealm)
             }
             self.cancelReplyDidClick()
 
         }
-
-
-
-
     }
 
     private func sendImage(data: Data, previewImage: UIImage? = nil) {
@@ -1652,9 +1631,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         tblView.setContentOffset(CGPoint(x: 0, y: tblView.contentSize.height - tblView.frame.size.height), animated: true)
     }
 
-    func textViewDidChange(_ textView: UITextView) {
-
-
+    func textViewDidChange(_ textView: UITextView)
+    {
         if let font = textView.font {
             let numLines = (textView.contentSize.height / font.lineHeight)
             if numLines > 1 {
@@ -1667,18 +1645,17 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             }
         }
 
-
         let text = textView.text.trim()
-
 
         if text.isEmpty {
             recordButton.animate(state: .toRecord)
             setTypingState(typingState: .NOT_TYPING)
 
-        } else {
+        }
+        else
+        {
             recordButton.animate(state: .toSend)
             setTypingState(typingState: .TYPING)
-
         }
     }
 
@@ -2067,18 +2044,15 @@ extension ChatViewController: MTImagePickerControllerDelegate {
             if model.mediaType == .Photo {
                 model.getImageAsyncData { data in
                     if let data = data {
-                        self.sendImage(data: data, previewImage: model.getThumbImage(size: CGSize(width: 50, height: 50))!)
+                        self.sendImage(data: data, previewImage: model.getThumbImage(size: CGSize(width: 275, height: 275))!)
                     }
                 }
             } else {
-
-
                 model.fetchAVPlayerItemAsync(complete: { (playerItem) in
                     if let video = playerItem {
                         DispatchQueue.main.async {
                             self.sendVideo(video: video, isFromCamera: false)
                         }
-
                     }
                 })
             }
@@ -2097,22 +2071,16 @@ extension ChatViewController: MTImagePickerControllerDelegate {
         }
         cancelReplyDidClick()
     }
-
 }
-
-
 
 extension ChatViewController: RecordViewDelegate {
 
     func onStart() {
-
-
         self.recorder.start()
         self.typingViewContainer.isHidden = true
         self.recordView.isHidden = false
 
         setTypingState(typingState: .RECORDING)
-
     }
 
     func onCancel() {
@@ -2125,7 +2093,6 @@ extension ChatViewController: RecordViewDelegate {
         }
 
         setTypingState(typingState: .NOT_TYPING)
-
     }
 
     func onFinished(duration: CGFloat) {
@@ -2190,7 +2157,6 @@ extension ChatViewController: ChooseActionAlertDelegate {
             Permissions.requestCameraPermissions { (isAuthorized) in
                 if isAuthorized {
                     self.performSegue(withIdentifier: "toCamera", sender: nil)
-
                 }
             }
             break
@@ -2229,13 +2195,10 @@ extension ChatViewController: ChooseActionAlertDelegate {
             locationPicker.resultRegionDistance = 500 // default: 600
 
             locationPicker.completion = { location in
-
                 // do some awesome stuff with location
                 guard let mLocation = location else {
                     return
                 }
-
-
                 self.sendLocation(mLocation)
             }
 

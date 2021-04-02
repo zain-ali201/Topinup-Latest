@@ -31,6 +31,8 @@ class GradientView: UIView {
         gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: self.frame.size.height)
+        self.layer.cornerRadius = 8.0
+        self.layer.masksToBounds = true
 
         self.layer.insertSublayer(gradient, at: 0)
 

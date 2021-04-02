@@ -47,15 +47,7 @@ class TextStatusVC: BaseVC {
         view.backgroundColor = colors[currentBackgroundIndex].toUIColor()
 
         fonts = getFonts()
-
-
-
         placeholderTextView.text = Strings.type_astatus
-      
-
-
-
-
         btnFont.addTarget(self, action: #selector(btnFontTapped), for: .touchUpInside)
         btnBackground.addTarget(self, action: #selector(btnBackgroundTapped), for: .touchUpInside)
         btnUpload.addTarget(self, action: #selector(btnUploadTapped), for: .touchUpInside)
@@ -98,7 +90,8 @@ class TextStatusVC: BaseVC {
 
     }
 
-    @objc private func btnFontTapped() {
+    @objc private func btnFontTapped()
+    {
         currentFontIndex = currentFontIndex + 1 > fonts.lastIndex() ? 0 : currentFontIndex + 1
         let font = fonts[currentFontIndex]
         textView.font = font
@@ -152,7 +145,8 @@ class TextStatusVC: BaseVC {
 
 extension TextStatusVC: UITextViewDelegate {
 
-    func textViewDidChange(_ textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView)
+    {
         placeholderTextView.isHidden = textView.text.isNotEmpty
         btnUpload.isEnabled = textView.text.isNotEmpty
         textView.resizeFont()
