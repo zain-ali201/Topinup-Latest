@@ -11,6 +11,7 @@ import UIKit
 class ChatCell: UITableViewCell {
 
     @IBOutlet weak var chatImgView: UIImageView!
+    @IBOutlet weak var contactImgView: CustomProfileView!
     @IBOutlet weak var chatName: UILabel!
     @IBOutlet weak var lastMessage: UILabel!
     @IBOutlet weak var lastMessageIcon: UIImageView!
@@ -37,7 +38,6 @@ class ChatCell: UITableViewCell {
                 unReadCountBadge.isHidden = false
                 unReadCountBadge.text = "\(unreadCount)"
             }
-
         }
     }
 
@@ -49,11 +49,9 @@ class ChatCell: UITableViewCell {
             readTags.isHidden = true
 
             return
-
         }
         
         let type = message.typeEnum
-
 
         lastMessageIcon.isHidden = !type.isMediaType()
         lastMessage.isHidden = false
@@ -97,11 +95,22 @@ class ChatCell: UITableViewCell {
 
     }
     private func loadUserPhoto(user: User) {
-        if (user.isBroadcastBool) {
+        if (user.isBroadcastBool)
+        {
             chatImgView.image = UIImage(named: "rss")
-        } else {
-            chatImgView.image = user.thumbImg.toUIImage()
+        }
+        else
+        {
+            if user.thumbImg != ""
+            {
+                chatImgView.image = user.thumbImg.toUIImage()
+            }
+            else
+            {
+                chatImgView.alpha = 0
+                contactImgView.alpha = 1
+                contactImgView.setValueForProfile(true, nameInitials: "\(user.userName.first ?? "N")", fontSize: 16.0, imageData: nil)
+            }
         }
     }
-
 }

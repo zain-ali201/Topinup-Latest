@@ -411,7 +411,7 @@ extension StatusVC: UITableViewDataSource, UITableViewDelegate {
 //
 //        return nil
 //    }
-//}
+}
 
 extension StatusVC: UISearchBarDelegate {
 
@@ -427,7 +427,8 @@ extension StatusVC: UISearchBarDelegate {
     }
 }
 
-class StatusCell: UITableViewCell {
+class StatusCell: UITableViewCell
+{
     @IBOutlet weak var userImg: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var statusTime: UILabel!

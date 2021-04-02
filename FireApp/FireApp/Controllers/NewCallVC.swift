@@ -98,6 +98,10 @@ extension NewCallVC: UITableViewDelegate, UITableViewDataSource, NewCallDelegate
         let user = getDataSource()[indexPath.row]
         makeACall(user: user, callType: CallType.VOICE)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
 }
 
 protocol NewCallDelegate {

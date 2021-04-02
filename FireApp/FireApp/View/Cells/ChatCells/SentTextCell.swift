@@ -9,26 +9,16 @@
 import UIKit
 
 class SentTextCell: SentBaseCell {
-    
 
     @IBOutlet weak var messageText: UITextView!
 
-
-
     override func awakeFromNib() {
         super.awakeFromNib()
-
-
-
     }
-
-
+    
     override func bind(message: Message,user:User) {
         super.bind(message: message,user:user)
 
         messageText.text = message.content
-
     }
-
-
 }

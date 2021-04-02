@@ -17,12 +17,10 @@ class ReceivedVideoCell: ReceivedBaseCell {
     override func bind(message: Message,user:User) {
         super.bind(message: message,user:user)
         
-
+        imageContent.layer.cornerRadius = 8.0
+        imageContent.layer.masksToBounds = true
         
         if !message.videoThumb.isEmpty {
-            
-            
-            
              let cacheKey = message.messageId + "-video-thumb"
             let provider = Base64Provider(base64String: message.videoThumb, cacheKey: cacheKey)
 
@@ -34,14 +32,12 @@ class ReceivedVideoCell: ReceivedBaseCell {
                 .cacheOriginalImage
             ])
             
-        }else{
-            
+        }else
+        {
             let cacheKey = message.messageId + "-thumb"
               let provider = Base64Provider(base64String: message.thumb, cacheKey: cacheKey)
               imageContent.kf.setImage(with: provider)
         }
-
-
     }
 
 }

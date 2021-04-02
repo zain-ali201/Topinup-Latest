@@ -98,31 +98,21 @@ class CameraVCViewController: SwiftyCamViewController, SwiftyCamViewControllerDe
         controller.maxCount = 1
         self.present(controller, animated: true, completion: nil)
     }
-
-
-
-
-
+    
     @objc func updateProgress() {
-
-
         let maxDuration = CGFloat(maximumVideoDuration)
         progress = progress + (CGFloat(0.05) / maxDuration)
         captureButton.setProgress(progress)
 
-
         if progress >= 1 {
             progressTimer.invalidate()
         }
-
     }
 
     @objc func updateCounter() {
         counter += 1
         timerLbl.text = counter.fromatSecondsFromTimer()
     }
-
-
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -163,11 +153,9 @@ class CameraVCViewController: SwiftyCamViewController, SwiftyCamViewControllerDe
 //            photoVc.setData()
 //        })
         
-        self.view.window?.rootViewController?.dismiss(animated: true){
-            self.delegate?.imageTaken(image: photo)
-        }
+        self.view.window?.rootViewController?.dismiss(animated: false, completion: nil)
+        self.delegate?.imageTaken(image: photo)
     }
-
 
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
 
@@ -183,13 +171,7 @@ class CameraVCViewController: SwiftyCamViewController, SwiftyCamViewControllerDe
             }, completion: nil)
 
         self.captureButton.setProgress(0)
-
-
         hideButtons()
-
-
-
-
     }
 
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
@@ -202,9 +184,6 @@ class CameraVCViewController: SwiftyCamViewController, SwiftyCamViewControllerDe
         captureButton.buttonState = .idle
         showButtons()
         recordTimeStack.isHidden = true
-
-
-
     }
 
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
@@ -212,9 +191,7 @@ class CameraVCViewController: SwiftyCamViewController, SwiftyCamViewControllerDe
         self.present(newVC, animated: true, completion: nil)
 
         counter = 0
-
     }
-
 
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFocusAtPoint point: CGPoint) {
         focusAnimationAt(point)
@@ -247,7 +224,6 @@ class CameraVCViewController: SwiftyCamViewController, SwiftyCamViewControllerDe
         toggleFlashAnimation()
     }
 }
-
 
 // UI Animations
 extension CameraVCViewController {
@@ -300,13 +276,3 @@ extension CameraVCViewController {
     }
 
 }
-
-//extension CameraVCViewController: MTImagePickerControllerDelegate {
-//    func imagePickerController(picker: MTImagePickerController, didFinishPickingWithPhotosModels models: [MTImagePickerPhotosModel]) {
-//
-//        self.imagePickerDelegate?.imagePickerController?(picker: picker, didFinishPickingWithPhotosModels: models)
-//        btnCloseTapped()
-//
-//    }
-//
-//}

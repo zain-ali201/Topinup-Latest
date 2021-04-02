@@ -38,8 +38,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     //used when previewing files like pdf,doc,etc..
     var currentFilePath: String = ""
-
-
     var searchIndex = 0
 
     var recorder: AudioRecorder!
@@ -173,12 +171,9 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     //selected items when user enter selection mode
     var selectedItems = [Message]()
 
-
     //to determine when something changes in RealmResults
     var notificationToken: NotificationToken? = nil
-
     var observableListNotificationToken: NotificationToken? = nil
-
     var observableGroupStateToken: NotificationToken? = nil
 
     var messages: Results<Message>!
@@ -186,13 +181,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     //to observer proximity sensor when listening to voice message
     var proximitySensorHelper: ProximitySensorHelper!
-
     var viewHasAppeared = false
 
     var leftButtonToolbar: UIBarButtonItem!
     var toolbarTitle: ToolBarTitleItem!
     var rightButtonToolbar: UIBarButtonItem!
-
 
     var searchBar: UISearchBar!
     //search items
@@ -204,13 +197,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     var isInSearchMode = false
 
-
     @IBOutlet weak var tblView: UITableView!
-
+    @IBOutlet weak var parentTextView: UIView!
+    @IBOutlet weak var whiteTextView: UIView!
     @IBOutlet weak var textView: GrowingTextView!
-
     @IBOutlet weak var btnCamera: UIButton!
-
     @IBOutlet weak var btnAdd: UIButton!
 
     @IBOutlet weak var backgroundView: UIImageView!
@@ -222,7 +213,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var replyDescTitle: UILabel!
     @IBOutlet weak var replyThumb: UIImageView!
     @IBOutlet weak var replyCancel: UIButton!
-
 
     @IBOutlet weak var typingViewContainer: UIView!
     @IBOutlet weak var typingViewBottomLayoutConstraint: NSLayoutConstraint!
@@ -237,9 +227,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     @IBOutlet weak var toolbar: UIToolbar!
 
-
-
-
     @IBOutlet weak var recordButton: SendButton!
     @IBOutlet weak var recordView: RecordView!
 
@@ -249,7 +236,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     @IBOutlet weak var cantReplyView: UIView!
     @IBOutlet weak var cantReplyLbl: UILabel!
-
     @IBOutlet weak var schedulingModeView: UIView!
     @IBOutlet weak var cancelSchedulingModeBtn: UIButton!
 
@@ -264,16 +250,15 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         alert.setup()
         alert.delegate = self
 
-        self.present(alert, animated: true) {
+        self.present(alert, animated: true)
+        {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissAlertController))
             alert.view.superview?.subviews[0].addGestureRecognizer(tapGesture)
         }
-
     }
 
     @objc private func dismissAlertController() {
         self.dismiss(animated: true, completion: nil)
-
     }
 
     @objc private func cancelActionMode() {
@@ -302,18 +287,14 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         updatePresenceObservable?.disposed(by: disposeBag)
     }
 
-
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewHasAppeared = true
 
         //fix when going to PreviewImageVideoController , the navigation bar might be hidden when playing video
-
         UIView.animate(withDuration: 0.2) {
             self.navigationController?.isNavigationBarHidden = false
         }
-
 
         if !user.isBroadcastBool {
             FireManager.checkAndDownloadUserThumb(user: user, appRealm: appRealm).subscribe(onNext: { (thumbImg) in
@@ -321,16 +302,10 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             }, onError: nil, onCompleted: nil, onDisposed: nil).disposed(by: disposeBag)
         }
 
-
-
-
         scheduleTimer()
-
         setMessagesAsSeenLocally()
-
-
-
     }
+    
     func setMessagesAsSeenLocally() {
         RealmHelper.getInstance(appRealm).setMessagesAsSeenLocally(chatId: user.uid)
     }
@@ -345,17 +320,12 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 return
             }
 
-
             //scroll to bottom once view loaded
             let indexPath = IndexPath(row: messages.count - 1, section: 0)
             tblView.scrollToRow(at: indexPath, at: .bottom, animated: false)
             tblView.layoutIfNeeded()
-
-
-
         }
     }
-
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -364,8 +334,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         SwiftEventBus.unregister(self)
         //hide kb
         textView.endEditing(true)
-
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         AppDelegate.shared.currentChatId = user.uid
@@ -374,7 +344,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         if user.isGroupBool {
             updateGroupActive()
         }
-
     }
 
     //register EventBus events
@@ -394,7 +363,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 self.progressDict[messageId] = progress
             }
         }
-
 
         //update networkCompleteEvent for uplaod/Download events
 
@@ -419,8 +387,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             }
 
             self.updateGroupActive()
-
-
         }
 
         //if the app goes to background we will stop audio if it's playing
@@ -430,21 +396,15 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             }
 
             if state == .background {
-
                 self.stopAudio()
 
             } else if state == .active {
                 self.updateUnReadReceivedMessages()
                 self.resetUnreadCount()
-
-
                 self.cancelNotifications()
             }
-
         }
-
     }
-
 
     fileprivate func setupSearchbar() {
 
@@ -472,24 +432,17 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 changes.updateTableView(tableView: strongSelf.tblView, noAnimationsOnUpdate: true)
             }
 
-
             switch changes {
-
 
             case .update(let messages, let deletions, let insertions, let modifications):
 
                 //if the view was not loaded for the first time do NOT update tableView,instead just scroll to the bottom
-
-
                 if insertions.count != 0 {
                     let message = messages[insertions[0]]
                     strongSelf.updateChat(message: message)
                 }
             default: break
             }
-
-
-
         }
 
         observableListNotificationToken = observableList.observe({ [weak self] (changes: RealmCollectionChange) in
@@ -497,15 +450,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 return
             }
 
-
             switch changes {
-
-
             case .update(let messages, let deletions, let insertions, let modifications):
-
-
-
-                for i in insertions {
+                
+                for i in insertions
+                {
                     let message = messages[i]
 
                     if !strongSelf.user.isBroadcastBool && !strongSelf.user.isGroupBool && message.typeEnum != .GROUP_EVENT && message.fromId == FireManager.getUid() {
@@ -522,23 +471,16 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 FireManager.updateMessageState(messageId: message.messageId, chatId: message.chatId, state: .READ, appRealm: appRealm).subscribe().disposed(by: strongSelf.disposeBag)
                             }
-
                         }
                     }
-
-
                 }
-
-
             default:
                 break
             }
-
-
         })
 
-        if user.isGroupBool {
-
+        if user.isGroupBool
+        {
             observableGroupStateToken = realmHelper.getGroup(groupId: user.uid).observe({ [weak self] (changes: RealmCollectionChange) in
                 guard let strongSelf = self else {
                     return
@@ -554,17 +496,18 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 }
             })
         }
-
     }
 
-    fileprivate func stopAudio() {
+    fileprivate func stopAudio()
+    {
         if audioPlayer != nil, audioPlayer.isPlaying(), audioPlayer.messageId != "", let index = messages.getIndexById(messageId: audioPlayer.messageId) {
             let indexPath = IndexPath(row: index, section: 0)
             updatePlayerState(state: .paused, messageId: audioPlayer.messageId, indexPath: indexPath)
         }
     }
 
-    fileprivate func removeTokens() {
+    fileprivate func removeTokens()
+    {
         notificationToken?.invalidate()
         notificationToken = nil
         observableListNotificationToken?.invalidate()
@@ -573,36 +516,35 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         observableGroupStateToken = nil
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool)
+    {
         super.viewDidDisappear(animated)
         setTypingState(typingState: .NOT_TYPING)
         stopAudio()
         updatePresenceObservable?.dispose()
-
     }
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
 
         realmHelper = RealmHelper.getInstance(appRealm)
-
         senderUser = realmHelper.getUser(uid: FireManager.getUid())!
-
-
-
         messages = realmHelper.getMessagesInChat(chatId: user.uid)
         observableList = realmHelper.getObservableList(chatId: user.uid)
 
-
         tblView.dataSource = self
         tblView.delegate = self
+        tblView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0);
 
+        parentTextView.layer.cornerRadius = 15.5
+        parentTextView.layer.masksToBounds = true
+        whiteTextView.layer.cornerRadius = 15.5
+        whiteTextView.layer.masksToBounds = true
         textView.delegate = self
 
-        textView.placeholderTextView.text = Strings.write_message
+//        textView.placeholderTextView.text = Strings.write_message
         setupSearchbar()
-
-
         setupNavigationItems()
 
         setUserInfo()
@@ -611,33 +553,19 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         updateUnReadSentMessages()
         updateUnReadReceivedMessages()
 
-
         textView.placeholderColor = UIColor.lightGray
 
-
-
         initToolbar()
-
-
         registerCells()
-
         setupRecordView()
-
-
-
 
         replyCancel.addTarget(self, action: #selector(cancelReplyDidClick), for: .touchUpInside)
         scrollDownView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(scrollDownViewTapped)))
 
         cancelSchedulingModeBtn.addTarget(self, action: #selector(cancelSchedulingModeBtnTapped), for: .touchUpInside)
-
-
         setBackground()
-
         navigationController?.hero.isEnabled = true
-
         enablePresence = true
-
 
         if user.isGroupBool {
             GroupManager.updateGroup(groupId: user.uid).subscribe(onCompleted: {
@@ -645,87 +573,87 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             }).disposed(by: disposeBag)
         }
 
-
         proximitySensorHelper = ProximitySensorHelper(delegate: self)
-
-
-
         resetUnreadCount()
-
-
         cancelNotifications()
-
         fetchUserDataIfNeeded()
-
     }
 
-    private func fetchUserDataIfNeeded() {
+    private func fetchUserDataIfNeeded()
+    {
         if !user.isGroupBool && !user.isBroadcastBool && user.status.isEmpty {
             FireManager.fetchUserByUid(uid: user.uid, appRealm: appRealm).subscribe().disposed(by: disposeBag)
         }
     }
 
-    private func resetUnreadCount() {
+    private func resetUnreadCount()
+    {
         let oldBadge = chat?.unReadCount ?? 0
         let newBadge = BadgeManager.resetBadge(chatId: user.uid, oldBadge: oldBadge)
         UIApplication.shared.applicationIconBadgeNumber = newBadge
-
-
     }
 
-    private func cancelNotifications() {
+    private func cancelNotifications()
+    {
         let notificationsIds = Array(RealmHelper.getInstance(appRealm).getNotificationsByChatId(chatId: user.uid).map { $0.notificationId })
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: notificationsIds)
         RealmHelper.getInstance(appRealm).deleteNotificationsForChat(chatId: user.uid)
     }
 
     //set "you can't reply to this group if the group was not active"
-    private func updateGroupActive() {
-        guard let group = user.group else {
+    private func updateGroupActive()
+    {
+        guard let group = user.group else
+        {
             return
         }
-        if group.isActive {
+        if group.isActive
+        {
             hideOrShowTypingView(false)
 
-            if group.onlyAdminsCanPost {
-                if !GroupManager.isAdmin(adminUids: group.adminUids) {
+            if group.onlyAdminsCanPost
+            {
+                if !GroupManager.isAdmin(adminUids: group.adminUids)
+                {
                     hideOrShowTypingView(true)
                     cantReplyLbl.text = Strings.only_admins_can_post
-                } else {
+                }
+                else
+                {
                     hideOrShowTypingView(false)
                 }
             }
-
-        } else {
+        }
+        else
+        {
             hideOrShowTypingView(true)
             cantReplyLbl.text = Strings.cant_send_messages_to_group
-
         }
-
-
     }
 
-    private func hideOrShowTypingView(_ hideTypingView: Bool) {
-
+    private func hideOrShowTypingView(_ hideTypingView: Bool)
+    {
         cantReplyView.isHidden = !hideTypingView
         typingViewContainer.isHidden = hideTypingView
         recordButton.isHidden = hideTypingView
-
-
     }
 
-    @objc private func scrollDownViewTapped() {
+    @objc private func scrollDownViewTapped()
+    {
         scrollToLast()
     }
     
-    @objc private func cancelSchedulingModeBtnTapped(){isInSchedulingMode = false}
+    @objc private func cancelSchedulingModeBtnTapped()
+    {
+        isInSchedulingMode = false
+    }
 
-    private func scrollToLast() {
-
-        if messages.lastIndex() <= 0 {
+    private func scrollToLast()
+    {
+        if messages.lastIndex() <= 0
+        {
             return
         }
-
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.13)
         {
@@ -737,12 +665,12 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             }
         }
 
-
         hideUnreadCount();
         hideWithAnimation(true)
     }
 
-    private func setBackground() {
+    private func setBackground()
+    {
         let wallpaper = UserDefaultsManager.getWallpaperPath()
         //if user has changed the wallpaper then load the wallpaper
         //otherwise stick with the default wallpaper which has been set in Storyboard
@@ -753,12 +681,13 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         }
     }
 
-    private func setTypingState(typingState: TypingState) {
+    private func setTypingState(typingState: TypingState)
+    {
         FireManager.setTypingStat(receiverUid: user.uid, stat: typingState, isGroup: user.isGroupBool, isBroadcast: user.isBroadcastBool).subscribe().disposed(by: disposeBag)
     }
 
-    override func keyboardWillShow(keyboardFrame: CGRect?) {
-
+    override func keyboardWillShow(keyboardFrame: CGRect?)
+    {
         if !isInSearchMode {
             return
         }
@@ -769,29 +698,26 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
         //move the table view up when entering search mode so we can give some space for the Keyboard
         if let keyboardRectangle = keyboardFrame {
-
-
             let keyboardHeight = keyboardRectangle.height
-
-
             tableViewBottomConstraint.constant = (keyboardHeight / 1.4) + arrowsToolbar.frame.height / 2
-
-
         }
-
     }
 
     //scroll to last OR update the unread count
-    private func updateChat(message: Message) {
-
-        if message.typeEnum == .GROUP_EVENT {
+    private func updateChat(message: Message)
+    {
+        if message.typeEnum == .GROUP_EVENT
+        {
             return
         }
 
         //if the message was send by the user then scroll to last
-        if message.fromId == FireManager.getUid() && message.messageState == .PENDING {
+        if message.fromId == FireManager.getUid() && message.messageState == .PENDING
+        {
             scrollToLast()
-        } else {
+        }
+        else
+        {
             //if the message was sent by Receiver and its state is still pending
             if message.chatId == user.uid && message.messageState == .PENDING {
                 //get index from the message
@@ -801,8 +727,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 guard let i = messages.firstIndex(of: message) else {
                     return
                 }
-
-
+                
                 //get last visible item on screen
                 let lastVisibleItemPosition = tblView.lastVisibleRow
 
@@ -832,44 +757,52 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         }
     }
 
-
     //move tableview down if user exits search mode
-    override func keyBoardWillHide() {
-        if !isInSearchMode {
+    override func keyBoardWillHide()
+    {
+        if !isInSearchMode
+        {
             return
         }
-        if tableViewBottomConstraint.constant != 16 {
+        if tableViewBottomConstraint.constant != 16
+        {
             tableViewBottomConstraint.constant = 16
         }
     }
 
-    @objc private func dismissSearchBar() {
+    @objc private func dismissSearchBar()
+    {
         setupNavigationItems()
     }
 
-    private func disableOrEnableArrows() {
-
-        if searchResults.isEmpty || searchIndex - 1 < 0 {
+    private func disableOrEnableArrows()
+    {
+        if searchResults.isEmpty || searchIndex - 1 < 0
+        {
             upArrowItem.isEnabled = false
             //not found
-        } else {
+        }
+        else
+        {
             upArrowItem.isEnabled = true
         }
 
-        if searchResults.isEmpty || searchIndex + 2 > searchResults.count {
+        if searchResults.isEmpty || searchIndex + 2 > searchResults.count
+        {
             //not found
             downArrowItem.isEnabled = false
             return
-        } else {
-            downArrowItem.isEnabled = true
-
         }
-
-
+        else
+        {
+            downArrowItem.isEnabled = true
+        }
     }
 
-    @objc private func upArrowTapped() {
-        if searchResults.isEmpty || searchIndex - 1 < 0 {
+    @objc private func upArrowTapped()
+    {
+        if searchResults.isEmpty || searchIndex - 1 < 0
+        {
             return
         }
 
@@ -879,14 +812,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         if let index = index {
             scrollAndHighlightSearch(index)
         }
-
-
         disableOrEnableArrows()
-
     }
 
-    @objc private func downArrowTapped() {
-
+    @objc private func downArrowTapped()
+    {
 
         if searchResults.isEmpty || searchIndex + 2 > searchResults.count {
             //not found
@@ -901,23 +831,17 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         }
 
         disableOrEnableArrows()
-
     }
 
 
     fileprivate func animateTopToolbarLabelsTranslation(hideOnlineState: Bool, hideTypingStateLbl: Bool) {
 
-
         let hideUserName = hideOnlineState && hideTypingStateLbl
-
         let userNameTranslation: CGFloat = hideUserName ? 5 : 0
-
 
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
             self.userNameLbl.transform = CGAffineTransform(translationX: 0, y: userNameTranslation)
         }, completion: nil)
-
-
     }
 
     private func setupNavigationItems(_ showSearchBar: Bool = false) {
@@ -952,8 +876,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             arrowsToolbar.items = [upArrowItem, downArrowItem]
             arrowsToolbar.sizeToFit()
             searchBar.inputAccessoryView = arrowsToolbar
-
-
         }
         else
         {
@@ -992,7 +914,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
             let statesLblsStack = UIStackView(arrangedSubviews: [typingStateLbl, availableStateLbl])
             statesLblsStack.isUserInteractionEnabled = true
-
 
             let userNameAndStateStack = UIStackView(arrangedSubviews: [userNameLbl, statesLblsStack])
 
@@ -1193,7 +1114,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             cell.isMessageSelected = selectedItems.contains(message)
         }
 
-
         cell.cellDelegate = self
         cell.indexPath = indexPath
 
@@ -1206,8 +1126,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             }
 
             cell.progressButton?.isHidden = message.downloadUploadState == .SUCCESS
-
-
         }
     }
 
@@ -2057,8 +1975,6 @@ extension ChatViewController: AudioPlayerDelegate {
         }
 
     }
-
-
 }
 
 
@@ -2142,11 +2058,8 @@ extension ChatViewController: CNContactViewControllerDelegate {
 }
 
 extension ChatViewController: MTImagePickerControllerDelegate {
-
-
     // Implement it when setting source to MTImagePickerSource.Photos
     func imagePickerController(picker: MTImagePickerController, didFinishPickingWithPhotosModels models: [MTImagePickerPhotosModel]) {
-
 
         for model in models {
 
@@ -2156,7 +2069,6 @@ extension ChatViewController: MTImagePickerControllerDelegate {
                     if let data = data {
                         self.sendImage(data: data, previewImage: model.getThumbImage(size: CGSize(width: 50, height: 50))!)
                     }
-
                 }
             } else {
 
@@ -2335,7 +2247,6 @@ extension ChatViewController: ChooseActionAlertDelegate {
     }
 }
 
-
 extension ChatViewController: ContactsPickerDelegate {
 
     fileprivate func sendContacts(contacts: [Contact]) {
@@ -2387,16 +2298,13 @@ extension ChatViewController: ContactsPickerDelegate {
     }
 }
 
-extension ChatViewController: GrowingTextViewDelegate {
+extension ChatViewController: GrowingTextViewDelegate
+{
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
         }
-
-
     }
-
-
 }
 
 var progress: Float = 0
@@ -2686,10 +2594,7 @@ extension ChatViewController: UISearchBarDelegate {
         tblView.reloadData()
         setupNavigationItems()
 
-
     }
-
-
 
     //this will scroll to found message when searching
     //after scrolling it will highlight the message
@@ -2727,8 +2632,6 @@ extension ChatViewController: UISearchBarDelegate {
         guard let message = messages.getItemSafely(index: index) as? Message else {
             return
         }
-
-
 
         DispatchQueue.main.async {
             let numberOfRows = self.tblView.numberOfRows(inSection: 0)
@@ -2877,7 +2780,6 @@ extension ChatViewController: GroupTypingDelegate {
 
         let userNames = StringUtils.removeExtraSeparators(text: names, separator: SEPARATOR)
         typingStateLbl.text = userNames
-
     }
 }
 
@@ -2885,7 +2787,6 @@ extension ChatViewController: ProximitySensorDelegate {
     func didChange(near: Bool) {
         let speakerType: SpeakerType = near ? .earpiece : .speaker
         audioPlayer.speakerType = speakerType
-
     }
 }
 extension ChatViewController: CameraResult {

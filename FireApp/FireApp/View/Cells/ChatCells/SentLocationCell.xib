@@ -51,19 +51,19 @@
                                                 <rect key="frame" x="0.0" y="199" width="271" height="17"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="S8r-9X-kMx">
-                                                        <rect key="frame" x="219" y="0.0" width="48" height="17"/>
+                                                        <rect key="frame" x="215.5" y="0.0" width="51.5" height="17"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jMy-6R-9Rc">
-                                                                <rect key="frame" x="0.0" y="0.0" width="48" height="17"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="51.5" height="17"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b49-Za-m2q">
                                                                         <rect key="frame" x="0.0" y="0.0" width="31" height="17"/>
                                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
-                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.55294117649999996" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="Rkx-gP-xzb">
-                                                                        <rect key="frame" x="39" y="0.0" width="9" height="17"/>
+                                                                        <rect key="frame" x="39" y="0.0" width="12.5" height="17"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <userDefinedRuntimeAttributes>
@@ -152,6 +152,6 @@
     </objects>
     <resources>
         <image name="b-corner" width="8.5" height="11"/>
-        <image name="tick" width="9" height="7.5"/>
+        <image name="tick" width="12.5" height="10.5"/>
     </resources>
 </document>

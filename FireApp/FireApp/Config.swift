@@ -10,28 +10,28 @@ import UIKit
 
 class Colors {
 
-    static let typingAndRecordingColors = "#0080D4".toColor
-    static let notTypingColor = UIColor.darkGray
+    static let typingAndRecordingColors = "#8B8B8D".toColor
+    static let notTypingColor = typingAndRecordingColors
 
     static let circularStatusUserColor = "#307BF8".toColor
-    static let circularStatusSeenColor = UIColor.lightGray
+    static let circularStatusSeenColor = "#8B8B8D".toColor
 
     static let circularStatusNotSeenColor = "#307BF8".toColor
 
-    static let voiceMessageSeenColor = "#D8E7FD".toColor
-    static let voiceMessageNotSeenColor = UIColor.gray
+    static let voiceMessageSeenColor = "#307BF8".toColor
+    static let voiceMessageNotSeenColor = "#8B8B8D".toColor
 
-    static let chatsListIconColor = UIColor.gray
+    static let chatsListIconColor = "#8B8B8D".toColor
 
     //the default colors for read tags(pending,sent,received) in ChatVC
     static let readTagsDefaultChatViewColor = "#307BF8".toColor
 
-    static let readTagsPendingColor = UIColor.gray
-    static let readTagsSentColor = UIColor.gray
-    static let readTagsReceivedColor = UIColor.gray
-    static let readTagsReadColor = "#D8E7FD".toColor
+    static let readTagsPendingColor = "#8B8B8D".toColor
+    static let readTagsSentColor = "#8B8B8D".toColor
+    static let readTagsReceivedColor = "#8B8B8D".toColor
+    static let readTagsReadColor = "#307BF8".toColor
 
-    static let replySentMsgAuthorTextColor = "#D8E7FD".toColor
+    static let replySentMsgAuthorTextColor = "#307BF8".toColor
     static let replySentMsgBackgroundColor = "#D8E7FD".toColor
     static let sentMsgBgColor = "#D8E7FD".toColor
 

@@ -212,7 +212,7 @@
 "unknown_error" = "unknown error";
 "participants" = "Participants";
 "you_added_to_group" = "You were added to the Group";
-"write_message" = "write a Message";
+"write_message" = "Message";
 "save_contact" = "Save Contact";
 "privacy_policy_title" =  "Agree to Privacy Policy";
 "privacy_policy_message" =  "by clicking on 'Agree' Button you Accepting our %@";

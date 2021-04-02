@@ -232,8 +232,6 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
             return
         }
 
-
-
         currentItemPosition = indexPath.row
 
         hideViewsWork?.cancel()
@@ -242,17 +240,8 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
         setVideoViewsAlpha(alpha: 1.0)
         playerCurrentState = .stopped
 
-
         setNavBarData()
         setDurationData()
-
-
-
-
-
-
-
-
     }
 
     private func setNavBarData() {
@@ -294,30 +283,23 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
         if let message = list.getItemSafely(index: currentItemPosition) as? Message {
             endTimeLbl.text = message.mediaDuration
         }
-
     }
 
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let videoCell = cell as? PreviewImageCollectionViewCell {
             videoCell.stopVideo()
-
-
         }
-
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
-
         list = RealmHelper.getInstance(appRealm).getMediaInChat(chatId: chatId!)
-
 
         initCollectionView()
 
         panGR.addTarget(self, action: #selector(pan))
         panGR.delegate = self
-
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: Strings.allMedia, style: .plain, target: self, action: #selector(goToAllMedia))
 
@@ -327,7 +309,6 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
 
         setDurationData()
 
-
         videoSlider.addTarget(self, action: #selector(handleSliderChange), for: .valueChanged)
 
         hideViewsWork?.cancel()
@@ -335,14 +316,13 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
         videoDurationContainer.isHidden = true
         setVideoViewsAlpha(alpha: 1.0)
         playerCurrentState = .stopped
-
     }
 
-    private func initCollectionView() {
+    private func initCollectionView()
+    {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isPagingEnabled = true
-
 
         if let index = list.firstIndex(where: { $0.messageId == messageId }) {
             currentItemPosition = index
@@ -355,19 +335,21 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
             collectionView.scrollToItem(at: selectedIndex, at: .centeredHorizontally, animated: false)
         }
 
-
         collectionView.addGestureRecognizer(panGR)
         collectionView.isPrefetchingEnabled = false
         collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-
     }
-    private func addTimeAndUserLabels() {
-
+    
+    private func addTimeAndUserLabels()
+    {
         userNameLbl = UILabel()
+        userNameLbl.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         messageTimeLbl = UILabel()
-        messageTimeLbl.font = messageTimeLbl.font.withSize(12)
-
+        messageTimeLbl.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        userNameLbl.textColor = .white
+        messageTimeLbl.textColor = .white
+        
         let stackView = UIStackView(arrangedSubviews: [userNameLbl, messageTimeLbl])
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -375,13 +357,6 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
 
         navigationItem.titleView = stackView
     }
-
-
-
-
-
-
-
 
     @objc private func handleSliderChange () {
         if let cell = collectionView?.visibleCells[0] as? PreviewImageCollectionViewCell, let player = cell.player, let duration = player.currentItem?.asset.duration {
@@ -392,9 +367,8 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
                 //perhaps do something later here
             })
         }
-
-
     }
+    
     @objc func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }
@@ -405,7 +379,6 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
         let mediaVc = storyBoard.instantiateViewController(withIdentifier: "MediaPreviewVC") as! MediaPreviewVC
         mediaVc.initialize(chatId: chatId!)
         mediaVc.delegate = self
-
 
         navigationController?.pushViewController(mediaVc, animated: true)
     }
@@ -436,13 +409,8 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
         if let cell = collectionView.visibleCells[0] as? PreviewImageCollectionViewCell {
             cell.stopVideo()
         }
-
-
     }
-
- 
-
-
+    
     func didPop(chatId: String, user: User, selectedIndex: IndexPath, currentItemPosition: Int) {
         initialize(chatId: chatId, user: user, messageId: messageId)
         collectionView.scrollToItem(at: selectedIndex, at: .centeredHorizontally, animated: false)
@@ -458,17 +426,12 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
 
 }
 
-
-
-
-
 extension PreviewImageVideoViewController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         let v = panGR.velocity(in: nil)
         return v.y > abs(v.x)
 
     }
-
 }
 
 

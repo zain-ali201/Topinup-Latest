@@ -53,6 +53,7 @@ class SetupUserVC: BaseVC
             self.view.window?.rootViewController = newViewController
         }
     }
+    
     private func saveUserInfo(userName: String, thumb: String, photo: String, localPhoto: String) {
         let user = User()
         user.uid = FireManager.getUid()
@@ -74,6 +75,7 @@ class SetupUserVC: BaseVC
         //save current user info
         RealmHelper.getInstance(appRealm).saveObjectToRealm(object: user, update: true)
     }
+    
     private func completeSetup()
     {
         if textField.text?.isEmpty ?? true {
@@ -88,7 +90,8 @@ class SetupUserVC: BaseVC
 
         //if the user picked a new image
 
-        if let image = pickedImage {
+        if let image = pickedImage
+        {
             //upload this image
             FireManager.changeMyPhotoObservable(image: image, appRealm: appRealm)
                 .flatMap { (thumb, localUrl, photoUrl) -> Observable<DatabaseReference> in
@@ -130,85 +133,88 @@ class SetupUserVC: BaseVC
         }
         else
         {
-            if currentUserPhotoUrl != ""
-            {
-                //download this image locally
-                FireManager.downloadPhoto(photoUrl: self.currentUserPhotoUrl).map { photo -> String in
-                    self.saveUserInfo(userName: userName, thumb: self.currentUserPhotoThumb, photo: self.currentUserPhotoUrl, localPhoto: photo)
-
-                    let number = FireManager.number!
-                    let countryCode = ContactsUtil.extractCountryCodeFromNumber(number)
-
-                    UserDefaultsManager.setCountryCode(countryCode)
-                    return photo
-                }.flatMap { photo -> Observable<([User], [String], DatabaseReference, Void)> in
-                    let fetchGroups = GroupManager.fetchUserGroups()
-                    let fetchBroadcasts = BroadcastManager.fetchBroadcasts(uid: FireManager.getUid())
-
-                    let userDict = self.getUserInfoDict(userName: userName, photoUrl: self.currentUserPhotoUrl, thumb: self.currentUserPhotoThumb, filePath: photo)
-
-                    //set user info in Firebase
-                    let setUserInfo = FireConstants.usersRef.child(FireManager.getUid()).rx.updateChildValues(userDict).asObservable()
-                    let subscribeToTopic = self.subscribeToHisOwnTopic()
-                    return Observable.zip(fetchGroups, fetchBroadcasts, setUserInfo, subscribeToTopic)
-
-                }.subscribe(onError: { error in
-                    self.hideAndShowAlert()
-                }, onCompleted: {
-                        UserDefaultsManager.setUserInfoSaved(true)
-                        self.goToRoot()
-                    }).disposed(by: disposeBag)
-            }
-            else
-            {
-                fetchUserImageDisposable.dispose()
-
-                let fetchGroups = GroupManager.fetchUserGroups()
-                let fetchBroadcasts = BroadcastManager.fetchBroadcasts(uid: FireManager.getUid())
-
-                getDefaultUserProfilePhoto()
-                    .map { tuple -> [String: Any] in
-                        let localPhotoUrl = tuple.0
-                        let photoUrl = tuple.1
-                        let thumb = tuple.2
-
-                        let number = FireManager.number!
-
-                        let user = User()
-                        user.uid = FireManager.getUid()
-                        user.userName = userName
-                        user.thumbImg = thumb
-                        user.photo = photoUrl
-                        user.userLocalPhoto = localPhotoUrl
-                        user.phone = number
-
-                        RealmHelper.getInstance(appRealm).saveObjectToRealm(object: user, update: true)
-
-                        self.saveUserInfo(userName: userName, thumb: thumb, photo: photoUrl, localPhoto: localPhotoUrl)
-
-                        let countryCode = ContactsUtil.extractCountryCodeFromNumber(number)
-
-                        UserDefaultsManager.setCountryCode(countryCode)
-
-                        let userDict = self.getUserInfoDict(userName: userName, photoUrl: photoUrl, thumb: thumb, filePath: localPhotoUrl)
-
-                        return userDict
-                    }.flatMap { userDict -> Observable<([User], [String], DatabaseReference, Void)> in
-
-                        let setUserInfo = FireConstants.usersRef.child(FireManager.getUid()).rx.updateChildValues(userDict).asObservable()
-                        let subscribeToTopic = self.subscribeToHisOwnTopic()
-
-                        let observables = Observable.zip(fetchGroups, fetchBroadcasts, setUserInfo, subscribeToTopic)
-                        return observables
-                    }.subscribe(onError: { error in
-                        self.hideAndShowAlert()
-                    }, onCompleted: {
-                            UserDefaultsManager.setUserInfoSaved(true)
-                            self.goToRoot()
-                        }).disposed(by: self.disposeBag)
-            }
+            self.saveUserInfo(userName: userName, thumb: "", photo: "", localPhoto: "")
+            
+//            if currentUserPhotoUrl != ""
+//            {
+//                //download this image locally
+//                FireManager.downloadPhoto(photoUrl: self.currentUserPhotoUrl).map { photo -> String in
+//                    self.saveUserInfo(userName: userName, thumb: self.currentUserPhotoThumb, photo: self.currentUserPhotoUrl, localPhoto: photo)
+//
+//                    let number = FireManager.number!
+//                    let countryCode = ContactsUtil.extractCountryCodeFromNumber(number)
+//
+//                    UserDefaultsManager.setCountryCode(countryCode)
+//                    return photo
+//                }.flatMap { photo -> Observable<([User], [String], DatabaseReference, Void)> in
+//                    let fetchGroups = GroupManager.fetchUserGroups()
+//                    let fetchBroadcasts = BroadcastManager.fetchBroadcasts(uid: FireManager.getUid())
+//
+//                    let userDict = self.getUserInfoDict(userName: userName, photoUrl: self.currentUserPhotoUrl, thumb: self.currentUserPhotoThumb, filePath: photo)
+//
+//                    //set user info in Firebase
+//                    let setUserInfo = FireConstants.usersRef.child(FireManager.getUid()).rx.updateChildValues(userDict).asObservable()
+//                    let subscribeToTopic = self.subscribeToHisOwnTopic()
+//                    return Observable.zip(fetchGroups, fetchBroadcasts, setUserInfo, subscribeToTopic)
+//
+//                }.subscribe(onError: { error in
+//                    self.hideAndShowAlert()
+//                }, onCompleted: {
+//                        UserDefaultsManager.setUserInfoSaved(true)
+//                        self.goToRoot()
+//                    }).disposed(by: disposeBag)
+//            }
+//            else
+//            {
+//                fetchUserImageDisposable.dispose()
+//
+//                let fetchGroups = GroupManager.fetchUserGroups()
+//                let fetchBroadcasts = BroadcastManager.fetchBroadcasts(uid: FireManager.getUid())
+//
+//                getDefaultUserProfilePhoto()
+//                    .map { tuple -> [String: Any] in
+//                        let localPhotoUrl = tuple.0
+//                        let photoUrl = tuple.1
+//                        let thumb = tuple.2
+//
+//                        let number = FireManager.number!
+//
+//                        let user = User()
+//                        user.uid = FireManager.getUid()
+//                        user.userName = userName
+//                        user.thumbImg = thumb
+//                        user.photo = photoUrl
+//                        user.userLocalPhoto = localPhotoUrl
+//                        user.phone = number
+//
+//                        RealmHelper.getInstance(appRealm).saveObjectToRealm(object: user, update: true)
+//
+//                        self.saveUserInfo(userName: userName, thumb: thumb, photo: photoUrl, localPhoto: localPhotoUrl)
+//
+//                        let countryCode = ContactsUtil.extractCountryCodeFromNumber(number)
+//
+//                        UserDefaultsManager.setCountryCode(countryCode)
+//
+//                        let userDict = self.getUserInfoDict(userName: userName, photoUrl: photoUrl, thumb: thumb, filePath: localPhotoUrl)
+//
+//                        return userDict
+//                    }.flatMap { userDict -> Observable<([User], [String], DatabaseReference, Void)> in
+//
+//                        let setUserInfo = FireConstants.usersRef.child(FireManager.getUid()).rx.updateChildValues(userDict).asObservable()
+//                        let subscribeToTopic = self.subscribeToHisOwnTopic()
+//
+//                        let observables = Observable.zip(fetchGroups, fetchBroadcasts, setUserInfo, subscribeToTopic)
+//                        return observables
+//                    }.subscribe(onError: { error in
+//                        self.hideAndShowAlert()
+//                    }, onCompleted: {
+//                            UserDefaultsManager.setUserInfoSaved(true)
+//                            self.goToRoot()
+//                        }).disposed(by: self.disposeBag)
+//            }
         }
     }
+        
     private func getUserInfoDict(userName: String, photoUrl: String, thumb: String, filePath: String? = nil) -> [String: Any] {
         var dict = [String: Any]()
         dict["photo"] = photoUrl
@@ -252,9 +258,6 @@ class SetupUserVC: BaseVC
             self.present(vc, animated: true, completion: nil)
 
 //        }
-
-
-
     }
 
 
@@ -273,11 +276,7 @@ class SetupUserVC: BaseVC
                     self.currentUserPhotoThumb = thumb
                     return (photoUrl, thumb)
                 } else {
-                    
-
                     return ("", "")
-
-
                 }
         }
     }
@@ -300,20 +299,14 @@ class SetupUserVC: BaseVC
             return Observable.error(NSError(domain: "user did not upload default user profile photo", code: -5, userInfo: nil))
 
         }.map { tuple -> (String, String, String) in
-
-
             let filePath = tuple.0.path
             let imgUrl = tuple.1
-
-
 
             let img = UIImage(contentsOfFile: filePath)
             let thumb = img!.toProfileThumbImage.circled().toBase64StringPng()
             self.currentUserPhotoThumb = thumb
 
             return (filePath, imgUrl, thumb)
-
-
         }
     }
 

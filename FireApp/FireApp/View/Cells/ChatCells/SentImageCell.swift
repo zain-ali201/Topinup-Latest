@@ -10,19 +10,18 @@ import UIKit
 import CircleProgressButton
 import Kingfisher
 
-class SentImageCell: SentBaseCell {
-
+class SentImageCell: SentBaseCell
+{
     @IBOutlet weak var imageContent: UIImageView!
-
-
     private var progressDict = [String: Float]()
 
-
-
-
-    override func bind(message: Message, user: User) {
+    override func bind(message: Message, user: User)
+    {
         super.bind(message: message, user: user)
 
+        imageContent.layer.cornerRadius = 8.0
+        imageContent.layer.masksToBounds = true
+        
         if message.localPath != "" {
             let url = URL(fileURLWithPath: message.localPath)
             let provider = LocalFileImageDataProvider(fileURL: url)
@@ -39,13 +38,5 @@ class SentImageCell: SentBaseCell {
             let provider = Base64Provider(base64String: message.thumb, cacheKey: cacheKey)
             imageContent.kf.setImage(with: provider)
         }
-
-
-
-
-
-
     }
-
-
 }

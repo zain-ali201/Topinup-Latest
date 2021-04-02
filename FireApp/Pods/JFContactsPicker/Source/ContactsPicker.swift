@@ -224,7 +224,7 @@ open class ContactsPicker: UIViewController, UITableViewDelegate, UITableViewDat
             
             let productName = Bundle.main.infoDictionary!["CFBundleName"]!
             
-            let alert = UIAlertController(title: "Unable to access contacts", message: "\(productName) does not have access to contacts. Kindly enable it in privacy settings ", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Unable to access contacts", message: "\(productName) does not have access to contacts. Kindly enable it in privacy settings.", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {  action in
                 self.contactDelegate?.contactPicker(self, didContactFetchFailed: error)
                 completion([], error)

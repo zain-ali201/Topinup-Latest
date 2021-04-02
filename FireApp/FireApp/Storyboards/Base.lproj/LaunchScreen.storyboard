@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="people-icon" translatesAutoresizingMaskIntoConstraints="NO" id="fxd-7M-zc1">
-                                        <rect key="frame" x="121" y="247" width="133.5" height="113.5"/>
+                                        <rect key="frame" x="137.5" y="280" width="100" height="47.5"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APn-xB-wAt">
                                         <rect key="frame" x="171.5" y="589.5" width="32" height="18"/>
@@ -63,7 +63,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="people-icon" width="133.5" height="113.5"/>
+        <image name="people-icon" width="100" height="47.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

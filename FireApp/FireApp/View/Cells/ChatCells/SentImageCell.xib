@@ -63,10 +63,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="267" height="210"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="radius">
                                                         <integer key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCg-fM-pt5" customClass="CustomProgressButton" customModule="Topinup" customModuleProvider="target">
@@ -127,7 +127,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="gCg-fM-pt5" firstAttribute="centerY" secondItem="9Vd-HZ-8LU" secondAttribute="centerY" id="39c-Lv-3J9"/>
                                             <constraint firstItem="gtA-Kd-CSG" firstAttribute="leading" secondItem="xx4-Az-Sxz" secondAttribute="leading" id="BL6-2a-G70"/>
@@ -142,13 +142,20 @@
                                             <constraint firstItem="9Vd-HZ-8LU" firstAttribute="leading" secondItem="xx4-Az-Sxz" secondAttribute="leading" id="lA7-k6-FJj"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="radius">
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="b-corner" translatesAutoresizingMaskIntoConstraints="NO" id="wCe-CO-Ow7">
                                 <rect key="frame" x="275" y="257" width="8.5" height="11"/>
@@ -166,10 +173,10 @@
                             <constraint firstAttribute="height" constant="275" id="kBS-1K-n9c"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
                             <userDefinedRuntimeAttribute type="number" keyPath="radius">
                                 <integer key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>

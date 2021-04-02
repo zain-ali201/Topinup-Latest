@@ -101,8 +101,6 @@ extension UITextView {
         attributedString.addAttribute(NSAttributedString.Key.backgroundColor, value: Colors.highlightMessageColor, range: range)
         attributedString.addAttribute(NSAttributedString.Key.font, value: self.font!, range: range)
         self.attributedText = attributedString
-
-
     }
 
     func resizeFont() {

@@ -69,8 +69,6 @@ class GroupUsersVC: BaseSearchableVC {
 
     var searchResults: Results<User>!
 
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,10 +83,6 @@ class GroupUsersVC: BaseSearchableVC {
             group = groupOrBroadcastUser?.group
         }
 
-
-
-
-
         searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
@@ -96,7 +90,8 @@ class GroupUsersVC: BaseSearchableVC {
 
         titleLbl = UILabel()
         subtitleLbl = UILabel()
-
+        subtitleLbl.textColor = .white
+        
         let stackView = UIStackView(arrangedSubviews: [titleLbl, subtitleLbl])
         stackView.spacing = 2
         stackView.axis = .vertical
@@ -104,37 +99,31 @@ class GroupUsersVC: BaseSearchableVC {
 
         navigationItem.titleView = stackView
 
-
-        if let group = group {
+        if let group = group
+        {
             currentUsers = group.users
             EXTRA_COUNT = currentUsers?.count ?? 0
 
-            if mode == .show {
+            if mode == .show
+            {
                 notificationToken = currentUsers?.observe { [weak self] (changes: RealmCollectionChange) in
                     guard let strongSelf = self else { return }
 
-                    
-              
-
                     strongSelf.updateUsersCountLbl()
                 }
-
-
-
-
-                updateUsersCountLbl()
-
-
-            } else if mode == .create || mode == .add {
-                titleLbl.text = Strings.add_participants
-
-                subtitleLbl.textColor = .darkGray
-                subtitleLbl.font = titleLbl.font.withSize(11)
                 updateUsersCountLbl()
 
             }
-
-        } else if let broadcast = broadcast {
+            else if mode == .create || mode == .add
+            {
+                titleLbl.text = Strings.add_participants
+                subtitleLbl.textColor = .white
+                subtitleLbl.font = titleLbl.font.withSize(11)
+                updateUsersCountLbl()
+            }
+        }
+        else if let broadcast = broadcast
+        {
             currentUsers = broadcast.users
             EXTRA_COUNT = currentUsers?.count ?? 0
 
@@ -147,20 +136,21 @@ class GroupUsersVC: BaseSearchableVC {
 
                 updateUsersCountLbl()
 
-
-            } else if mode == .create || mode == .add {
+            }
+            else if mode == .create || mode == .add
+            {
                 titleLbl.text = Strings.add_participants
 
-                subtitleLbl.textColor = .darkGray
+                subtitleLbl.textColor = .white
                 subtitleLbl.font = titleLbl.font.withSize(11)
                 updateUsersCountLbl()
-
             }
-        } else {
+        }
+        else
+        {
             //initialize new list if there are no users
             currentUsers = List()
         }
-
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -173,7 +163,6 @@ class GroupUsersVC: BaseSearchableVC {
 
         addNavItem = UIBarButtonItem(title: Strings.add.uppercased(), style: .done, target: self, action: #selector(addTapped))
         addNavItem.isEnabled = false
-
 
         if mode == .add || mode == .create {
             title = Strings.add_participants
@@ -188,11 +177,7 @@ class GroupUsersVC: BaseSearchableVC {
         } else {
             addNavItem.hide()
             nextNavItem.hide()
-
         }
-
-
-
     }
 
     private func updateUsersCountLbl() {
@@ -229,9 +214,7 @@ class GroupUsersVC: BaseSearchableVC {
             }.disposed(by: disposeBag)
 
         }
-
     }
-
 
     @objc func nextTapped() {
         if isBroadcast {
@@ -303,26 +286,28 @@ class GroupUsersVC: BaseSearchableVC {
         notificationToken = nil
     }
 
-
-    func exitSearchMode() {
+    func exitSearchMode()
+    {
         //for some reason when creating a new Group, then entering search mode
         //then cancelling it, it dismisses the VC it self
-        if mode == .create{
+        if mode == .create
+        {
             searchController.searchBar.text = ""
             searchController.searchBar.resignFirstResponder()
 
             isInSearchMode = false
             tableView.reloadData()
-        }else{
-        if searchController.isActive {
-        isInSearchMode = false
-        searchController.isActive = false
-        tableView.reloadData()
-
         }
+        else
+        {
+            if searchController.isActive
+            {
+                isInSearchMode = false
+                searchController.isActive = false
+                tableView.reloadData()
+            }
         }
     }
-
 }
 
 extension GroupUsersVC: UITextFieldDelegate {
@@ -345,7 +330,6 @@ extension GroupUsersVC: UICollectionViewDelegate, UICollectionViewDataSource {
         }
 
         return UICollectionViewCell()
-
     }
 }
 
@@ -354,13 +338,9 @@ extension GroupUsersVC: UISearchBarDelegate {
 //        searchController.dismiss(animated: true) {
         
         self.exitSearchMode()
-//        }
-//
-
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
 
         //get only users in group
         if mode == .show,let users = currentUsers{
@@ -386,7 +366,9 @@ extension GroupUsersVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isInSearchMode {
@@ -422,13 +404,10 @@ extension GroupUsersVC: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
 
-
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let user = getUser(index: indexPath.row) else {
             return
         }
-
 
         if mode == .add || mode == .create {
 
@@ -442,8 +421,6 @@ extension GroupUsersVC: UITableViewDelegate, UITableViewDataSource {
                 }
             }
 
-
-
             if selectedUsers.contains(user) {
                 self.tableView(tableView, didDeselectRowAt: indexPath)
             } else {
@@ -454,7 +431,6 @@ extension GroupUsersVC: UITableViewDelegate, UITableViewDataSource {
             if !selectedUsers.isEmpty {
                 animateCollectionViewHeight(newHeight: 90)
             }
-
 
             collectionView.reloadData()
 
@@ -500,10 +476,7 @@ extension GroupUsersVC: UITableViewDelegate, UITableViewDataSource {
 
                 alert.dismiss(animated: true)
                 self.presentAlertWithSearch(confirmationAlert)
-
-
             }
-
 
             let makeAdmin = UIAlertAction(title: "\(Strings.make) \(user.userName) \(Strings.an_admin)", style: .default) { (_) in
                 let confirmationAlert = UIAlertController(title: nil, message: Strings.make_admin_confirmation, preferredStyle: .actionSheet)

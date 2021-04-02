@@ -167,6 +167,7 @@ protocol CallCellDelegate {
 class CallCell: UITableViewCell
 {
     @IBOutlet weak var userImg: UIImageView!
+    @IBOutlet weak var contactImgView: CustomProfileView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var callTypeImgView: UIImageView!
     @IBOutlet weak var callTimeLbl: UILabel!

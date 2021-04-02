@@ -30,9 +30,6 @@ class SentBaseCell: BaseCell {
         }
     }
 
-
-
-
     override func bind(message: Message, user: User) {
         super.bind(message: message, user: user)
         stateImage.image = StateImageHelper.getStateImage(state: message.messageState)
@@ -44,13 +41,11 @@ class SentBaseCell: BaseCell {
             replyView.leftColoredView.backgroundColor = colorGreen
             replyView.messageContent.textColor = .darkGray
             replyView.replyLayoutIcon.tintColor = .darkGray
-
         }
-
     }
-
-
-    override func awakeFromNib() {
+    
+    override func awakeFromNib()
+    {
         super.awakeFromNib()
         let imageName = isMessageSelected ? "check_circle" : "circle"
         selectBtn = UIButton()

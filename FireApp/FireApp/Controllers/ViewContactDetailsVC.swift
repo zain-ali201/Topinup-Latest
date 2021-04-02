@@ -32,8 +32,6 @@ class ViewContactDetailsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         addToContactsCard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addToContactsClicked)))
 
         userName.text = contact.name
-
-
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,10 +46,12 @@ class ViewContactDetailsVC: BaseVC, UITableViewDelegate, UITableViewDataSource {
         return contact.realmList.count
     }
 
-    @objc private func addToContactsClicked() {
+    @objc private func addToContactsClicked()
+    {
         let controller = CNContactViewController(forNewContact: contact.toCNContact())
         controller.delegate = self
         let navigationController = UINavigationController(rootViewController: controller)
+        navigationController.navigationBar.tintColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
         self.present(navigationController, animated: true)
     }
 

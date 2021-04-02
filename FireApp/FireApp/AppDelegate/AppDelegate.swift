@@ -60,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         UIBarButtonItem.appearance().tintColor = UIColor.white
-        UIApplication.shared.statusBarStyle = .lightContent
 
         self.application = application
         FirebaseApp.configure()

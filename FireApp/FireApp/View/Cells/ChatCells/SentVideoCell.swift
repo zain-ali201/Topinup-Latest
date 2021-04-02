@@ -12,20 +12,18 @@ class SentVideoCell: SentBaseCell {
 
     @IBOutlet weak var imageContent: UIImageView!
     
-    
-    
-    
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    override func bind(message: Message,user:User) {
+    override func bind(message: Message,user:User)
+    {
         super.bind(message: message,user:user)
 
+        imageContent.layer.cornerRadius = 8.0
+        imageContent.layer.masksToBounds = true
+        
            if !message.videoThumb.isEmpty {
-             
-             
+            
              
               let cacheKey = message.messageId + "-video-thumb"
              let provider = Base64Provider(base64String: message.videoThumb, cacheKey: cacheKey)

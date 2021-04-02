@@ -19,7 +19,7 @@ class CustomProgressButton: CircleProgressButton {
 
             case .LOADING:
                 self.resume()
-                self.strokeMode = .border(width: 4)
+                self.strokeMode = .border(width: 2)
 
             case .SUCCESS:
                 self.strokeMode = .fill
@@ -30,17 +30,13 @@ class CustomProgressButton: CircleProgressButton {
         }
     }
 
-
     var isSentType = false
-
-
-
 
     var iconTintColor: UIColor = .black {
         didSet {
             animationEnableOptions = .iconScale
 
-            inProgressStrokeColor = UIColor.red
+            inProgressStrokeColor = UIColor(hexString: "0x#307BF8")
             suspendedStrokeColor = UIColor(hexString: "0x8C8C8C")
             completedStrokeColor = UIColor(hexString: "0x0044C3")
             strokeMode = .fill

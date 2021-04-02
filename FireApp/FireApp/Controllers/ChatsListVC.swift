@@ -143,9 +143,7 @@ class ChatsListVC: BaseSearchableVC
                     cell.lastMessage.text = MessageTypeHelper.getMessageContent(message: message, includeEmoji: false)
                 }
             } else {
-
                 cell.lastMessage.text = ""
-
             }
 
             cell.lastMessage.textColor = Colors.notTypingColor
