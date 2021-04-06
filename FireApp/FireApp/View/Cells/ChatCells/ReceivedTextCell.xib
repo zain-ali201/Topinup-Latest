@@ -32,17 +32,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="142"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="IoX-Ww-noU" userLabel="Reply and Group Stack">
-                                        <rect key="frame" x="0.0" y="2" width="300" height="85"/>
+                                        <rect key="frame" x="0.0" y="2" width="300" height="77"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vC-Mz-5rR" userLabel="Group Author Container" customClass="GroupAuthorView" customModule="Topinup" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="25"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="HAj-9M-1Gl"/>
+                                                    <constraint firstAttribute="height" constant="17" id="HAj-9M-1Gl"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JKl-5o-6T6" userLabel="Reply Container" customClass="ReplyView" customModule="Topinup" customModuleProvider="target">
-                                                <rect key="frame" x="6" y="31" width="300" height="50"/>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JKl-5o-6T6" userLabel="Reply Container" customClass="ReplyView" customModule="Topinup" customModuleProvider="target">
+                                                <rect key="frame" x="6" y="23" width="300" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="do7-gd-kzl"/>
@@ -64,7 +64,7 @@
                                         </constraints>
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Hello World Lorem ipsum" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fWA-ND-BqT" userLabel="Message TextView" customClass="UnSelectableTextView" customModule="Topinup" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="87" width="300" height="38"/>
+                                        <rect key="frame" x="0.0" y="79" width="300" height="46"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="AOE-wR-Wh3"/>
@@ -106,7 +106,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
                 </subviews>
-                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="JuR-gH-YoB" secondAttribute="bottom" constant="7" id="2ub-jo-tyq"/>
                     <constraint firstAttribute="bottom" secondItem="c4K-FS-FFB" secondAttribute="bottom" id="IfH-AF-22k"/>

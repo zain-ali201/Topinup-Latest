@@ -10,6 +10,8 @@ import UIKit
 
 class Colors {
 
+    static let appColor = "#307BF8".toColor
+    
     static let typingAndRecordingColors = "#8B8B8D".toColor
     static let notTypingColor = typingAndRecordingColors
 
@@ -84,7 +86,7 @@ class Config
 
     static let sharedKeychainName = "\(teamId).\(bundleName).\(groupName)"
 
-    static let privacyPolicyLink = "https://sprintsols.com/privacypolicy/apps/privacy_policy.html"
+    static let privacyPolicyLink = "https://www.topinup.com"
     
 
     static let agoraAppId = "003807407a6a40f392e79e0302732a3e"

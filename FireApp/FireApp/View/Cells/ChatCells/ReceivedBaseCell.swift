@@ -11,10 +11,7 @@ import UIKit
 class ReceivedBaseCell: BaseCell {
 
     @IBOutlet weak var groupAuthorView: GroupAuthorView!
-
     @IBOutlet weak var groupAuthorAndReplyContainer: UIStackView!
-
-
 
     private var selectBtn: UIButton!
     override var isMessageSelected: Bool {
@@ -66,10 +63,11 @@ class ReceivedBaseCell: BaseCell {
 
         }
 
-        if groupAuthorView != nil {
+        if groupAuthorView != nil
+        {
             groupAuthorView.isHidden = !message.isGroup
             groupAuthorView.label.text = getQuotedUserName(message: message, user: user)
-            
+            groupAuthorView.label.textColor = Colors.appColor
         }
         if replyView != nil && message.quotedMessage != nil {
 

@@ -18,23 +18,14 @@ class CameraVCViewController: SwiftyCamViewController, SwiftyCamViewControllerDe
     var imagePickerDelegate: MTImagePickerControllerDelegate?
     weak var interactiveTransition: BubbleInteractiveTransition?
 
-
-
     @IBOutlet weak var recordTimeStack: UIStackView!
-
     @IBOutlet weak var captureButton: SwifyCamRecordButton!
-
     @IBOutlet weak var flashButton: UIButton!
-
     @IBOutlet weak var flipCameraButton: UIButton!
-
-
     @IBOutlet weak var timerLbl: UILabel!
 
     @IBOutlet weak var recordingCircle: UIView!
-
     @IBOutlet weak var galleryBtn: UIButton!
-
     @IBOutlet weak var btnClose: UIButton!
 
 
@@ -48,12 +39,16 @@ class CameraVCViewController: SwiftyCamViewController, SwiftyCamViewControllerDe
     @IBAction func btnCancelTapped(_sender: Any) {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
-
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        captureButton.setShadow()
+        flashButton.setShadow()
+        flipCameraButton.setShadow()
+        galleryBtn.setShadow()
+        btnClose.setShadow()
 
         shouldPrompToAppSettings = true
         cameraDelegate = self
@@ -275,4 +270,15 @@ extension CameraVCViewController {
         }
     }
 
+}
+
+extension UIButton
+{
+    func setShadow()
+    {
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.layer.shadowRadius = 2
+        self.layer.shadowOpacity = 1.0
+    }
 }

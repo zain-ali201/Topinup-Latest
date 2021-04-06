@@ -16,19 +16,15 @@ protocol TextStatusDelegate {
 class TextStatusVC: BaseVC {
 
     var delegate:TextStatusDelegate?
-    
 
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var placeholderTextView: UITextView!
 
     @IBOutlet weak var btnFont: UIButton!
     @IBOutlet weak var btnBackground: UIButton!
-    
-
     @IBOutlet weak var btnUpload: UIButton!
-
+    @IBOutlet weak var btnCross: UIButton!
     @IBOutlet weak var btnUploadBottomConstraints: NSLayoutConstraint!
-
 
     let bottomConstraintConstant: CGFloat = 32
 
@@ -39,9 +35,12 @@ class TextStatusVC: BaseVC {
     var currentFontIndex = 0
     var currentBackgroundIndex = 0
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btnFont.setShadow()
+        btnBackground.setShadow()
+        btnCross.setShadow()
 
         currentBackgroundIndex = colors.randomIndex()
         view.backgroundColor = colors[currentBackgroundIndex].toUIColor()
@@ -52,34 +51,30 @@ class TextStatusVC: BaseVC {
         btnBackground.addTarget(self, action: #selector(btnBackgroundTapped), for: .touchUpInside)
         btnUpload.addTarget(self, action: #selector(btnUploadTapped), for: .touchUpInside)
 
-
         textView.resizeFont()
         placeholderTextView.resizeFont()
-
-
         textView.delegate = self
-
         listenForKeyboard = true
 
         IQKeyboardManager.shared.enable = false
 
-
     }
 
-    override func keyboardWillShow(keyboardFrame: CGRect?) {
+    override func keyboardWillShow(keyboardFrame: CGRect?)
+    {
         if let keyboardFrame = keyboardFrame {
-            
             btnUploadBottomConstraints.constant = (keyboardFrame.height / 1.2)  + bottomConstraintConstant
             
             UIView.animate(withDuration: 0.2) {
                 self.view.layoutIfNeeded()
             }
-
         }
     }
 
     //move upload button above the keyboard
-    override func keyBoardWillHide() {
+    override func keyBoardWillHide()
+    {
+        print("111111111")
         btnUploadBottomConstraints.constant = bottomConstraintConstant
     }
 
@@ -148,7 +143,7 @@ extension TextStatusVC: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView)
     {
         placeholderTextView.isHidden = textView.text.isNotEmpty
-        btnUpload.isEnabled = textView.text.isNotEmpty
+        btnUpload.isHidden = textView.text.isNotEmpty
         textView.resizeFont()
     }
 

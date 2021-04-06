@@ -31,7 +31,7 @@ NSString* const kFUIJSONDialcodeKey = @"e164_cc";
 NSString* const kFUIJSONLevelKey = @"level";
 NSString* const kFUIJSONCountryCodePredicate = @"(iso2_cc like[c] %@)";
 NSString* const kFUIJSONCountryNamePredicate = @"(localized_name beginswith[cd] %@)";
-NSString* const kFUIDefaultCountryCode = @"US";
+NSString* const kFUIDefaultCountryCode = @"UAE";
 
 @implementation FUICountryCodeInfo
 

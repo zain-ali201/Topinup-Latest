@@ -12,11 +12,6 @@ class ReceivedTextCell: ReceivedBaseCell {
     
     
     @IBOutlet weak var textView: UITextView!
- 
-    
-
-
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

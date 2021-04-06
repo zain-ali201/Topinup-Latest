@@ -108,6 +108,8 @@ open class LocationPickerViewController: UIViewController {
 		let searchBar = self.searchController.searchBar
 		searchBar.searchBarStyle = self.searchBarStyle
 		searchBar.placeholder = self.searchBarPlaceholder
+        searchBar.tintColor = .white
+        
         if #available(iOS 13.0, *) {
             searchBar.searchTextField.backgroundColor = searchTextFieldColor
         }

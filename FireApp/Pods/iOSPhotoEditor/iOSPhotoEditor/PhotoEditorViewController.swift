@@ -15,7 +15,6 @@ public final class PhotoEditorViewController: UIViewController {
     //To hold the image
     @IBOutlet var imageView: UIImageView!
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
-    //To hold the drawings and stickers
     @IBOutlet weak var canvasImageView: UIImageView!
 
     @IBOutlet weak var topToolbar: UIView!
@@ -81,6 +80,11 @@ public final class PhotoEditorViewController: UIViewController {
     {
         super.viewDidLoad()
         self.setImageView(image: image!)
+        
+        doneButton.layer.shadowColor = UIColor.black.cgColor
+        doneButton.layer.shadowOffset = CGSize(width: 2, height: 2)
+        doneButton.layer.shadowRadius = 2
+        doneButton.layer.shadowOpacity = 1.0
         
         deleteView.layer.cornerRadius = deleteView.bounds.height / 2
         deleteView.layer.borderWidth = 2.0

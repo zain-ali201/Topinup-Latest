@@ -32,9 +32,6 @@ class ViewLocationVC: BaseVC {
 
         let region = MKCoordinateRegion(center: coord, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView.setRegion(mapView.regionThatFits(region), animated: true)
-
-        
-        
     }
     
     func initialize(location:RealmLocation) {
