@@ -46,7 +46,7 @@ class ScheduledMessagesTableVC: UITableViewController {
         let scheduledMessage = scheduledMessages[indexPath.row]
 
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
 
         if let previewScheduledMessagesVC = storyboard.instantiateViewController(withIdentifier: "PreviewScheduledMessage") as? PreviewScheduledMessageVC {
             previewScheduledMessagesVC.initialize(scheduledMessageId: scheduledMessage.messageId)

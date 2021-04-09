@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="275" height="142"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Hello World Lorem ipsum" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pLx-Hh-XG4" userLabel="Message TextView" customClass="UnSelectableTextView" customModule="Topinup" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="4" width="275" height="121"/>
+                                        <rect key="frame" x="5" y="4" width="265" height="121"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="DRa-CS-byl"/>
@@ -71,12 +71,12 @@
                                 <color key="backgroundColor" red="0.84705882349999995" green="0.90588235289999997" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="4mk-A0-kTh"/>
-                                    <constraint firstItem="pLx-Hh-XG4" firstAttribute="trailing" secondItem="PQF-i7-KAK" secondAttribute="trailing" constant="8" id="E56-7W-8a7"/>
+                                    <constraint firstItem="pLx-Hh-XG4" firstAttribute="trailing" secondItem="PQF-i7-KAK" secondAttribute="trailing" constant="3" id="E56-7W-8a7"/>
                                     <constraint firstItem="PQF-i7-KAK" firstAttribute="top" secondItem="pLx-Hh-XG4" secondAttribute="bottom" constant="-5" id="KWx-Le-4LP"/>
                                     <constraint firstAttribute="bottom" secondItem="PQF-i7-KAK" secondAttribute="bottom" constant="6" id="ePY-Rz-uBe"/>
                                     <constraint firstItem="pLx-Hh-XG4" firstAttribute="top" secondItem="t6Y-We-Afn" secondAttribute="top" constant="4" id="iLI-4p-69E"/>
-                                    <constraint firstAttribute="trailing" secondItem="pLx-Hh-XG4" secondAttribute="trailing" id="kHn-uR-Cor"/>
-                                    <constraint firstItem="pLx-Hh-XG4" firstAttribute="leading" secondItem="t6Y-We-Afn" secondAttribute="leading" id="p9u-Lo-2Z9"/>
+                                    <constraint firstAttribute="trailing" secondItem="pLx-Hh-XG4" secondAttribute="trailing" constant="5" id="kHn-uR-Cor"/>
+                                    <constraint firstItem="pLx-Hh-XG4" firstAttribute="leading" secondItem="t6Y-We-Afn" secondAttribute="leading" constant="5" id="p9u-Lo-2Z9"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>

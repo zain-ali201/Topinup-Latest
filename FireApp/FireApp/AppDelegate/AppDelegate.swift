@@ -27,8 +27,6 @@ private let fileURL = FileManager.default
 private let config = RealmConfig.getConfig(fileURL: fileURL)
 let appRealm = try! Realm(configuration: config)
 
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -109,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func startUpdateVC() {
         unRegisterVCsEvents()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "updateVC")
         self.window?.rootViewController = vc
     }
@@ -204,7 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func goToInitialVC() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
 
         if !UserDefaultsManager.hasAgreedToPolicy() {
             
@@ -592,7 +590,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             unRegisterVCsEvents()
             //reset chatId
             currentChatId = ""
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Chat", bundle: nil)
 //            //
             let shareNavVC = storyboard.instantiateViewController(withIdentifier: "shareNavVC")
             self.window?.rootViewController = shareNavVC

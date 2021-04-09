@@ -29,36 +29,27 @@ import IQKeyboardManagerSwift
 import QuickLook
 import iOSPhotoEditor
 
-
 protocol ChatVCDelegate {
     func segueToChatVC(user: User)
 }
 
-class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
-
+class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate, UITextViewDelegate
+{
     //used when previewing files like pdf,doc,etc..
     var currentFilePath: String = ""
     var searchIndex = 0
 
     var recorder: AudioRecorder!
-
     var realmHelper: RealmHelper!
-
     var user: User!
-
     var senderUser: User!
-
-
     var audioPlayer: AudioPlayer!
 
     var chat: Chat?
-
     //this is used to keep the Download/Upload progress when scrolling in TableView
     var progressDict = [String: Float]()
     //this is used to keep the audio progress when scrolling in TableView
     var audioProgressDict = [String: AudioProgress]()
-
-
     let transition = BubbleTransition()
     let interactiveTransition = BubbleInteractiveTransition()
 
@@ -80,34 +71,23 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             
             UIView.animate(withDuration: 0.2) {
                 self.view.layoutIfNeeded()
-                
                 self.schedulingModeView.isHidden = !self.isInSchedulingMode
-
             }
         }
     }
     
     private var schedulingDate:Date = Date()
-
     var unReadCount = 0
     var previousMessageIdForScroll = ""
-
     var currentReceiverTypingState: TypingState = .NOT_TYPING
     var currentReceiverOnlineState: PresenceState = PresenceState(isOnline: false, lastSeen: 0)
-
     var delegate: ChatVCDelegate?
-
-
     var callingButtonsNavigation: UIBarButtonItem!
-
     var currentQuotedMessage: Message? = nil
-
     var updatePresenceObservable: Disposable?
-
     
     //used when user enters selection mode (delete,forward,copy,etc..)
     var isInSelectMode = false {
-
         didSet {
             tblView.allowsSelection = isInSelectMode
             tblView.allowsMultipleSelection = isInSelectMode
@@ -122,19 +102,19 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 toolbarBottomConstraint.constant = 0
                 backgroundView.bottomAnchor.constraint(equalTo: toolbar.topAnchor).isActive = true
                 navigationItem.hidesBackButton = true
-
-            } else {
+            }
+            else
+            {
                 selectedItems.removeAll()
                 navigationItem.hidesBackButton = false
                 navigationItem.rightBarButtonItem = callingButtonsNavigation
                 backgroundView.bottomAnchor.constraint(equalTo: typingViewContainer.topAnchor, constant: -16).isActive = true
-                toolbarBottomConstraint.constant = 2000
+                toolbarBottomConstraint.constant = 44
             }
 
             UIView.animate(withDuration: 0.2) {
                 self.view.layoutIfNeeded()
             }
-
 
             for cell in tblView.visibleCells {
                 if let cell = cell as? BaseCell {
@@ -144,7 +124,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                     }
                 }
             }
-
         }
     }
 
@@ -200,10 +179,9 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var parentTextView: UIView!
     @IBOutlet weak var whiteTextView: UIView!
-    @IBOutlet weak var textView: GrowingTextView!
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var btnCamera: UIButton!
     @IBOutlet weak var btnAdd: UIButton!
-
     @IBOutlet weak var backgroundView: UIImageView!
 
     //Replay Layout Views
@@ -215,12 +193,14 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var replyCancel: UIButton!
 
     @IBOutlet weak var typingViewContainer: UIView!
+    @IBOutlet weak var typingViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var typingViewBottomLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tblViewTopContraint: NSLayoutConstraint!
     @IBOutlet weak var recordButtonBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordViewBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var backgroundViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var replyLayoutBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
+//    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var schedulingModeViewHeightConstraint: NSLayoutConstraint!
@@ -281,7 +261,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 self.setCurrentPresenceState(state: self.currentReceiverOnlineState)
                 self.updateToolbarLabelsVisibility(hideOnlineStatToolbar: false)
             }
-
         })
 
         updatePresenceObservable?.disposed(by: disposeBag)
@@ -661,7 +640,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
             if numberOfRows > 0 {
                 let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-                self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: false)
             }
         }
 
@@ -686,8 +665,16 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         FireManager.setTypingStat(receiverUid: user.uid, stat: typingState, isGroup: user.isGroupBool, isBroadcast: user.isBroadcastBool).subscribe().disposed(by: disposeBag)
     }
 
+    var keyboardHeight: CGFloat = 0.0
     override func keyboardWillShow(keyboardFrame: CGRect?)
     {
+        if let keyboardRectangle = keyboardFrame
+        {
+            keyboardHeight = keyboardRectangle.height
+            tblViewTopContraint.constant = keyboardHeight
+            scrollToLast()
+        }
+        
         if !isInSearchMode {
             return
         }
@@ -697,10 +684,26 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         }
 
         //move the table view up when entering search mode so we can give some space for the Keyboard
-        if let keyboardRectangle = keyboardFrame {
-            let keyboardHeight = keyboardRectangle.height
-            tableViewBottomConstraint.constant = (keyboardHeight / 1.4) + arrowsToolbar.frame.height / 2
+//        if let keyboardRectangle = keyboardFrame
+//        {
+//            let keyboardHeight = keyboardRectangle.height
+//            tableViewBottomConstraint.constant = (keyboardHeight / 1.4) + arrowsToolbar.frame.height / 2
+//        }
+    }
+    
+    //move tableview down if user exits search mode
+    override func keyBoardWillHide()
+    {
+        tblViewTopContraint.constant = 0
+        if !isInSearchMode
+        {
+            return
         }
+       
+//        if tableViewBottomConstraint.constant != 16
+//        {
+//            tableViewBottomConstraint.constant = 16
+//        }
     }
 
     //scroll to last OR update the unread count
@@ -754,19 +757,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                     previousMessageIdForScroll = message.messageId
                 }
             }
-        }
-    }
-
-    //move tableview down if user exits search mode
-    override func keyBoardWillHide()
-    {
-        if !isInSearchMode
-        {
-            return
-        }
-        if tableViewBottomConstraint.constant != 16
-        {
-            tableViewBottomConstraint.constant = 16
         }
     }
 
@@ -858,7 +848,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             searchBar.translatesAutoresizingMaskIntoConstraints = false
             searchBar.widthAnchor.constraint(equalToConstant: view.frame.width - 25).isActive = true
             searchBar.heightAnchor.constraint(equalToConstant: 30).isActive = true
-            
 
             let leftNavBarButton = UIBarButtonItem(customView: searchBar)
             self.navigationItem.leftBarButtonItem = leftNavBarButton
@@ -866,7 +855,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             navigationItem.leftItemsSupplementBackButton = false
 
             searchBar.becomeFirstResponder()
-
 
             arrowsToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
             arrowsToolbar.barStyle = .default
@@ -879,7 +867,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         }
         else
         {
-            listenForKeyboard = false
+            listenForKeyboard = true
             navigationItem.leftItemsSupplementBackButton = true
             self.navigationController?.navigationBar.backItem?.title = " "
             self.navigationItem.title = " "
@@ -1008,7 +996,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     }
 
     //registering TableViewCells
-    private func registerCells() {
+    private func registerCells()
+    {
         tblView.registerCellNib(cellClass: SentTextCell.self)
         tblView.registerCellNib(cellClass: SentTextQuotedCell.self)
         tblView.registerCellNib(cellClass: ReceivedTextCell.self)
@@ -1020,8 +1009,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         tblView.registerCellNib(cellClass: SentLocationCell.self)
         tblView.registerCellNib(cellClass: SentFileCell.self)
         tblView.registerCellNib(cellClass: SentFileQuotedCell.self)
-
-
         tblView.registerCellNib(cellClass: ReceivedImageCell.self)
         tblView.registerCellNib(cellClass: ReceivedVoiceCell.self)
         tblView.registerCellNib(cellClass: ReceivedContactCell.self)
@@ -1030,16 +1017,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         tblView.registerCellNib(cellClass: ReceivedLocationCell.self)
         tblView.registerCellNib(cellClass: ReceivedAudioCell.self)
         tblView.registerCellNib(cellClass: ReceivedFileCell.self)
-
         tblView.registerCellNib(cellClass: GroupEventCell.self)
         tblView.registerCellNib(cellClass: DateHeaderCell.self)
-
         tblView.registerCellNib(cellClass: SentDeletedMessageCell.self)
         tblView.registerCellNib(cellClass: ReceivedDeletedMessageCell.self)
-
         tblView.registerCellNib(cellClass: UnSupportedCell.self)
-
-
     }
 
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -1072,8 +1054,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             selectedItems.append(message)
         }
 
-        toolbarTitle.text = "\(selectedItems.count)"
-
+        toolbarTitle.text = "\(selectedItems.count) Selected"
 
         if let cell = tblView.cellForRow(at: indexPath) as? BaseCell {
             cell.isMessageSelected = true
@@ -1086,7 +1067,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
         selectedItems.removeAll(where: { $0.messageId == message.messageId })
 
-        toolbarTitle.text = "\(selectedItems.count)"
+        toolbarTitle.text = "\(selectedItems.count) Selected"
 
         if let cell = tblView.cellForRow(at: indexPath) as? BaseCell {
             cell.isMessageSelected = false
@@ -1128,8 +1109,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             cell.updateSlider(currentProgress: 0, duration: 0, currentDurationStr: message.mediaDuration)
             cell.playerState = .paused
         }
-
-
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -1494,9 +1473,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         } else if let controller = segue.destination as? ForwardVC {
             controller.messages = selectedItems
         }
-
-
-
     }
 
     deinit {
@@ -1504,17 +1480,17 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     }
 
-
-
     //init bottomToolbar when user selects a Cell in TableView
-    func initToolbar() {
+    func initToolbar()
+    {
         leftButtonToolbar = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(toolbarTrashDidClick))
         let leftSpacing = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolbarTitle = ToolBarTitleItem(text: "", font: .systemFont(ofSize: 16), color: .black)
+        toolbarTitle = ToolBarTitleItem(text: "", font: .systemFont(ofSize: 16), color: .white)
         let rightSpacing = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         rightButtonToolbar = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(toolbarShareDidClick))
         toolbar.items = [leftButtonToolbar, leftSpacing, toolbarTitle, rightSpacing, rightButtonToolbar]
-
+//        toolbar.backgroundColor = Colors.appColor
+//        toolbar.tintColor = Colors.appColor
     }
 
     @objc func toolbarTrashDidClick() {
@@ -1611,8 +1587,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         return interactiveTransition
     }
 
-
-
     //dismiss reply layout
     @objc private func cancelReplyDidClick() {
         replyLayoutBottomConstraint.constant = -2000
@@ -1628,20 +1602,21 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
 
     fileprivate func setContentOffset() {
-        tblView.setContentOffset(CGPoint(x: 0, y: tblView.contentSize.height - tblView.frame.size.height), animated: true)
+        tblView.setContentOffset(CGPoint(x: 0, y: (tblView.contentSize.height - tblView.frame.size.height) + 10), animated: true)
     }
 
     func textViewDidChange(_ textView: UITextView)
     {
-        if let font = textView.font {
+        if let font = textView.font
+        {
             let numLines = (textView.contentSize.height / font.lineHeight)
-            if numLines > 1 {
+            if numLines > 1
+            {
                 //if the visible row is the last row then scroll to bottom
                 let shouldScroll = tblView.contentSize.height >= tblView.frame.height
                 if tblView.lastVisibleRow == messages.lastIndex() && shouldScroll {
                     setContentOffset()
                 }
-
             }
         }
 
@@ -1714,12 +1689,9 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         if user.isBroadcastBool || user.isGroupBool {
             return
         }
-
-
+        
         FireManager.listenForPresence(uid: user.uid).subscribe(onNext: { (state) in
             self.currentReceiverOnlineState = state
-
-
             if self.currentReceiverTypingState == .NOT_TYPING {
 
                 if state.isOnline {
@@ -1731,11 +1703,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
             }
 
-
-
         }).disposed(by: disposeBag)
-
-
     }
 
     private func setCurrentPresenceState(state: PresenceState) {
@@ -1766,9 +1734,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         for unReadVoiceMessage in unReadVoiceMessages {
             FireManager.listenForSentVoiceMessagesState(receiverUid: user.uid, messageId: unReadVoiceMessage.messageId, appRealm: appRealm).subscribe().disposed(by: disposeBag)
         }
-
     }
-
 
     private func updateUnReadReceivedMessages() {
         if user.isGroupBool || user.isBroadcastBool {
@@ -1782,8 +1748,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             FireManager.updateMessageState(messageId: message.messageId, chatId: message.chatId, state: .READ, appRealm: appRealm).subscribe().disposed(by: disposeBag)
 
         }
-
-
     }
 
     //set incoming messages to read
@@ -1801,13 +1765,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         }
     }
 
-
     private func updateToolbarLabelsVisibility(hideOnlineStatToolbar: Bool) {
 
         if isInSelectMode || isInSearchMode {
             return
         }
-
 
         if (user.isGroupBool || user.isBroadcastBool) {
             typingStateLbl.isHidden = !hideOnlineStatToolbar
@@ -1819,17 +1781,9 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             availableStateLbl.isHidden = hideOnlineStatToolbar
 
             let hideOnline = availableStateLbl.isHidden || currentReceiverOnlineState.lastSeen == 0
-
-
             animateTopToolbarLabelsTranslation(hideOnlineState: !hideOnline, hideTypingStateLbl: !hideOnlineStatToolbar)
-
-
         }
-
-
-
     }
-
 
     func initialize(user: User, delegate: ChatVCDelegate? = nil) {
         self.user = user
@@ -1838,7 +1792,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     }
 }
-
 
 extension ChatViewController: AudioCellDelegate {
     fileprivate func initAudioPlayer(_ message: Message, currentProgress: Float) {
@@ -1854,15 +1807,12 @@ extension ChatViewController: AudioCellDelegate {
         }
     }
 
-
     func didFinish(messageId: String) {
         if let index = messages?.getIndexById(messageId: messageId) {
             let indexPath = IndexPath(row: index, section: 0)
             updatePlayerState(state: .paused, messageId: messageId, indexPath: indexPath)
             tblView.reloadRows(at: [indexPath], with: .none)
-
         }
-
     }
 
     func didClickPlayButton(indexPath: IndexPath, currentProgress: Float) {
@@ -2315,15 +2265,12 @@ extension ChatViewController: CellDelegate {
                 return
             }
 
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
 
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "PreviewImageController") as! PreviewImageVideoViewController
 
-
             newViewController.initialize(chatId: user.uid, user: user, messageId: message.messageId)
             navigationController?.pushViewController(newViewController, animated: true)
-
-//            self.present(newViewController, animated: true, completion: nil)
 
             break
 
@@ -2338,27 +2285,22 @@ extension ChatViewController: CellDelegate {
                 return
             }
 
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
 
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "PreviewImageController") as! PreviewImageVideoViewController
 
-
             newViewController.initialize(chatId: user.uid, user: user, messageId: message.messageId)
-
             navigationController?.pushViewController(newViewController, animated: true)
-
             break
-
 
         case .SENT_CONTACT, .RECEIVED_CONTACT:
             if let contact = message.contact {
-                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
                 let newViewController = storyBoard.instantiateViewController(withIdentifier: "ViewContactDetailsVC") as! ViewContactDetailsVC
 
                 navigationController?.pushViewController(newViewController, animated: true)
                 newViewController.initialize(contact: contact)
             }
-
             break
 
         case .SENT_LOCATION, .RECEIVED_LOCATION:
@@ -2378,14 +2320,11 @@ extension ChatViewController: CellDelegate {
             let ql = QLPreviewController()
             ql.dataSource = self
             present(ql, animated: true, completion: nil)
-
             break
-
 
         default:
 
             break
-
         }
     }
 
@@ -2397,7 +2336,6 @@ extension ChatViewController: CellDelegate {
         guard let indexPath = indexPath, let view = view, let message = messages.getItemSafely(index: indexPath.row) as? Message else {
             return
         }
-
 
         let contextVC = ContextMenuViewController()
         //clicked item
@@ -2435,7 +2373,6 @@ extension ChatViewController: CellDelegate {
         )
     }
 
-
     func didClickProgressBtn(indexPath: IndexPath) {
         guard let message = messages?.getItemSafely(index: indexPath.row) as? Message else {
             return
@@ -2452,9 +2389,7 @@ extension ChatViewController: CellDelegate {
             RequestManager.request(message: message, callback: nil, appRealm: appRealm)
 
         }
-
     }
-
 }
 
 extension ChatViewController: QLPreviewControllerDataSource {
@@ -2466,9 +2401,7 @@ extension ChatViewController: QLPreviewControllerDataSource {
         let url = URL(fileURLWithPath: currentFilePath)
         return url as! QLPreviewItem
     }
-
 }
-
 
 extension ChatViewController: ContextMenuSelectDelegate {
     fileprivate func showReplyLayout(_ message: Message, _ indexPath: IndexPath) {
@@ -2533,7 +2466,6 @@ extension ChatViewController: UserDetailsDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.setupNavigationItems(true)
         }
-
     }
 
     func didClickScheduleMessage(date:Date) {

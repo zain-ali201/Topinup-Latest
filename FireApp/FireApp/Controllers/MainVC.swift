@@ -34,7 +34,7 @@ class MainVC: UIViewController
     fileprivate func goToRoot()
     {
         UserDefaultsManager.setAgreedToPolicy(bool: true)
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
 
         if UserDefaultsManager.isUserInfoSaved()
         {

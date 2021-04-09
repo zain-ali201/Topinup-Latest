@@ -12,15 +12,10 @@ import RxSwift
 import NotificationView
 import SwiftEventBus
 
-class BaseVC: UIViewController, Base {
+class BaseVC: UIViewController, Base
+{
     lazy var notificationDelegate: NotificationViewDelegate = self
-
-
-
-
-
     var disposeBag = DisposeBag()
-
 
     private var loadingAlertView: UIAlertController?
 
@@ -49,12 +44,9 @@ class BaseVC: UIViewController, Base {
         }
     }
 
-
-
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-
 
         let notificationView = NotificationView.default
         notificationView.hide()
@@ -74,13 +66,10 @@ class BaseVC: UIViewController, Base {
         handleGroupVoiceCallLinkTap()
     }
 
-
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //hide title ('back button') when going to ChatVC
 //        tabBarController?.navigationItem.title = " "
-
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -90,10 +79,7 @@ class BaseVC: UIViewController, Base {
         SwiftEventBus.unregister(self, name: EventNames.groupLinkTapped)
         SwiftEventBus.unregister(self, name: EventNames.groupVoiceCallLinkTapped)
 
-
     }
-
-
 
     func keyboardWillShow(keyboardFrame: CGRect?) {
 
@@ -117,36 +103,28 @@ class BaseVC: UIViewController, Base {
     func unRegisterEvents() {
         handleUnRegisterEvents()
     }
-    @objc private func keyBoardWillShow(notification: NSNotification) {
-
-
-
+    
+    @objc private func keyBoardWillShow(notification: NSNotification)
+    {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
-
-
-
             keyboardWillShow(keyboardFrame: keyboardRectangle)
-
-
         }
     }
 
-
     @objc private func keyBoardWillHide(notification: NSNotification) {
         keyBoardWillHide()
-
     }
 
-    deinit {
+    deinit
+    {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         SwiftEventBus.unregister(self)
     }
 
-
-    func makeACall(user: User, callType:CallType) {
-
+    func makeACall(user: User, callType:CallType)
+    {
         showLoadingViewAlert()
 
         FireManager.isUserBlocked(otherUserUid: user.uid).subscribe(onSuccess: { (isBlocked) in
@@ -160,11 +138,8 @@ class BaseVC: UIViewController, Base {
                     let fireCall = FireCall(callId: FireManager.generateKey(), callUUID: callUUID, user: user, callType: callType, callDirection: .OUTGOING, channel: channel, timestamp: Int(Date().currentTimeMillis()), duration: 0, phoneNumber: user.phone, isVideo: callType.isVideo)
                     
                     self.performSegue(withIdentifier: "toCallingVC", sender:fireCall)
-
                 }
             }
-
-
 
         }) { (error) in
             self.hideLoadingViewAlert()
@@ -173,20 +148,11 @@ class BaseVC: UIViewController, Base {
         }.disposed(by: disposeBag)
     }
 
-   
-
-
-
-
-
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
         if let controller = segue.destination as? CallingVC {
             if let fireCall = sender as? FireCall{
-                
-            
                 controller.initialize(fireCall: fireCall)
-
             }
         }
     }

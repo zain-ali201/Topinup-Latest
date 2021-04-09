@@ -143,7 +143,7 @@ extension Base where Self: UIViewController {
     func handleGroupLinkTap() {
         SwiftEventBus.onMainThread(self, name: EventNames.groupLinkTapped) { (event) in
             guard let groupLink = event?.object as? String else { return }
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Chat", bundle: nil)
 
             if let groupInfoPreviewVC = storyboard.instantiateViewController(withIdentifier: "groupInfoPreview") as? GroupInfoPreviewVC {
                 groupInfoPreviewVC.initialize(groupLink: groupLink)

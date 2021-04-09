@@ -55,7 +55,7 @@ class ShareTableVC: BaseTableVC {
     }
 
     private func goToRootVC() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
 
         let setupUserVc = storyboard.instantiateViewController(withIdentifier: "RootVC")
         self.dismiss(animated: true, completion: nil)

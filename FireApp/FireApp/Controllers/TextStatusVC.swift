@@ -95,18 +95,14 @@ class TextStatusVC: BaseVC {
 
         placeholderTextView.resizeFont()
         textView.resizeFont()
-
-
-
     }
 
-    @objc private func btnBackgroundTapped() {
+    @objc private func btnBackgroundTapped()
+    {
         currentBackgroundIndex = currentBackgroundIndex + 1 > colors.lastIndex() ? 0 : currentBackgroundIndex + 1
 
         view.backgroundColor = colors[currentBackgroundIndex].toUIColor()
     }
-
-
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -135,7 +131,6 @@ class TextStatusVC: BaseVC {
 
         return fonts
     }
-
 }
 
 extension TextStatusVC: UITextViewDelegate {
@@ -146,5 +141,4 @@ extension TextStatusVC: UITextViewDelegate {
         btnUpload.isHidden = textView.text.isNotEmpty
         textView.resizeFont()
     }
-
 }

@@ -315,7 +315,7 @@
 		A8C6E3EE2409A2360088C614 /* JsonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C6E3EC2409A2350088C614 /* JsonUtil.swift */; };
 		A8CAF7AC228F57F100BB3FF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CAF7AB228F57F100BB3FF6 /* AppDelegate.swift */; };
 		A8CAF7B0228F57F100BB3FF6 /* CallsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CAF7AF228F57F100BB3FF6 /* CallsVC.swift */; };
-		A8CAF7B3228F57F100BB3FF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8CAF7B1228F57F100BB3FF6 /* Main.storyboard */; };
+		A8CAF7B3228F57F100BB3FF6 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8CAF7B1228F57F100BB3FF6 /* Chat.storyboard */; };
 		A8CAF7B8228F57F300BB3FF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8CAF7B6228F57F300BB3FF6 /* LaunchScreen.storyboard */; };
 		A8CAF7C0228F60A600BB3FF6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CAF7BF228F60A600BB3FF6 /* User.swift */; };
 		A8CAF7C42290514800BB3FF6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CAF7C32290514800BB3FF6 /* ChatViewController.swift */; };
@@ -695,7 +695,7 @@
 		A8CAF7A8228F57F100BB3FF6 /* Topinup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Topinup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8CAF7AB228F57F100BB3FF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8CAF7AF228F57F100BB3FF6 /* CallsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsVC.swift; sourceTree = "<group>"; };
-		A8CAF7B2228F57F100BB3FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A8CAF7B2228F57F100BB3FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Chat.storyboard; sourceTree = "<group>"; };
 		A8CAF7B7228F57F300BB3FF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8CAF7B9228F57F300BB3FF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8CAF7BF228F60A600BB3FF6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -820,7 +820,7 @@
 			isa = PBXGroup;
 			children = (
 				A8CAF7B6228F57F300BB3FF6 /* LaunchScreen.storyboard */,
-				A8CAF7B1228F57F100BB3FF6 /* Main.storyboard */,
+				A8CAF7B1228F57F100BB3FF6 /* Chat.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1631,7 +1631,7 @@
 				A8957DBD2381C00000B0CAB8 /* Glass.caf in Resources */,
 				A8EA28A223899E7F0071A956 /* ReceivedLocationCell.xib in Resources */,
 				A8226110236CA8270061DEDF /* Oswald-Heavy.ttf in Resources */,
-				A8CAF7B3228F57F100BB3FF6 /* Main.storyboard in Resources */,
+				A8CAF7B3228F57F100BB3FF6 /* Chat.storyboard in Resources */,
 				A8EA28B2238A894A0071A956 /* SentFileQuotedCell.xib in Resources */,
 				A8957DBC2381C00000B0CAB8 /* Harp.caf in Resources */,
 				A8024B7D2385762400747946 /* GroupAuthorView.xib in Resources */,
@@ -2132,12 +2132,12 @@
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
-		A8CAF7B1228F57F100BB3FF6 /* Main.storyboard */ = {
+		A8CAF7B1228F57F100BB3FF6 /* Chat.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A8CAF7B2228F57F100BB3FF6 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Chat.storyboard;
 			sourceTree = "<group>";
 		};
 		A8CAF7B6228F57F300BB3FF6 /* LaunchScreen.storyboard */ = {

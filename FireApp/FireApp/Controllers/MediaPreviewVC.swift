@@ -171,7 +171,7 @@ class MediaPreviewVC: BaseVC, UICollectionViewDelegate, UICollectionViewDataSour
         else {
             collectionView.deselectItem(at: indexPath, animated: true)
             let message = items[indexPath.row]
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Chat", bundle: nil)
 
             let previewVc = storyboard.instantiateViewController(withIdentifier: "PreviewImageController") as! PreviewImageVideoViewController
 

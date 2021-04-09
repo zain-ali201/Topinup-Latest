@@ -36,7 +36,7 @@ class LoginVC: UIViewController {
     fileprivate func goToRoot() {
 
 
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
 
         if UserDefaultsManager.isUserInfoSaved() {
 

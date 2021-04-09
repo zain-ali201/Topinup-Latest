@@ -46,7 +46,7 @@ class SetupUserVC: BaseVC
     }
 
     fileprivate func goToRoot() {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
 
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "RootVC") as! RootNavController
         self.dismiss(animated: false) {

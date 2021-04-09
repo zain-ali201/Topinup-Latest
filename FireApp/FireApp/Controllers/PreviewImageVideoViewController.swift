@@ -20,7 +20,6 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
     private var list: Results<Message>!
     private var chatId: String?
     private var user: User!
-
     private var currentItemPosition = 0
 
     private var panGR = UIPanGestureRecognizer()
@@ -366,7 +365,7 @@ class PreviewImageVideoViewController: BaseVC, UICollectionViewDelegateFlowLayou
     }
 
     @objc func goToAllMedia() {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
 
         let mediaVc = storyBoard.instantiateViewController(withIdentifier: "MediaPreviewVC") as! MediaPreviewVC
         mediaVc.initialize(chatId: chatId!)
