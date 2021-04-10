@@ -98,8 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             checkForUpdate()
         }
 
-
-
         newNotificationsListeners = NewNotificationsListeners(disposeBag: disposeBag)
 
         return true

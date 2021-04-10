@@ -195,7 +195,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var typingViewContainer: UIView!
     @IBOutlet weak var typingViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var typingViewBottomLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var tblViewTopContraint: NSLayoutConstraint!
     @IBOutlet weak var recordButtonBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordViewBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var backgroundViewBottomConstraint: NSLayoutConstraint!
@@ -671,8 +670,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         if let keyboardRectangle = keyboardFrame
         {
             keyboardHeight = keyboardRectangle.height
-            tblViewTopContraint.constant = keyboardHeight
-            scrollToLast()
+            UIView.animate(withDuration: 0.25, animations: {
+                self.typingViewBottomLayoutConstraint.constant = self.keyboardHeight
+//                self.scrollToLast()
+                self.view.layoutIfNeeded()
+            })
         }
         
         if !isInSearchMode {
@@ -682,28 +684,19 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         if !searchBar.isFirstResponder {
             return
         }
-
-        //move the table view up when entering search mode so we can give some space for the Keyboard
-//        if let keyboardRectangle = keyboardFrame
-//        {
-//            let keyboardHeight = keyboardRectangle.height
-//            tableViewBottomConstraint.constant = (keyboardHeight / 1.4) + arrowsToolbar.frame.height / 2
-//        }
     }
     
     //move tableview down if user exits search mode
     override func keyBoardWillHide()
     {
-        tblViewTopContraint.constant = 0
+        UIView.animate(withDuration: 0.25, animations: {
+            self.typingViewBottomLayoutConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        })
         if !isInSearchMode
         {
             return
         }
-       
-//        if tableViewBottomConstraint.constant != 16
-//        {
-//            tableViewBottomConstraint.constant = 16
-//        }
     }
 
     //scroll to last OR update the unread count
@@ -838,7 +831,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
         isInSearchMode = showSearchBar
         //disable auto keyboard management if it's in search mode
-        IQKeyboardManager.shared.enable = !isInSearchMode
+//        IQKeyboardManager.shared.enable = !isInSearchMode
+        IQKeyboardManager.shared.enable = false
 
         if showSearchBar
         {
