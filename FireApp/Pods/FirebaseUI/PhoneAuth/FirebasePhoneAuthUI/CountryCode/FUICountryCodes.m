@@ -116,7 +116,15 @@ NSString* const kFUIDefaultCountryCode = @"UAE";
 - (FUICountryCodeInfo *)defaultCountryCodeInfo {
   // Get the country code based on the information of user's telecommunication carrier provider.
   CTCarrier *carrier = [[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider];
-  NSString *countryCode = carrier.isoCountryCode ?: [[self class] countryCodeFromDeviceLocale];
+    NSString *countryCode = @"";
+    
+    if (@available(iOS 10.0, *)) {
+        NSLog(@"[NSLocale.currentLocale countryCode]: %@", [NSLocale.currentLocale countryCode]);
+        countryCode = [NSLocale.currentLocale countryCode];
+    } else {
+        countryCode = carrier.isoCountryCode ?: [[self class] countryCodeFromDeviceLocale];
+    }
+    
   FUICountryCodeInfo *countryCodeInfo = [self countryCodeInfoForCode:countryCode];
   // If carrier is not available, get the hard coded default country code.
   if (!countryCodeInfo) {
@@ -126,7 +134,7 @@ NSString* const kFUIDefaultCountryCode = @"UAE";
   if (!countryCodeInfo) {
     countryCodeInfo = [self countryCodeInfoAtIndex:0];
   }
-  return countryCodeInfo;
+    return countryCodeInfo;
 }
 
 - (FUICountryCodeInfo *)countryCodeInfoForPhoneNumber:(NSString *)phoneNumber {

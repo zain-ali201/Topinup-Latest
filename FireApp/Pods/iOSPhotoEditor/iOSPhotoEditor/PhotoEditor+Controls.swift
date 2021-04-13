@@ -26,8 +26,9 @@ extension PhotoEditorViewController {
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         photoEditorDelegate?.canceledEditing()
-        self.dismiss(animated: true, completion: nil)
-//        self.navigationController?.popViewController(animated: false)
+//        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.popViewController(animated: false)
     }
 
     @IBAction func cropButtonTapped(_ sender: UIButton) {
@@ -52,23 +53,23 @@ extension PhotoEditorViewController {
 
     @IBAction func textButtonTapped(_ sender: Any) {
         isTyping = true
-        let textView = UITextView(frame: CGRect(x: 0, y: canvasImageView.center.y,
+        activeTextView = UITextView(frame: CGRect(x: 0, y: canvasImageView.center.y,
                                                 width: UIScreen.main.bounds.width, height: 30))
         
-        textView.textAlignment = .center
-        textView.font = UIFont(name: "Helvetica", size: 30)
-        textView.textColor = textColor
-        textView.layer.shadowColor = UIColor.black.cgColor
-        textView.layer.shadowOffset = CGSize(width: 1.0, height: 0.0)
-        textView.layer.shadowOpacity = 0.2
-        textView.layer.shadowRadius = 1.0
-        textView.layer.backgroundColor = UIColor.clear.cgColor
-        textView.autocorrectionType = .no
-        textView.isScrollEnabled = false
-        textView.delegate = self
-        self.canvasImageView.addSubview(textView)
-        addGestures(view: textView)
-        textView.becomeFirstResponder()
+        activeTextView?.textAlignment = .center
+        activeTextView?.font = UIFont(name: "Helvetica", size: 30)
+        activeTextView?.textColor = textColor
+        activeTextView?.layer.shadowColor = UIColor.black.cgColor
+        activeTextView?.layer.shadowOffset = CGSize(width: 1.0, height: 0.0)
+        activeTextView?.layer.shadowOpacity = 0.2
+        activeTextView?.layer.shadowRadius = 1.0
+        activeTextView?.layer.backgroundColor = UIColor.clear.cgColor
+        activeTextView?.autocorrectionType = .no
+        activeTextView?.isScrollEnabled = false
+        activeTextView?.delegate = self
+        self.canvasImageView.addSubview(activeTextView!)
+        addGestures(view: activeTextView!)
+        activeTextView?.becomeFirstResponder()
     }    
     
     @IBAction func doneButtonTapped(_ sender: Any) {

@@ -81,24 +81,20 @@
                                                 <rect key="frame" x="0.0" y="193" width="267" height="17"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LDN-uR-ap1">
-                                                        <rect key="frame" x="211" y="0.0" width="52" height="17"/>
+                                                        <rect key="frame" x="212" y="0.0" width="51" height="17"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="qrA-1o-JOc">
-                                                                <rect key="frame" x="0.0" y="0.0" width="52" height="15"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="51" height="17"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1K2-nU-xrX">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="15"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="17"/>
                                                                         <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="13"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check_circle" translatesAutoresizingMaskIntoConstraints="NO" id="LgA-yj-pLF">
-                                                                        <rect key="frame" x="37" y="0.0" width="15" height="15"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pending" translatesAutoresizingMaskIntoConstraints="NO" id="LgA-yj-pLF">
+                                                                        <rect key="frame" x="37" y="0.0" width="14" height="17"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="15" id="81m-p7-Zjf"/>
-                                                                            <constraint firstAttribute="height" constant="15" id="sNq-NI-SeS"/>
-                                                                        </constraints>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <userDefinedRuntimeAttributes>
@@ -207,7 +203,7 @@
     </designables>
     <resources>
         <image name="b-corner" width="8.5" height="11"/>
-        <image name="check_circle" width="24" height="24"/>
+        <image name="pending" width="14" height="14"/>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

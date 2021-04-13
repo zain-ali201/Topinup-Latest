@@ -134,14 +134,12 @@ static NSString *const kNextButtonAccessibilityID = @"NextButtonAccessibilityID"
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
-    NSLog(@"1111");
+
     [self.navigationController setNavigationBarHidden:TRUE];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"2222");
     [self.navigationController setNavigationBarHidden:TRUE];
 }
 

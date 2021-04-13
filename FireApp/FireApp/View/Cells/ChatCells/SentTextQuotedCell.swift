@@ -13,6 +13,9 @@ class SentTextQuotedCell: SentTextCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        containerView.layer.cornerRadius = 8.0
+        containerView.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

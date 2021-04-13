@@ -76,7 +76,7 @@
                                                 <rect key="frame" x="2" y="117" width="267" height="17"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TNf-hQ-6yg">
-                                                        <rect key="frame" x="214" y="0.0" width="53" height="17"/>
+                                                        <rect key="frame" x="210" y="0.0" width="53" height="17"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3i1-ob-ar1">
                                                                 <rect key="frame" x="0.0" y="0.0" width="49" height="15"/>
@@ -121,7 +121,7 @@
                                                     <constraint firstItem="TNf-hQ-6yg" firstAttribute="top" secondItem="Xb6-Gq-dmA" secondAttribute="top" id="73j-iu-2oC"/>
                                                     <constraint firstAttribute="bottom" secondItem="TNf-hQ-6yg" secondAttribute="bottom" id="b2W-nt-MbM"/>
                                                     <constraint firstAttribute="height" constant="17" id="qik-ht-T2S"/>
-                                                    <constraint firstAttribute="trailing" secondItem="TNf-hQ-6yg" secondAttribute="trailing" id="vce-yc-CGQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="TNf-hQ-6yg" secondAttribute="trailing" constant="4" id="vce-yc-CGQ"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0In-gq-lk8" customClass="CustomProgressButton" customModule="Topinup" customModuleProvider="target">

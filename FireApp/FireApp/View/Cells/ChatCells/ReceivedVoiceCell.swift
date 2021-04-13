@@ -30,11 +30,6 @@ class ReceivedVoiceCell: ReceivedBaseCell, AudioBase {
     var delegate: AudioCellDelegate?
 
 
-
-
-
-
-
     override func bind(message: Message, user: User) {
         super.bind(message: message, user: user)
         currentDuration.text = message.mediaDuration

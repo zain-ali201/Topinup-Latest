@@ -639,7 +639,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
             if numberOfRows > 0 {
                 let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-                self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+                self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
             }
         }
 
@@ -672,7 +672,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             keyboardHeight = keyboardRectangle.height
             UIView.animate(withDuration: 0.25, animations: {
                 self.typingViewBottomLayoutConstraint.constant = self.keyboardHeight
-//                self.scrollToLast()
+                self.scrollToLast()
                 self.view.layoutIfNeeded()
             })
         }
@@ -1383,15 +1383,16 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         let message = MessageCreator(user: user, type: .SENT_IMAGE, appRealm: appRealm).quotedMessage(getQuotedMessage()).schedulingMode(bool: isInSchedulingMode).image(imageData: data, thumbImage: previewImage).build()
 
 
-        if  isInSchedulingMode{
+        if  isInSchedulingMode
+        {
             sendScheduledMessage(message)
-        }else{
-        RequestManager.request(message: message, callback: nil, appRealm: appRealm)
+        }
+        else
+        {
+            RequestManager.request(message: message, callback: nil, appRealm: appRealm)
         }
         cancelReplyDidClick()
     }
-
-
 
 
     //getQuotedMessage if available
@@ -2689,8 +2690,9 @@ extension ChatViewController: CameraResult {
     func imageTaken(image: UIImage?)
     {
         let imageEditorVc = ImageEditorRequest.getRequest(image: image!, delegate: self)
-        imageEditorVc.modalPresentationStyle = .fullScreen
-        self.present(imageEditorVc, animated: false, completion: nil)
+//        imageEditorVc.modalPresentationStyle = .fullScreen
+//        self.present(imageEditorVc, animated: false, completion: nil)
+        self.navigationController?.pushViewController(imageEditorVc, animated: false)
     }
 }
 
@@ -2702,6 +2704,7 @@ extension ChatViewController: PhotoEditorDelegate {
     func doneEditing(image: UIImage) {
 
         if let data = image.toData(.highest) {
+            self.scrollToLast()
             sendImage(data: data)
         }
     }

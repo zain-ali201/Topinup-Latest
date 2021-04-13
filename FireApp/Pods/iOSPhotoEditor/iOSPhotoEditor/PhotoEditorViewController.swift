@@ -79,6 +79,7 @@ public final class PhotoEditorViewController: UIViewController {
     override public func viewDidLoad()
     {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = true
         self.setImageView(image: image!)
         
         doneButton.layer.shadowColor = UIColor.black.cgColor
@@ -144,10 +145,16 @@ public final class PhotoEditorViewController: UIViewController {
 }
 
 extension PhotoEditorViewController: ColorDelegate {
-    func didSelectColor(color: UIColor) {
-        if isDrawing {
+    func didSelectColor(color: UIColor)
+    {
+        print("color picker -------1")
+        if isDrawing
+        {
             self.drawColor = color
-        } else if activeTextView != nil {
+        }
+        else if activeTextView != nil
+        {
+            print("color picker -------")
             activeTextView?.textColor = color
             textColor = color
         }

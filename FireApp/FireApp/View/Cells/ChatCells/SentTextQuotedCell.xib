@@ -51,7 +51,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="8q1-wN-1Jq">
-                                        <rect key="frame" x="243" y="118" width="45.5" height="16"/>
+                                        <rect key="frame" x="245.5" y="118" width="43" height="16"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oak-VR-g9z">
                                                 <rect key="frame" x="0.0" y="0.0" width="31" height="16"/>
@@ -60,7 +60,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="9PD-j0-fFo">
-                                                <rect key="frame" x="33" y="0.0" width="12.5" height="16"/>
+                                                <rect key="frame" x="33" y="0.0" width="10" height="16"/>
                                             </imageView>
                                         </subviews>
                                         <userDefinedRuntimeAttributes>
@@ -92,10 +92,10 @@
                                     <constraint firstItem="Gx7-z7-bxi" firstAttribute="top" secondItem="nUV-NH-b6H" secondAttribute="bottom" id="x8o-Hr-zC4"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="radius">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="fullRoundedCorners" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -128,6 +128,6 @@
     </objects>
     <resources>
         <image name="b-corner" width="8.5" height="11"/>
-        <image name="tick" width="12.5" height="10.5"/>
+        <image name="tick" width="10" height="9"/>
     </resources>
 </document>

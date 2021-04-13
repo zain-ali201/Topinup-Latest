@@ -11,7 +11,8 @@ import UIKit
 
 extension PhotoEditorViewController: UITextViewDelegate {
     
-    public func textViewDidChange(_ textView: UITextView) {
+    public func textViewDidChange(_ textView: UITextView)
+    {
         let rotation = atan2(textView.transform.b, textView.transform.a)
         if rotation == 0 {
             let oldFrame = textView.frame
@@ -19,12 +20,13 @@ extension PhotoEditorViewController: UITextViewDelegate {
             textView.frame.size = CGSize(width: oldFrame.width, height: sizeToFit.height)
         }
     }
-    public func textViewDidBeginEditing(_ textView: UITextView) {
+    
+    public func textViewDidBeginEditing(_ textView: UITextView)
+    {
         isTyping = true
         lastTextViewTransform =  textView.transform
         lastTextViewTransCenter = textView.center
         lastTextViewFont = textView.font!
-        activeTextView = textView
         textView.superview?.bringSubviewToFront(textView)
         textView.font = UIFont(name: "Helvetica", size: 30)
         UIView.animate(withDuration: 0.3,
@@ -36,12 +38,13 @@ extension PhotoEditorViewController: UITextViewDelegate {
         
     }
     
-    public func textViewDidEndEditing(_ textView: UITextView) {
+    public func textViewDidEndEditing(_ textView: UITextView)
+    {
         guard lastTextViewTransform != nil && lastTextViewTransCenter != nil && lastTextViewFont != nil
             else {
                 return
         }
-        activeTextView = nil
+        
         textView.font = self.lastTextViewFont!
         UIView.animate(withDuration: 0.3,
                        animations: {

@@ -183,6 +183,7 @@ class CameraVCViewController: SwiftyCamViewController, SwiftyCamViewControllerDe
 
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
         let newVC = VideoViewController(videoURL: url, time: counter, delegate: self.delegate!)
+        newVC.modalPresentationStyle = .fullScreen
         self.present(newVC, animated: true, completion: nil)
 
         counter = 0
