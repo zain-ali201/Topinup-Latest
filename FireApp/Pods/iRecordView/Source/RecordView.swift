@@ -55,7 +55,6 @@ public class RecordView: UIView, CAAnimationDelegate {
         }
     }
 
-
     private let arrow: UIImageView = {
         let arrowView = UIImageView()
         arrowView.image = UIImage.fromPod("arrow")
@@ -68,57 +67,48 @@ public class RecordView: UIView, CAAnimationDelegate {
         let slide = UILabel()
         slide.text = "Slide To Cancel"
         slide.translatesAutoresizingMaskIntoConstraints = false
-        slide.font = slide.font.withSize(12)
+        slide.font = slide.font.withSize(17)
         return slide
     }()
 
     private var timerLabel: UILabel = {
         let label = UILabel()
         label.text = "00:00"
-        label.font = label.font.withSize(12)
+        label.font = label.font.withSize(20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private func setup() {
+    private func setup()
+    {
         bucketImageView = BucketImageView(frame: frame)
         bucketImageView.animationDelegate = self
         bucketImageView.translatesAutoresizingMaskIntoConstraints = false
-        bucketImageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        bucketImageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-
+        bucketImageView.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        bucketImageView.heightAnchor.constraint(equalToConstant: 35).isActive = true
 
         timerStackView = UIStackView(arrangedSubviews: [bucketImageView, timerLabel])
         timerStackView.translatesAutoresizingMaskIntoConstraints = false
         timerStackView.isHidden = true
-        timerStackView.spacing = 5
-
+        timerStackView.spacing = 15
 
         slideToCancelStackVIew = UIStackView(arrangedSubviews: [arrow, slideLabel])
         slideToCancelStackVIew.translatesAutoresizingMaskIntoConstraints = false
         slideToCancelStackVIew.isHidden = true
-
-
         addSubview(timerStackView)
         addSubview(slideToCancelStackVIew)
-
 
         arrow.widthAnchor.constraint(equalToConstant: 15).isActive = true
         arrow.heightAnchor.constraint(equalToConstant: 15).isActive = true
 
-        slideToCancelStackVIew.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        slideToCancelStackVIew.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-
-
-        timerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        timerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-
+        slideToCancelStackVIew.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -70).isActive = true
+        slideToCancelStackVIew.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -18).isActive = true
+        timerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        timerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8).isActive = true
 
         mTransform = CGAffineTransform(scaleX: 2.0, y: 2.0)
 
         audioPlayer = AudioPlayer()
-        
-        self.backgroundColor = UIColor(red: 241.0/255.0, green: 241.0/255.0, blue: 241.0/255.0, alpha: 1)
     }
 
     override init(frame: CGRect) {

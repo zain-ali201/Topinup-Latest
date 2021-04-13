@@ -85,16 +85,14 @@ class BucketImageView: UIImageView, CAAnimationDelegate {
         bucketBodyLayer.frame = CGRect(x: 0, y: bucketLidImage.size.height + 2, width: bucketBodyImage.size.width, height: bucketBodyImage.size.height)
 
 
-        micLayer.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        micLayer.bounds = CGRect(x: 0, y: 0, width: 25, height: 25)
+        micLayer.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        micLayer.bounds = CGRect(x: 0, y: 0, width: 35, height: 35)
         micLayer.contents = smallMicImage.cgImage
 
         //align bucket below the mic to be invisible
         bucketContainerLayer.frame = micLayer.frame.offsetBy(dx: 5, dy: 200)
-
         bucketContainerLayer.addSublayer(bucketLidLayer)
         bucketContainerLayer.addSublayer(bucketBodyLayer)
-
 
         bucketContainerLayer.zPosition = 98
         micLayer.zPosition = 97

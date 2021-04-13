@@ -1538,7 +1538,6 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
                 //Saving animation duration
                 if duration != 0.0 {
                     _animationDuration = duration
-                    print("duration: \(duration)")
                 }
             } else {
                 _animationDuration = 0.25

@@ -199,7 +199,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var recordViewBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var backgroundViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var replyLayoutBottomConstraint: NSLayoutConstraint!
-//    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var schedulingModeViewHeightConstraint: NSLayoutConstraint!
@@ -1584,9 +1583,9 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     //dismiss reply layout
     @objc private func cancelReplyDidClick() {
-        replyLayoutBottomConstraint.constant = -2000
+        replyLayoutBottomConstraint.constant = 0
 
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
             self.view.layoutIfNeeded()
         }, completion: { _ in
                 self.replyLayout.isHidden = true
@@ -2398,12 +2397,13 @@ extension ChatViewController: QLPreviewControllerDataSource {
     }
 }
 
-extension ChatViewController: ContextMenuSelectDelegate {
+extension ChatViewController: ContextMenuSelectDelegate
+{
     fileprivate func showReplyLayout(_ message: Message, _ indexPath: IndexPath) {
         let type = message.typeEnum
 
         replyLayout.isHidden = false
-        replyLayoutBottomConstraint.constant = 0
+        replyLayoutBottomConstraint.constant = -55
         replyUserName.text = Strings.you
         replyDescTitle.text = MessageTypeHelper.getMessageContent(message: message, includeEmoji: false)
         replyIcon.isHidden = type.isText()
@@ -2418,11 +2418,7 @@ extension ChatViewController: ContextMenuSelectDelegate {
 
         replyIcon.image = UIImage(named: MessageTypeHelper.getMessageTypeImage(type: type))
 
-        tblView.translatesAutoresizingMaskIntoConstraints = false
-        tblView.bottomAnchor.constraint(equalTo: replyLayout.topAnchor, constant: -16).isActive = true
-
-
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
         })
         textView.becomeFirstResponder()
@@ -2689,6 +2685,7 @@ extension ChatViewController: CameraResult {
     //this is called when user takes a photo from the Camera
     func imageTaken(image: UIImage?)
     {
+        IQKeyboardManager.shared.enable = false
         let imageEditorVc = ImageEditorRequest.getRequest(image: image!, delegate: self)
 //        imageEditorVc.modalPresentationStyle = .fullScreen
 //        self.present(imageEditorVc, animated: false, completion: nil)
