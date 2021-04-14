@@ -1407,7 +1407,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     private func selectOrDeselectItem(indexPath: IndexPath, message: Message) {
 
-
         if canForwardOrShare(message: message) {
             if selectedItems.contains(message) {
                 tableView(tblView, didDeselectRowAt: indexPath)
@@ -1454,8 +1453,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 }
             })
 
-
-
         } else if let controller = segue.destination as? UserDetailsBase {
             controller.initialize(user: user, self)
         } else if let controller = segue.destination as? BroadcastInfoTableVC {
@@ -1471,7 +1468,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     deinit {
         NotificationCenter.default.removeObserver(self)
-
     }
 
     //init bottomToolbar when user selects a Cell in TableView
@@ -1526,7 +1522,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     @objc func toolbarShareDidClick() {
 
-
         //get list of messages and convert it to shareableItems
         let itemsToShare = selectedItems.sorted(by: { $0.timestamp < $1.timestamp }).map { message -> Any in
             let type = message.typeEnum
@@ -1547,14 +1542,10 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             }
         }
 
-
         let activityViewController = UIActivityViewController(activityItems: itemsToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-
-
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
-
     }
 
     //animating cameraBtn
@@ -1648,7 +1639,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             return
         }
 
-
         if user.isGroupBool {
             if let group = user.group, group.isActive {
                 //listen for groupTyping events if a certain user is typing
@@ -1658,8 +1648,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         } else {
             FireManager.listenForTypingState(uid: user.uid).subscribe(onNext: { (state) in
                 self.currentReceiverTypingState = state
-
-
                 if state == .NOT_TYPING {
 
                     //updateLabelsVisibility
@@ -1672,10 +1660,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                     self.updateToolbarLabelsVisibility(hideOnlineStatToolbar: true)
 
                 }
-
-
             }).disposed(by: disposeBag)
-
         }
     }
 
@@ -1716,12 +1701,10 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
         let unreadMessages = RealmHelper.getInstance(appRealm).getUnreadAndUnDeliveredSentMessages(chatId: user.uid, senderId: FireManager.getUid())
 
-
         for message in unreadMessages {
             FireManager.listenForSentMessagesState(receiverUid: user.uid, messageId: message.messageId, appRealm: appRealm).subscribe().disposed(by: disposeBag)
             unreadmessagesCount += 1
         }
-
 
         let unReadVoiceMessages = RealmHelper.getInstance(appRealm).getUnReadVoiceMessages(chatId: user.uid)
 
@@ -1783,13 +1766,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         self.user = user
         self.delegate = delegate
         chat = RealmHelper.getInstance(appRealm).getChat(id: user.uid)
-
     }
 }
 
 extension ChatViewController: AudioCellDelegate {
     fileprivate func initAudioPlayer(_ message: Message, currentProgress: Float) {
-
 
         let url = URL(fileURLWithPath: message.localPath)
 
@@ -1839,7 +1820,6 @@ extension ChatViewController: AudioCellDelegate {
             initAudioPlayer(message, currentProgress: currentProgress)
         }
 
-
         let playerState: PlayerState = audioPlayer.isPlaying() ? .paused : .playing
         updatePlayerState(state: playerState, messageId: message.messageId, indexPath: indexPath)
     }
@@ -1866,8 +1846,6 @@ extension ChatViewController: AudioCellDelegate {
         if let cell = tblView.cellForRow(at: indexPath) as? AudioBase {
             cell.playerState = state
         }
-
-
     }
 
     func didSeek(indexPath: IndexPath, to value: Float) {
@@ -1876,10 +1854,7 @@ extension ChatViewController: AudioCellDelegate {
         }
 
         audioPlayer.seek(to: TimeInterval(value))
-
-
     }
-
 }
 
 extension ChatViewController: AudioPlayerDelegate {
@@ -1894,7 +1869,6 @@ extension ChatViewController: AudioPlayerDelegate {
         if let cell = tblView.cellForRow(at: indexPath) as? AudioBase {
             cell.updateSlider(currentProgress: currentProgress, duration: duration, currentDurationStr: nil)
         }
-
     }
 }
 
@@ -1937,11 +1911,7 @@ extension ChatViewController: ContactCellDelegate {
             } else {
                 self.isHasFireApp(phone: contact.realmList[0].number)
             }
-
-
         }
-
-
     }
 
     //check if this user has FireApp Installed
@@ -2686,6 +2656,7 @@ extension ChatViewController: CameraResult {
     func imageTaken(image: UIImage?)
     {
         IQKeyboardManager.shared.enable = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = false
         let imageEditorVc = ImageEditorRequest.getRequest(image: image!, delegate: self)
 //        imageEditorVc.modalPresentationStyle = .fullScreen
 //        self.present(imageEditorVc, animated: false, completion: nil)

@@ -27,6 +27,7 @@ extension PhotoEditorViewController {
             }
         }
         
+        self.view.endEditing(true)
     }
     
     override public func touchesMoved(_ touches: Set<UITouch>,
