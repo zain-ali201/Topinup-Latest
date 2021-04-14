@@ -26,12 +26,11 @@ import UIKit
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupFromNib()
-
     }
 
     func bind(quotedMessage: QuotedMessage, user: User) {
 
-
+        replyLayoutThumb.layer.cornerRadius = 4
         authorLbl.text = getQuotedUserName(quotedMessage: quotedMessage, user: user)
         messageContent.text = MessageTypeHelper.getMessageContent(message: quotedMessage.toMessage(), includeEmoji: false)
 
@@ -49,8 +48,6 @@ import UIKit
         } else {
             replyLayoutIcon.isHidden = true
         }
-
-
     }
     
     private func getQuotedUserName(quotedMessage: QuotedMessage, user: User) -> String {

@@ -107,7 +107,8 @@ internal class CropOverlay: UIView {
         buttons[3].heightAnchor.constraint(equalTo: buttons[3].widthAnchor).isActive = true
     }
 
-    private func loadPrecisionView() {
+    private func loadPrecisionView()
+    {
         precisionView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(precisionView)
 
@@ -120,7 +121,7 @@ internal class CropOverlay: UIView {
         precisionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -outterGap).isActive = true
         precisionView.rightAnchor.constraint(equalTo: rightAnchor, constant: -outterGap).isActive = true
 
-        loadCornerLines()
+//        loadCornerLines()
         loadPrecisionLines()
     }
 
@@ -199,76 +200,80 @@ internal class CropOverlay: UIView {
         centeredViews[1].centerXAnchor.constraint(equalTo: precisionView.centerXAnchor).isActive = true
     }
 
-    @objc func move(gestureRecognizer: UIPanGestureRecognizer) {
-        if isResizable, let button = gestureRecognizer.view as? UIButton {
-            if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
-                let translation = gestureRecognizer.translation(in: self)
-                let realMinimumSize = CGSize(width: minimumSize.width + 2 * outterGap,
-                                             height: minimumSize.height + 2 * outterGap)
-
-                var newFrame: CGRect
-
-                switch button {
-                case buttons[0]:    // Top Left
-                    let hasEnoughWidth = frame.size.width - translation.x >= realMinimumSize.width
-                    let hasEnoughHeight = frame.size.height - translation.y >= realMinimumSize.height
-
-                    let xPossibleTranslation = hasEnoughWidth ? translation.x : 0
-                    let yPossibleTranslation = hasEnoughHeight ? translation.y : 0
-
-                    newFrame = CGRect(x: frame.origin.x + xPossibleTranslation,
-                                      y: frame.origin.y + yPossibleTranslation,
-                                      width: frame.size.width - xPossibleTranslation,
-                                      height: frame.size.height - yPossibleTranslation)
-                case buttons[1]:    // Top Right
-                    let hasEnoughWidth = frame.size.width + translation.x >= realMinimumSize.width
-                    let hasEnoughHeight = frame.size.height - translation.y >= realMinimumSize.height
-
-                    let xPossibleTranslation = hasEnoughWidth ? translation.x : 0
-                    let yPossibleTranslation = hasEnoughHeight ? translation.y : 0
-
-                    newFrame = CGRect(x: frame.origin.x,
-                                      y: frame.origin.y + yPossibleTranslation,
-                                      width: frame.size.width + xPossibleTranslation,
-                                      height: frame.size.height - yPossibleTranslation)
-                case buttons[2]:    // Bottom Left
-                    let hasEnoughWidth = frame.size.width - translation.x >= realMinimumSize.width
-                    let hasEnoughHeight = frame.size.height + translation.y >= realMinimumSize.height
-
-                    let xPossibleTranslation = hasEnoughWidth ? translation.x : 0
-                    let yPossibleTranslation = hasEnoughHeight ? translation.y : 0
-
-                    newFrame = CGRect(x: frame.origin.x + xPossibleTranslation,
-                                      y: frame.origin.y,
-                                      width: frame.size.width - xPossibleTranslation,
-                                      height: frame.size.height + yPossibleTranslation)
-                case buttons[3]:    // Bottom Right
-                    let hasEnoughWidth = frame.size.width + translation.x >= realMinimumSize.width
-                    let hasEnoughHeight = frame.size.height + translation.y >= realMinimumSize.height
-
-                    let xPossibleTranslation = hasEnoughWidth ? translation.x : 0
-                    let yPossibleTranslation = hasEnoughHeight ? translation.y : 0
-
-                    newFrame = CGRect(x: frame.origin.x,
-                                      y: frame.origin.y,
-                                      width: frame.size.width + xPossibleTranslation,
-                                      height: frame.size.height + yPossibleTranslation)
-                default:
-                    newFrame = CGRect.zero
-                }
-
-                let minimumFrame = CGRect(x: newFrame.origin.x,
-                                          y: newFrame.origin.y,
-                                          width: max(newFrame.size.width,
-                                                     minimumSize.width + 2 * outterGap),
-                                          height: max(newFrame.size.height,
-                                                      minimumSize.height + 2 * outterGap))
-
-                gestureRecognizer.setTranslation(CGPoint.zero, in: self)
-                
-                delegate?.didMoveCropOverlay(newFrame: minimumFrame)
-            }
-        } else if isMovable {
+    @objc func move(gestureRecognizer: UIPanGestureRecognizer)
+    {
+        if isResizable, let button = gestureRecognizer.view as? UIButton
+        {
+//            if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+//                let translation = gestureRecognizer.translation(in: self)
+//                let realMinimumSize = CGSize(width: minimumSize.width + 2 * outterGap,
+//                                             height: minimumSize.height + 2 * outterGap)
+//
+//                var newFrame: CGRect
+//
+//                switch button {
+//                case buttons[0]:    // Top Left
+//                    let hasEnoughWidth = frame.size.width - translation.x >= realMinimumSize.width
+//                    let hasEnoughHeight = frame.size.height - translation.y >= realMinimumSize.height
+//
+//                    let xPossibleTranslation = hasEnoughWidth ? translation.x : 0
+//                    let yPossibleTranslation = hasEnoughHeight ? translation.y : 0
+//
+//                    newFrame = CGRect(x: frame.origin.x + xPossibleTranslation,
+//                                      y: frame.origin.y + yPossibleTranslation,
+//                                      width: frame.size.width - xPossibleTranslation,
+//                                      height: frame.size.height - yPossibleTranslation)
+//                case buttons[1]:    // Top Right
+//                    let hasEnoughWidth = frame.size.width + translation.x >= realMinimumSize.width
+//                    let hasEnoughHeight = frame.size.height - translation.y >= realMinimumSize.height
+//
+//                    let xPossibleTranslation = hasEnoughWidth ? translation.x : 0
+//                    let yPossibleTranslation = hasEnoughHeight ? translation.y : 0
+//
+//                    newFrame = CGRect(x: frame.origin.x,
+//                                      y: frame.origin.y + yPossibleTranslation,
+//                                      width: frame.size.width + xPossibleTranslation,
+//                                      height: frame.size.height - yPossibleTranslation)
+//                case buttons[2]:    // Bottom Left
+//                    let hasEnoughWidth = frame.size.width - translation.x >= realMinimumSize.width
+//                    let hasEnoughHeight = frame.size.height + translation.y >= realMinimumSize.height
+//
+//                    let xPossibleTranslation = hasEnoughWidth ? translation.x : 0
+//                    let yPossibleTranslation = hasEnoughHeight ? translation.y : 0
+//
+//                    newFrame = CGRect(x: frame.origin.x + xPossibleTranslation,
+//                                      y: frame.origin.y,
+//                                      width: frame.size.width - xPossibleTranslation,
+//                                      height: frame.size.height + yPossibleTranslation)
+//                case buttons[3]:    // Bottom Right
+//                    let hasEnoughWidth = frame.size.width + translation.x >= realMinimumSize.width
+//                    let hasEnoughHeight = frame.size.height + translation.y >= realMinimumSize.height
+//
+//                    let xPossibleTranslation = hasEnoughWidth ? translation.x : 0
+//                    let yPossibleTranslation = hasEnoughHeight ? translation.y : 0
+//
+//                    newFrame = CGRect(x: frame.origin.x,
+//                                      y: frame.origin.y,
+//                                      width: frame.size.width + xPossibleTranslation,
+//                                      height: frame.size.height + yPossibleTranslation)
+//                default:
+//                    newFrame = CGRect.zero
+//                }
+//
+//                let minimumFrame = CGRect(x: newFrame.origin.x,
+//                                          y: newFrame.origin.y,
+//                                          width: max(newFrame.size.width,
+//                                                     minimumSize.width + 2 * outterGap),
+//                                          height: max(newFrame.size.height,
+//                                                      minimumSize.height + 2 * outterGap))
+//
+//                gestureRecognizer.setTranslation(CGPoint.zero, in: self)
+//
+//                delegate?.didMoveCropOverlay(newFrame: minimumFrame)
+//            }
+        }
+        else if isMovable
+        {
             if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
                 let translation = gestureRecognizer.translation(in: self)
 

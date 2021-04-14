@@ -395,8 +395,8 @@ class FireManager {
 
     }
 
-    public static func changeMyPhotoObservable(image: UIImage, appRealm: Realm) -> Observable<(String, String, String)> {
-
+    public static func changeMyPhotoObservable(image: UIImage, appRealm: Realm) -> Observable<(String, String, String)>
+    {
         let localUrl = DirManager.generateUserProfileImage()
         let imageCompressed = image.toProfileImage
 
@@ -426,24 +426,16 @@ class FireManager {
 
             return (thumbImg, localUrl.path, url.absoluteString)
         }
-
     }
 
-
-
-    public static func changeMyPhoto(image: UIImage, appRealm: Realm) -> Completable {
-
+    public static func changeMyPhoto(image: UIImage, appRealm: Realm) -> Completable
+    {
         let localUrl = DirManager.generateUserProfileImage()
-
         let imageCompressed = image.toProfileImage
-
         try? imageCompressed.toDataPng()?.write(to: localUrl)
 
-
         let fileName = localUrl.lastPathComponent
-
         let thumbImg = imageCompressed.toProfileThumbImage.circled().toBase64StringPng()
-
         let ref = FireConstants.imageProfileRef.child(fileName)
 
         let observable = ref.rx.putFile(from: localUrl).flatMap { mRef -> Observable<URL> in
@@ -452,9 +444,6 @@ class FireManager {
             var updateDict = [String: String]()
             updateDict["photo"] = url.absoluteString
             updateDict["thumbImg"] = thumbImg
-
-
-
 
             return FireConstants.usersRef.child(FireManager.getUid()).rx.updateChildValues(updateDict).asObservable().flatMap { _ in
                 return Observable.from(optional: url)
@@ -469,9 +458,6 @@ class FireManager {
             return ""
         }
 
-
-
-
         return Completable.create { (completable) -> Disposable in
             observable.subscribe(onError: { (error) in
                 completable(.error(error))
@@ -480,30 +466,24 @@ class FireManager {
                 })
             return Disposables.create()
         }
-
     }
 
-    public static func setMessagesAsRead(chatId: String, appRealm: Realm) -> Observable<DatabaseReference> {
+    public static func setMessagesAsRead(chatId: String, appRealm: Realm) -> Observable<DatabaseReference>
+    {
         let results = RealmHelper.getInstance(appRealm).getUnReadIncomingMessages(chatId: chatId)
 
         var observables = [Observable<DatabaseReference>]()
-
-
         for message in results {
             let state = MessageState.READ
-
 
             let observable = FireConstants.messageStat.child(FireManager.getUid()).child(message.messageId).rx.setValue(state.rawValue).asObservable().map { ref -> DatabaseReference in
                 RealmHelper.getInstance(appRealm).updateMessageStateLocally(messageId: message.messageId, chatId: chatId, messageState: state)
                 return ref
             }
-
-
             observables.append(observable)
         }
 
         return Observable.merge(observables)
-
     }
 
     //update message state as received or read
@@ -516,7 +496,6 @@ class FireManager {
                 RealmHelper.getInstance(appRealm).updateMessageStateLocally(messageId: messageId, messageState: state)
                 RealmHelper.getInstance(appRealm).deleteUnUpdatedState(messageId: messageId)
             })
-
     }
 
     //update voice message state to read
@@ -618,7 +597,4 @@ class FireManager {
 
         }
     }
-
-
-
 }

@@ -48,13 +48,13 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="F7M-1j-tkn">
-                            <rect key="frame" x="4" y="2" width="364" height="814"/>
+                            <rect key="frame" x="4" y="2" width="366" height="814"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MaJ-hV-G5I" userLabel="Author Container">
-                                    <rect key="frame" x="0.0" y="0.0" width="364" height="406"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="366" height="406"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrt-58-pyo">
-                                            <rect key="frame" x="0.0" y="0.0" width="364" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="366" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="0q2-qd-4oO"/>
                                             </constraints>
@@ -72,7 +72,7 @@
                                     </constraints>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Elp-BI-etK">
-                                    <rect key="frame" x="0.0" y="408" width="364" height="406"/>
+                                    <rect key="frame" x="0.0" y="408" width="366" height="406"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="nRw-Q8-tqn">
                                             <rect key="frame" x="0.0" y="0.0" width="18" height="406"/>
@@ -83,7 +83,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQ7-EE-Pry">
-                                            <rect key="frame" x="21" y="0.0" width="343" height="406"/>
+                                            <rect key="frame" x="21" y="0.0" width="345" height="406"/>
                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -98,15 +98,15 @@
                             </constraints>
                         </stackView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="24y-t9-mVo">
-                            <rect key="frame" x="372" y="389" width="40" height="40"/>
+                            <rect key="frame" x="374" y="391.5" width="35" height="35"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="K91-uY-gVB"/>
-                                <constraint firstAttribute="width" constant="40" id="fbq-h2-6MG"/>
+                                <constraint firstAttribute="height" constant="35" id="K91-uY-gVB"/>
+                                <constraint firstAttribute="width" constant="35" id="fbq-h2-6MG"/>
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.84705882349999995" green="0.90588235289999997" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="24y-t9-mVo" firstAttribute="centerY" secondItem="mKf-Ah-D1f" secondAttribute="centerY" id="2Fd-Pl-PDw"/>
                         <constraint firstItem="rcX-EZ-AyP" firstAttribute="leading" secondItem="mKf-Ah-D1f" secondAttribute="leading" id="4RT-rE-283"/>
@@ -117,7 +117,7 @@
                         <constraint firstAttribute="height" constant="50" id="eSB-dp-kGL"/>
                         <constraint firstItem="24y-t9-mVo" firstAttribute="leading" secondItem="F7M-1j-tkn" secondAttribute="trailing" constant="4" id="hwx-p4-l4q"/>
                         <constraint firstAttribute="bottom" secondItem="F7M-1j-tkn" secondAttribute="bottom" constant="2" id="idS-Ff-mz8"/>
-                        <constraint firstAttribute="trailing" secondItem="24y-t9-mVo" secondAttribute="trailing" constant="2" id="rkU-uz-Mgg"/>
+                        <constraint firstAttribute="trailing" secondItem="24y-t9-mVo" secondAttribute="trailing" constant="5" id="rkU-uz-Mgg"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="radius">

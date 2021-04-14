@@ -22,19 +22,17 @@ class SettingsVC: UIViewController {
 
         usrImg.layer.cornerRadius = 60
         usrImg.layer.masksToBounds = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        tabBarController?.navigationItem.title = "Settings"
         
         user = RealmHelper.getInstance(appRealm).getUser(uid: FireManager.getUid())
-        
         lblName.text = user.userName
         lblPhone.text = user.phone
-        
+        print(user.userName)
         usrImg.image = UIImage(contentsOfFile: user.userLocalPhoto)
-    }
-
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        tabBarController?.navigationItem.title = "Settings"
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

@@ -19,28 +19,26 @@ class ProfileSettingsVC: BaseVC {
     @IBOutlet weak var phoneNumberLbl: UILabel!
 
     @IBOutlet weak var btnEditUsername: UIButton!
-
-
-
     var user: User!
-
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userImg.layer.cornerRadius = 75
+        userImg.layer.masksToBounds = true
 
-        user = RealmHelper.getInstance(appRealm).getUser(uid: FireManager.getUid())
+        
 
         btnEditUsername.addTarget(self, action: #selector(btnEditUsernameTapped), for: .touchUpInside)
         btnPickImage.addTarget(self, action: #selector(btnPickImageTapped), for: .touchUpInside)
         statusLbl.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(statusLblTapped)))
         setUI()
-
-
     }
 
     //set user's info
-    private func setUI() {
+    private func setUI()
+    {
+        user = RealmHelper.getInstance(appRealm).getUser(uid: FireManager.getUid())
         userNameLbl.text = user.userName
         statusLbl.text = user.status
         phoneNumberLbl.text = user.phone
@@ -82,8 +80,12 @@ class ProfileSettingsVC: BaseVC {
             if let image = image {
                 self.showLoadingViewAlert()
                 FireManager.changeMyPhoto(image: image,appRealm: appRealm).subscribe(onCompleted: {
+                    
+                    DispatchQueue.main.async {
+                        self.userImg.image = image
+                        self.setUI()
+                    }
                     self.hideLoadingViewAlert()
-                    self.setUI()
                 }) { (error) in
                     self.hideLoadingViewAlert()
                 }.disposed(by: self.disposeBag)
@@ -95,7 +97,8 @@ class ProfileSettingsVC: BaseVC {
     }
 
     //change user's name
-    @objc private func btnEditUsernameTapped() {
+    @objc private func btnEditUsernameTapped()
+    {
         let alert = UIAlertController(title: Strings.enter_your_name, message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = Strings.name
