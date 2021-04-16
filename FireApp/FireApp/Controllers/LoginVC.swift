@@ -15,17 +15,13 @@ import Permission
 
 
 class LoginVC: UIViewController {
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
         view.backgroundColor = .white
-
     }
 
-    private func login() {
+    private func login()
+    {
         FUIAuth.defaultAuthUI()?.delegate = self
 
         let phoneProvider = FUIPhoneAuth.init(authUI: FUIAuth.defaultAuthUI()!)
@@ -33,9 +29,8 @@ class LoginVC: UIViewController {
         phoneProvider.signIn(withPresenting: self, phoneNumber: "")
     }
     
-    fileprivate func goToRoot() {
-
-
+    fileprivate func goToRoot()
+    {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
 
         if UserDefaultsManager.isUserInfoSaved() {
@@ -49,7 +44,6 @@ class LoginVC: UIViewController {
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "SetupUserNavVC") as! UINavigationController
 
             self.view.window?.rootViewController = newViewController
-
         }
     }
 
@@ -58,19 +52,11 @@ class LoginVC: UIViewController {
         super.viewDidAppear(animated)
         login()
     }
-
 }
 
 
-
-
-
-
-
-
-
-extension LoginVC: FUIAuthDelegate {
-
+extension LoginVC: FUIAuthDelegate
+{
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
         if let error = error as? NSError {
             login()
@@ -88,7 +74,6 @@ extension LoginVC: FUIAuthDelegate {
                 
                 goToRoot()
             }
-
         }
     }
 }

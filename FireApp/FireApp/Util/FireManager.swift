@@ -563,7 +563,6 @@ class FireManager {
             return user
         }
 
-
     }
     //fix for com.google.firebase.database.DatabaseException: Invalid Firebase Database path: #21#.
     // Firebase Database paths must not contain '.', '#', '$', '[', or ']'
@@ -572,7 +571,7 @@ class FireManager {
 
     //will check if phone number has one of these strings
     static func isHasDeniedFirebaseStrings(string: String) -> Bool {
-        if string.trim().isEmpty {
+        if string.isEmpty {
             return true
         }
         

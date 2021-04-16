@@ -20,12 +20,32 @@ import FirebaseMessaging
 import PushKit
 import AgoraRtcKit
 
+//Userapp
+import GoogleMaps
+import GooglePlaces
+import BRYXBanner
+import UserNotifications
+import IQKeyboardManagerSwift
+import Firebase
+import UserNotifications
+import SwiftyJSON
+
 
 private let fileURL = FileManager.default
     .containerURL(forSecurityApplicationGroupIdentifier: Config.groupName)!
     .appendingPathComponent("default.realm")
 private let config = RealmConfig.getConfig(fileURL: fileURL)
 let appRealm = try! Realm(configuration: config)
+
+extension Notification.Name {
+    static let gotoProfileNotification = Notification.Name("gotoProfileNotification")
+    static let gotoDashboardNotification = Notification.Name("gotoDashboardNotification")
+    static let gotoMessagesNotification = Notification.Name("gotoMessagesNotification")
+    static let gotoMyJobsNotification = Notification.Name("gotoMyJobsNotification")
+    static let gotoPaymentNotification = Notification.Name("gotoPaymentNotification")
+    static let gotoContactNotification = Notification.Name("gotoContactNotification")
+    static let gotoSettingsNotification = Notification.Name("gotoSettingsNotification")
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +59,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var newNotificationsListeners: NewNotificationsListeners!
     private var updateChecker: UpdateChecker!
     var window: UIWindow?
+    
+    var section = ""
+    let gcmMessageIDKey = "gcm.message_id"
+    var isInBackground: Bool = false
+    let notificationCenter = UNUserNotificationCenter.current()
+    
+    var assignedJobBanner = Banner()
+    var jobInfoFromAlert = JobHistoryVO()
 
     class var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
@@ -99,6 +127,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         newNotificationsListeners = NewNotificationsListeners(disposeBag: disposeBag)
+        
+        //UserApp
+        GMSServices.provideAPIKey("AIzaSyC4JOqbEZ1YzrUrH5dePNC-gtZY4EzdQbo")
+        GMSPlacesClient.provideAPIKey("AIzaSyC4JOqbEZ1YzrUrH5dePNC-gtZY4EzdQbo")
+        addNotificationObservers()
 
         return true
     }
@@ -356,26 +389,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if FireManager.isLoggedIn {
 
             RealmHelper.getInstance(appRealm).deleteExpiredStatuses()
-
-
             FireManager.setOnlineStatus().subscribe().disposed(by: disposeBag)
-
             UnProcessedJobs.process(disposeBag: disposeBag)
-
             setNotificationsListeners()
-
-
-
         }
+        
         UserDefaultsManager.setAppInBackground(bool: false)
-
         UserDefaultsManager.setAppTerminated(bool: false)
 
-
-
-
-
-
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        isInBackground = false
     }
 
 
@@ -788,5 +811,388 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         //do not show system notifications while the app is active, instead show NotificationView in VC
         completionHandler([])
+    }
+}
+
+
+//Userapp
+
+extension AppDelegate {
+    
+    @objc func didReceiveClientNotificationResponse(notification : Notification)
+    {
+        if let userInfo = notification.userInfo as? NSDictionary
+        {
+            var title = "Alert"
+            
+            //audio.play()
+            print("LL-22\(userInfo)")
+            let suc = userInfo.value(forKey: "isSuccess") as! Bool
+            let msg = userInfo.value(forKey: "message") as! String
+            
+            if let sections = userInfo.value(forKey: "section") {
+                section = sections as! String
+            }
+            
+            if let titlee = userInfo.value(forKey: "title") {
+                title = titlee as! String
+            }
+            
+            if suc
+            {
+                //audio.play()
+                
+                if section == "messages" {
+                    if let messagesDict = userInfo.value(forKey: "jobmessage") as? NSDictionary
+                    {
+                        let dic = messagesDict.value(forKey: "sender") as? NSDictionary
+                        let message = messagesDict["message"] as? String ?? ""
+                        let displayName = dic?.value(forKey: "displayName") as? String ?? ""
+                        
+                        let banner = Banner(title: msg, subtitle: "\(displayName): \(message)" , image: UIImage(named: "logo"), backgroundColor: UIColor(red: 19/255, green: 151/255, blue: 245/255, alpha: 1))
+                        banner.dismissesOnTap = true
+                        banner.dismissesOnSwipe = true
+                        banner.textColor = UIColor.white
+                        banner.didTapBlock = {
+                            
+                            let chatView = ChatDetailViewController()
+                            chatView.messages = []
+                            chatView.jobID = (userInfo.value(forKey: "jobId") as? String)!
+                            chatView.providerID = (dic?.value(forKey: "_id") as? String)!
+                            chatView.msgThreadID = (userInfo.value(forKey: "messagethreadId") as? String)!
+                            let chatNavigationController = UINavigationController(rootViewController: chatView)
+                            self.visibleViewController?.present(chatNavigationController, animated: true, completion: nil)
+                        }
+                        if !isInBackground {
+                            banner.show(duration: 3.0)
+                        } else {
+                            self.scheduleNotification(title: msg, notificationType: "\(displayName): \(message)")
+                        }
+                        
+                    }
+                } else {
+                    let job = userInfo["job"] as? NSDictionary ?? NSDictionary()
+                    let provider = job["client"] as? NSDictionary ?? NSDictionary()
+                    let providerName = provider["displayName"] as? String ?? "Provider"
+                    let category = job["category"] as? NSDictionary ?? NSDictionary()
+                    title = category["name"] as? String ?? "Alert"
+                    assignedJobBanner = Banner(title: title, subtitle: msg.replacingOccurrences(of: "Provider", with: providerName),  image: UIImage(named: "logo") , backgroundColor: UIColor(red: 19/255, green: 151/255, blue: 245/255, alpha: 1))
+                    assignedJobBanner.dismissesOnTap = true
+                    assignedJobBanner.dismissesOnSwipe = true
+                    assignedJobBanner.textColor = UIColor.white
+                    
+                    if let job = userInfo.value(forKey: "job") as? NSDictionary
+                    {
+                        let jobInfo = JobHistoryVO(withJSON: job)
+                        jobInfoFromAlert = jobInfo
+                        print(jobInfo)
+                    }
+                    if let date = jobInfoFromAlert.when?.dateFromISO8601 {
+                        NotificationCenter.default.post(name: .reloadDashboardJobs, object: nil)
+                    }
+                    NotificationCenter.default.post(name: .reloadDashboardJobs, object: nil)
+                    if jobInfoFromAlert.status == JobStatus.onway.rawValue || jobInfoFromAlert.status == JobStatus.arrived.rawValue || jobInfoFromAlert.status == JobStatus.started.rawValue {
+                        
+                        if isAlreadyAttendingACall()
+                        {
+                            print("already in a call")
+                            let vc = UIStoryboard.main().instantiateViewController(withIdentifier: "ProviderOnTheWayVC_ID") as! ProviderOnTheWayVC
+                            
+                            let jobDataDict : [String: String] = ["jobInfoID": jobInfoFromAlert._id]
+                            NotificationCenter.default.post(name: Notification.Name(rawValue: "providerOnTheWay"), object: nil, userInfo: jobDataDict)
+                            return;
+                        }
+                    }
+                    else if jobInfoFromAlert.status == JobStatus.completed.rawValue
+                    {
+//                        if isAlreadyAttendingACall()
+//                        {
+//                            let vc = UIStoryboard.main().instantiateViewController(withIdentifier: "ReceiptVC_ID") as! ReceiptVC
+//                            vc.jobID = jobInfoFromAlert._id
+//
+//                            if let navController = UIApplication.topViewController()?.navigationController
+//                            {
+//                                navController.pushViewController(vc, animated: true)
+//                            }
+//                            return;
+//                        }
+                        let vc = UIStoryboard.main().instantiateViewController(withIdentifier: "ReceiptVC_ID") as! ReceiptVC
+                        vc.jobID = jobInfoFromAlert._id
+                        vc.modalPresentationStyle = .fullScreen
+                        if let navController = UIApplication.topViewController()
+                        {
+                            navController.present(vc, animated: true, completion: nil)
+                        }
+                        return;
+                    }
+                    if !isInBackground {
+                        assignedJobBanner.show(duration: 3.0)
+                    } else {
+                        self.scheduleNotification(title: title, notificationType: msg.replacingOccurrences(of: "Provider", with: providerName))
+                    }
+                    
+                    
+                    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AppDelegate.addGestureRecognizers))
+                    assignedJobBanner.addGestureRecognizer(tap)
+                }
+            }
+            else
+            {
+                
+            }
+        }
+    }
+    
+    @objc func addGestureRecognizers() {
+        print("Banner tapped")
+        
+        assignedJobBanner.dismiss()
+        
+        assignedJobBanner.isHidden = true
+        
+        print(jobInfoFromAlert)
+        
+        if jobInfoFromAlert.status == JobStatus.onway.rawValue || jobInfoFromAlert.status == JobStatus.arrived.rawValue || jobInfoFromAlert.status == JobStatus.started.rawValue {
+
+            if isAlreadyAttendingACall()
+            {
+                print("already in a call")
+                let vc = UIStoryboard.main().instantiateViewController(withIdentifier: "ProviderOnTheWayVC_ID") as! ProviderOnTheWayVC
+
+                let jobDataDict : [String: String] = ["jobInfoID": jobInfoFromAlert._id]
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "providerOnTheWay"), object: nil, userInfo: jobDataDict)
+                return;
+            }
+
+            let vc = UIStoryboard.main().instantiateViewController(withIdentifier: "ProviderOnTheWayVC_ID") as! ProviderOnTheWayVC
+            vc.jobID = jobInfoFromAlert._id
+
+            if let navController = UIApplication.topViewController()?.navigationController
+            {
+                navController.pushViewController(vc, animated: true)
+            }
+
+        }
+        else if jobInfoFromAlert.status == JobStatus.completed.rawValue
+        {
+
+            let vc = UIStoryboard.main().instantiateViewController(withIdentifier: "ReceiptVC_ID") as! ReceiptVC
+            vc.jobID = jobInfoFromAlert._id
+            vc.modalPresentationStyle = .fullScreen
+            if let navController = UIApplication.topViewController()
+            {
+                navController.present(vc, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func isAlreadyAttendingACall() -> Bool
+    {
+        let topController = UIApplication.topViewController()
+        
+        if let _ = topController as? ProviderOnTheWayVC
+        {
+            return true
+        }
+        
+        return false
+    }
+    
+    var visibleViewController: UIViewController? {
+        let rootViewController: UIViewController? = window!.rootViewController
+        return getVisibleViewController(from: rootViewController)
+    }
+    
+    func getVisibleViewController(from vc: UIViewController?) -> UIViewController? {
+        if (vc is UINavigationController) {
+            return getVisibleViewController(from: (vc as? UINavigationController)?.visibleViewController)
+        } else if (vc is UITabBarController) {
+            return getVisibleViewController(from: (vc as? UITabBarController)?.selectedViewController)
+        } else {
+            if vc?.presentedViewController != nil {
+                return getVisibleViewController(from: vc?.presentedViewController)
+            } else {
+                return vc
+            }
+        }
+    }
+    
+    func setLoginStoryBoardAsRoot ()
+    {
+        loadViewControllerWith(identifier: "MainLogin_ID", inStoryBoard: "Login")
+    }
+    
+    func setMainStoryBoardAsRoot ()
+    {
+        loadViewControllerWith(identifier: "Dashboard_ID", inStoryBoard: "Main")
+    }
+    
+    func loadViewControllerWith( identifier : String,  inStoryBoard : String)
+    {
+        let storyboard = UIStoryboard(name: inStoryBoard, bundle: nil)
+        let initViewController = storyboard.instantiateViewController(withIdentifier: identifier)
+        self.window?.rootViewController = initViewController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func addNotificationObservers(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotoProfileNotification(_:)), name: .gotoProfileNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotoDashboardNotification(_:)), name: .gotoDashboardNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotoMyJobsNotification(_:)), name: .gotoMyJobsNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotoMessagesNotification(_:)), name: .gotoMessagesNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotoPaymentNotification(_:)), name: .gotoPaymentNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotoContactNotification(_:)), name: .gotoContactNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.gotoSettingsNotification(_:)), name: .gotoSettingsNotification, object: nil)
+    }
+    
+    @objc func gotoProfileNotification(_ notification: Notification) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "Profile_ID")
+        switchRootViewController(rootViewController: vc, animated: true, completion: nil)
+    }
+    
+    @objc func gotoDashboardNotification(_ notification: Notification) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "Dashboard_ID")
+        switchRootViewController(rootViewController: vc, animated: true, completion: nil)
+    }
+    
+    @objc func gotoMyJobsNotification(_ notification: Notification) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MyJobs_ID")
+        switchRootViewController(rootViewController: vc, animated: true, completion: nil)
+    }
+    
+    @objc func gotoMessagesNotification(_ notification: Notification) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MessagesList_ID")
+        switchRootViewController(rootViewController: vc, animated: true, completion: nil)
+    }
+    
+    @objc func gotoPaymentNotification(_ notification: Notification) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "MyJobs_ID")
+//        switchRootViewController(rootViewController: vc, animated: true, completion: nil)
+    }
+    
+    @objc func gotoContactNotification(_ notification: Notification) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "Dashboard_ID")
+//        switchRootViewController(rootViewController: vc, animated: true, completion: nil)
+    }
+    
+    @objc func gotoSettingsNotification(_ notification: Notification) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "MyJobs_ID")
+//        switchRootViewController(rootViewController: vc, animated: true, completion: nil)
+    }
+    
+    func switchRootViewController(rootViewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        guard let win = window else {
+            return
+        }
+        if animated {
+            UIView.transition(with: win, duration: 0.25, options: .transitionCrossDissolve, animations: {
+                let oldState: Bool = UIView.areAnimationsEnabled
+                UIView.setAnimationsEnabled(false)
+                win.rootViewController = rootViewController
+                UIView.setAnimationsEnabled(oldState)
+            }, completion: { (finished: Bool) -> () in
+                if (completion != nil) {
+                    completion!()
+                }
+            })
+        } else {
+            win.rootViewController = rootViewController
+        }
+    }
+}
+
+extension AppDelegate {
+    //MARK: Local Notification Methods Starts here
+    
+    //Prepare New Notificaion with deatils and trigger
+    
+    func scheduleNotification(title: String, notificationType: String) {
+        if !self.isRegisteredForRemoteNotifications() {
+            return
+        }
+        
+        //Compose New Notificaion
+        let content = UNMutableNotificationContent()
+        let categoryIdentifire = "Delete Notification Type"
+        content.title = title
+        content.sound = UNNotificationSound.default
+        content.body = notificationType
+        content.badge = 1
+        content.categoryIdentifier = categoryIdentifire
+        
+        //Add attachment for Notification with more content
+        if (notificationType == "Local Notification with Content")
+        {
+            let imageName = "Apple"
+            guard let imageURL = Bundle.main.url(forResource: imageName, withExtension: "png") else { return }
+            let attachment = try! UNNotificationAttachment(identifier: imageName, url: imageURL, options: .none)
+            content.attachments = [attachment]
+        }
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+        let identifier = "Local Notification"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        notificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Error \(error.localizedDescription)")
+            }
+        }
+        
+        //Add Action button the Notification
+        if (notificationType == "Local Notification with Action")
+        {
+            let snoozeAction = UNNotificationAction(identifier: "Snooze", title: "Snooze", options: [])
+            let deleteAction = UNNotificationAction(identifier: "DeleteAction", title: "Delete", options: [.destructive])
+            let category = UNNotificationCategory(identifier: categoryIdentifire,
+                                                  actions: [snoozeAction, deleteAction],
+                                                  intentIdentifiers: [],
+                                                  options: [])
+            notificationCenter.setNotificationCategories([category])
+        }
+    }
+    
+    func isRegisteredForRemoteNotifications() -> Bool {
+        if #available(iOS 10.0, *) {
+            var isRegistered = false
+            let semaphore = DispatchSemaphore(value: 0)
+            let current = UNUserNotificationCenter.current()
+            current.getNotificationSettings(completionHandler: { settings in
+                if settings.authorizationStatus != .authorized {
+                    isRegistered = false
+                } else {
+                    isRegistered = true
+                }
+                semaphore.signal()
+            })
+            _ = semaphore.wait(timeout: .now() + 5)
+            return isRegistered
+        } else {
+            return UIApplication.shared.isRegisteredForRemoteNotifications
+        }
+    }
+}
+
+extension UIApplication {
+    
+    class func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        
+        if let nav = base as? UINavigationController {
+            return getTopViewController(base: nav.visibleViewController)
+            
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return getTopViewController(base: selected)
+            
+        } else if let presented = base?.presentedViewController {
+            return getTopViewController(base: presented)
+        }
+        return base
     }
 }

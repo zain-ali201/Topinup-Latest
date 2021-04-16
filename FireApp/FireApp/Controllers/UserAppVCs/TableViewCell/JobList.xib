@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Helvetica.ttc">
+            <string>Helvetica</string>
+            <string>Helvetica-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JobListTVC" customModule="Neighboorhood_iOS_Services" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5U-tu-iDP">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addphoto" translatesAutoresizingMaskIntoConstraints="NO" id="Jze-h1-OFY">
+                            <rect key="frame" x="20" y="20" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="C0h-P1-6XP"/>
+                                <constraint firstAttribute="height" constant="60" id="o6d-pZ-zSN"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car Wash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1x-iJ-aYM">
+                            <rect key="frame" x="98" y="16" width="181" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="bit-tq-KjM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
+                            <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:00 PM - 5:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y02-cO-xOt">
+                            <rect key="frame" x="98" y="40" width="181" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="tBP-Ld-uK8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 Mont St, Sterling, VA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3m-AQ-eCp">
+                            <rect key="frame" x="116" y="60" width="163" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Noe-91-2Kk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7eC-ls-wED">
+                            <rect key="frame" x="98" y="99" width="277" height="1"/>
+                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="fzR-Mt-MEe"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="XMe-iu-9mO">
+                            <rect key="frame" x="98" y="62.5" width="10" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="10" id="1kC-Ib-2u5"/>
+                                <constraint firstAttribute="height" constant="15" id="cb1-N1-6va"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Circulated" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDk-2U-pcV">
+                            <rect key="frame" x="287" y="34" width="80" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="8gi-3h-xsW"/>
+                                <constraint firstAttribute="width" constant="80" id="Csy-5P-Let"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="e3m-AQ-eCp" firstAttribute="trailing" secondItem="R1x-iJ-aYM" secondAttribute="trailing" id="2cM-mr-aEG"/>
+                        <constraint firstItem="XMe-iu-9mO" firstAttribute="leading" secondItem="Jze-h1-OFY" secondAttribute="trailing" constant="18" id="3N8-bw-YJH"/>
+                        <constraint firstItem="e3m-AQ-eCp" firstAttribute="leading" secondItem="XMe-iu-9mO" secondAttribute="trailing" constant="8" id="6Vb-lH-DoU"/>
+                        <constraint firstItem="Y02-cO-xOt" firstAttribute="leading" secondItem="Jze-h1-OFY" secondAttribute="trailing" constant="18" id="6uH-d0-0Iw"/>
+                        <constraint firstItem="Jze-h1-OFY" firstAttribute="leading" secondItem="s5U-tu-iDP" secondAttribute="leading" constant="20" id="870-Tb-FnY"/>
+                        <constraint firstAttribute="trailing" secondItem="xDk-2U-pcV" secondAttribute="trailing" constant="8" id="B27-zX-UGc"/>
+                        <constraint firstItem="XMe-iu-9mO" firstAttribute="centerY" secondItem="e3m-AQ-eCp" secondAttribute="centerY" id="B7T-26-PXM"/>
+                        <constraint firstItem="Jze-h1-OFY" firstAttribute="top" secondItem="s5U-tu-iDP" secondAttribute="top" constant="20" id="Ce8-jO-eyJ"/>
+                        <constraint firstAttribute="bottom" secondItem="7eC-ls-wED" secondAttribute="bottom" id="JXg-Zr-jt6"/>
+                        <constraint firstItem="e3m-AQ-eCp" firstAttribute="trailing" secondItem="R1x-iJ-aYM" secondAttribute="trailing" id="NbA-N1-beX"/>
+                        <constraint firstAttribute="trailing" secondItem="7eC-ls-wED" secondAttribute="trailing" id="Q6G-y0-iVV"/>
+                        <constraint firstItem="R1x-iJ-aYM" firstAttribute="leading" secondItem="Jze-h1-OFY" secondAttribute="trailing" constant="18" id="RYP-RU-B0R"/>
+                        <constraint firstItem="e3m-AQ-eCp" firstAttribute="top" secondItem="Y02-cO-xOt" secondAttribute="bottom" id="ff4-Db-ZfY"/>
+                        <constraint firstItem="xDk-2U-pcV" firstAttribute="centerY" secondItem="s5U-tu-iDP" secondAttribute="centerY" id="kdu-2J-6go"/>
+                        <constraint firstItem="xDk-2U-pcV" firstAttribute="leading" secondItem="Y02-cO-xOt" secondAttribute="trailing" constant="8" id="l2k-rr-TRD"/>
+                        <constraint firstItem="xDk-2U-pcV" firstAttribute="centerY" secondItem="Y02-cO-xOt" secondAttribute="centerY" id="sVD-Lj-SZC"/>
+                        <constraint firstItem="7eC-ls-wED" firstAttribute="leading" secondItem="R1x-iJ-aYM" secondAttribute="leading" id="sZl-09-PcP"/>
+                        <constraint firstItem="R1x-iJ-aYM" firstAttribute="top" secondItem="s5U-tu-iDP" secondAttribute="top" constant="16" id="uSY-c8-Il8"/>
+                        <constraint firstItem="Y02-cO-xOt" firstAttribute="trailing" secondItem="R1x-iJ-aYM" secondAttribute="trailing" id="ydr-5a-eJY"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="s5U-tu-iDP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2Jd-VA-34M"/>
+                <constraint firstItem="s5U-tu-iDP" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Ifa-VB-eBi"/>
+                <constraint firstItem="s5U-tu-iDP" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="RSk-xG-Daj"/>
+                <constraint firstItem="s5U-tu-iDP" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="zsx-qs-mkR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="imgClient" destination="Jze-h1-OFY" id="ZPT-aE-qG7"/>
+                <outlet property="lblAddress" destination="e3m-AQ-eCp" id="NHh-qT-5or"/>
+                <outlet property="lblDateTime" destination="Y02-cO-xOt" id="L9f-gH-nuZ"/>
+                <outlet property="lblName" destination="R1x-iJ-aYM" id="1Pk-E2-MMu"/>
+                <outlet property="lblStatus" destination="xDk-2U-pcV" id="6vh-GJ-VEo"/>
+                <outlet property="viewBackground" destination="s5U-tu-iDP" id="yqC-7x-8PN"/>
+            </connections>
+            <point key="canvasLocation" x="-19.5" y="-25"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="addphoto" width="279" height="275"/>
+        <image name="placeholder" width="13" height="18"/>
+    </resources>
+</document>

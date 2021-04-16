@@ -29,7 +29,7 @@ class SegmentedProgressBar: UIView {
             self.updateColors()
         }
     }
-    var padding: CGFloat = 2.0
+    var padding1: CGFloat = 2.0
     var isPaused: Bool = false {
         didSet {
             if isPaused {
@@ -89,9 +89,9 @@ class SegmentedProgressBar: UIView {
         if hasDoneLayout {
             return
         }
-        let width = (frame.width - (padding * CGFloat(segments.count - 1)) ) / CGFloat(segments.count)
+        let width = (frame.width - (padding1 * CGFloat(segments.count - 1)) ) / CGFloat(segments.count)
         for (index, segment) in segments.enumerated() {
-            let segFrame = CGRect(x: CGFloat(index) * (width + padding), y: 0, width: width, height: frame.height)
+            let segFrame = CGRect(x: CGFloat(index) * (width + padding1), y: 0, width: width, height: frame.height)
             segment.bottomSegmentView.frame = segFrame
             segment.topSegmentView.frame = segFrame
             segment.topSegmentView.frame.size.width = 0

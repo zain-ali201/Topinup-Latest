@@ -1,13 +1,16 @@
 PODS:
   - AgoraRtcEngine_iOS (3.1.2)
+  - Alamofire (4.8.2)
   - ALCameraViewController (3.1)
   - AlertBar (0.5.0)
   - BadgeSwift (8.0.0)
   - BottomPopup (0.6.0)
+  - BRYXBanner (0.8.4)
   - BubbleTransition (4.0.0)
   - CircleProgressButton (0.5.1)
   - CircleProgressView (1.2.0)
   - ContextMenu (0.4.0)
+  - Cosmos (23.0.0)
   - DateTimePicker (2.4.1)
   - EnhancedCircleImageView (0.1)
   - Firebase/Auth (6.33.0):
@@ -73,8 +76,16 @@ PODS:
     - GoogleUtilities/UserDefaults
   - FirebaseUI/Phone (8.5.1):
     - FirebaseUI/Auth
+  - FSCalendar (2.8.2)
   - GoogleDataTransport (7.5.1):
     - nanopb (~> 1.30906.0)
+  - GoogleMaps (4.2.0):
+    - GoogleMaps/Maps (= 4.2.0)
+  - GoogleMaps/Base (4.2.0)
+  - GoogleMaps/Maps (4.2.0):
+    - GoogleMaps/Base
+  - GooglePlaces (4.2.0):
+    - GoogleMaps/Base (= 4.2.0)
   - GoogleUtilities/AppDelegateSwizzler (6.7.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -108,6 +119,7 @@ PODS:
   - libPhoneNumber-iOS (0.9.15)
   - LocationPicker (1.4.2)
   - MarqueeLabel (4.0.5)
+  - MBProgressHUD (1.2.0)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -137,6 +149,7 @@ PODS:
   - Realm/Headers (5.4.5)
   - RealmSwift (5.4.5):
     - Realm (= 5.4.5)
+  - ReverseExtension (0.5.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -164,24 +177,40 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
+  - SDWebImage (5.10.4):
+    - SDWebImage/Core (= 5.10.4)
+  - SDWebImage/Core (5.10.4)
+  - SideMenu (6.5.0)
   - SnapKit (5.0.1)
+  - Socket.IO-Client-Swift (11.1.3):
+    - StarscreamSocketIO (~> 8.0.5)
+  - StarscreamSocketIO (8.0.7)
+  - SVProgressHUD (2.2.5)
   - SwiftEventBus (5.0.0)
+  - SwiftPopup (5.0.0):
+    - SnapKit (~> 5.0.0)
   - SwiftyCam (4.0.0)
+  - SwiftyJSON (5.0.0)
   - TTCardView (0.1.1)
   - UIColor_Hex_Swift (5.1.0)
   - "UITextView+Placeholder (1.4.0)"
+  - VIMediaCache (0.4)
   - WXImageCompress (0.1.3)
+  - YNSearch (2.4.0)
 
 DEPENDENCIES:
   - AgoraRtcEngine_iOS (= 3.1.2)
+  - Alamofire (~> 4.8.2)
   - ALCameraViewController (= 3.1)
   - AlertBar (= 0.5.0)
   - BadgeSwift (= 8.0.0)
   - BottomPopup (= 0.6.0)
+  - BRYXBanner (~> 0.8.0)
   - BubbleTransition (= 4.0.0)
   - CircleProgressButton (= 0.5.1)
   - CircleProgressView (= 1.2.0)
   - ContextMenu (= 0.4.0)
+  - Cosmos
   - DateTimePicker (= 2.4.1)
   - EnhancedCircleImageView (= 0.1)
   - Firebase/Auth (= 6.33.0)
@@ -190,6 +219,9 @@ DEPENDENCIES:
   - Firebase/Messaging (= 6.33.0)
   - Firebase/Storage (= 6.33.0)
   - FirebaseUI/Phone (= 8.5.1)
+  - FSCalendar
+  - GoogleMaps
+  - GooglePlaces
   - GrowingTextView (= 0.7.2)
   - Hero (= 1.5.0)
   - ImageScrollView (= 1.9.1)
@@ -201,6 +233,7 @@ DEPENDENCIES:
   - LBTATools (= 1.0.12)
   - libPhoneNumber-iOS (= 0.9.15)
   - LocationPicker (= 1.4.2)
+  - MBProgressHUD
   - NotificationBannerSwift (= 3.0.2)
   - NotificationView (= 0.2.4)
   - Permission/Camera (= 3.1.2)
@@ -210,30 +243,42 @@ DEPENDENCIES:
   - Permission/Notifications (= 3.1.2)
   - Permission/Photos (= 3.1.2)
   - RealmSwift (= 5.4.5)
+  - ReverseExtension
   - RxCocoa (= 5.1.1)
   - RxFirebase/Database (= 0.3.8)
   - RxFirebase/Functions (= 0.3.8)
   - RxFirebase/Storage (= 0.3.8)
   - RxOptional (= 4.1.0)
   - RxSwift (= 5.1.1)
+  - SDWebImage
+  - SideMenu (~> 6.0)
+  - Socket.IO-Client-Swift (~> 11.1.3)
+  - SVProgressHUD
   - SwiftEventBus (= 5.0.0)
+  - SwiftPopup
   - SwiftyCam (= 4.0.0)
+  - SwiftyJSON
   - TTCardView (= 0.1.1)
   - UIColor_Hex_Swift (= 5.1.0)
   - "UITextView+Placeholder (= 1.4.0)"
+  - VIMediaCache
   - WXImageCompress (= 0.1.3)
+  - YNSearch
 
 SPEC REPOS:
   trunk:
     - AgoraRtcEngine_iOS
+    - Alamofire
     - ALCameraViewController
     - AlertBar
     - BadgeSwift
     - BottomPopup
+    - BRYXBanner
     - BubbleTransition
     - CircleProgressButton
     - CircleProgressView
     - ContextMenu
+    - Cosmos
     - DateTimePicker
     - EnhancedCircleImageView
     - Firebase
@@ -247,7 +292,10 @@ SPEC REPOS:
     - FirebaseMessaging
     - FirebaseStorage
     - FirebaseUI
+    - FSCalendar
     - GoogleDataTransport
+    - GoogleMaps
+    - GooglePlaces
     - GoogleUtilities
     - GrowingTextView
     - GTMSessionFetcher
@@ -263,6 +311,7 @@ SPEC REPOS:
     - libPhoneNumber-iOS
     - LocationPicker
     - MarqueeLabel
+    - MBProgressHUD
     - nanopb
     - NotificationBannerSwift
     - NotificationView
@@ -271,6 +320,7 @@ SPEC REPOS:
     - Protobuf
     - Realm
     - RealmSwift
+    - ReverseExtension
     - RxCocoa
     - RxFirebase
     - RxFirebaseDatabase
@@ -279,24 +329,36 @@ SPEC REPOS:
     - RxOptional
     - RxRelay
     - RxSwift
+    - SDWebImage
+    - SideMenu
     - SnapKit
+    - Socket.IO-Client-Swift
+    - StarscreamSocketIO
+    - SVProgressHUD
     - SwiftEventBus
+    - SwiftPopup
     - SwiftyCam
+    - SwiftyJSON
     - TTCardView
     - UIColor_Hex_Swift
     - "UITextView+Placeholder"
+    - VIMediaCache
     - WXImageCompress
+    - YNSearch
 
 SPEC CHECKSUMS:
   AgoraRtcEngine_iOS: 0628532d3475471d1c352ba548cee98492850cc0
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   ALCameraViewController: 144dea45fd749a623aafd8cb7b10cea88499fcc3
   AlertBar: 5134161e088a7be32b76d5daddcc7326744015cf
   BadgeSwift: a81547ffde1f462bb5fc02e3fa3fdcbc1b888354
   BottomPopup: 1d5649a3b29396238f0e8f3c82075a7bfcf37ba7
+  BRYXBanner: 4fbd266f96ce000e4c6cc9a0558c446bd88d9801
   BubbleTransition: 9d96f31375e0db46684e2060d3a601fa47d9f9c1
   CircleProgressButton: 43585e5a2b1c96622f854d504bb5fe7a2ea0851f
   CircleProgressView: 6b5b091d59dc5e5d2fda84e637a40498cdc39937
   ContextMenu: f835e09a93f1c28c631b76ee94396d9570397fd1
+  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   DateTimePicker: 997176ea28954f3c18817b9565a53b28ee4400b8
   EnhancedCircleImageView: 1069bbc14526d89502cc0e48b45f5da6a3317a47
   Firebase: 8db6f2d1b2c5e2984efba4949a145875a8f65fe5
@@ -310,7 +372,10 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 5eca4ef173de76253352511aafef774caa1cba2a
   FirebaseStorage: 15e0f15ef3c7fec3d1899d68623e47d4447066b4
   FirebaseUI: 9df84336a56f1d755ae4c37d5885c237d3084b6b
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
+  GoogleMaps: eb03e327edfd70b06de1e6e321653f73712df7ad
+  GooglePlaces: 196a9dd88580dcb3f3df46f415057703d0d2a310
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
@@ -326,6 +391,7 @@ SPEC CHECKSUMS:
   libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
   LocationPicker: 9af49409ec3ca13fdf4bf6b39e1a3c7dec029f4a
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   NotificationBannerSwift: 713e20f21b6105f4a36a00e5d9fa414a930d3d8e
   NotificationView: 1fe16a62d2b1866dc9b0e83782b4b97b385021b2
@@ -334,6 +400,7 @@ SPEC CHECKSUMS:
   Protobuf: 0cde852566359049847168e51bd1c690e0f70056
   Realm: 155c60aec98b1044a05d676017be6900a9ee93b6
   RealmSwift: fa80dc70fa91f762c2bc3d09328da92214b36bbb
+  ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxFirebase: 45e6448c69c7212e21f8ba89144443f916437861
   RxFirebaseDatabase: 5c1d3d31c9858f05ff6ad92e5b4b696354d1497b
@@ -342,14 +409,23 @@ SPEC CHECKSUMS:
   RxOptional: b1fcd60856807a564c0215c2184b8d33e7826dc2
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Socket.IO-Client-Swift: b8e59ddc16bc3609ca2f49a4b50253f095d535c8
+  StarscreamSocketIO: 00b54e4208481ca5cef089545353aaf126bae16d
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftEventBus: b30f617a6aca5a9336464b4d3f5931034762f2d5
+  SwiftPopup: 31874508c0d91788edf71419a5bbeb3ebd498ab9
   SwiftyCam: 6e57914771d972fbe508e759dc9d0150a44a93fd
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTCardView: 99cebbf2673d8df592f3264a51105b294d31c7ca
   UIColor_Hex_Swift: 8be7432edacb7fa91c78aa05ef3c30b66e4f9415
   "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
+  VIMediaCache: aa650f82cb114c68a343beb4e67416cf5eb2f3a2
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
+  YNSearch: 56d4aad4547fd1efce355cccc220a94735b1ea14
 
-PODFILE CHECKSUM: 10f1334c6771051422acbc72dc2db34eab85e52a
+PODFILE CHECKSUM: a59866c23e38f8c90db1d1fd4031bcbf743db9d6
 
 COCOAPODS: 1.10.1

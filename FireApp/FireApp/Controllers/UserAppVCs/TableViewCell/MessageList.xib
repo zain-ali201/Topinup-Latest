@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MessageListTVC" customModule="Neighboorhood_iOS_Services" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Evo-LR-BIo">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="9Jg-EG-m2Z">
+                            <rect key="frame" x="18" y="12.5" width="75" height="75"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="75" id="Raj-iC-aJB"/>
+                                <constraint firstAttribute="width" constant="75" id="y9s-bp-OAR"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="James D" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwy-7C-6eI">
+                            <rect key="frame" x="105" y="15.5" width="262" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="uaP-cH-ihS"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
+                            <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car Washing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJ2-04-64r">
+                            <rect key="frame" x="105" y="40.5" width="262" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="jMz-X1-zBB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum is simply dummy text of the" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Hz-Ke-BA6">
+                            <rect key="frame" x="105" y="63.5" width="262" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="zZe-Fx-mxR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSp-cn-CWD">
+                            <rect key="frame" x="105" y="99" width="270" height="1"/>
+                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="mDo-GX-LEO"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n8X-la-hwc">
+                            <rect key="frame" x="337" y="5" width="30" height="30"/>
+                            <color key="backgroundColor" red="0.043137254901960784" green="0.82352941176470584" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="KiH-z3-SJD"/>
+                                <constraint firstAttribute="width" constant="30" id="PC5-xh-30N"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="9Jg-EG-m2Z" firstAttribute="centerY" secondItem="Evo-LR-BIo" secondAttribute="centerY" id="5xt-bp-rgv"/>
+                        <constraint firstAttribute="trailing" secondItem="fwy-7C-6eI" secondAttribute="trailing" constant="8" id="9ez-iL-ekz"/>
+                        <constraint firstItem="wJ2-04-64r" firstAttribute="trailing" secondItem="fwy-7C-6eI" secondAttribute="trailing" id="AtB-t2-2Ub"/>
+                        <constraint firstItem="fwy-7C-6eI" firstAttribute="leading" secondItem="9Jg-EG-m2Z" secondAttribute="trailing" constant="12" id="EFO-w4-LIg"/>
+                        <constraint firstItem="9Jg-EG-m2Z" firstAttribute="leading" secondItem="Evo-LR-BIo" secondAttribute="leading" constant="18" id="MGx-9V-484"/>
+                        <constraint firstItem="wJ2-04-64r" firstAttribute="centerY" secondItem="9Jg-EG-m2Z" secondAttribute="centerY" constant="1" id="Ngt-zs-65D"/>
+                        <constraint firstItem="9Hz-Ke-BA6" firstAttribute="bottom" secondItem="9Jg-EG-m2Z" secondAttribute="bottom" constant="-3" id="SXe-ff-0Nu"/>
+                        <constraint firstAttribute="bottom" secondItem="eSp-cn-CWD" secondAttribute="bottom" id="Th1-IF-tBp"/>
+                        <constraint firstItem="eSp-cn-CWD" firstAttribute="leading" secondItem="9Hz-Ke-BA6" secondAttribute="leading" id="ZlF-ly-Sc6"/>
+                        <constraint firstAttribute="trailing" secondItem="n8X-la-hwc" secondAttribute="trailing" constant="5" id="cxo-bv-Hq5"/>
+                        <constraint firstItem="wJ2-04-64r" firstAttribute="leading" secondItem="fwy-7C-6eI" secondAttribute="leading" id="fxv-la-1LG"/>
+                        <constraint firstItem="9Hz-Ke-BA6" firstAttribute="trailing" secondItem="wJ2-04-64r" secondAttribute="trailing" id="hCf-8p-Jn6"/>
+                        <constraint firstAttribute="trailing" secondItem="eSp-cn-CWD" secondAttribute="trailing" id="hRC-gP-bDp"/>
+                        <constraint firstItem="9Hz-Ke-BA6" firstAttribute="leading" secondItem="wJ2-04-64r" secondAttribute="leading" id="jPc-BU-G8j"/>
+                        <constraint firstItem="n8X-la-hwc" firstAttribute="top" secondItem="Evo-LR-BIo" secondAttribute="top" constant="3" id="nKr-Da-hJt"/>
+                        <constraint firstItem="fwy-7C-6eI" firstAttribute="top" secondItem="9Jg-EG-m2Z" secondAttribute="top" constant="3" id="rkL-Zt-seF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Evo-LR-BIo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="II0-L0-W1s"/>
+                <constraint firstItem="Evo-LR-BIo" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Oa0-5y-a4S"/>
+                <constraint firstItem="Evo-LR-BIo" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="XOA-Fd-5FW"/>
+                <constraint firstItem="Evo-LR-BIo" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="uD7-zL-qQ8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="imgPerson" destination="9Jg-EG-m2Z" id="61W-17-1Tl"/>
+                <outlet property="lablTotalMesage" destination="n8X-la-hwc" id="1Gu-PP-kf0"/>
+                <outlet property="lblCategory" destination="wJ2-04-64r" id="h6u-2A-xU1"/>
+                <outlet property="lblLastMessage" destination="9Hz-Ke-BA6" id="NpA-yR-gOv"/>
+                <outlet property="lblName" destination="fwy-7C-6eI" id="dre-o7-Lpd"/>
+            </connections>
+            <point key="canvasLocation" x="-58.399999999999999" y="52.173913043478265"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="imagePlaceholder" width="291" height="291"/>
+    </resources>
+</document>

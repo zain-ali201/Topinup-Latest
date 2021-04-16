@@ -19,18 +19,13 @@ protocol VideoPlayerDelegate {
     func mainViewTapped()
 }
 
-
 class PreviewImageCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
-
     private var currentVideoPath: String = ""
-
-
     var videoViewsStackview: UIStackView!
     var delegate: VideoPlayerDelegate?
 
     var player: AVPlayer?
-
 
     @IBOutlet weak var videoImage: UIImageView!
 
@@ -46,14 +41,12 @@ class PreviewImageCollectionViewCell: UICollectionViewCell, UIGestureRecognizerD
             return
         }
 
-
         if player.isPlaying {
             pauseVideo()
         } else {
             startPlaying()
         }
     }
-
 
     override func awakeFromNib() {
         super.awakeFromNib()

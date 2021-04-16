@@ -189,8 +189,34 @@ class ChatsListVC: BaseSearchableVC
         }
     }
     
-    @objc private func leftBarBtnTapped() {
-        
+    @objc private func leftBarBtnTapped()
+    {
+        if AppUser.getUser() == nil
+        {
+            setLoginStoryBoardAsRoot()
+        }
+        else
+        {
+            setMainStoryBoardAsRoot()
+        }
+    }
+    
+    func setLoginStoryBoardAsRoot ()
+    {
+        loadViewControllerWith(identifier: "MainLogin_ID", inStoryBoard: "Login")
+    }
+    
+    func setMainStoryBoardAsRoot ()
+    {
+        loadViewControllerWith(identifier: "Dashboard_ID", inStoryBoard: "Main")
+    }
+    
+    func loadViewControllerWith( identifier : String,  inStoryBoard : String)
+    {
+        let storyboard = UIStoryboard(name: inStoryBoard, bundle: nil)
+        let initViewController = storyboard.instantiateViewController(withIdentifier: identifier)
+        initViewController.modalPresentationStyle = .fullScreen
+        present(initViewController, animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

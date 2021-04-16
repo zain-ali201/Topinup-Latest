@@ -185,16 +185,9 @@ extension String {
         return NSURL(fileURLWithPath: self).pathExtension ?? ""
     }
 
-    func trim() -> String {
-        return self.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-
     func index(from: Int) -> Index {
         return self.index(startIndex, offsetBy: from)
     }
-
-
-
 }
 
 
