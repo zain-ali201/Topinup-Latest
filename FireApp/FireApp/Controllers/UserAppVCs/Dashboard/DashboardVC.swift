@@ -41,7 +41,6 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
         case active, completed
     }
     
-    
     var selectedJobCategory: JobCategory = .active
     
     var isMapActive = false
@@ -91,16 +90,10 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
         //print("Token: \(user?.token)")
         
         SocketManager.shared.establishConnection()
-        
-        
-    
         self.FSCalendar.select(Date())
         self.setupSideMenu()
         //updateJobCategoryBottomViews()
         self.addObservers()
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,10 +112,15 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
         updateJobCategoryBottomViews()
     }
     
+    @IBAction func chatAction(_ sender: Any)
+    {
+        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
+        let rootVC = storyboard.instantiateViewController(withIdentifier: "RootVC")
+        UIApplication.shared.keyWindow?.rootViewController = rootVC
+    }
+    
     func addObservers()
     {
-        
-         
         NotificationCenter.default.addObserver(self, selector: #selector(DashboardVC.didReceiveSocketConectionResponse(notification:)), name: .kSocketConnected, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(DashboardVC.didReceiveSocketDisconectResponse(notification:)), name: .kSocketDisconnected, object: nil)

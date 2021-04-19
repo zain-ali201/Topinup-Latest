@@ -89,7 +89,7 @@
                                     <constraint firstAttribute="height" constant="40" id="T5a-LC-n32"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="cross"/>
+                                <state key="normal" image="crossRound"/>
                                 <connections>
                                     <action selector="crossAction:" destination="aL7-q5-dxc" eventType="touchUpInside" id="Wzf-1f-S7e"/>
                                 </connections>
@@ -333,6 +333,18 @@
                                     <outlet property="delegate" destination="cDo-m8-efm" id="s34-zK-Zx0"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndf-4I-VH1">
+                                <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Xqb-rS-wxo"/>
+                                    <constraint firstAttribute="width" constant="40" id="ooa-bc-KHU"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="crossRound"/>
+                                <connections>
+                                    <action selector="crossAction:" destination="cDo-m8-efm" eventType="touchUpInside" id="mPJ-7f-5cb"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3l-b6-L7F">
                                 <rect key="frame" x="16" y="531" width="288" height="21"/>
                                 <constraints>
@@ -373,12 +385,14 @@
                             <constraint firstItem="dqz-25-eaU" firstAttribute="bottom" secondItem="O3l-b6-L7F" secondAttribute="bottom" constant="16" id="8fx-s0-dtj"/>
                             <constraint firstItem="CMF-br-NyW" firstAttribute="top" secondItem="bqc-yL-CJ9" secondAttribute="bottom" constant="65" id="9HW-Yv-Fa8"/>
                             <constraint firstItem="CMF-br-NyW" firstAttribute="bottom" secondItem="dqz-25-eaU" secondAttribute="bottom" id="PsU-bB-qti"/>
+                            <constraint firstItem="Ndf-4I-VH1" firstAttribute="leading" secondItem="dqz-25-eaU" secondAttribute="leading" constant="10" id="RFj-Dp-Eje"/>
                             <constraint firstItem="CMF-br-NyW" firstAttribute="trailing" secondItem="dqz-25-eaU" secondAttribute="trailing" id="amT-Sa-MiN"/>
                             <constraint firstItem="bqc-yL-CJ9" firstAttribute="leading" secondItem="dqz-25-eaU" secondAttribute="leading" constant="16" id="cOG-4E-tud"/>
                             <constraint firstItem="ys1-7p-kTy" firstAttribute="trailing" secondItem="dqz-25-eaU" secondAttribute="trailing" id="dW4-7h-PdW"/>
                             <constraint firstItem="ys1-7p-kTy" firstAttribute="leading" secondItem="dqz-25-eaU" secondAttribute="leading" id="euq-SX-y30"/>
                             <constraint firstItem="O3l-b6-L7F" firstAttribute="leading" secondItem="dqz-25-eaU" secondAttribute="leading" constant="16" id="ex2-yl-GYF"/>
                             <constraint firstItem="dqz-25-eaU" firstAttribute="trailing" secondItem="O3l-b6-L7F" secondAttribute="trailing" constant="16" id="pLn-kK-th6"/>
+                            <constraint firstItem="Ndf-4I-VH1" firstAttribute="top" secondItem="dqz-25-eaU" secondAttribute="top" constant="10" id="rGi-c3-08P"/>
                             <constraint firstItem="dqz-25-eaU" firstAttribute="trailing" secondItem="bqc-yL-CJ9" secondAttribute="trailing" constant="16" id="uZJ-0t-96w"/>
                             <constraint firstItem="CMF-br-NyW" firstAttribute="leading" secondItem="dqz-25-eaU" secondAttribute="leading" id="vGa-Pa-IPc"/>
                             <constraint firstItem="bqc-yL-CJ9" firstAttribute="top" secondItem="dqz-25-eaU" secondAttribute="top" id="xcr-Lo-a5R"/>
@@ -389,6 +403,7 @@
                     <connections>
                         <outlet property="btnEye" destination="snQ-iD-K3y" id="PCT-0n-iO6"/>
                         <outlet property="btnSignIn" destination="xc4-cy-Mye" id="Uc0-TU-wYq"/>
+                        <outlet property="crossBtn" destination="Ndf-4I-VH1" id="pgA-ty-nIh"/>
                         <outlet property="scrollView" destination="bqc-yL-CJ9" id="fdR-iX-mfP"/>
                         <outlet property="txtEmail" destination="b8v-pe-YFO" id="RV0-ha-Nsl"/>
                         <outlet property="txtPassword" destination="9tF-QO-pml" id="y7Z-1i-wmv"/>
@@ -1032,7 +1047,7 @@
         <image name="Splashbg-1" width="1080" height="1920"/>
         <image name="addphoto" width="279" height="275"/>
         <image name="arrowBack" width="50" height="50"/>
-        <image name="cross" width="16.5" height="16.5"/>
+        <image name="crossRound" width="22.5" height="23"/>
         <image name="emailicon" width="64" height="64"/>
         <image name="eyeDisable" width="25" height="25"/>
         <image name="iconcheckboxunselected" width="20" height="20"/>

@@ -38,7 +38,7 @@
 		1867E7F326270AA6000D2735 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E7EE26270AA5000D2735 /* MainNavigationController.swift */; };
 		1867E7F426270AA6000D2735 /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E7EF26270AA6000D2735 /* RevealViewController.swift */; };
 		1867E80626270AC3000D2735 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E80126270AC2000D2735 /* ForgotPasswordVC.swift */; };
-		1867E80726270AC3000D2735 /* ChatLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E80226270AC2000D2735 /* ChatLoginVC.swift */; };
+		1867E80726270AC3000D2735 /* UserLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E80226270AC2000D2735 /* UserLoginVC.swift */; };
 		1867E80826270AC3000D2735 /* MainRegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E80326270AC2000D2735 /* MainRegistrationVC.swift */; };
 		1867E80926270AC3000D2735 /* SignUpMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E80426270AC2000D2735 /* SignUpMainVC.swift */; };
 		1867E80A26270AC3000D2735 /* SignUpProviderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E80526270AC2000D2735 /* SignUpProviderVC.swift */; };
@@ -586,7 +586,7 @@
 		1867E7EE26270AA5000D2735 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		1867E7EF26270AA6000D2735 /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
 		1867E80126270AC2000D2735 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
-		1867E80226270AC2000D2735 /* ChatLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLoginVC.swift; sourceTree = "<group>"; };
+		1867E80226270AC2000D2735 /* UserLoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginVC.swift; sourceTree = "<group>"; };
 		1867E80326270AC2000D2735 /* MainRegistrationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRegistrationVC.swift; sourceTree = "<group>"; };
 		1867E80426270AC2000D2735 /* SignUpMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpMainVC.swift; sourceTree = "<group>"; };
 		1867E80526270AC2000D2735 /* SignUpProviderVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpProviderVC.swift; sourceTree = "<group>"; };
@@ -1070,7 +1070,7 @@
 			isa = PBXGroup;
 			children = (
 				1867E80126270AC2000D2735 /* ForgotPasswordVC.swift */,
-				1867E80226270AC2000D2735 /* ChatLoginVC.swift */,
+				1867E80226270AC2000D2735 /* UserLoginVC.swift */,
 				1867E80326270AC2000D2735 /* MainRegistrationVC.swift */,
 				1867E80426270AC2000D2735 /* SignUpMainVC.swift */,
 				1867E80526270AC2000D2735 /* SignUpProviderVC.swift */,
@@ -1319,9 +1319,9 @@
 			isa = PBXGroup;
 			children = (
 				A8CAF7B6228F57F300BB3FF6 /* LaunchScreen.storyboard */,
+				A8CAF7B1228F57F100BB3FF6 /* Chat.storyboard */,
 				1867E82C26270B42000D2735 /* Login.storyboard */,
 				1867E74026270877000D2735 /* Main.storyboard */,
-				A8CAF7B1228F57F100BB3FF6 /* Chat.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -2614,7 +2614,7 @@
 				A84564A1237088A3007D11DF /* MyStatusesVC.swift in Sources */,
 				A858872F2373592200912E71 /* MTImagePickerCell.swift in Sources */,
 				A86420DF233968B500DC85A1 /* TypingState.swift in Sources */,
-				1867E80726270AC3000D2735 /* ChatLoginVC.swift in Sources */,
+				1867E80726270AC3000D2735 /* UserLoginVC.swift in Sources */,
 				A8ACC82423E0846D003B9983 /* MainVC.swift in Sources */,
 				1867E87026270BC9000D2735 /* JobVO.swift in Sources */,
 				A8024B852386C05300747946 /* SentTextQuotedCell.swift in Sources */,

@@ -15,6 +15,7 @@ class UserLoginVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var btnSignIn: UIButton!
     @IBOutlet weak var btnEye: UIButton!
+    @IBOutlet weak var crossBtn: UIButton!
     
     var isEyeEnable :Bool!
     var params : [String : Any]!
@@ -34,14 +35,19 @@ class UserLoginVC: UIViewController, UITextFieldDelegate {
     
     func viewInitializer() {
         
+        crossBtn.setDarkShadow()
         self.btnSignIn.layer.cornerRadius = self.btnSignIn.frame.height/2
         
         isEyeEnable = false
         txtPassword.isSecureTextEntry = true
     }
     
-    @IBAction func btnEyeAction(_ sender: Any) {
-        
+    @IBAction func crossAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func btnEyeAction(_ sender: Any)
+    {
         if isEyeEnable == true
         {
             isEyeEnable = false
@@ -53,15 +59,8 @@ class UserLoginVC: UIViewController, UITextFieldDelegate {
             isEyeEnable = true
             txtPassword.isSecureTextEntry = false
             btnEye.setImage(UIImage(named:"eyeEnable"), for: .normal)
-            
-            
         }
-        
-        
-        
     }
-    
-    
     
     @IBAction func btnForgotPasswordAction(_ sender: Any) {
         self.view.endEditing(true)
@@ -82,8 +81,6 @@ class UserLoginVC: UIViewController, UITextFieldDelegate {
                     return
                 }
             }
-            
-
         }
         
         self.performSegue(withIdentifier: "LoginToSignUpSegue", sender: nil)

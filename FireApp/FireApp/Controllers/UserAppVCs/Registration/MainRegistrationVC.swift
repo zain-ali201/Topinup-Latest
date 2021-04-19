@@ -26,7 +26,7 @@ class MainRegistrationVC: UIViewController
 
     func viewInitializers()
     {
-        crossBtn.setShadow()
+        crossBtn.setDarkShadow()
         self.btnSignIn.layer.cornerRadius = self.btnSignIn.frame.height/2
         self.btnSignUp.layer.cornerRadius = self.btnSignUp.frame.height/2
     }
