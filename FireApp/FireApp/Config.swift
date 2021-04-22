@@ -41,7 +41,7 @@ class Colors {
     static let replyReceivedMsgBackgroundColor = "#f1f1f1".toColor
     static let receivedMsgBgColor = UIColor.white
 
-    static let highlightMessageColor = UIColor.yellow
+    static let highlightMessageColor = "#FFD801".toColor
 }
 
 class TextStatusColors {

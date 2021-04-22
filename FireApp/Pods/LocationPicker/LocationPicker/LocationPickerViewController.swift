@@ -108,10 +108,10 @@ open class LocationPickerViewController: UIViewController {
 		let searchBar = self.searchController.searchBar
 		searchBar.searchBarStyle = self.searchBarStyle
 		searchBar.placeholder = self.searchBarPlaceholder
-        searchBar.tintColor = .white
-        
+//        searchBar.tintColor = .white
+        searchBar.backgroundColor = .clear
         if #available(iOS 13.0, *) {
-            searchBar.searchTextField.backgroundColor = searchTextFieldColor
+            searchBar.searchTextField.backgroundColor = .white
         }
 		return searchBar
 	}()
@@ -122,28 +122,81 @@ open class LocationPickerViewController: UIViewController {
 		geocoder.cancelGeocode()
 	}
 	
-	open override func loadView() {
+	open override func loadView()
+    {
 		mapView = MKMapView(frame: UIScreen.main.bounds)
 		mapView.mapType = mapType
 		view = mapView
 		
-		if showCurrentLocationButton {
-			let button = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-			button.backgroundColor = currentLocationButtonBackground
-			button.layer.masksToBounds = true
-			button.layer.cornerRadius = 16
+		if showCurrentLocationButton
+        {
+            let currentButtonView = UIView(frame: CGRect(x: view.frame.width - 56, y: 150, width: 40, height: 60))
+            currentButtonView.backgroundColor = .white
+            currentButtonView.layer.cornerRadius = 8
+            currentButtonView.layer.masksToBounds = true
+            currentButtonView.layer.borderWidth = 0.5
+            currentButtonView.layer.borderColor = UIColor.lightGray.cgColor
+            
+            let button = UIButton(frame: CGRect(x: 0, y: 10, width: 40, height: 40))
 			let bundle = Bundle(for: LocationPickerViewController.self)
-			button.setImage(UIImage(named: "geolocation", in: bundle, compatibleWith: nil), for: UIControl.State())
+			button.setImage(UIImage(named: "current-arrow", in: bundle, compatibleWith: nil), for: UIControl.State())
+            button.tintColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
 			button.addTarget(self, action: #selector(LocationPickerViewController.currentLocationPressed),
 			                 for: .touchUpInside)
-			view.addSubview(button)
+            
+            currentButtonView.addSubview(button)
+			view.addSubview(currentButtonView)
 			locationButton = button
+            
+            let currentLocationView = UIView(frame: CGRect(x: 0, y: view.frame.size.height - 60, width: view.frame.size.width, height: 60))
+            currentLocationView.layer.masksToBounds = true
+            currentLocationView.layer.cornerRadius = 8
+            currentLocationView.backgroundColor = .white
+            let lineView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 0.5))
+            lineView.alpha = 0.5
+            lineView.backgroundColor = .lightGray
+            
+            let imgView = UIImageView(frame: CGRect(x: 15, y: 12, width: 40, height: 40))
+            imgView.image = UIImage(named: "current-location", in: bundle, compatibleWith: nil)
+            imgView.tintColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
+            let lbl = UILabel(frame: CGRect(x: 65, y: 0, width: 250, height: 60))
+            lbl.backgroundColor = .clear
+            lbl.font = UIFont.systemFont(ofSize: 18.0)
+            lbl.textColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
+            lbl.text = "Send Your Current Location"
+            
+            let locationBtn = UIButton(frame: CGRect(x: 0, y: 0, width: currentLocationView.frame.width, height: 60))
+            locationBtn.addTarget(self, action: #selector(sendCurrentLocation),
+                             for: .touchUpInside)
+            currentLocationView.addSubview(lineView)
+            currentLocationView.addSubview(imgView)
+            currentLocationView.addSubview(lbl)
+            currentLocationView.addSubview(locationBtn)
+            view.addSubview(currentLocationView)
+            locationButton = button
 		}
 	}
+    
+    @objc func sendCurrentLocation() {
+        completion?(location)
+        if let navigation = navigationController, navigation.viewControllers.count > 1 {
+            navigation.popViewController(animated: true)
+        } else {
+            presentingViewController?.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    open override func viewDidDisappear(_ animated: Bool) {
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
 	
 	open override func viewDidLoad() {
 		super.viewDidLoad()
-
+        if #available(iOS 9.0, *) {
+            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
+        } else {
+            // Fallback on earlier versions
+        }
         if #available(iOS 13.0, *), let navigationController = navigationController {
             let appearance = navigationController.navigationBar.standardAppearance
             appearance.backgroundColor = navigationController.navigationBar.barTintColor
@@ -188,12 +241,12 @@ open class LocationPickerViewController: UIViewController {
 	
 	open override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		if let button = locationButton {
-			button.frame.origin = CGPoint(
-				x: view.frame.width - button.frame.width - 16,
-				y: view.frame.height - button.frame.height - 20
-			)
-		}
+//		if let button = locationButton {
+//			button.frame.origin = CGPoint(
+//				x: view.frame.width - button.frame.width - 16,
+//				y: view.frame.height - button.frame.height - 90
+//			)
+//		}
 		
 		// setting initial location here since viewWillAppear is too early, and viewDidAppear is too late
 		if !presentedInitialLocation {
@@ -202,22 +255,28 @@ open class LocationPickerViewController: UIViewController {
 		}
 	}
 	
-	func setInitialLocation() {
-		if let location = location {
+	func setInitialLocation()
+    {
+		if let location = location
+        {
 			// present initial location if any
 			self.location = location
 			showCoordinates(location.coordinate, animated: false)
             return
-		} else if showCurrentLocationInitially || selectCurrentLocationInitially {
-            if selectCurrentLocationInitially {
+		}
+        else //if showCurrentLocationInitially || selectCurrentLocationInitially
+        {
+//            if selectCurrentLocationInitially
+//            {
                 let listener = CurrentLocationListener(once: true) { [weak self] location in
-                    if self?.location == nil { // user hasn't selected location still
+                    if self?.location == nil
+                    { // user hasn't selected location still
                         self?.selectLocation(location: location)
                     }
                 }
                 currentLocationListeners.append(listener)
-            }
-			showCurrentLocation(false)
+//            }
+//			showCurrentLocation(false)
 		}
 	}
 	
@@ -275,11 +334,22 @@ open class LocationPickerViewController: UIViewController {
             }
         }
     }
+    
+    func selectCurrentLocation(location: CLLocation) {
+        geocoder.cancelGeocode()
+        geocoder.reverseGeocodeLocation(location) { response, error in
+            if let placemark = response?.first {
+                let name = placemark.areasOfInterest?.first
+                self.location = Location(name: name, location: location, placemark: placemark)
+            }
+        }
+    }
 }
 
 extension LocationPickerViewController: CLLocationManagerDelegate {
 	public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		guard let location = locations.first else { return }
+        self.selectCurrentLocation(location: location)
         currentLocationListeners.forEach { $0.action(location) }
 		currentLocationListeners = currentLocationListeners.filter { !$0.once }
 		manager.stopUpdatingLocation()
@@ -435,4 +505,29 @@ extension LocationPickerViewController: UISearchBarDelegate {
 			searchBar.text = " "
 		}
 	}
+}
+
+fileprivate extension String {
+
+    var toColor: UIColor {
+        var cString: String = self.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue: UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
 }

@@ -20,13 +20,10 @@ class ChatsListVC: BaseSearchableVC
 
     var searchController: UISearchController!
     private var isInSearchMode = false
-
     private var currentTypingUsersDict = [String: TypingState]()
 
     var chats: Results<Chat>!
     var searchResults: Results<Chat>!
-
-
     var notificationToken: NotificationToken?
 
     fileprivate func listenForTypingState()
@@ -67,8 +64,6 @@ class ChatsListVC: BaseSearchableVC
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
         
         chats = RealmHelper.getInstance(appRealm).getChats()
         searchResults = chats
@@ -97,8 +92,8 @@ class ChatsListVC: BaseSearchableVC
     }
 
     private func addMessageStateListener() {
-        for chat in chats {
-
+        for chat in chats
+        {
             if let lastMessage = chat.lastMessage, let user = chat.user {
 
                 if !user.isBroadcastBool && lastMessage.typeEnum != .GROUP_EVENT && lastMessage.messageState != .READ {
@@ -120,8 +115,6 @@ class ChatsListVC: BaseSearchableVC
             }
         }
     }
-
-
 
     private func addVoiceMessageStateListener() {
         for chat in chats {
@@ -152,7 +145,6 @@ class ChatsListVC: BaseSearchableVC
             cell.lastMessage.textColor = Colors.typingAndRecordingColors
             cell.lastMessage.text = state.getStatString()
         }
-
     }
 
     private func updateChatLastMessageOrStateLbl(uid: String, state: TypingState, userInGroupTyping: User? = nil) {
@@ -178,10 +170,7 @@ class ChatsListVC: BaseSearchableVC
                 setLastMessageText(state, chat, cell)
             }
         }
-
     }
-
-
 
     @objc private func rightBarBtnTapped() {
         if let tabBarController = tabBarController as? TabBarVC {
@@ -224,7 +213,6 @@ class ChatsListVC: BaseSearchableVC
             controller.initialize(user: user)
             controller.delegate = self
         }
-
         else if let controller = segue.destination as? UserDetailsBase, let user = (sender as? Chat)?.user {
             controller.initialize(user: user)
         }
@@ -233,13 +221,23 @@ class ChatsListVC: BaseSearchableVC
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
+        
         tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "req"), style: .plain, target: self, action: #selector(leftBarBtnTapped))
         
         tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "edit-chat"), style: .plain, target: self, action: #selector(rightBarBtnTapped))
-
         tabBarController?.navigationItem.title = "Chats"
-
         attachListeners()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -448,39 +446,29 @@ extension ChatsListVC: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isInSearchMode = false
         tableView.reloadData()
-
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-
 
         searchResults = RealmHelper.getInstance(appRealm).searchForChat(query: searchText)
 
         isInSearchMode = searchText.isNotEmpty
         tableView.reloadData()
-
     }
-
-
-
 }
+
 extension ChatsListVC: GroupTypingDelegate {
 
     func onAllNotTyping(groupId: String) {
         currentTypingUsersDict.removeValue(forKey: groupId)
         updateChatLastMessageOrStateLbl(uid: groupId, state: .NOT_TYPING)
-
-
-
     }
 
     func onTyping(state: TypingState, groupId: String, user: User?) {
         guard let user = user else {
             return
         }
-
-
+        
         currentTypingUsersDict[groupId] = state
         updateChatLastMessageOrStateLbl(uid: groupId, state: state, userInGroupTyping: user)
     }
@@ -492,9 +480,5 @@ extension ChatsListVC: ChatVCDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.goToChatVC(user: user)
         }
-
-
     }
-
-
 }

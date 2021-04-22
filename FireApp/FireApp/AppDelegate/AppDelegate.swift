@@ -403,9 +403,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
-    @objc func userDidLogin() {
-
-
+    @objc func userDidLogin()
+    {
         registerNotifications()
         //sync contacts for the first time
         if FireManager.isLoggedIn && UserDefaultsManager.isUserInfoSaved() {
@@ -417,7 +416,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 setNotificationsListeners()
             }
         }
-
 
         FCMTokenSaver.saveTokenToFirebase(token: nil).subscribe().disposed(by: disposeBag)
         checkForUpdate()
@@ -439,13 +437,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 center.delegate = self
             }
-
-
         )
 
         application?.registerForRemoteNotifications()
     }
-    fileprivate func resetApp(_ application: UIApplication) {
+    fileprivate func resetApp(_ application: UIApplication)
+    {
         let userDefaults = UserDefaults.standard
 
         if !userDefaults.bool(forKey: "hasRunBefore") {
@@ -512,20 +509,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        //
 
-
-
-//        push.application(application, didReceiveRemoteNotification: userInfo)
         if let event = userInfo["event"] as? String {
             if event == "group_event" {
                 handleGroupEvent(userInfo: userInfo)
             } else {
                 completionHandler(UIBackgroundFetchResult.noData)
             }
-
-
-
         }
     }
 
@@ -537,7 +527,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
     // the FCM registration token.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-
 
         let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1) }
 
@@ -599,7 +588,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     //remove events to prevent duplicate unRead counts
                     baseVc.unRegisterEvents()
                 }
-                
             }
         }
     }
@@ -616,34 +604,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let shareNavVC = storyboard.instantiateViewController(withIdentifier: "shareNavVC")
             self.window?.rootViewController = shareNavVC
             self.window?.makeKeyAndVisible()
-
-
-
             return true
-
         }
+        
         guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true) else { return false }
-
-
         if let scheme = components.scheme, scheme.starts(with: Config.groupVoiceCallLink), let conferenceId = components.host {
 
             SwiftEventBus.post(EventNames.groupVoiceCallLinkTapped, sender: conferenceId)
-
-
-
             return true
 
         }
-
-
-
         return false
 
     }
 }
-
-
-
 
 extension AppDelegate: PKPushRegistryDelegate {
     // Handle updated push credentials

@@ -129,19 +129,16 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     var contextSelectedItemType: ContextItemType = .forward {
         didSet {
-            if contextSelectedItemType == .delete {
-
+            if contextSelectedItemType == .delete
+            {
                 leftButtonToolbar = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(toolbarTrashDidClick))
-
                 toolbar.items?[0] = leftButtonToolbar
-
                 rightButtonToolbar.hide()
 
             } else if contextSelectedItemType == .forward {
                 leftButtonToolbar = UIBarButtonItem(barButtonSystemItem: .reply, target: self, action: #selector(toolbarForwardDidClick))
 
                 toolbar.items?[0] = leftButtonToolbar
-
                 rightButtonToolbar.show()
             }
         }
@@ -191,8 +188,9 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var replyDescTitle: UILabel!
     @IBOutlet weak var replyThumb: UIImageView!
     @IBOutlet weak var replyCancel: UIButton!
-
     @IBOutlet weak var typingViewContainer: UIView!
+    
+    @IBOutlet weak var tblviewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var typingViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var typingViewBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordButtonBottomLayoutConstraint: NSLayoutConstraint!
@@ -267,7 +265,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewHasAppeared = true
-
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
         //fix when going to PreviewImageVideoController , the navigation bar might be hidden when playing video
         UIView.animate(withDuration: 0.2) {
             self.navigationController?.isNavigationBarHidden = false
@@ -311,6 +309,10 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         SwiftEventBus.unregister(self)
         //hide kb
         textView.endEditing(true)
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -383,11 +385,16 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         }
     }
 
-    fileprivate func setupSearchbar() {
-
+    fileprivate func setupSearchbar()
+    {
         searchBar = UISearchBar()
         searchBar.showsCancelButton = true
         searchBar.delegate = self
+        searchBar.searchBarStyle = .minimal
+        searchBar.backgroundColor = .clear
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.backgroundColor = .white
+        }
         self.definesPresentationContext = true
     }
 
@@ -668,33 +675,52 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     {
         if let keyboardRectangle = keyboardFrame
         {
-            keyboardHeight = keyboardRectangle.height
-            UIView.animate(withDuration: 0.25, animations: {
-                self.typingViewBottomLayoutConstraint.constant = self.keyboardHeight
-                self.scrollToLast()
-                self.view.layoutIfNeeded()
-            })
-        }
-        
-        if !isInSearchMode {
-            return
-        }
-
-        if !searchBar.isFirstResponder {
-            return
+            if isInSearchMode
+            {
+                typingViewContainer.alpha = 0
+                recordView.alpha = 0
+                keyboardHeight = keyboardRectangle.height
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.tblviewBottomConstraint.constant = self.keyboardHeight
+                    self.view.layoutIfNeeded()
+                })
+            }
+            else
+            {
+                typingViewContainer.alpha = 1
+                recordView.alpha = 1
+                keyboardHeight = keyboardRectangle.height
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.typingViewBottomLayoutConstraint.constant = self.keyboardHeight
+                    self.tblviewBottomConstraint.constant = self.keyboardHeight + 55
+                    self.scrollToLast()
+                    self.view.layoutIfNeeded()
+                })
+            }
         }
     }
     
     //move tableview down if user exits search mode
     override func keyBoardWillHide()
     {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.typingViewBottomLayoutConstraint.constant = 0
-            self.view.layoutIfNeeded()
-        })
-        if !isInSearchMode
+        if isInSearchMode
         {
-            return
+            typingViewContainer.alpha = 0
+            recordView.alpha = 0
+            UIView.animate(withDuration: 0.25, animations: {
+                self.tblviewBottomConstraint.constant = 55
+                self.view.layoutIfNeeded()
+            })
+        }
+        else
+        {
+            typingViewContainer.alpha = 1
+            recordView.alpha = 1
+            UIView.animate(withDuration: 0.25, animations: {
+                self.typingViewBottomLayoutConstraint.constant = 0
+                self.tblviewBottomConstraint.constant = 55
+                self.view.layoutIfNeeded()
+            })
         }
     }
 
@@ -783,7 +809,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     @objc private func upArrowTapped()
     {
-        if searchResults.isEmpty || searchIndex - 1 < 0
+        if searchResults == nil || searchResults.isEmpty || searchIndex - 1 < 0
         {
             return
         }
@@ -799,9 +825,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     @objc private func downArrowTapped()
     {
-
-        if searchResults.isEmpty || searchIndex + 2 > searchResults.count {
-            //not found
+        if searchResults == nil || searchResults.isEmpty || searchIndex + 2 > searchResults.count
+        {
             return
         }
 
@@ -852,8 +877,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             arrowsToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
             arrowsToolbar.barStyle = .default
 
-            upArrowItem = UIBarButtonItem(image: UIImage(named: "arrow_up"), style: .plain, target: self, action: #selector(upArrowTapped))
-            downArrowItem = UIBarButtonItem(image: UIImage(named: "arrow_down"), style: .plain, target: self, action: #selector(downArrowTapped))
+            upArrowItem = UIBarButtonItem(image: UIImage(named: "up-arrow"), style: .plain, target: self, action: #selector(upArrowTapped))
+            downArrowItem = UIBarButtonItem(image: UIImage(named: "down-arrow"), style: .plain, target: self, action: #selector(downArrowTapped))
             arrowsToolbar.items = [upArrowItem, downArrowItem]
             arrowsToolbar.sizeToFit()
             searchBar.inputAccessoryView = arrowsToolbar
@@ -2034,9 +2059,9 @@ extension ChatViewController: RecordViewDelegate {
     }
 }
 
-extension ChatViewController: ChooseActionAlertDelegate {
+extension ChatViewController: ChooseActionAlertDelegate
+{
     fileprivate func sendLocation(_ mLocation: Location) {
-
 
         LocationImageExtractor.getMapImage(location: mLocation.location) { (mapImage) in
             guard let mapImage = mapImage else {
@@ -2441,12 +2466,13 @@ extension ChatViewController: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
-
-        // Remove focus from the search bar.
-//        searchBar.endEditing(true)
-
         searchBar.resignFirstResponder()
-
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.typingViewContainer.alpha = 1
+            self.recordView.alpha = 1
+            self.view.layoutIfNeeded()
+        })
         tblView.reloadData()
         setupNavigationItems()
 
@@ -2458,16 +2484,14 @@ extension ChatViewController: UISearchBarDelegate {
         guard let message = messages.getItemSafely(index: index) as? Message else {
             return
         }
-
-
+        self.tblView.reloadData()
         DispatchQueue.main.async {
             let numberOfRows = self.tblView.numberOfRows(inSection: 0)
 
-            if numberOfRows > 0 {
-
+            if numberOfRows > 0
+            {
                 let indexPath = IndexPath(row: index, section: 0)
                 self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
                         let cell = self.tblView.cellForRow(at: IndexPath(row: index, section: 0))
