@@ -309,10 +309,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         SwiftEventBus.unregister(self)
         //hide kb
         textView.endEditing(true)
-        
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -1866,7 +1862,6 @@ extension ChatViewController: AudioCellDelegate {
         } else {
             audioProgressDict[messageId] = AudioProgress(currentProgress: 0, duration: 0, playerState: state)
         }
-
 
         if let cell = tblView.cellForRow(at: indexPath) as? AudioBase {
             cell.playerState = state

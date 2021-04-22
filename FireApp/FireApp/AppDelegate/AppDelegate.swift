@@ -470,12 +470,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-
+        
         if response.actionIdentifier == UNNotificationDefaultActionIdentifier, let chatId = response.notification.request.content.userInfo["chatId"] as? String {
 
             SwiftEventBus.post(EventNames.notificationTapped, sender: chatId)
-
+            goToInitialVC()
         }
+        
         completionHandler()
     }
 
@@ -646,7 +647,6 @@ extension AppDelegate: PKPushRegistryDelegate {
         UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
             if let error = error { }
         })
-
     }
 
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
@@ -656,8 +656,6 @@ extension AppDelegate: PKPushRegistryDelegate {
         guard let callId = data["callId"] as? String else {
             return
         }
-
-
 
         let fromId = data["callerId"] as? String ?? ""
 
@@ -754,22 +752,12 @@ extension AppDelegate: PKPushRegistryDelegate {
 
             }
         }
-
-
-
-
-
     }
 
     func pushRegistry(_ registry: PKPushRegistry, didInvalidatePushTokenFor type: PKPushType) {
 
     }
-
-
-
 }
-
-
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
@@ -787,7 +775,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler([])
     }
 }
-
 
 //Userapp
 

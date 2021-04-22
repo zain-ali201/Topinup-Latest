@@ -221,9 +221,6 @@ class ChatsListVC: BaseSearchableVC
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
         
         tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "req"), style: .plain, target: self, action: #selector(leftBarBtnTapped))
@@ -234,9 +231,7 @@ class ChatsListVC: BaseSearchableVC
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+        
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor(red: 48.0/255.0, green: 123.0/255.0, blue: 248.0/255.0, alpha: 1)
     }
 
@@ -305,9 +300,7 @@ extension ChatsListVC: UITableViewDelegate, UITableViewDataSource {
 
         exitSearchModeExplicitly()
         goToChatVC(user: user)
-
     }
-
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let chat = self.getDataSource().getItemSafely(index: indexPath.row) as? Chat, let user = chat.user else {
