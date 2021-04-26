@@ -26,9 +26,9 @@ extension PhotoEditorViewController {
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         photoEditorDelegate?.canceledEditing()
-//        self.dismiss(animated: true, completion: nil)
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.popViewController(animated: false)
+        self.dismiss(animated: false, completion: nil)
+//        self.navigationController?.navigationBar.isHidden = false
+//        self.navigationController?.popViewController(animated: false)
     }
 
     @IBAction func cropButtonTapped(_ sender: UIButton) {
@@ -111,7 +111,7 @@ extension PhotoEditorViewController {
     //MAKR: helper methods
     
     @objc func image(_ image: UIImage, withPotentialError error: NSErrorPointer, contextInfo: UnsafeRawPointer) {
-        let alert = UIAlertController(title: "Image Saved", message: "Image successfully saved to Photos library.", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Image Saved", message: "Image saved successfully to Photo Library.", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

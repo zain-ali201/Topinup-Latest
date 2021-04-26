@@ -165,9 +165,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     var searchBar: UISearchBar!
     //search items
-    var arrowsToolbar: UIToolbar!
-    var upArrowItem: UIBarButtonItem!
-    var downArrowItem: UIBarButtonItem!
+//    var arrowsToolbar: UIToolbar!
+//    var upArrowItem: UIBarButtonItem!
+//    var downArrowItem: UIBarButtonItem!
+    var upArrowItem: UIButton!
+    var downArrowItem: UIButton!
     //current found search results
     var searchResults: Results<Message>!
 
@@ -296,8 +298,11 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             }
 
             //scroll to bottom once view loaded
-            let indexPath = IndexPath(row: messages.count - 1, section: 0)
-            tblView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            if indexPath.row < self.tblView.numberOfRows(inSection: 0)
+            {
+                tblView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            }
             tblView.layoutIfNeeded()
         }
     }
@@ -635,13 +640,17 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             return
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.13)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25)
         {
             let numberOfRows = self.tblView.numberOfRows(inSection: 0)
 
-            if numberOfRows > 0 {
+            if numberOfRows > 0
+            {
                 let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-                self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                if indexPath.row < numberOfRows
+                {
+                    self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
             }
         }
 
@@ -870,14 +879,32 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
             searchBar.becomeFirstResponder()
 
-            arrowsToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-            arrowsToolbar.barStyle = .default
-
-            upArrowItem = UIBarButtonItem(image: UIImage(named: "up-arrow"), style: .plain, target: self, action: #selector(upArrowTapped))
-            downArrowItem = UIBarButtonItem(image: UIImage(named: "down-arrow"), style: .plain, target: self, action: #selector(downArrowTapped))
-            arrowsToolbar.items = [upArrowItem, downArrowItem]
-            arrowsToolbar.sizeToFit()
-            searchBar.inputAccessoryView = arrowsToolbar
+//            arrowsToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+//            arrowsToolbar.barStyle = .default
+//
+//            upArrowItem = UIBarButtonItem(image: UIImage(named: "up-arrow"), style: .plain, target: self, action: #selector(upArrowTapped))
+//            downArrowItem = UIBarButtonItem(image: UIImage(named: "down-arrow"), style: .plain, target: self, action: #selector(downArrowTapped))
+//            arrowsToolbar.items = [upArrowItem, downArrowItem]
+//            arrowsToolbar.sizeToFit()
+            let arrowsView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+            arrowsView.backgroundColor = .white
+            let lineView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0.5))
+            lineView.alpha = 0.5
+            lineView.backgroundColor = .lightGray
+            
+            upArrowItem = UIButton(frame: CGRect(x: 15, y: 0, width: 30, height: 50))
+            upArrowItem.setImage(UIImage(named: "up-arrow"), for: .normal)
+            upArrowItem.addTarget(self, action: #selector(upArrowTapped), for: .touchUpInside)
+            
+            downArrowItem = UIButton(frame: CGRect(x: 50, y: 0, width: 30, height: 50))
+            downArrowItem.setImage(UIImage(named: "down-arrow"), for: .normal)
+            downArrowItem.addTarget(self, action: #selector(downArrowTapped), for: .touchUpInside)
+            
+            arrowsView.addSubview(lineView)
+            arrowsView.addSubview(upArrowItem)
+            arrowsView.addSubview(downArrowItem)
+            
+            searchBar.inputAccessoryView = arrowsView
         }
         else
         {
@@ -1402,7 +1429,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
         let message = MessageCreator(user: user, type: .SENT_IMAGE, appRealm: appRealm).quotedMessage(getQuotedMessage()).schedulingMode(bool: isInSchedulingMode).image(imageData: data, thumbImage: previewImage).build()
 
-
         if  isInSchedulingMode
         {
             sendScheduledMessage(message)
@@ -1413,7 +1439,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         }
         cancelReplyDidClick()
     }
-
 
     //getQuotedMessage if available
     private func getQuotedMessage() -> Message? {
@@ -2486,7 +2511,11 @@ extension ChatViewController: UISearchBarDelegate {
             if numberOfRows > 0
             {
                 let indexPath = IndexPath(row: index, section: 0)
-                self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                
+                if indexPath.row < numberOfRows
+                {
+                    self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
                         let cell = self.tblView.cellForRow(at: IndexPath(row: index, section: 0))
@@ -2511,11 +2540,13 @@ extension ChatViewController: UISearchBarDelegate {
         DispatchQueue.main.async {
             let numberOfRows = self.tblView.numberOfRows(inSection: 0)
 
-            if numberOfRows > 0 {
-
+            if numberOfRows > 0
+            {
                 let indexPath = IndexPath(row: index, section: 0)
-                self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-
+                if indexPath.row <= numberOfRows
+                {
+                    self.tblView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
                         let cell = self.tblView.cellForRow(at: IndexPath(row: index, section: 0))
@@ -2529,7 +2560,6 @@ extension ChatViewController: UISearchBarDelegate {
                                 })
                         }
                     })
-
             }
         }
     }
@@ -2572,8 +2602,6 @@ extension ChatViewController: UIScrollViewDelegate {
             return
         }
 
-
-
         if tblView.lastVisibleRow != messages.lastIndex() {
             if scrollDownView.isHidden {
                 hideWithAnimation(false)
@@ -2604,25 +2632,19 @@ extension ChatViewController: UIScrollViewDelegate {
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-
             hideOrShowScrollDownView()
         }
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         hideOrShowScrollDownView()
-
-
     }
 
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         hideOrShowScrollDownView()
-
-
     }
-
-
 }
+
 //check which user is typing,recording
 extension ChatViewController: GroupTypingDelegate {
     func onTyping(state: TypingState, groupId: String, user: User?) {
@@ -2677,9 +2699,9 @@ extension ChatViewController: CameraResult {
         IQKeyboardManager.shared.enable = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = false
         let imageEditorVc = ImageEditorRequest.getRequest(image: image!, delegate: self)
-//        imageEditorVc.modalPresentationStyle = .fullScreen
-//        self.present(imageEditorVc, animated: false, completion: nil)
-        self.navigationController?.pushViewController(imageEditorVc, animated: false)
+        imageEditorVc.modalPresentationStyle = .fullScreen
+        self.present(imageEditorVc, animated: false, completion: nil)
+//        self.navigationController?.pushViewController(imageEditorVc, animated: false)
     }
 }
 
@@ -2689,10 +2711,9 @@ extension ChatViewController: PhotoEditorDelegate {
     }
     
     func doneEditing(image: UIImage) {
-
         if let data = image.toData(.highest) {
-            self.scrollToLast()
             sendImage(data: data)
+            self.scrollToLast()
         }
     }
 }

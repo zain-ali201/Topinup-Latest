@@ -31,9 +31,7 @@ class RequestManager {
             case .SENT_TEXT, .SENT_CONTACT, .SENT_LOCATION:
 
                 UploadManager.sendMessage(message: message, callback: callback, appRealm: appRealm)
-
                 break;
-
 
             default:
                 if (message.isForwarded) {
@@ -54,9 +52,7 @@ class RequestManager {
                 callback?(isSuccess)
                 endBackgroundTask(messageId: message.messageId)
             }, appRealm: appRealm )
-            
         }
-
     }
     
     
