@@ -142,6 +142,7 @@ PODS:
     - Permission/Core
   - Permission/Photos (3.1.2):
     - Permission/Core
+  - PhotoCircleCrop (1.3.2)
   - PromisesObjC (1.2.12)
   - Protobuf (3.14.0)
   - Realm (5.4.5):
@@ -242,6 +243,7 @@ DEPENDENCIES:
   - Permission/Microphone (= 3.1.2)
   - Permission/Notifications (= 3.1.2)
   - Permission/Photos (= 3.1.2)
+  - PhotoCircleCrop
   - RealmSwift (= 5.4.5)
   - ReverseExtension
   - RxCocoa (= 5.1.1)
@@ -316,6 +318,7 @@ SPEC REPOS:
     - NotificationBannerSwift
     - NotificationView
     - Permission
+    - PhotoCircleCrop
     - PromisesObjC
     - Protobuf
     - Realm
@@ -396,6 +399,7 @@ SPEC CHECKSUMS:
   NotificationBannerSwift: 713e20f21b6105f4a36a00e5d9fa414a930d3d8e
   NotificationView: 1fe16a62d2b1866dc9b0e83782b4b97b385021b2
   Permission: 4821359fb4d4367fb59aa16df38fbba5722ac842
+  PhotoCircleCrop: cdbea998ad27778853977b349dd2e7c3352c9245
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 0cde852566359049847168e51bd1c690e0f70056
   Realm: 155c60aec98b1044a05d676017be6900a9ee93b6
@@ -426,6 +430,6 @@ SPEC CHECKSUMS:
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
   YNSearch: 56d4aad4547fd1efce355cccc220a94735b1ea14
 
-PODFILE CHECKSUM: a59866c23e38f8c90db1d1fd4031bcbf743db9d6
+PODFILE CHECKSUM: afa8f0291482f576fd7b6cbe6fc5b75091964699
 
 COCOAPODS: 1.10.1

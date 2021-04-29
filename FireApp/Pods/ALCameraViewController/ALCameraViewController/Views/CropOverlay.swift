@@ -42,8 +42,8 @@ internal class CropOverlay: UIView {
     var croppedRect: CGRect {
         return CGRect(x: frame.origin.x + outterGap,
                       y: frame.origin.y + outterGap,
-                      width: frame.size.width - 2 * outterGap,
-                      height: frame.size.height - 2 * outterGap)
+                      width: 300,
+                      height: 300)
     }
 
     internal override init(frame: CGRect) {
@@ -115,11 +115,14 @@ internal class CropOverlay: UIView {
         precisionView.isUserInteractionEnabled = false
         precisionView.layer.borderWidth = 1
         precisionView.layer.borderColor = UIColor.white.cgColor
+        precisionView.layer.cornerRadius = 150
 
         precisionView.topAnchor.constraint(equalTo: topAnchor, constant: outterGap).isActive = true
         precisionView.leftAnchor.constraint(equalTo: leftAnchor, constant: outterGap).isActive = true
         precisionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -outterGap).isActive = true
         precisionView.rightAnchor.constraint(equalTo: rightAnchor, constant: -outterGap).isActive = true
+//        precisionView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: UIScreen.main.bounds.size.height / 2 - 150).isActive = true
+//        precisionView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: UIScreen.main.bounds.size.width / 2 - 150).isActive = true
 
 //        loadCornerLines()
         loadPrecisionLines()
@@ -274,18 +277,18 @@ internal class CropOverlay: UIView {
         }
         else if isMovable
         {
-            if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
-                let translation = gestureRecognizer.translation(in: self)
-
-                let newFrame = CGRect(x: frame.origin.x + translation.x,
-                                      y: frame.origin.y + translation.y,
-                                      width: frame.size.width,
-                                      height: frame.size.height)
-
-                gestureRecognizer.setTranslation(CGPoint.zero, in: self)
-
-                delegate?.didMoveCropOverlay(newFrame: newFrame)
-            }
+//            if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+//                let translation = gestureRecognizer.translation(in: self)
+//
+//                let newFrame = CGRect(x: frame.origin.x + translation.x,
+//                                      y: frame.origin.y + translation.y,
+//                                      width: frame.size.width,
+//                                      height: frame.size.height)
+//
+//                gestureRecognizer.setTranslation(CGPoint.zero, in: self)
+//
+//                delegate?.didMoveCropOverlay(newFrame: newFrame)
+//            }
         }
     }
 }

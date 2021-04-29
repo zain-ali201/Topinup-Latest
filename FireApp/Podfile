@@ -60,6 +60,7 @@ target 'Topinup' do
   pod 'NotificationBannerSwift', '3.0.2'
   pod 'NotificationView', '0.2.4'
   pod 'BottomPopup', '0.6.0'
+  pod 'PhotoCircleCrop'
 
 
 #user app

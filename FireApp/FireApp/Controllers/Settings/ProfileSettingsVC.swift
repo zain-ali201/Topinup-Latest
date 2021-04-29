@@ -8,9 +8,10 @@
 
 import UIKit
 import ALCameraViewController
+import PhotoCircleCrop
 
-class ProfileSettingsVC: BaseVC {
-
+class ProfileSettingsVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CircleCropViewControllerDelegate {
+    
     @IBOutlet weak var userImg: UIImageView!
     @IBOutlet weak var btnPickImage: UIButton!
 
@@ -20,14 +21,14 @@ class ProfileSettingsVC: BaseVC {
 
     @IBOutlet weak var btnEditUsername: UIButton!
     var user: User!
+    
+    let circleCropController: CircleCropViewController? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         userImg.layer.cornerRadius = 75
         userImg.layer.masksToBounds = true
-
-        
 
         btnEditUsername.addTarget(self, action: #selector(btnEditUsernameTapped), for: .touchUpInside)
         btnPickImage.addTarget(self, action: #selector(btnPickImageTapped), for: .touchUpInside)
@@ -47,7 +48,8 @@ class ProfileSettingsVC: BaseVC {
     }
 
     //change status
-    @objc private func statusLblTapped() {
+    @objc private func statusLblTapped()
+    {
         let alert = UIAlertController(title: Strings.enter_your_status, message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = Strings.status
@@ -76,24 +78,79 @@ class ProfileSettingsVC: BaseVC {
     //change user's image
     @objc private func btnPickImageTapped() {
 
-        let cameraViewController = CropImageRequest.getRequest { (image, asset) in
-            if let image = image {
-                self.showLoadingViewAlert()
-                FireManager.changeMyPhoto(image: image,appRealm: appRealm).subscribe(onCompleted: {
-                    
-                    DispatchQueue.main.async {
-                        self.userImg.image = image
-                        self.setUI()
-                    }
-                    self.hideLoadingViewAlert()
-                }) { (error) in
-                    self.hideLoadingViewAlert()
-                }.disposed(by: self.disposeBag)
-            }
-            self.dismiss(animated: true, completion: nil)
+//        let cameraViewController = CropImageRequest.getRequest { (image, asset) in
+//            if let image = image {
+//                self.showLoadingViewAlert()
+//                FireManager.changeMyPhoto(image: image,appRealm: appRealm).subscribe(onCompleted: {
+//
+//                    DispatchQueue.main.async {
+//                        self.userImg.image = image
+//                        self.setUI()
+//                    }
+//                    self.hideLoadingViewAlert()
+//                }) { (error) in
+//                    self.hideLoadingViewAlert()
+//                }.disposed(by: self.disposeBag)
+//            }
+//            self.dismiss(animated: true, completion: nil)
+//        }
+//
+//        present(cameraViewController, animated: true, completion: nil)
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = false
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { (_) in
+            imagePickerController.sourceType = .camera
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: { (_) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+
+        alert.addAction(UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil))
+
+        self.present(alert, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        var selectedImage: UIImage?
+        if let editedImage = info[.editedImage] as? UIImage {
+            selectedImage = editedImage
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            selectedImage = originalImage
         }
-      
-        present(cameraViewController, animated: true, completion: nil)
+        
+        picker.dismiss(animated: false, completion:
+        {
+            let circleCropController = CircleCropViewController()
+            circleCropController.image = selectedImage
+            circleCropController.delegate = self
+            circleCropController.modalPresentationStyle = .fullScreen
+            self.present(circleCropController, animated: true, completion: nil)
+        })
+    }
+    
+    func circleCropDidCropImage(_ image: UIImage)
+    {
+        self.userImg.image = image
+        self.showLoadingViewAlert()
+        FireManager.changeMyPhoto(image: image,appRealm: appRealm).subscribe(onCompleted: {
+
+            DispatchQueue.main.async {
+                self.userImg.image = image
+                self.setUI()
+            }
+            self.hideLoadingViewAlert()
+        }) { (error) in
+            self.hideLoadingViewAlert()
+        }.disposed(by: self.disposeBag)
     }
 
     //change user's name
@@ -122,7 +179,4 @@ class ProfileSettingsVC: BaseVC {
 
         self.present(alert, animated: true)
     }
-
-
-
 }

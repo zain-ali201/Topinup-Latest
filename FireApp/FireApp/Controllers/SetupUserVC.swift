@@ -13,8 +13,9 @@ import FirebaseStorage
 import Kingfisher
 import FirebaseMessaging
 import Permission
+import PhotoCircleCrop
 
-class SetupUserVC: BaseVC
+class SetupUserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CircleCropViewControllerDelegate
 {
     @IBOutlet weak var imgBtn: UIButton!
     @IBOutlet weak var textField: UITextField!
@@ -247,19 +248,63 @@ class SetupUserVC: BaseVC
         permission.deniedAlert = alert
 
 //        permission.request { status in
-            let vc = CropImageRequest.getRequest { (image, asset) in
-                if let image = image {
-                    self.pickedImage = image
-                    self.imgBtn.setImage(image, for: .normal)
-
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-            self.present(vc, animated: true, completion: nil)
+//            let vc = CropImageRequest.getRequest { (image, asset) in
+//                if let image = image {
+//                    self.pickedImage = image
+//                    self.imgBtn.setImage(image, for: .normal)
+//
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+//            }
+//            self.present(vc, animated: true, completion: nil)
 
 //        }
+    
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = false
+        
+        let photoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        photoAlert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { (_) in
+            imagePickerController.sourceType = .camera
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        
+        photoAlert.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: { (_) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+
+        photoAlert.addAction(UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil))
+
+        self.present(photoAlert, animated: true)
     }
 
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        var selectedImage: UIImage?
+        if let editedImage = info[.editedImage] as? UIImage {
+            selectedImage = editedImage
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            selectedImage = originalImage
+        }
+        
+        picker.dismiss(animated: false, completion:
+        {
+            let circleCropController = CircleCropViewController()
+            circleCropController.image = selectedImage
+            circleCropController.delegate = self
+            circleCropController.modalPresentationStyle = .fullScreen
+            self.present(circleCropController, animated: true, completion: nil)
+        })
+    }
+
+    func circleCropDidCropImage(_ image: UIImage)
+    {
+        self.pickedImage = image
+        self.imgBtn.setImage(image, for: .normal)
+    }
 
     fileprivate func loadImageFromUrl(_ url: URL) {
         
@@ -280,8 +325,6 @@ class SetupUserVC: BaseVC
                 }
         }
     }
-
-
 
     //this will fetch the 'defaultUserProfilePhoto' on the server
     //it will be called if this user did not choose an image and he does not have a previous image on the server

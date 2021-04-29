@@ -29,6 +29,7 @@ ${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework
 ${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework
 ${BUILT_PRODUCTS_DIR}/NotificationView/NotificationView.framework
 ${BUILT_PRODUCTS_DIR}/Permission/Permission.framework
+${BUILT_PRODUCTS_DIR}/PhotoCircleCrop/PhotoCircleCrop.framework
 ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
 ${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework
 ${BUILT_PRODUCTS_DIR}/Realm/Realm.framework

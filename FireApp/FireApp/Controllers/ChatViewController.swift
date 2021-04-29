@@ -1998,7 +1998,6 @@ extension ChatViewController: MTImagePickerControllerDelegate {
     func imagePickerController(picker: MTImagePickerController, didFinishPickingWithPhotosModels models: [MTImagePickerPhotosModel]) {
 
         for model in models {
-
 //            //check if it's an image or a video
             if model.mediaType == .Photo {
                 model.getImageAsyncData { data in

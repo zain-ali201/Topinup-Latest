@@ -1,0 +1,6 @@
+framework module PhotoCircleCrop {
+  umbrella header "PhotoCircleCrop-umbrella.h"
+
+  export *
+  module * { export * }
+}
