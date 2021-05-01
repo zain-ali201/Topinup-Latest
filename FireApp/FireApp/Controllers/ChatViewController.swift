@@ -99,7 +99,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             if self.isInSelectMode {
                 navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelActionMode))
 
-                toolbarBottomConstraint.constant = 0
+//                toolbarBottomConstraint.constant = 0
                 backgroundView.bottomAnchor.constraint(equalTo: toolbar.topAnchor).isActive = true
                 navigationItem.hidesBackButton = true
             }
@@ -109,7 +109,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 navigationItem.hidesBackButton = false
                 navigationItem.rightBarButtonItem = callingButtonsNavigation
                 backgroundView.bottomAnchor.constraint(equalTo: typingViewContainer.topAnchor, constant: -16).isActive = true
-                toolbarBottomConstraint.constant = 44
+//                toolbarBottomConstraint.constant = 44
             }
 
             UIView.animate(withDuration: 0.2) {
@@ -172,7 +172,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     var downArrowItem: UIButton!
     //current found search results
     var searchResults: Results<Message>!
-
     var isInSearchMode = false
 
     @IBOutlet weak var tblView: UITableView!
@@ -197,7 +196,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var typingViewBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordButtonBottomLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var recordViewBottomLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var backgroundViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var replyLayoutBottomConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
@@ -2449,9 +2447,10 @@ extension ChatViewController: ContextMenuSelectDelegate
         switch itemType {
         case .forward, .delete:
             contextSelectedItemType = itemType
+            self.view.endEditing(true)
             isInSelectMode = true
             selectOrDeselectItem(indexPath: indexPath, message: message)
-
+            
         case .copy:
             UIPasteboard.general.string = message.content
 
