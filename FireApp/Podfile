@@ -61,7 +61,7 @@ target 'Topinup' do
   pod 'NotificationView', '0.2.4'
   pod 'BottomPopup', '0.6.0'
   pod 'PhotoCircleCrop'
-
+  pod 'ZLPhotoBrowser'
 
 #user app
 pod 'Alamofire', '~> 4.8.2'

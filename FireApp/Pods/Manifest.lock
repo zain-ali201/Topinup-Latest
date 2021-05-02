@@ -198,6 +198,9 @@ PODS:
   - VIMediaCache (0.4)
   - WXImageCompress (0.1.3)
   - YNSearch (2.4.0)
+  - ZLPhotoBrowser (4.1.5):
+    - ZLPhotoBrowser/Core (= 4.1.5)
+  - ZLPhotoBrowser/Core (4.1.5)
 
 DEPENDENCIES:
   - AgoraRtcEngine_iOS (= 3.1.2)
@@ -266,6 +269,7 @@ DEPENDENCIES:
   - VIMediaCache
   - WXImageCompress (= 0.1.3)
   - YNSearch
+  - ZLPhotoBrowser
 
 SPEC REPOS:
   trunk:
@@ -348,6 +352,7 @@ SPEC REPOS:
     - VIMediaCache
     - WXImageCompress
     - YNSearch
+    - ZLPhotoBrowser
 
 SPEC CHECKSUMS:
   AgoraRtcEngine_iOS: 0628532d3475471d1c352ba548cee98492850cc0
@@ -429,7 +434,8 @@ SPEC CHECKSUMS:
   VIMediaCache: aa650f82cb114c68a343beb4e67416cf5eb2f3a2
   WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
   YNSearch: 56d4aad4547fd1efce355cccc220a94735b1ea14
+  ZLPhotoBrowser: 809878607ea92e9411c580797ce1be23896b8d7f
 
-PODFILE CHECKSUM: afa8f0291482f576fd7b6cbe6fc5b75091964699
+PODFILE CHECKSUM: de689690b379adf953b6d9937cb1676c78236391
 
 COCOAPODS: 1.10.1

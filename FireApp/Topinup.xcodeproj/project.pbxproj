@@ -122,6 +122,8 @@
 		1867EA292627179B000D2735 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1867EA262627179A000D2735 /* SWRevealViewController.m */; };
 		1867EA2A2627179B000D2735 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1867EA272627179B000D2735 /* MyAnnotation.m */; };
 		188F23D0262839190064940F /* SegmentedProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23CF262839190064940F /* SegmentedProgressBar.swift */; };
+		18AD689A263EDB3500BECCE2 /* ImageStickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD6836263EDB3400BECCE2 /* ImageStickerContainerView.swift */; };
+		18AD689C263EDB3500BECCE2 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD6838263EDB3400BECCE2 /* ImageCell.swift */; };
 		24EC52CF3DAFC7213C28CF49 /* Pods_ShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89F719F040DA6F2DD63AA339 /* Pods_ShareExtension.framework */; };
 		4405226F5379543C90438E9C /* Pods_Topinup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC81145BED438E462167FA6 /* Pods_Topinup.framework */; };
 		5CFA31CF34DD59EB758B14D3 /* MessageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA362C9EE65F96F99BF4F2 /* MessageState.swift */; };
@@ -673,6 +675,8 @@
 		1867EA272627179B000D2735 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		1867EA282627179B000D2735 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		188F23CF262839190064940F /* SegmentedProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedProgressBar.swift; sourceTree = "<group>"; };
+		18AD6836263EDB3400BECCE2 /* ImageStickerContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStickerContainerView.swift; sourceTree = "<group>"; };
+		18AD6838263EDB3400BECCE2 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		2264B28632FCA5B0C13D8F6F /* Pods-FireApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireApp.release.xcconfig"; path = "Target Support Files/Pods-FireApp/Pods-FireApp.release.xcconfig"; sourceTree = "<group>"; };
 		2AC81145BED438E462167FA6 /* Pods_Topinup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Topinup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		314132724898CF5918A95FE3 /* Pods-NotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.debug.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1315,6 +1319,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		18AD67C6263EDB3400BECCE2 /* ZLPhotoViewer */ = {
+			isa = PBXGroup;
+			children = (
+				18AD6836263EDB3400BECCE2 /* ImageStickerContainerView.swift */,
+				18AD6838263EDB3400BECCE2 /* ImageCell.swift */,
+			);
+			path = ZLPhotoViewer;
+			sourceTree = "<group>";
+		};
 		18C2061925C93D48005523FE /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -1506,7 +1519,6 @@
 		A85887022373592200912E71 /* MTImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				A85887032373592200912E71 /* Camera */,
 				A85887042373592200912E71 /* Controller */,
 				A858870A2373592200912E71 /* Common */,
 				A858870C2373592200912E71 /* Model */,
@@ -1514,13 +1526,6 @@
 				A858871E2373592200912E71 /* Resource */,
 			);
 			path = MTImagePicker;
-			sourceTree = "<group>";
-		};
-		A85887032373592200912E71 /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Camera;
 			sourceTree = "<group>";
 		};
 		A85887042373592200912E71 /* Controller */ = {
@@ -1838,6 +1843,7 @@
 				18C2061925C93D48005523FE /* Storyboards */,
 				18C2061A25C93D64005523FE /* AppDelegate */,
 				A8A941DC23A407C70036172E /* Extensions */,
+				18AD67C6263EDB3400BECCE2 /* ZLPhotoViewer */,
 				A85887022373592200912E71 /* MTImagePicker */,
 				A84843F922C7D3760096DC01 /* Camera */,
 				A817CB0E22DA604800A31BA8 /* Controllers */,
@@ -2492,6 +2498,7 @@
 				1867E93D26270CC2000D2735 /* DemoConversation.swift in Sources */,
 				A83E0BD222A6C98400FCC2AC /* Fire-Extensions.swift in Sources */,
 				A8F8741F2396DAA300A18F90 /* BaseTableVC.swift in Sources */,
+				18AD689A263EDB3500BECCE2 /* ImageStickerContainerView.swift in Sources */,
 				A86420D12333083F00DC85A1 /* PhoneContact.swift in Sources */,
 				A8A943B623788721004D4429 /* ProviderDelegate.swift in Sources */,
 				A8024B8023869D9E00747946 /* UserDetailsBase.swift in Sources */,
@@ -2680,6 +2687,7 @@
 				1867EA2A2627179B000D2735 /* MyAnnotation.m in Sources */,
 				A89BF107240C4C1E00CAC294 /* GroupLinkErrors.swift in Sources */,
 				A8B6576D242D69C9009BF1D4 /* NewNotificationsListeners.swift in Sources */,
+				18AD689C263EDB3500BECCE2 /* ImageCell.swift in Sources */,
 				A854E143241E7DAD00BAF7F8 /* MediaSaver.swift in Sources */,
 				1867E99626270D2F000D2735 /* UIView+Extesnion.swift in Sources */,
 				A80CA8E1231AF25A006DC987 /* ViewLocationVC.swift in Sources */,

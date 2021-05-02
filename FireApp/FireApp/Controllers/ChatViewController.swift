@@ -28,6 +28,7 @@ import RxSwift
 import IQKeyboardManagerSwift
 import QuickLook
 import iOSPhotoEditor
+import ZLPhotoBrowser
 
 protocol ChatVCDelegate {
     func segueToChatVC(user: User)
@@ -214,6 +215,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     @IBOutlet weak var cantReplyLbl: UILabel!
     @IBOutlet weak var schedulingModeView: UIView!
     @IBOutlet weak var cancelSchedulingModeBtn: UIButton!
+    
+    var selectedAssets: [PHAsset] = []
 
     @IBAction func btnSend(_ sender: Any)
     {
@@ -683,6 +686,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 typingViewContainer.alpha = 0
                 recordView.alpha = 0
                 keyboardHeight = keyboardRectangle.height
+                
                 UIView.animate(withDuration: 0.25, animations: {
                     self.tblviewBottomConstraint.constant = self.keyboardHeight
                     self.view.layoutIfNeeded()
@@ -693,6 +697,12 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 typingViewContainer.alpha = 1
                 recordView.alpha = 1
                 keyboardHeight = keyboardRectangle.height
+                print("Before: \(keyboardHeight)")
+                if keyboardHeight > 310
+                {
+                    keyboardHeight = keyboardHeight - 34
+                }
+                print("After: \(keyboardHeight)")
                 UIView.animate(withDuration: 0.25, animations: {
                     self.typingViewBottomLayoutConstraint.constant = self.keyboardHeight
                     self.tblviewBottomConstraint.constant = self.keyboardHeight + 55
@@ -2072,7 +2082,6 @@ extension ChatViewController: RecordViewDelegate {
     func onAnimationEnd() {
         recordView.isHidden = true
         typingViewContainer.isHidden = false
-
     }
 }
 
@@ -2100,13 +2109,13 @@ extension ChatViewController: ChooseActionAlertDelegate
     func didClick(clickedItem: ClickedItem) {
         switch clickedItem {
         case .image:
-            Permissions.requestPhotosPermissions { (isAuthorized) in
-                if isAuthorized {
-                    let imagePicker = ImagePickerRequest.getRequest(delegate: self)
-                    self.present(imagePicker, animated: true, completion: nil)
-                }
-            }
-
+//            Permissions.requestPhotosPermissions { (isAuthorized) in
+//                if isAuthorized {
+//                    let imagePicker = ImagePickerRequest.getRequest(delegate: self)
+//                    self.present(imagePicker, animated: true, completion: nil)
+//                }
+//            }
+            self.showImagePicker(false)
             break
 
         case .camera:
@@ -2126,8 +2135,6 @@ extension ChatViewController: ChooseActionAlertDelegate
                     self.present(navigationController, animated: true, completion: nil)
                 }
             }
-
-
             break
 
         case .location:
@@ -2159,9 +2166,69 @@ extension ChatViewController: ChooseActionAlertDelegate
             }
 
             navigationController?.pushViewController(locationPicker, animated: true)
-
             break
-
+        }
+    }
+    
+    func showImagePicker(_ preview: Bool) {
+        let config = ZLPhotoConfiguration.default()
+        
+        config.imageStickerContainerView = ImageStickerContainerView()
+        
+        // You can first determine whether the asset is allowed to be selected.
+        config.canSelectAsset = { (asset) -> Bool in
+            return true
+        }
+        
+        config.noAuthorityCallback = { (type) in
+            switch type {
+            case .library:
+                debugPrint("No library authority")
+            case .camera:
+                debugPrint("No camera authority")
+            case .microphone:
+                debugPrint("No microphone authority")
+            }
+        }
+        
+        let ac = ZLPhotoPreviewSheet(selectedAssets: self.selectedAssets)
+        ac.selectImageBlock = { [weak self] (images, assets, isOriginal) in
+//            self?.selectedImages = images
+            self?.selectedAssets = assets
+            
+            for asset in assets {
+    //            //check if it's an image or a video
+                if asset.mediaType == .image {
+                    asset.getImageAsyncData { data in
+                        if let data = data {
+                            self?.sendImage(data: data, previewImage: asset.getThumbImage(size: CGSize(width: 275, height: 275))!)
+                        }
+                    }
+                }
+                else {
+                    asset.fetchAVPlayerItemAsync(complete: { (playerItem) in
+                        if let video = playerItem {
+                            DispatchQueue.main.async {
+                                self?.sendVideo(video: video, isFromCamera: false)
+                            }
+                        }
+                    })
+                }
+            }
+            
+            debugPrint("\(images)   \(assets)   \(isOriginal)")
+        }
+        ac.cancelBlock = {
+            debugPrint("cancel select")
+        }
+        ac.selectImageRequestErrorBlock = { (errorAssets, errorIndexs) in
+            debugPrint("fetch error assets: \(errorAssets), error indexs: \(errorIndexs)")
+        }
+        
+        if preview {
+            ac.showPreview(animate: true, sender: self)
+        } else {
+            ac.showPhotoLibrary(sender: self)
         }
     }
 }
@@ -2715,3 +2782,48 @@ extension ChatViewController: PhotoEditorDelegate {
         }
     }
 }
+
+extension PHAsset
+{
+    func getImageAsyncData(complete: @escaping (Data?) -> Void) {
+
+       let options = PHImageRequestOptions()
+       options.isNetworkAccessAllowed = true
+       options.deliveryMode = .highQualityFormat
+
+       let targetSize = CGSize(
+           width: self.pixelWidth,
+           height: self.pixelHeight
+       )
+
+       PHImageManager.default().requestImageData(for: self, options: options) { (data, _, _, _) in
+           complete(data)
+       }
+   }
+    
+    func fetchAVPlayerItemAsync(complete: @escaping (AVPlayerItem?) -> Void) {
+        PHImageManager.default().requestAVAsset(forVideo: self, options: nil) { (avAsset, audioMix, info) in
+            if let avAsset = avAsset {
+                
+                let playerItem: AVPlayerItem = AVPlayerItem(asset: avAsset)
+                complete(playerItem)
+            } else {
+                complete(nil)
+            }
+        }
+    }
+    
+    func getThumbImage(size: CGSize) -> UIImage? {
+        var img: UIImage?
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .fastFormat
+        options.isSynchronous = true
+        PHImageManager.default().requestImage(for: self, targetSize: size, contentMode: .aspectFill, options: options) {
+            image, infoDict in
+            img = image
+
+        }
+        return img
+    }
+}
+

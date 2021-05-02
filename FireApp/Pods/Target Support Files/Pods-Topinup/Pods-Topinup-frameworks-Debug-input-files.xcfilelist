@@ -55,6 +55,7 @@ ${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework
 ${BUILT_PRODUCTS_DIR}/VIMediaCache/VIMediaCache.framework
 ${BUILT_PRODUCTS_DIR}/WXImageCompress/WXImageCompress.framework
 ${BUILT_PRODUCTS_DIR}/YNSearch/YNSearch.framework
+${BUILT_PRODUCTS_DIR}/ZLPhotoBrowser/ZLPhotoBrowser.framework
 ${BUILT_PRODUCTS_DIR}/iOSPhotoEditor/iOSPhotoEditor.framework
 ${BUILT_PRODUCTS_DIR}/iRecordView/iRecordView.framework
 ${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework

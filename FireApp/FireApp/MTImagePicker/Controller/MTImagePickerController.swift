@@ -39,7 +39,6 @@ public class MTImagePickerController:UINavigationController {
         }
         set {
             self._source = newValue
-            // 只有iOS8以上才能使用Photos框架
             if newValue == .Photos {
                 if #available(iOS 8.0, *) {
                     

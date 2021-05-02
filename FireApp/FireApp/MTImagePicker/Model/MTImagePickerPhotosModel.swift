@@ -172,9 +172,6 @@ public class MTImagePickerPhotosModel: MTImagePickerModel {
             } else {
                 complete(nil)
             }
-
-
-
         }
     }
 
