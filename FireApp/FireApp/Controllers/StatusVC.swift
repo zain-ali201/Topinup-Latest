@@ -78,9 +78,9 @@ class StatusVC: BaseVC, UIViewControllerTransitioningDelegate {
         tabBarController?.navigationItem.title = "Status"
         setMyStatus()
 
-//        StatusManager.fetchStatuses(users: RealmHelper.getInstance(appRealm).getUsers()).subscribe(onCompleted: nil) { (error) in
-//
-//              }.disposed(by: disposeBag)
+        StatusManager.fetchStatuses(users: RealmHelper.getInstance(appRealm).getUsers()).subscribe(onCompleted: nil) { (error) in
+
+              }.disposed(by: disposeBag)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

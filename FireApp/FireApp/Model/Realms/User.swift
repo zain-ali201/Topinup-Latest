@@ -10,8 +10,7 @@ import Foundation
 import RealmSwift
 
 class User: Object {
-
-
+    
     override static func primaryKey() -> String? {
         return "uid"
     }
@@ -40,12 +39,10 @@ class User: Object {
     @objc dynamic var isBroadcastBool = false
     @objc dynamic var isStoredInContacts = false
     @objc dynamic var ver = ""
-
     
     var properUserName:String{
         return userName.isEmpty ? phone : userName
     }
-
 
     override open func isEqual(_ object: Any?) -> Bool {
         if let user = object as? User {
@@ -53,8 +50,5 @@ class User: Object {
         }
         return false
     }
-
-
-
 }
 

@@ -36,7 +36,6 @@ class StatusManager {
                 return Disposables.create()
             }
         }
-        
 
         fetchingLock = true
     
@@ -60,13 +59,11 @@ class StatusManager {
         let timeBefore24Hours = TimeHelper.getTimeBefore24Hours()
         //get all user statuses that are not passed 24 hours
         
-        
-        
         let observable = Observable.from(users).flatMap { user -> Single<DataSnapshot> in
             
+            print("User: \(user.uid)")
             let query = FireConstants.statusRef.child(user.uid)
                 .queryOrdered(byChild: "timestamp").queryStarting(atValue: timeBefore24Hours)
-
 
             return query.rx.observeSingleEvent(.value)
         }.map { snapshot in
@@ -80,9 +77,7 @@ class StatusManager {
                     completable(.completed)
                 })
             return Disposables.create()
-
         }
-
     }
 
     private static func fetchTextStatuses(users: Results<User>) -> Completable {

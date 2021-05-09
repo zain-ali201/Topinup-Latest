@@ -94,6 +94,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             tblView.allowsMultipleSelection = isInSelectMode
             toolbar.isHidden = !isInSelectMode
             typingViewContainer.isHidden = isInSelectMode
+            recordView.isHidden = isInSelectMode
 
             recordButton.isHidden = isInSelectMode
             backgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +102,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelActionMode))
 
 //                toolbarBottomConstraint.constant = 0
-                backgroundView.bottomAnchor.constraint(equalTo: toolbar.topAnchor).isActive = true
+//                backgroundView.bottomAnchor.constraint(equalTo: toolbar.topAnchor).isActive = true
                 navigationItem.hidesBackButton = true
             }
             else
@@ -109,7 +110,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
                 selectedItems.removeAll()
                 navigationItem.hidesBackButton = false
                 navigationItem.rightBarButtonItem = callingButtonsNavigation
-                backgroundView.bottomAnchor.constraint(equalTo: typingViewContainer.topAnchor, constant: -16).isActive = true
+//                backgroundView.bottomAnchor.constraint(equalTo: typingViewContainer.topAnchor, constant: -16).isActive = true
 //                toolbarBottomConstraint.constant = 44
             }
 
@@ -1000,7 +1001,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         }
     }
     
-    private var enableVideoAndVoiceCallsBtns:Bool{
+    private var enableVideoAndVoiceCallsBtns:Bool
+    {
         if !user.isGroupBool && !user.isBroadcastBool{
             return true
         }
@@ -1537,7 +1539,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 //        toolbar.tintColor = Colors.appColor
     }
 
-    @objc func toolbarTrashDidClick() {
+    @objc func toolbarTrashDidClick()
+    {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: Strings.cancel, style: .cancel, handler: nil)
         let deleteForMeAction = UIAlertAction(title: Strings.deleteForMe, style: .destructive) { (_) in
@@ -1556,7 +1559,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
             self.selectedItems.removeAll()
             self.isInSelectMode = false
-
         }
 
         if canDeleteForAll {
@@ -2409,29 +2411,26 @@ extension ChatViewController: CellDelegate {
         guard let indexPath = indexPath, let view = view, let message = messages.getItemSafely(index: indexPath.row) as? Message else {
             return
         }
-
+        self.view.endEditing(true)
         let contextVC = ContextMenuViewController()
         //clicked item
         contextVC.currentIndexPath = indexPath
         contextVC.delegate = self
         switch message.typeEnum {
         case .SENT_TEXT, .RECEIVED_TEXT:
-
             break
-
         case .SENT_CONTACT, .RECEIVED_CONTACT, .SENT_LOCATION, .RECEIVED_LOCATION:
             //ADD FORWARD ITEM
             contextVC.removeItems(items: [.copy])
         default:
-
             //ADD FORWARD
             if !canForwardOrShare(message: message) {
                 contextVC.removeItems(items: [.copy, .forward])
             } else {
                 contextVC.removeItems(items: [.copy])
             }
-
         }
+        
         ContextMenu.shared.show(
             sourceViewController: self,
             viewController: contextVC,
