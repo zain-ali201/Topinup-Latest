@@ -131,12 +131,7 @@ extension Base where Self: UIViewController {
             guard let chatId = event?.object as? String, let user = RealmHelper.getInstance(appRealm).getUser(uid: chatId) else {
                 return
             }
-
-
             self.goToChatVC(user: user, isSystemNotification: true)
-
-
-
         }
     }
 
@@ -169,23 +164,17 @@ extension Base where Self: UIViewController {
                 //prevent not added users from joining Conference calls
                 self.showAlert(type: .error, message: "you can't join this Conference call")
             }
-
-
         }
     }
 
     private func goToChatVC(user: User, isSystemNotification: Bool) {
-
-
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
 
         let tabBarVC = self.storyboard?.instantiateViewController(withIdentifier: "tabBarVC") as! TabBarVC
-
         vc.initialize(user: user)
         tabBarVC.navigationItem.title = " "
 
         navigationController?.viewControllers = [tabBarVC]
-
 
         //wait for the VC to load up and then push it using navigation
         if isSystemNotification {
@@ -195,8 +184,6 @@ extension Base where Self: UIViewController {
         } else {
             tabBarVC.navigationController?.pushViewController(vc, animated: true)
         }
-
-
     }
 
     //handle in app notification view tap

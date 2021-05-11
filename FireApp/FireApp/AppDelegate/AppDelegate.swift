@@ -111,7 +111,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 SwiftEventBus.post(EventNames.notificationTapped, sender: chatId)
             }
-
         }
 
         UIApplication.shared.setMinimumBackgroundFetchInterval(15 * 60)
@@ -465,7 +464,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.touchResignedGestureIgnoreClasses.append(UnResignableKBView.self)
     }
 
-
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         if response.actionIdentifier == UNNotificationDefaultActionIdentifier, let chatId = response.notification.request.content.userInfo["chatId"] as? String {
@@ -503,7 +501,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {

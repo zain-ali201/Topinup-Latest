@@ -102,7 +102,6 @@ class StatusVC: BaseVC, UIViewControllerTransitioningDelegate {
         } else {
             performSegue(withIdentifier: "toCameraVC", sender: nil)
         }
-        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -61,7 +61,6 @@ class StatusManager {
         
         let observable = Observable.from(users).flatMap { user -> Single<DataSnapshot> in
             
-            print("User: \(user.uid)")
             let query = FireConstants.statusRef.child(user.uid)
                 .queryOrdered(byChild: "timestamp").queryStarting(atValue: timeBefore24Hours)
 
@@ -86,11 +85,15 @@ class StatusManager {
         let timeBefore24Hours = TimeHelper.getTimeBefore24Hours()
         //get all user statuses that are not passed 24 hours
 
-
         let observable = Observable.from(users).flatMap { user -> Single<DataSnapshot> in
+            
+            if user.uid.isEmpty
+            {
+                user.uid = "123456789"
+            }
+            
             let query = FireConstants.textStatusRef.child(user.uid)
                 .queryOrdered(byChild: "timestamp").queryStarting(atValue: timeBefore24Hours)
-
 
             return query.rx.observeSingleEvent(.value)
         }.map { snapshot in

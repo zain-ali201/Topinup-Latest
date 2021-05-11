@@ -25,12 +25,9 @@ enum MessageType: Int {
     case RECEIVED_CONTACT = 17
     case SENT_LOCATION = 18
     case RECEIVED_LOCATION = 19
-
     case SENT_DELETED_MESSAGE = 30
     case RECEIVED_DELETED_MESSAGE = 31
-
     case STATUS_TYPE = 8888
-
     case GROUP_EVENT = 9999
     case DATE_HEADER = 999
 

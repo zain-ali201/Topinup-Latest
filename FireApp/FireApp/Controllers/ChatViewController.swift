@@ -1463,13 +1463,13 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 
     private func selectOrDeselectItem(indexPath: IndexPath, message: Message) {
 
-        if canForwardOrShare(message: message) {
+//        if canForwardOrShare(message: message) {
             if selectedItems.contains(message) {
                 tableView(tblView, didDeselectRowAt: indexPath)
             } else {
                 tableView(tblView, didSelectRowAt: indexPath)
             }
-        }
+//        }
     }
 
     private func canForwardOrShare(message: Message) -> Bool {
@@ -1483,8 +1483,6 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         case .SENT_DELETED_MESSAGE, .RECEIVED_DELETED_MESSAGE:
             canForwardOrShareBool = false
         default:
-
-
             if message.downloadUploadState == .SUCCESS || message.downloadUploadState == .DEFAULT {
                 //ADD FORWARD
                 canForwardOrShareBool = true
@@ -2523,7 +2521,6 @@ extension ChatViewController: ContextMenuSelectDelegate
         case .reply:
             showReplyLayout(message, indexPath)
             break
-
         }
     }
 }

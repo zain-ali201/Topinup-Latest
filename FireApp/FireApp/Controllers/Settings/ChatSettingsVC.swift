@@ -63,10 +63,11 @@ class ChatSettingsVC: BaseTableVC {
             mediaType = .photos
         case 1:
             mediaType = .videos
-        case 2:
-            mediaType = .audio
+//        case 2:
         default:
-            mediaType = .documents
+            mediaType = .audio
+//        default:
+//            mediaType = .documents
         }
         return mediaType
 
