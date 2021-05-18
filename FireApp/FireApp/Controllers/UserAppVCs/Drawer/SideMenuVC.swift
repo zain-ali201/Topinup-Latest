@@ -244,9 +244,6 @@ class SideMenuVC: UITableViewController {
                         let myAppDelegate = UIApplication.shared.delegate as? AppDelegate
                         myAppDelegate?.setLoginStoryBoardAsRoot()
                     }
-                    
-                    
-                    
                 })
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action : UIAlertAction) in

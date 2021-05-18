@@ -78,7 +78,14 @@ class StatusVC: BaseVC, UIViewControllerTransitioningDelegate {
         tabBarController?.navigationItem.title = "Status"
         setMyStatus()
 
-        StatusManager.fetchStatuses(users: RealmHelper.getInstance(appRealm).getUsers()).subscribe(onCompleted: nil) { (error) in
+        let users = RealmHelper.getInstance(appRealm).getUsers()
+        
+        for user in users
+        {
+            print("UserID: \(user.uid)")
+        }
+        
+        StatusManager.fetchStatuses(users: users).subscribe(onCompleted: nil) { (error) in
 
               }.disposed(by: disposeBag)
     }

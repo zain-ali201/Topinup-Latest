@@ -87,11 +87,6 @@ class StatusManager {
 
         let observable = Observable.from(users).flatMap { user -> Single<DataSnapshot> in
             
-            if user.uid.isEmpty
-            {
-                user.uid = "123456789"
-            }
-            
             let query = FireConstants.textStatusRef.child(user.uid)
                 .queryOrdered(byChild: "timestamp").queryStarting(atValue: timeBefore24Hours)
 

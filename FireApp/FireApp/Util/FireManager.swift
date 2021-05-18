@@ -57,10 +57,6 @@ class FireManager {
 
         let filePath = DirManager.generateUserProfileImage()
 
-
-
-
-
         let observable = ref.write(toFile: filePath)
             .map { data -> String in
                 RealmHelper.getInstance(appRealm).updateUserImg(uid: user.uid, imgUrl: photoUrl, localPath: filePath.path, oldLocalPath: user.userLocalPhoto)
@@ -68,14 +64,7 @@ class FireManager {
                 return filePath.path
 
         }
-
-
-
         return observable
-
-
-
-
     }
 
     static func downloadPhoto(photoUrl: String) -> Observable<String> {
@@ -164,8 +153,6 @@ class FireManager {
 
                 return messageState
         }
-
-
     }
 
 
@@ -179,11 +166,7 @@ class FireManager {
                 RealmHelper.getInstance(appRealm).updateVoiceMessageStateLocally(messageId: messageId, chatId: receiverUid)
                 return Void()
         }
-
-
     }
-
-
 
     public static func setUserBlocked(blockedUserUid: String, setBlocked: Bool, appRealm: Realm) -> Completable {
         let ref = FireConstants.blockedUsersRef.child(FireManager.getUid()).child(blockedUserUid).rx
@@ -207,10 +190,6 @@ class FireManager {
                 }, onDisposed: nil)
             return Disposables.create()
         })
-
-
-
-
     }
 
     public static func fetchUserByUid(uid: String, appRealm: Realm) -> Observable<User> {

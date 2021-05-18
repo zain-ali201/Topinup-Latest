@@ -420,7 +420,7 @@
             <objects>
                 <viewController storyboardIdentifier="SignUpMainVC_ID" id="nI7-V6-j8t" customClass="SignUpMainVC" customModule="Topinup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7sO-l7-l3q">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splashbg-1" translatesAutoresizingMaskIntoConstraints="NO" id="8iq-wh-2zL">

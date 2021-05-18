@@ -1460,9 +1460,8 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
     }
 
     //this will be called when a user taps on the Cell's view itself NOT outside it
-
     private func selectOrDeselectItem(indexPath: IndexPath, message: Message) {
-
+        
 //        if canForwardOrShare(message: message) {
             if selectedItems.contains(message) {
                 tableView(tblView, didDeselectRowAt: indexPath)

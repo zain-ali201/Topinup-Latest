@@ -103,10 +103,6 @@ class RealmHelper {
                 }
             }
         }
-
-
-
-
     }
 
     private func getMessagesInChatForDay(chatId: String, date: Date) -> Results<Message> {
@@ -303,9 +299,7 @@ class RealmHelper {
                 message.localPath = filePath
             }
         }
-
     }
-    
     
     func changeMessageContent(messageId: String, content: String) {
         guard let message = getMessage(messageId: messageId) else {
@@ -315,19 +309,15 @@ class RealmHelper {
         openTransaction {
             message.content = content
         }
-
     }
-
 
     func getUsers() -> Results<User> {
 
-        let currentUserFilterPredicate = NSPredicate(format: "NOT (\(DBConstants.UID) IN %@)", [FireManager.getUid()])
-
-        return uiRealm.objects(User.self)
-
-
-            .filter(currentUserFilterPredicate).filter("\(DBConstants.isGroupBool) == false AND \(DBConstants.isBroadcastBool) == false AND \(DBConstants.IS_STORED_IN_CONTACTS) == true").sorted(byKeyPath: DBConstants.USERNAME)
-
+        let currentUserFilterPredicate = NSPredicate(format: "NOT (\(DBConstants.UID) IN %@) OR \(DBConstants.UID) != ''", [FireManager.getUid()])
+        
+        let nonemptyUserFilterPredicate = NSPredicate(format: "\(DBConstants.UID) != ''")
+        
+        return uiRealm.objects(User.self).filter(nonemptyUserFilterPredicate).filter(currentUserFilterPredicate).filter("\(DBConstants.isGroupBool) == false AND \(DBConstants.isBroadcastBool) == false AND \(DBConstants.IS_STORED_IN_CONTACTS) == true").sorted(byKeyPath: DBConstants.USERNAME)
     }
 
     func getForwardList() -> Results<User> {
