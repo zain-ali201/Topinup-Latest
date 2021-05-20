@@ -80,11 +80,6 @@ class StatusVC: BaseVC, UIViewControllerTransitioningDelegate {
 
         let users = RealmHelper.getInstance(appRealm).getUsers()
         
-        for user in users
-        {
-            print("UserID: \(user.uid)")
-        }
-        
         StatusManager.fetchStatuses(users: users).subscribe(onCompleted: nil) { (error) in
 
               }.disposed(by: disposeBag)

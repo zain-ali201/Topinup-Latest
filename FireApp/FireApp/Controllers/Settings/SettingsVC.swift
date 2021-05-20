@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 
 class SettingsVC: UIViewController {
 
@@ -42,33 +42,49 @@ class SettingsVC: UIViewController {
     
     @IBAction func deleteBtnACtion(_ button: UIButton)
     {
-        let alert: UIAlertController = UIAlertController(title: nil, message:"Are you sure you want to delete your account?", preferredStyle: .alert)
+        let alert: UIAlertController = UIAlertController(title: nil, message:"Are you sure to delete your account?", preferredStyle: .alert)
         
-        let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+        let no: UIAlertAction = UIAlertAction(title: "NO", style: .cancel) { action -> Void in
             print("Cancel")
         }
         
-        let delete: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
+        let yes: UIAlertAction = UIAlertAction(title: "YES", style: .destructive)
         { action -> Void in
             
-            let user = FireManager.auth().currentUser
+            let delAlert: UIAlertController = UIAlertController(title: "By deleting your account:", message:"- Your account info and profile photo will be deleted\n- Your all Whatsapp groups and message history will be deleted", preferredStyle: .actionSheet)
+            
+            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+                print("Cancel")
+            }
+            
+            let delete: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
+            { action -> Void in
+                
+                let user = FireManager.auth().currentUser
+                
+                if user != nil
+                {
+//                    FireConstants.usersRef.child(user!.uid).remove().addOnSuccessListener { user?.delete().addOnCompleteListener
+//                        {
+//
+//                        }
+//                    }
+                    
+                    FireManager.deleteUserAccount(uid: user!.uid)
 
-            user?.delete { error in
-                if let error = error
-                {
-                    print(error)
-                }
-                else
-                {
                     UserDefaultsManager.setAgreedToPolicy(bool: false)
                     let mainVC = self.storyboard!.instantiateViewController(withIdentifier: "mainVc")
                     UIApplication.shared.keyWindow?.rootViewController = mainVC
                 }
             }
+            
+            delAlert.addAction(cancel)
+            delAlert.addAction(delete)
+            self.present(delAlert, animated: true, completion: nil)
         }
         
-        alert.addAction(cancel)
-        alert.addAction(delete)
+        alert.addAction(no)
+        alert.addAction(yes)
         self.present(alert, animated: true, completion: nil)
     }
     

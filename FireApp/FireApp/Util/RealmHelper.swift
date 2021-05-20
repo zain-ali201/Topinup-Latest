@@ -313,7 +313,7 @@ class RealmHelper {
 
     func getUsers() -> Results<User> {
 
-        let currentUserFilterPredicate = NSPredicate(format: "NOT (\(DBConstants.UID) IN %@) OR \(DBConstants.UID) != ''", [FireManager.getUid()])
+        let currentUserFilterPredicate = NSPredicate(format: "NOT (\(DBConstants.UID) IN %@)", [FireManager.getUid()])
         
         let nonemptyUserFilterPredicate = NSPredicate(format: "\(DBConstants.UID) != ''")
         

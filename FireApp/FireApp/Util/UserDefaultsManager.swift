@@ -13,32 +13,21 @@ class UserDefaultsManager {
     private static let ringtoneKey = "ringtoneName"
     private static let ringtoneFileNameKey = "ringtoneFileName"
     private static let notificationsOnKeyName = "notificationsOn"
-
     private static let wallpaperPath = "wallpaperPath"
     private static let saveToCameraRollKey = "saveToCameraRoll"
-
-
     private static let photosADKey = "photosADL"
     private static let videoADKey = "videosADL"
     private static let audioADKey = "audioADL"
     private static let documentsADKey = "documentsADL"
-
     private static let userInfoSavedKey = "userInfoSaved"
-
     private static let countryCodeKey = "ccode"
     private static let currentPresenceState = "currentPresenceState"
-
-
 
     //Default Values for Auto-Download
     private static let adlImages: AutoDownloadNetworkType = .wifi_cellular
     private static let adlVideos: AutoDownloadNetworkType = .wifi
     private static let adlaudio: AutoDownloadNetworkType = .never
     private static let adlDocuments: AutoDownloadNetworkType = .never
-
-
-
-
 
     private static var sharedUserDefaults: UserDefaults {
         return UserDefaults(suiteName: Config.groupName)!
@@ -47,12 +36,10 @@ class UserDefaultsManager {
     static func setUserDidLogin(_ bool: Bool) {
         UserDefaults.standard.set(bool, forKey: "didLogin")
     }
-
-
+    
     static func userDidLogin() -> Bool {
         UserDefaults.standard.bool(forKey: "didLogin")
     }
-
 
     static func getRingtoneName() -> String {
         sharedUserDefaults.string(forKey: ringtoneKey) ?? "Note"
@@ -62,13 +49,9 @@ class UserDefaultsManager {
         sharedUserDefaults.string(forKey: ringtoneFileNameKey) ?? "note.m4r"
     }
 
-
-
-
     static func setRingtione(ringtoneName: String, fileName: String) {
         sharedUserDefaults.setValue(ringtoneName, forKey: ringtoneKey)
         sharedUserDefaults.setValue(fileName, forKey: ringtoneFileNameKey)
-
         sharedUserDefaults.synchronize()
     }
 
@@ -94,15 +77,10 @@ class UserDefaultsManager {
         if let storedDate = UserDefaults.standard.object(forKey: "lastContactsSync") as? Date {
 
             let timeToSync: TimeInterval = 60 * 60 * 24 // 60 seconds * 60 minutes * 24 hours
-
             let needsSync = Date().timeIntervalSince(storedDate) >= timeToSync
-
             return needsSync
-
         }
-
         return true
-
     }
 
     static func setWallpaperPath(path: String) {
@@ -114,13 +92,11 @@ class UserDefaultsManager {
         return UserDefaults.standard.string(forKey: wallpaperPath) ?? ""
     }
 
-
     static func setAutoDownloadTypeForMediaType(_ mediaType: MediaType, _ networkType: AutoDownloadNetworkType) {
         let key = mediaKeyByMediaType(mediaType)
 
         sharedUserDefaults.setValue(networkType.rawValue, forKey: key)
         sharedUserDefaults.synchronize()
-
     }
 
     static func getAutoDownloadTypeForMediaType(_ mediaType: MediaType) -> AutoDownloadNetworkType {
@@ -133,7 +109,6 @@ class UserDefaultsManager {
         let networkTypeInt = sharedUserDefaults.integer(forKey: key)
 
         return AutoDownloadNetworkType(rawValue: networkTypeInt) ?? getDefaultNetworkTypeByMediaType(mediaType)
-
     }
 
     static func setSaveToCameraRoll(_ bool: Bool) {
@@ -147,7 +122,6 @@ class UserDefaultsManager {
 
         return sharedUserDefaults.value(forKey: saveToCameraRollKey) as? Bool ?? true
     }
-    
     
     static func setContactsNeedSync(_ bool: Bool) {
           sharedUserDefaults.setValue(bool, forKey: "contacts_need_sync")

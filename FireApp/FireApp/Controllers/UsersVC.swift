@@ -364,7 +364,6 @@ extension UsersVC: UITableViewDelegate, UITableViewDataSource
             do
             {
                 let containerResults = try contactStore.unifiedContacts(matching: fetchPredicate, keysToFetch: keysToFetch as! [CNKeyDescriptor])
-                
                 phoneContactsArray.append(contentsOf: containerResults)
             } catch {
                 print("Error fetching results for container")

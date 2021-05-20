@@ -34,7 +34,7 @@ protocol ChatVCDelegate {
     func segueToChatVC(user: User)
 }
 
-class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate, UITextViewDelegate
+class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate, UITextViewDelegate, UITextFieldDelegate
 {
     //used when previewing files like pdf,doc,etc..
     var currentFilePath: String = ""
@@ -172,6 +172,7 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
 //    var downArrowItem: UIBarButtonItem!
     var upArrowItem: UIButton!
     var downArrowItem: UIButton!
+    var lblNotFound: UILabel!
     //current found search results
     var searchResults: Results<Message>!
     var isInSearchMode = false
@@ -393,10 +394,17 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
         searchBar = UISearchBar()
         searchBar.showsCancelButton = true
         searchBar.delegate = self
-        searchBar.searchBarStyle = .minimal
+        searchBar.searchBarStyle = .default
         searchBar.backgroundColor = .clear
         if #available(iOS 13.0, *) {
             searchBar.searchTextField.backgroundColor = .white
+        }
+        else
+        {
+            if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
+                textfield.textColor = UIColor.black
+                textfield.backgroundColor = .white
+            }
         }
         self.definesPresentationContext = true
     }
@@ -909,6 +917,14 @@ class ChatViewController: BaseVC, UITableViewDelegate, UITableViewDataSource, UI
             downArrowItem.setImage(UIImage(named: "down-arrow"), for: .normal)
             downArrowItem.addTarget(self, action: #selector(downArrowTapped), for: .touchUpInside)
             
+            lblNotFound = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+            lblNotFound.textColor = .lightGray
+            lblNotFound.text = "Not found"
+            lblNotFound.font = UIFont.systemFont(ofSize: 15)
+            lblNotFound.textAlignment = .center
+            lblNotFound.alpha = 0
+            
+            arrowsView.addSubview(lblNotFound)
             arrowsView.addSubview(lineView)
             arrowsView.addSubview(upArrowItem)
             arrowsView.addSubview(downArrowItem)
@@ -2631,7 +2647,9 @@ extension ChatViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchResults = realmHelper.searchForMessage(chatId: user.uid, query: searchBar.text!)
-        if !searchResults.isEmpty {
+        if !searchResults.isEmpty
+        {
+            lblNotFound.alpha = 0
             searchIndex = searchResults.count - 1
             let foundMessageId = searchResults[searchIndex].messageId
 
@@ -2642,9 +2660,12 @@ extension ChatViewController: UISearchBarDelegate {
                 disableOrEnableArrows()
             }
         }
+        else
+        {
+            lblNotFound.alpha = 1
+        }
     }
 }
-
 
 extension ChatViewController: UIScrollViewDelegate {
 
@@ -2822,3 +2843,20 @@ extension PHAsset
     }
 }
 
+
+extension UISearchBar {
+    func setTextFieldColor(_ color: UIColor) {
+        for subView in self.subviews {
+            for subSubView in subView.subviews {
+                let view = subSubView as? UITextInputTraits
+                if view != nil {
+                    let textField = view as? UITextField
+                    textField?.backgroundColor = color
+                    textField?.layer.cornerRadius = 10
+                    textField?.clipsToBounds = true
+                    break
+                }
+            }
+        }
+    }
+}

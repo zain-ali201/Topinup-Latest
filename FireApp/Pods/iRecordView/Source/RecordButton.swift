@@ -32,9 +32,7 @@ open class RecordButton: UIButton, UIGestureRecognizerDelegate {
                 isHighlighted = false
             }
         }
-
     }
-
 
     private func setup() {
         
@@ -46,16 +44,11 @@ open class RecordButton: UIButton, UIGestureRecognizerDelegate {
             
             tintColor = .blue
         }
-        
 
         moveGesture = UIPanGestureRecognizer(target: self, action: #selector(touchMoved(_:)))
         moveGesture.delegate = self
-
-        
-
         touchDownAndUpGesture = iGesutreRecognizer(target: self, action: #selector(handleUpAndDown(_:)))
         touchDownAndUpGesture.gestureDelegate = self
-
 
         addGestureRecognizer(moveGesture)
         addGestureRecognizer(touchDownAndUpGesture)
@@ -63,8 +56,6 @@ open class RecordButton: UIButton, UIGestureRecognizerDelegate {
         if mTransform == nil {
             mTransform = transform
         }
-
-
     }
 
     override init(frame: CGRect) {
@@ -78,45 +69,64 @@ open class RecordButton: UIButton, UIGestureRecognizerDelegate {
     }
 
     @objc private func touchDown() {
-        recordView.onTouchDown(recordButton: self)
+        if recordView != nil
+        {
+            recordView.onTouchDown(recordButton: self)
+        }
     }
 
     @objc private func touchDownOutside() {
-        recordView.onTouchDown(recordButton: self)
+        if recordView != nil
+        {
+            recordView.onTouchDown(recordButton: self)
+        }
     }
 
     @objc private func touchUp() {
-        recordView.onTouchUp(recordButton: self)
+        if recordView != nil
+        {
+            recordView.onTouchUp(recordButton: self)
+        }
     }
 
-
     @objc private func touchMoved(_ sender: UIPanGestureRecognizer) {
-        recordView.touchMoved(recordButton: self, sender: sender)
+        if recordView != nil
+        {
+            recordView.touchMoved(recordButton: self, sender: sender)
+        }
     }
 
     @objc private func handleUpAndDown(_ sender: UIGestureRecognizer) {
         switch sender.state {
         case .began:
-            recordView.onTouchDown(recordButton: self)
-
+            if recordView != nil
+            {
+                recordView.onTouchDown(recordButton: self)
+            }
         case .ended:
-            recordView.onTouchUp(recordButton: self)
-
+            if recordView != nil
+            {
+                recordView.onTouchUp(recordButton: self)
+            }
         default:
             break
         }
     }
-
-
 }
 
 extension RecordButton: GesutreDelegate {
     func onStart() {
-        recordView.onTouchDown(recordButton: self)
+        if recordView != nil
+        {
+            recordView.onTouchDown(recordButton: self)
+        }
     }
 
     func onEnd() {
-        recordView.onTouchUp(recordButton: self)
+        if recordView != nil
+        {
+            recordView.onTouchUp(recordButton: self)
+        }
     }
 
     open override func layoutSubviews() {

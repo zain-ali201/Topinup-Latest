@@ -158,7 +158,6 @@ class SetLocationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let region = MKCoordinateRegion(center: coordinate, span: span)
         mapView.setRegion(region, animated: true)
         self.locationManager.stopUpdatingLocation()
-        
     }
     
     func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D, onSuccess : @escaping LocationUpdateSuccess) {
@@ -256,14 +255,11 @@ class SetLocationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 return;
             }
             
-            
-            
             showProgressHud(viewController: self)
             
             self.params = [
                 "text" :  searchText
                 ] as! [String: Any]
-            
             
             Api.placesApi.autoComplete(params: self.params, completion: { (success:Bool, message : String, placesName : [PlacesVO?]) in
                 
@@ -290,15 +286,12 @@ class SetLocationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     self.showInfoAlertWith(title: "Error", message: message)
                 }
             })
-            
-            
         }
         else
         {
             self.tableView.alpha = 0
         }
     }
-    
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error occured \(error.localizedDescription)")
@@ -338,9 +331,6 @@ class SetLocationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         self.tableView.alpha = 0
         
         self.selectPlace(lat: self.nearbyPlacesList[indexPath.row].lat, long: self.nearbyPlacesList[indexPath.row].long, name: self.nearbyPlacesList[indexPath.row].name)
-        
-        
-        
     }
     
     func selectPlace(lat: Double, long: Double, name: String) {
@@ -350,8 +340,6 @@ class SetLocationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         self.selectedAddress = name ?? ""
         self.setMapCentred(aroundLocation: coordinate)
         self.tableView.alpha = 0
-        
-        
         
 //        placesClient.lookUpPlaceID(id, callback: { (places, error) -> Void in
 //            if error != nil {
@@ -382,18 +370,5 @@ class SetLocationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     {
         self.view.endEditing(true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-
 }
  

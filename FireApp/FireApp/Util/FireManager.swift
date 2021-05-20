@@ -51,10 +51,7 @@ class FireManager {
             return Observable.empty()
         }
 
-
         let ref = Storage.storage().reference(forURL: photoUrl).rx
-
-
         let filePath = DirManager.generateUserProfileImage()
 
         let observable = ref.write(toFile: filePath)
@@ -73,17 +70,9 @@ class FireManager {
             return Observable.empty()
         }
 
-
         let ref = Storage.storage().reference(forURL: photoUrl).rx
-
-
         let filePath = DirManager.generateUserProfileImage()
-
-
-
         return ref.write(toFile: filePath).map { _ in filePath.path }
-
-
     }
 
     //check only for thumb img
@@ -170,8 +159,6 @@ class FireManager {
 
     public static func setUserBlocked(blockedUserUid: String, setBlocked: Bool, appRealm: Realm) -> Completable {
         let ref = FireConstants.blockedUsersRef.child(FireManager.getUid()).child(blockedUserUid).rx
-
-
 
         return Completable.create(subscribe: { (completable) -> Disposable in
             var observable: Observable<DatabaseReference>!
@@ -507,6 +494,13 @@ class FireManager {
         }).disposed(by: disposeBag)
 
     }
+    
+    public static func deleteUserAccount(uid: String)
+    {
+        FireConstants.usersRef.child(uid).removeValue()
+        FireConstants.uidByPhone.child(uid).removeValue()
+    }
+    
     public static func isHasFireApp(phone: String, appRealm: Realm) -> Observable<User?> {
 
         if let user = RealmHelper.getInstance(appRealm).getUserByPhone(phone: phone) {

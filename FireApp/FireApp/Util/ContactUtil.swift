@@ -82,11 +82,7 @@ class ContactsUtil {
 
         }
         return number
-
     }
-
-
-
 
     public static func syncContacts(appRealm: Realm) -> Observable<User> {
         let contacts = getRawContacts()
