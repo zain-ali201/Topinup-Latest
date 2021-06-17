@@ -87,9 +87,8 @@ class Config
     static let sharedKeychainName = "\(teamId).\(bundleName).\(groupName)"
 
     static let privacyPolicyLink = "https://www.topinup.com"
-    
 
-    static let agoraAppId = "003807407a6a40f392e79e0302732a3e"
+    static let agoraAppId = "41d6090f6e8848e6aab71294be70078f"
     
     //Ads Disable/Enable
     static let isChatsAdsEnabled = false

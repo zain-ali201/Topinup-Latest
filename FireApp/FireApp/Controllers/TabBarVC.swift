@@ -18,10 +18,7 @@ class TabBarVC: UITabBarController {
             
             //request permissions for first time
             Permissions.requestContactsPermissions(completion: nil)
-            
         }
-        
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -327,14 +327,8 @@ class CallingVC: BaseVC {
         self.user = fireCall.user!
         self.fireCall = fireCall
         self.isIncoming = fireCall.callDirection == .INCOMING
-
-
     }
-
-
-
-
-
+    
     private func scheduleTimer() {
         timerDisposable = Observable<Int>.interval(1, scheduler: MainScheduler.instance).subscribe(onNext: { (time) in
 
@@ -350,15 +344,13 @@ class CallingVC: BaseVC {
         timerDisposable?.disposed(by: disposeBag)
     }
 
-    private func updateUI() {
-
+    private func updateUI()
+    {
         let isVideo = fireCall.callType.isVideo
 
         btnSpeaker.isHidden = isVideo
         btnFlipCamera.isHidden = !isVideo
         btnVideo.isHidden = !isVideo
-
-
     }
 
     private func onRemoteVideoChanged() {
@@ -380,7 +372,6 @@ class CallingVC: BaseVC {
 
             self.dismiss(animated: true, completion: nil)
         }
-
     }
 
     private func hideOrShowTopViewContainer(hide: Bool) {
@@ -396,8 +387,6 @@ class CallingVC: BaseVC {
             localView.topAnchor.constraint(equalTo: topViewContainer.bottomAnchor).isActive = true
         }
 
-
-
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
         }
@@ -412,7 +401,6 @@ class CallingVC: BaseVC {
        
         }
     }
-
 
     private func addLocalView() {
         let videoCanvas = AgoraRtcVideoCanvas()
@@ -434,8 +422,6 @@ class CallingVC: BaseVC {
             return
         }
 
-
-
         let videoCanvas = AgoraRtcVideoCanvas()
         let videoView = UIView(frame: self.view.frame)
         videoCanvas.uid = UInt(uid)
@@ -443,11 +429,7 @@ class CallingVC: BaseVC {
         videoCanvas.renderMode = .hidden
         // Set the remote video view.
         agoraKit.setupRemoteVideo(videoCanvas)
-
-
         addRemoteView(uid: uid, videoView: videoView)
-
-
     }
 
     private func addRemoteView(uid: UInt, videoView: UIView) {
@@ -455,8 +437,6 @@ class CallingVC: BaseVC {
         remoteView.addItem(id: Int(uid), view: videoView)
         onRemoteVideoChanged()
     }
-
-
 
     private func muteOrUnMuteRemoteView(uid: UInt, setMuted: Bool) {
 
@@ -487,8 +467,6 @@ class CallingVC: BaseVC {
 
     var x:CGFloat = 0
     var y:CGFloat = 0
-
-
 }
 
 
@@ -512,9 +490,6 @@ extension CallingVC {
             agoraKit.disableVideo()
 
         }
-
-
-
         isSpeakerEnabled = fireCall.isVideo
 
         if !fireCall.callType.isGroupCall {
@@ -547,17 +522,11 @@ extension CallingVC {
                     }) { (error) in
                         self.endCall(reason: .ERROR)
                     }.disposed(by: disposeBag)
-
-
-
                 }
-
             }
         } else {
             endCall(reason: .ERROR)
         }
-
-
     }
 
     private func listenForEndingCall() {
@@ -570,14 +539,10 @@ extension CallingVC {
             }).disposed(by: disposeBag)
     }
 
-
-
     private func removeRemoteView(uid: UInt) {
         videoUids.removeValue(forKey: uid)
         remoteView.removeItem(id: Int(uid))
-
         onRemoteVideoChanged()
-
     }
 
     private func endCall(reason: CallEndedReason) {
@@ -591,9 +556,7 @@ extension CallingVC {
     private func leaveChannel() {
         agoraKit.leaveChannel()
     }
-
-
-
+    
     var allUsersAreMuted: Bool {
         return videoUids.allSatisfy { (uid, tuple) -> Bool in
             return tuple.1
@@ -601,18 +564,12 @@ extension CallingVC {
     }
 }
 
-
-
-
-
 extension CallingVC: AgoraRtcEngineDelegate {
     func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {
 
         DispatchQueue.main.async {
-
             self.updateUI()
         }
-
     }
 
     func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {
@@ -623,9 +580,7 @@ extension CallingVC: AgoraRtcEngineDelegate {
                 self.callingState = .ANSWERED
                 self.onCallEstablished()
             }
-
             self.usersUids[uid] = true
-
         }
     }
 
@@ -657,36 +612,27 @@ extension CallingVC: AgoraRtcEngineDelegate {
         }
     }
 
-
-
-
     func rtcEngine(_ engine: AgoraRtcEngineKit, connectionChangedTo state: AgoraConnectionStateType, reason: AgoraConnectionChangedReason) {
-        switch state {
+        switch state
+        {
+            case .connected:
+                callingState = .CONNECTED
+                break
 
-        case .connected:
-            callingState = .CONNECTED
-            break
+            case .connecting:
+                callingState = .CONNECTING
+                break
 
-        case .connecting:
-            callingState = .CONNECTING
-            break
+            case .failed:
+                callingState = .FAILED
+                break
 
-        case .failed:
-            callingState = .FAILED
-            break
+            case .reconnecting:
+                callingState = .RECONNECTING
+                break
 
-        case .reconnecting:
-            callingState = .RECONNECTING
-            break
-
-        default: break
+            default: break
         }
     }
-
-
-
-
-
-
 }
 

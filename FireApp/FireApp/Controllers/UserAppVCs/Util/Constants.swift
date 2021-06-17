@@ -113,7 +113,6 @@ struct URLConfiguration
     static let uploadMessageMedia = serverURL + "/api/users/file/"
     static let updateFirebaseToken = serverURL + "/api/users/update/token"
     
-    
     static let mapBoxSearchURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
     
     static func delay(_ delay:Double, closure:@escaping ()->())

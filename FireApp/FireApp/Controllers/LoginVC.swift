@@ -47,7 +47,6 @@ class LoginVC: UIViewController {
         }
     }
 
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         login()

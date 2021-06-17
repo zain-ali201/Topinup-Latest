@@ -12,16 +12,11 @@ import CallKit
 import RxSwift
 import AgoraRtcKit
 
-
 private let sharedProviderDelegate = ProviderDelegate()
 private let agoraKit = AppDelegate.shared.agoraKit
 
 class ProviderDelegate: NSObject {
     private let disposeBag = DisposeBag()
-
-     
-
-    
     class var sharedInstance: ProviderDelegate {
         return sharedProviderDelegate
     }
@@ -30,21 +25,12 @@ class ProviderDelegate: NSObject {
     fileprivate let callController: CXCallController
 
     private var audioSession: AVAudioSession?
-
-
-
-
-
-
     override init() {
         provider = CXProvider(configuration: type(of: self).providerConfiguration)
 
         callController = CXCallController.init()
-
         super.init()
-
         provider?.setDelegate(self, queue: nil)
-
     }
 
     static var providerConfiguration: CXProviderConfiguration {
@@ -58,20 +44,13 @@ class ProviderDelegate: NSObject {
         return providerConfiguration
     }
 
-
     var headers: [AnyHashable: Any]?
 
     func reportIncomingCall(_ call: FireCall) {
 
         let uuid = UUID(uuidString: call.callUUID)!
-
-
         RealmHelper.getInstance(appRealm).saveObjectToRealm(object: call)
-
-
-
         let update = CXCallUpdate()
-
 
         if call.phoneNumber.isNotEmpty {
             update.remoteHandle = CXHandle(type: .phoneNumber, value: call.phoneNumber)
@@ -81,10 +60,7 @@ class ProviderDelegate: NSObject {
 
         update.supportsGrouping = false
         update.supportsUngrouping = false
-
         update.supportsHolding = false
-
-
         update.hasVideo = call.callType.isVideo
 
         provider?.reportNewIncomingCall(with: uuid, update: update) { error in
@@ -161,8 +137,14 @@ extension ProviderDelegate: CXProviderDelegate {
 
 
         action.fulfill()
-        let mainStoryboard = UIStoryboard(name: "Chat", bundle: nil)
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = mainStoryboard.instantiateViewController(withIdentifier: "CallingVC") as! CallingVC
+
+
+        
+       
+
+
 
         vc.initialize(fireCall: fireCall)
         vc.modalPresentationStyle = .fullScreen
@@ -255,9 +237,6 @@ extension ProviderDelegate {
 
 
     func end(fireCall: FireCall, reason: CallEndedReason) {
-//        let endCallAction = CXEndCallAction(call: call.uuid)
-//        let transaction = CXTransaction(action: endCallAction)
-//        requestTransaction(transaction)
         provider?.reportCall(with: UUID(uuidString: fireCall.callUUID)!, endedAt: Date(), reason: getCallEndedReason(reason))
         AppDelegate.shared.isInCall = false
 
@@ -268,7 +247,7 @@ extension ProviderDelegate {
         callController.request(transaction, completion: { (error: Error?) in
 
             if error != nil {
-                print("\(String(describing: error?.localizedDescription))")
+                
             }
         })
 

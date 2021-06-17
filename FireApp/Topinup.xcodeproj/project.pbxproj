@@ -2833,7 +2833,7 @@
 			baseConfigurationReference = F80ED6F2C330A6761E8C2755 /* Pods-NotificationService.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NotificationService/NotificationService.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2848,7 +2848,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupNotificationService Dist v5";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupNotificationService Dev v6";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2886,7 +2886,7 @@
 			baseConfigurationReference = 41041D0D32861014A2371079 /* Pods-ShareExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2901,7 +2901,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Dist v5";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Dev v6";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3064,7 +3064,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FireApp/FireApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Volgo Point international FZE (H6FU4X6RK3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aymen Ababneh (247W5PH3YA)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -3078,7 +3078,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Topinup Dist v5";
+				PROVISIONING_PROFILE_SPECIFIER = "Topinup Dev v6";
 				SWIFT_OBJC_BRIDGING_HEADER = "FireApp/Controllers/UserAppVCs/External/Topinup-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
