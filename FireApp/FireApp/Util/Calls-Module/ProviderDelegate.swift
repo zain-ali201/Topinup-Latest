@@ -135,16 +135,9 @@ extension ProviderDelegate: CXProviderDelegate {
 
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.voiceChat, options: [.duckOthers, .allowBluetoothA2DP, .allowBluetooth])
 
-
         action.fulfill()
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainStoryboard = UIStoryboard(name: "Chat", bundle: nil)
         let vc = mainStoryboard.instantiateViewController(withIdentifier: "CallingVC") as! CallingVC
-
-
-        
-       
-
-
 
         vc.initialize(fireCall: fireCall)
         vc.modalPresentationStyle = .fullScreen

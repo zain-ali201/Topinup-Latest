@@ -133,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func startUpdateVC() {
         unRegisterVCsEvents()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "updateVC")
         self.window?.rootViewController = vc
     }
@@ -348,12 +348,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     topController = presentedViewController
                 }
 
-
                 // When entering the application via the App button on the CallKit lockscreen,
                 // and unlocking the device by PIN code/Touch ID, applicationWillEnterForeground:
                 // will be invoked twice, and "top" will be CallViewController already after
                 // the first invocation.
                 if !(topController is CallingVC) {
+                    
                     topController.performSegue(withIdentifier: "toCallingVC", sender: nil)
                 }
             }
@@ -583,21 +583,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             unRegisterVCsEvents()
             //reset chatId
             currentChatId = ""
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Chat", bundle: nil)
 //            //
             let shareNavVC = storyboard.instantiateViewController(withIdentifier: "shareNavVC")
             self.window?.rootViewController = shareNavVC
             self.window?.makeKeyAndVisible()
             return true
+        }
+
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true) else { return false }
+        if let scheme = components.scheme, scheme.starts(with: Config.groupVoiceCallLink), let conferenceId = components.host {
+
+            SwiftEventBus.post(EventNames.groupVoiceCallLinkTapped, sender: conferenceId)
+            return true
 
         }
         return false
-
     }
 }
-
-
-
 
 extension AppDelegate: PKPushRegistryDelegate {
     // Handle updated push credentials
