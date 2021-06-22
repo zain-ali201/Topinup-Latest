@@ -217,16 +217,14 @@ class FireManager {
 
         let observable = ref.rx.observeSingleEvent(.value).asObservable().filter { $0.exists() }.flatMap { snapshot -> Observable<(String, String)> in
 
-            let photo = snapshot.childSnapshot(forPath: "photo").value as! String
-            let thumbImg = snapshot.childSnapshot(forPath: "thumbImg").value as! String
+            let photo = snapshot.childSnapshot(forPath: "photo").value as? String ?? ""
+            let thumbImg = snapshot.childSnapshot(forPath: "thumbImg").value as? String ?? ""
 
-
-
-            if user.thumbImg != thumbImg {
+            if !thumbImg.isEmpty && user.thumbImg != thumbImg {
                 RealmHelper.getInstance(appRealm).updateThumbImg(uid: user.uid, thumbImg: thumbImg)
             }
 
-            if photo != user.photo || user.userLocalPhoto == "" {
+            if !photo.isEmpty && photo != user.photo || user.userLocalPhoto == "" {
                 return FireManager.downloadUserPhoto(user: user, photoUrl: photo, appRealm: appRealm).flatMap { photoPath in
                     return Observable.from(optional: (thumbImg, photoPath))
                 }

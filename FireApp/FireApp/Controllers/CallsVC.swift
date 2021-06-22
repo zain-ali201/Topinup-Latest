@@ -179,8 +179,17 @@ class CallCell: UITableViewCell
     func bind(call: FireCall)
     {
         self.call = call
-        if let user = call.user{
-            userImg.image = user.thumbImg.toUIImage()
+        if let user = call.user
+        {
+            if user.thumbImg != ""
+            {
+                userImg.image = user.thumbImg.toUIImage()
+            }
+            else
+            {
+                userImg.image = UIImage(named: "avatar")
+            }
+            
             userName.text = user.userName
             callTimeLbl.text = TimeHelper.getCallTime(timestamp: call.timestamp.toDate())
             callBtn.addTarget(self, action: #selector(btnCallTapped), for: .touchUpInside)
