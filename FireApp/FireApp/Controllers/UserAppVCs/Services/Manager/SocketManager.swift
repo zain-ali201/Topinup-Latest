@@ -423,7 +423,7 @@ struct SocketEvent
     static let GetAssignedJobs = "getAssignedJobs"
     
     
-    // New Variable for Volgo Provider
+    // New Variable for Topinup Provider
     static let AddMessageThread = "addMessageThread"
     static let GetJobThreadMessages = "getJobThreadMessages"
     static let GetMessageThreads = "getJobMessagesThread"

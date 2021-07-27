@@ -12,15 +12,10 @@ import RealmSwift
 class MyStatusesVC: BaseTableVC {
 
     var notificationToken: NotificationToken?
-
     var userStatuses: UserStatuses!
-
-    
     var statuses: Results<Status>!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
 
         userStatuses = RealmHelper.getInstance(appRealm).getUserStatuses(userId: FireManager.getUid())
         statuses = userStatuses!.getMyStatuses()
@@ -30,11 +25,9 @@ class MyStatusesVC: BaseTableVC {
         }
 
         navigationController?.hero.isEnabled = true
-        
         navigationItem.title = Strings.my_statuses
 
         getSeenCount()
-     
     }
 
     func getSeenCount(){
@@ -62,8 +55,6 @@ class MyStatusesVC: BaseTableVC {
 
         let delete = UIContextualAction(style: .destructive, title: Strings.delete) { (_, _, actionPerformed) in
 
-
-
             let confirmationAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             let deleteAction = UIAlertAction(title: Strings.delete_status, style: .destructive, handler: { (_) in
                 actionPerformed(true)
@@ -82,8 +73,6 @@ class MyStatusesVC: BaseTableVC {
             confirmationAlert.addAction(cancelAction)
 
             self.present(confirmationAlert, animated: true, completion: nil)
-
-
         }
 
         return UISwipeActionsConfiguration(actions: [delete])
@@ -99,15 +88,11 @@ class MyStatusesVC: BaseTableVC {
         }
     }
     
-    
-  
-
-    
     deinit {
         notificationToken = nil
     }
-
 }
+
 class MyStatusCell: UITableViewCell {
     @IBOutlet weak var statusImg: UIImageView!
     @IBOutlet weak var timeLbl: UILabel!

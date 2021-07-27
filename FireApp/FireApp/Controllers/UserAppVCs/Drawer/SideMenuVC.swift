@@ -174,9 +174,6 @@ class SideMenuVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
-        
-        
         tableView.deselectRow(at: indexPath, animated: true)
         if(indexPath.section == 0 && indexPath.row == 0)
         {
@@ -219,7 +216,7 @@ class SideMenuVC: UITableViewController {
                     }
             case 4:
                 showProgressHud(viewController: self)
-                let shareText = "Download Volgo App: https://www.volgopoint.com/"
+                let shareText = "Download Topinup App: https://topinup.com"
                 let vc = UIActivityViewController(activityItems: [shareText], applicationActivities: [])
                 present(vc, animated: true)
                 hideProgressHud(viewController: self)

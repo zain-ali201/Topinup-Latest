@@ -15,6 +15,9 @@ import Permission
 
 class MainVC: UIViewController
 {
+    @IBOutlet weak var checkBtn: UIButton!
+    @IBOutlet weak var continueBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,6 +27,12 @@ class MainVC: UIViewController
         if let url = URL(string: Config.privacyPolicyLink) {
             UIApplication.shared.open(url)
         }
+    }
+    
+    @IBAction func checkBtnAction(_ sender: AnyObject)
+    {
+        checkBtn.setImage(UIImage(named: "checkbox"), for: .normal)
+        continueBtn.isEnabled = true
     }
 
     @IBAction func continueBtnTapped(_ sender: AnyObject)

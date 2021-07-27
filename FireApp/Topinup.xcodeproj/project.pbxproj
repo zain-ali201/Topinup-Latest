@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18599AD125C994F100C83DD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18599AD025C994F100C83DD3 /* GoogleService-Info.plist */; };
-		18599ADD25C99AA600C83DD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18599AD825C99A2C00C83DD3 /* GoogleService-Info.plist */; };
+		180E5D7826AEAFF100856C63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 180E5D7726AEAFF000856C63 /* GoogleService-Info.plist */; };
 		1867E74226270877000D2735 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1867E74026270877000D2735 /* Main.storyboard */; };
 		1867E7A826270A6C000D2735 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E7A726270A6C000D2735 /* ProfileViewController.swift */; };
 		1867E7C026270A84000D2735 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E7A926270A82000D2735 /* BaseViewController.swift */; };
@@ -121,6 +120,7 @@
 		1867E9B526270D90000D2735 /* ChatMediaPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E9B326270D8F000D2735 /* ChatMediaPlayerController.swift */; };
 		1867EA292627179B000D2735 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1867EA262627179A000D2735 /* SWRevealViewController.m */; };
 		1867EA2A2627179B000D2735 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1867EA272627179B000D2735 /* MyAnnotation.m */; };
+		18747E4326A59C0800D4E11A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18747E4226A59C0800D4E11A /* GoogleService-Info.plist */; };
 		188F23D0262839190064940F /* SegmentedProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188F23CF262839190064940F /* SegmentedProgressBar.swift */; };
 		18AD689A263EDB3500BECCE2 /* ImageStickerContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD6836263EDB3400BECCE2 /* ImageStickerContainerView.swift */; };
 		18AD689C263EDB3500BECCE2 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD6838263EDB3400BECCE2 /* ImageCell.swift */; };
@@ -548,6 +548,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		180E5D7726AEAFF000856C63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		18327FD81DC395A1C7670A45 /* Pods-myshareextension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myshareextension.release.xcconfig"; path = "Target Support Files/Pods-myshareextension/Pods-myshareextension.release.xcconfig"; sourceTree = "<group>"; };
 		18506FDD260B6118003C2BBC /* SF-UI-DISPLAY-MEDIUM-58A92BE187E3C.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-MEDIUM-58A92BE187E3C.TTF"; sourceTree = "<group>"; };
 		18506FDE260B6118003C2BBC /* SF-UI-DISPLAY-REGULAR-58A92BB8F09F3.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-REGULAR-58A92BB8F09F3.TTF"; sourceTree = "<group>"; };
@@ -557,8 +558,6 @@
 		18506FE2260B6118003C2BBC /* SF-UI-DISPLAY-THIN-58A92C49E8348.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-THIN-58A92C49E8348.TTF"; sourceTree = "<group>"; };
 		18506FE3260B6118003C2BBC /* SF-UI-DISPLAY-ULTRALIGHT-58A92B89103AF.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-ULTRALIGHT-58A92B89103AF.TTF"; sourceTree = "<group>"; };
 		18506FE4260B6118003C2BBC /* SF-UI-DISPLAY-BLACK-58A92C053F9AE.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-DISPLAY-BLACK-58A92C053F9AE.TTF"; sourceTree = "<group>"; };
-		18599AD025C994F100C83DD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		18599AD825C99A2C00C83DD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1867E74126270877000D2735 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1867E7A726270A6C000D2735 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1867E7A926270A82000D2735 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -674,6 +673,7 @@
 		1867EA262627179A000D2735 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		1867EA272627179B000D2735 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		1867EA282627179B000D2735 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
+		18747E4226A59C0800D4E11A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		188F23CF262839190064940F /* SegmentedProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedProgressBar.swift; sourceTree = "<group>"; };
 		18AD6836263EDB3400BECCE2 /* ImageStickerContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStickerContainerView.swift; sourceTree = "<group>"; };
 		18AD6838263EDB3400BECCE2 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
@@ -1640,7 +1640,7 @@
 		A8890BD523EF06F600DC2D27 /* NotificationService */ = {
 			isa = PBXGroup;
 			children = (
-				18599AD025C994F100C83DD3 /* GoogleService-Info.plist */,
+				180E5D7726AEAFF000856C63 /* GoogleService-Info.plist */,
 				A8890BDF23F03E6D00DC2D27 /* NotificationService.entitlements */,
 				A8890BD623EF06F600DC2D27 /* NotificationService.swift */,
 				A8890BD823EF06F600DC2D27 /* Info.plist */,
@@ -1811,7 +1811,7 @@
 		A8CAF79F228F57F100BB3FF6 = {
 			isa = PBXGroup;
 			children = (
-				18599AD825C99A2C00C83DD3 /* GoogleService-Info.plist */,
+				18747E4226A59C0800D4E11A /* GoogleService-Info.plist */,
 				A8CAF7AA228F57F100BB3FF6 /* FireApp */,
 				A8226107236CA8270061DEDF /* Resources */,
 				A8A941ED23A414040036172E /* ShareExtension */,
@@ -2024,7 +2024,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = Devlomi;
+				ORGANIZATIONNAME = SprintSols;
 				TargetAttributes = {
 					A8890BD323EF06F600DC2D27 = {
 						CreatedOnToolsVersion = 11.2.1;
@@ -2066,7 +2066,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8CCFDDB24352A6B00B4F541 /* Localizable.strings in Resources */,
-				18599AD125C994F100C83DD3 /* GoogleService-Info.plist in Resources */,
+				180E5D7826AEAFF100856C63 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2085,6 +2085,7 @@
 			files = (
 				A8957DD82381C01D00B0CAB8 /* synth.m4r in Resources */,
 				A8EA28B6238A8AD90071A956 /* ReceivedFileCell.xib in Resources */,
+				18747E4326A59C0800D4E11A /* GoogleService-Info.plist in Resources */,
 				1867E88926270BFD000D2735 /* CustomChildAnnotation.xib in Resources */,
 				A8EA289E23898F8D0071A956 /* ReceivedVideoCell.xib in Resources */,
 				A8957DC22381C00000B0CAB8 /* TimePassing.caf in Resources */,
@@ -2141,7 +2142,6 @@
 				A8226111236CA8270061DEDF /* Norican-Regular.ttf in Resources */,
 				A817CB4822EA77F300A31BA8 /* SentVideoCell.xib in Resources */,
 				A8B081E622A092440040F26E /* SentTextCell.xib in Resources */,
-				18599ADD25C99AA600C83DD3 /* GoogleService-Info.plist in Resources */,
 				A8957DE12381C01D00B0CAB8 /* bamboo.m4r in Resources */,
 				1867E83026270B6E000D2735 /* UserApp.xcassets in Resources */,
 				1867E90626270C94000D2735 /* JobHistoryList.xib in Resources */,
@@ -2810,7 +2810,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H6FU4X6RK3;
+				DEVELOPMENT_TEAM = WV27K8UGQV;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2819,9 +2819,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services.NotificationService;
+				PRODUCT_BUNDLE_IDENTIFIER = com.topinup.user.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupNotificationService Dev v5";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupNotificationService Dev v1";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2833,11 +2833,11 @@
 			baseConfigurationReference = F80ED6F2C330A6761E8C2755 /* Pods-NotificationService.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NotificationService/NotificationService.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H6FU4X6RK3;
+				DEVELOPMENT_TEAM = WV27K8UGQV;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2846,9 +2846,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services.NotificationService;
+				PRODUCT_BUNDLE_IDENTIFIER = com.topinup.user.NotificationService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupNotificationService Dev v6";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupNotificationService Dist v1";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2863,7 +2863,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H6FU4X6RK3;
+				DEVELOPMENT_TEAM = WV27K8UGQV;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2872,9 +2872,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services.ShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.topinup.user.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Dev v5";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Dev v1";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2886,11 +2886,11 @@
 			baseConfigurationReference = 41041D0D32861014A2371079 /* Pods-ShareExtension.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H6FU4X6RK3;
+				DEVELOPMENT_TEAM = WV27K8UGQV;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2899,9 +2899,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services.ShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.topinup.user.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Dev v6";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Appstopre v1";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3034,11 +3034,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FireApp/FireApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Aymen Ababneh (247W5PH3YA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H6FU4X6RK3;
+				DEVELOPMENT_TEAM = WV27K8UGQV;
 				INFOPLIST_FILE = FireApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3046,9 +3046,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services;
+				PRODUCT_BUNDLE_IDENTIFIER = com.topinup.user;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Topinup Dev v5";
+				PROVISIONING_PROFILE_SPECIFIER = "Topinup Dev v1";
 				SWIFT_OBJC_BRIDGING_HEADER = "FireApp/Controllers/UserAppVCs/External/Topinup-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -3064,11 +3064,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FireApp/FireApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Aymen Ababneh (247W5PH3YA)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H6FU4X6RK3;
+				DEVELOPMENT_TEAM = WV27K8UGQV;
 				INFOPLIST_FILE = FireApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3076,9 +3076,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.volgo.services;
+				PRODUCT_BUNDLE_IDENTIFIER = com.topinup.user;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Topinup Dev v6";
+				PROVISIONING_PROFILE_SPECIFIER = "Topinup Appstore v1";
 				SWIFT_OBJC_BRIDGING_HEADER = "FireApp/Controllers/UserAppVCs/External/Topinup-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

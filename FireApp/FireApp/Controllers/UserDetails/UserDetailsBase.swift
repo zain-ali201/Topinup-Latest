@@ -25,12 +25,11 @@ struct CellTags {
     static let showParticipants = 7
     static let copyGroupVoiceCallLink = 77
     
-
-
     static let blockUser = 8
     static let clearChat = 9
     static let exitGroup = 10
     static let scheduleMessage = 22
+    static let reportUser = 999
 }
 protocol UserDetailsDelegate {
     func didClickSearch()

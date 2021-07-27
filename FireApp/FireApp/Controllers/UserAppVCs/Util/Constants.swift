@@ -18,13 +18,9 @@ struct URLConfiguration
 {
     static let devMode = true
     
-    //static let devServerUrl = "http://172.99.75.33:3001" //Volgo Dev
-    
-    // new server
-//    static let devServerUrl = "http://157.230.41.251:3001"
     static let devServerUrl = "http://178.128.26.125:3001"
     
-    static let prodServerUrl = "http://104.130.11.85"   //Volgo live
+    static let prodServerUrl = "http://104.130.11.85"   //Topinup live
     
     static let ServerUrl : String = {
         

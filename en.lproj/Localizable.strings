@@ -30,8 +30,8 @@
 "info" = "Info";
 "confirmation" = "Confirmation";
 "confirmation" = "Confirmation";
-"unblock" = "UnBlock";
-"block" = "Block";
+"unblock" = "UnBlock User";
+"block" = "Block User";
 "clear_chat_confirmation_message" = "Are you sure you want to clear the chat?";
 "take_photo" = "Take Photo";
 "pick_image" = "Pick Image";

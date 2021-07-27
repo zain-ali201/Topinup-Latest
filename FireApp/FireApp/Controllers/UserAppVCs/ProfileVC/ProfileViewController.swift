@@ -9,7 +9,6 @@
 import UIKit
 import Cosmos
 
-
 class ProfileViewController: UITableViewController {
 
     @IBOutlet weak var userImageView: UIImageView!
@@ -34,7 +33,6 @@ class ProfileViewController: UITableViewController {
     }
     
     func fetchProfile(){
-        
         
         showProgressHud(viewController: self)
         UserApi().fetchUserProfile(providerID: providerID, completion: ({ (success, message, userObj) in
@@ -61,7 +59,6 @@ class ProfileViewController: UITableViewController {
             self.userEmail = userObj?.email
             self.userProfileImageURL = userObj?.profileImageURL
             
-            
             self.userImageView.cornerRadius = self.userImageView.frame.size.height/2.0
             var newStr = (userObj?.profileImageURL)! as String
                 newStr.remove(at: (newStr.startIndex))
@@ -72,14 +69,11 @@ class ProfileViewController: UITableViewController {
                     self.userImageView.kf.setImage(with: url, placeholder: UIImage(named: "imagePlaceholder"), options: nil, progressBlock: nil) { (image, error, cacheTyle, uurl) in
                         //                    self.userBtn.setImage(image, for: .normal)
                     }
-                    
                 }
             
             self.tableView.reloadData()
         }))
     }
-    
-   
     
     // MARK: - Table view data source
 
@@ -115,12 +109,8 @@ class ProfileViewController: UITableViewController {
                 cell.userImageView!.kf.setImage(with: url, placeholder: UIImage(named: "imagePlaceholder"), options: nil, progressBlock: nil) { (image, error, cacheTyle, uurl) in
                     //                    self.userBtn.setImage(image, for: .normal)
                 }
-                
             }
         }
-        
-        
-        
         return cell
     }
     
@@ -129,15 +119,12 @@ class ProfileViewController: UITableViewController {
         if(self.reviews.count != 0){
             cell.reviews.text = "Reviews (\(self.reviews.count))"
         }
-        
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
     
     @IBAction func dialPhone(_ sender: UIButton) {
         
@@ -146,33 +133,12 @@ class ProfileViewController: UITableViewController {
     }
     
     @IBAction func sendEmail(_ sender: Any) {
-        
-//        let mailURL = URL(string: "mailto:\(String(describing: self.userEmail))")!
-//        if UIApplication.shared.canOpenURL(mailURL) {
-//            UIApplication.shared.open(mailURL, options: [:], completionHandler: nil)
-//         }
-        
-        
-        
-        
-        
-        let url = NSURL(string: "mailto:volgo@mail.com")
+
+        let url = NSURL(string: "mailto:info@topinup.com")
         UIApplication.shared.openURL(url as! URL)
-        
-//        if let url = URL(string: "mailto:\(String(describing: self.userEmail))") {
-//          if #available(iOS 10.0, *) {
-//            UIApplication.shared.open(url)
-//          } else {
-//            UIApplication.shared.openURL(url)
-//          }
-//        }
-        
     }
     
-    
-    
     @IBAction func sendMessages(_ sender: Any) {
-        
         
         if let vcs = self.navigationController?.viewControllers {
             
@@ -182,8 +148,6 @@ class ProfileViewController: UITableViewController {
                     return
                 }
             }
-            
-
         }
         
         let storyBoard = UIStoryboard(name: "Chat", bundle: nil)
@@ -194,10 +158,6 @@ class ProfileViewController: UITableViewController {
         vc.providerCategory = self.userCategory.text
         vc.providerImageURL = self.userProfileImageURL
         self.navigationController?.pushViewController(vc, animated: true)
-        
-
-        
-        
 //        let sms: String = "sms:\(self.userPhone!)&body=Dear, \(self.userName.text!)"
 //        let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
 //        UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)

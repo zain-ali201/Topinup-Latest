@@ -8,9 +8,10 @@
 
 import UIKit
 import FirebaseAuth
+import MessageUI
 
-class SettingsVC: UIViewController {
-
+class SettingsVC: UIViewController, MFMailComposeViewControllerDelegate
+{
     @IBOutlet weak var usrImg: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblPhone: UILabel!
@@ -114,5 +115,27 @@ class SettingsVC: UIViewController {
         {
             performSegue(withIdentifier: "toProfile", sender: nil)
         }
+        else if button.tag == 6
+        {
+            sendEmail()
+        }
+    }
+    
+    func sendEmail()
+    {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([Config.email])
+            mail.setSubject("Topinup - Feedback")
+
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }

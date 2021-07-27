@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>876553951958-1rjgr0na2ongigrr2icnm98jcr1dn0d5.apps.googleusercontent.com</string>
+	<string>876553951958-30jfgf7c5093nvmfg9vb5cm7cnm87h5r.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.876553951958-1rjgr0na2ongigrr2icnm98jcr1dn0d5</string>
+	<string>com.googleusercontent.apps.876553951958-30jfgf7c5093nvmfg9vb5cm7cnm87h5r</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>876553951958-tseg1r1vofu2f27c68ug4gh6nuohl1rj.apps.googleusercontent.com</string>
+	<string>876553951958-tid71596biuajl8b30hj9bj0kkgo2lfh.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyClHgUVFWWFURPlEWd6hy3A2TU-rWtIsek</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.volgo.services</string>
+	<string>com.topinup.user</string>
 	<key>PROJECT_ID</key>
 	<string>topinup-8be34</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:876553951958:ios:4bc20b4bf94d8b09590777</string>
+	<string>1:876553951958:ios:ea840d16c8c30f82590777</string>
 	<key>DATABASE_URL</key>
 	<string>https://topinup-8be34-default-rtdb.firebaseio.com</string>
 </dict>

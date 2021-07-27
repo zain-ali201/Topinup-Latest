@@ -71,22 +71,22 @@ class Config
     static let maxVideoTime: Double = 30.0
 
     static let appName = "Topinup"
-    static let bundleName = "com.volgo.services"
+    static let bundleName = "com.topinup.user"
     static let groupName = "group.\(bundleName)"
-    private static let teamId = "H6FU4X6RK3"
+    private static let teamId = "WV27K8UGQV"
 
     private static let shareURLScheme = "TopinupShare"
-     static let groupVoiceCallLink = "TopinupCall"
+    static let groupVoiceCallLink = "TopinupCall"
     static let shareUrl = "\(shareURLScheme)://dataUrl=Share"
 
     static let groupHostLink = ""
 
-    private static let appId = "1538549059"
+    private static let appId = "1577175443"
     static let appLink = "https://apps.apple.com/app/id\(appId)"
 
     static let sharedKeychainName = "\(teamId).\(bundleName).\(groupName)"
 
-    static let privacyPolicyLink = "https://www.topinup.com"
+    static let privacyPolicyLink = "https://topinup.com/privacy_policy.html"
 
     static let agoraAppId = "41d6090f6e8848e6aab71294be70078f"
     
@@ -100,14 +100,13 @@ class Config
 
     //About
     static let twitter = ""
-    static let website = "https://www.topinup.com"
-    static let email = "topnupapp@gmail.com"
+    static let website = "https://topinup.com"
+    static let email = "info@topinup.com"
 
     public static let MAX_GROUP_USERS_COUNT = 50
     public static let MAX_BROADCAST_USERS_COUNT = 100
     public static let maxGroupCallCount = 11
 }
-
 
 fileprivate extension String {
 

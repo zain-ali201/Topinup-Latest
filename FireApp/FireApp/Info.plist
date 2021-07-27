@@ -29,7 +29,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.876553951958-1rjgr0na2ongigrr2icnm98jcr1dn0d5</string>
+				<string>com.googleusercontent.apps.876553951958-30jfgf7c5093nvmfg9vb5cm7cnm87h5r</string>
 			</array>
 		</dict>
 		<dict>
@@ -62,11 +62,13 @@
 	<key>NSCameraUsageDescription</key>
 	<string>This will let you take Images/Video from within the app</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Upload your contacts to the app servers and help you message your friends and help us provide a better experience.</string>
+	<string>This app will let you make Voice/Video calls and send Text/Voice Messages.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app will let  you send your current location to your Friends/Contacts and creating on demand services</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This will let  you send your current location to your friends</string>
+	<string>This will let  you send your current location to your Friends/Contacts and creating on demand services</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This will let you make Voice/Video calls, send Voice Messages.</string>
+	<string>This app will let you make Voice/Video calls, send Voice Messages.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This will let the app save incoming Images/Videos in your Photo Library</string>
 	<key>NSPhotoLibraryUsageDescription</key>

@@ -11,8 +11,6 @@ import RxSwift
 import Hero
 import DateTimePicker
 
-
-
 class UserDetailsVC: UserDetailsBase
 {
     override func viewDidLoad() {
@@ -73,6 +71,11 @@ class UserDetailsVC: UserDetailsBase
                 cell.textLabel?.text = user.isBlocked ? Strings.unblock : Strings.block
             }
         }
+        
+        if tag == CellTags.reportUser {
+            cell.textLabel?.text = "Report User"
+        }
+        
         return cell
     }
 
@@ -84,6 +87,17 @@ class UserDetailsVC: UserDetailsBase
         let tag = cell.tag
         switch tag {
 
+        case CellTags.reportUser:
+            let alertController = UIAlertController(title: "Report User", message: "Are you sure you want to report this user?", preferredStyle: .actionSheet)
+            let yes = UIAlertAction(title: "Yes", style: .default) { (_) in
+                self.perform(#selector(self.sendEmail), with: nil, afterDelay: 2)
+            }
+            let no = UIAlertAction(title: "No", style: .cancel, handler: nil)
+
+            alertController.addAction(yes)
+            alertController.addAction(no)
+            self.present(alertController, animated: true, completion: nil)
+            break
         case CellTags.search:
             delegate?.didClickSearch()
             navigationController?.popViewController(animated: true)
@@ -156,7 +170,6 @@ class UserDetailsVC: UserDetailsBase
             picker.completionHandler = { date in
 
                 self.delegate?.didClickScheduleMessage(date: date)
-
                 self.navigationController?.popViewController(animated: true)
             }
             picker.show()
@@ -166,9 +179,13 @@ class UserDetailsVC: UserDetailsBase
         }
     }
 
-
-
-
+    @objc func sendEmail()
+    {
+        let alertController = UIAlertController(title: "Topinup", message: "Report sent successfully.", preferredStyle: .actionSheet)
+        let no = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(no)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 
 

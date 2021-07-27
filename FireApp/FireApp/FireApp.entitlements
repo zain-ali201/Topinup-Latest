@@ -8,11 +8,11 @@
 	<array/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.volgo.services</string>
+		<string>group.com.topinup.user</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>H6FU4X6RK3.com.volgo.services.group.com.volgo.services</string>
+		<string>WV27K8UGQV.com.topinup.user.group.com.topinup.user</string>
 	</array>
 </dict>
 </plist>
