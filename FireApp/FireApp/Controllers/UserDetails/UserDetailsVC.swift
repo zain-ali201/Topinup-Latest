@@ -181,7 +181,7 @@ class UserDetailsVC: UserDetailsBase
 
     @objc func sendEmail()
     {
-        let alertController = UIAlertController(title: "Topinup", message: "Report sent successfully.", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Topinup", message: "Report sent.", preferredStyle: .actionSheet)
         let no = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(no)
         self.present(alertController, animated: true, completion: nil)

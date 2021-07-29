@@ -60,19 +60,19 @@
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Play Music,Voice Messages</string>
 	<key>NSCameraUsageDescription</key>
-	<string>This will let you take Images/Video from within the app</string>
+	<string>This app will let you take Images/Videos to set your profile picture, set your status and share with your firends/Contacts.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>This app will let you make Voice/Video calls and send Text/Voice Messages.</string>
+	<string>This app will let you make Voice/Video calls and send Text/Voice Messages to your friends/Contacts.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This app will let  you send your current location to your Friends/Contacts and creating on demand services</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This will let  you send your current location to your Friends/Contacts and creating on demand services</string>
+	<string>This app will let you send your current location to your Friends/Contacts and creating on demand services</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This app will let you make Voice/Video calls, send Voice Messages.</string>
+	<string>This app will let you make Voice/Video calls, send Voice Messages to your firends/Contacts.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This will let the app save incoming Images/Videos in your Photo Library</string>
+	<string>This app will let you select Images/Videos to set your profile picture, set your status and share with your firends/Contacts. Also to save incoming Images/Videos in your Photo Library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This will  let the app send Images and Videos from your Photo Library</string>
+	<string>This app will  let the app send Images and Videos from your Photo Library</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-UI-DISPLAY-MEDIUM-58A92BE187E3C.TTF</string>
