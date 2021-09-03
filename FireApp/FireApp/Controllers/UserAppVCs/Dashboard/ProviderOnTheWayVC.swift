@@ -291,7 +291,7 @@ class ProviderOnTheWayVC: UIViewController,  MKMapViewDelegate, CLLocationManage
 //        self.navigationController?.pushViewController(vc, animated: true)
         
         
-        let storyBoard = UIStoryboard(name: "Chat", bundle: nil)
+        let storyBoard = UIStoryboard(name: "UserChat", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "ChatDetailViewController") as! ChatDetailViewController
         vc.jobID            = jobID
         vc.providerID       = self.jobInfo.providerID

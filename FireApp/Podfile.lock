@@ -1,5 +1,5 @@
 PODS:
-  - AgoraRtcEngine_iOS (3.1.2)
+  - AgoraRtcEngine_iOS (3.5.0.2)
   - Alamofire (4.8.2)
   - ALCameraViewController (3.1)
   - AlertBar (0.5.0)
@@ -145,11 +145,11 @@ PODS:
   - PhotoCircleCrop (1.3.2)
   - PromisesObjC (1.2.12)
   - Protobuf (3.14.0)
-  - Realm (5.4.5):
-    - Realm/Headers (= 5.4.5)
-  - Realm/Headers (5.4.5)
-  - RealmSwift (5.4.5):
-    - Realm (= 5.4.5)
+  - Realm (10.12.0):
+    - Realm/Headers (= 10.12.0)
+  - Realm/Headers (10.12.0)
+  - RealmSwift (10.12.0):
+    - Realm (= 10.12.0)
   - ReverseExtension (0.5.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
@@ -203,7 +203,7 @@ PODS:
   - ZLPhotoBrowser/Core (4.1.5)
 
 DEPENDENCIES:
-  - AgoraRtcEngine_iOS (= 3.1.2)
+  - AgoraRtcEngine_iOS
   - Alamofire (~> 4.8.2)
   - ALCameraViewController (= 3.1)
   - AlertBar (= 0.5.0)
@@ -247,7 +247,7 @@ DEPENDENCIES:
   - Permission/Notifications (= 3.1.2)
   - Permission/Photos (= 3.1.2)
   - PhotoCircleCrop
-  - RealmSwift (= 5.4.5)
+  - RealmSwift
   - ReverseExtension
   - RxCocoa (= 5.1.1)
   - RxFirebase/Database (= 0.3.8)
@@ -355,7 +355,7 @@ SPEC REPOS:
     - ZLPhotoBrowser
 
 SPEC CHECKSUMS:
-  AgoraRtcEngine_iOS: 0628532d3475471d1c352ba548cee98492850cc0
+  AgoraRtcEngine_iOS: f83b2ff4e4fb7144d8621cbf8d8032c533cffa4d
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   ALCameraViewController: 144dea45fd749a623aafd8cb7b10cea88499fcc3
   AlertBar: 5134161e088a7be32b76d5daddcc7326744015cf
@@ -407,8 +407,8 @@ SPEC CHECKSUMS:
   PhotoCircleCrop: cdbea998ad27778853977b349dd2e7c3352c9245
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Protobuf: 0cde852566359049847168e51bd1c690e0f70056
-  Realm: 155c60aec98b1044a05d676017be6900a9ee93b6
-  RealmSwift: fa80dc70fa91f762c2bc3d09328da92214b36bbb
+  Realm: 32488213acb44660539c619d620cec1bac046166
+  RealmSwift: 0abdca6231d5ff8a4f84cef9c1121ef95a483faf
   ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxFirebase: 45e6448c69c7212e21f8ba89144443f916437861
@@ -436,6 +436,6 @@ SPEC CHECKSUMS:
   YNSearch: 56d4aad4547fd1efce355cccc220a94735b1ea14
   ZLPhotoBrowser: 809878607ea92e9411c580797ce1be23896b8d7f
 
-PODFILE CHECKSUM: de689690b379adf953b6d9937cb1676c78236391
+PODFILE CHECKSUM: 4fd78546579be5f2249991911adc303cf72e858e
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

@@ -5,24 +5,24 @@
 //  Copyright (c) 2018 Agora. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#if defined (TARGET_OS_IPHONE) && TARGET_OS_IPHONE
+#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
-#elif defined (TARGET_OS_MAC) && TARGET_OS_MAC
+#elif defined(TARGET_OS_MAC) && TARGET_OS_MAC
 #import <AppKit/AppKit.h>
 #endif
 
 /** The standard bitrate set in [setVideoEncoderConfiguration]([AgoraRtcEngineKit setVideoEncoderConfiguration:]).
 
-(Recommended) The standard bitrate mode. In this mode, the bitrate under the live interactive streaming and communication profiles differs:
+(Recommended) The standard bitrate mode. In this mode, the bitrate under the interactive live streaming and communication profiles differs:
 
     - Communication profile: The video bitrate is the same as the base bitrate.
-    - Live interactive streaming profile: The video bitrate is twice the base bitrate.
+    - Interactive live streaming profile: The video bitrate is twice the base bitrate.
  */
 extern NSInteger const AgoraVideoBitrateStandard;
 
 /** The compatible bitrate set in [setVideoEncoderConfiguration]([AgoraRtcEngineKit setVideoEncoderConfiguration:]).
 
-The compatible bitrate mode. In this mode, the bitrate stays the same regardless of the channel profile. In the live interactive streaming channel, if you choose this mode, the video frame rate may be lower than the set value.
+The compatible bitrate mode. In this mode, the bitrate stays the same regardless of the channel profile. In the interactive live streaming channel, if you choose this mode, the video frame rate may be lower than the set value.
  */
 extern NSInteger const AgoraVideoBitrateCompatible;
 
@@ -82,10 +82,10 @@ extern CGSize const AgoraVideoDimension1280x720;
 /** 1920 * 1080 (Hardware dependent, macOS only)
  */
 extern CGSize const AgoraVideoDimension1920x1080;
-/** 25400 * 1440 (Hardware dependent, macOS only)
+/** Reserved for future use.
  */
 extern CGSize const AgoraVideoDimension2540x1440;
-/** 3840 * 2160 (Hardware dependent, macOS only)
+/** Reserved for future use.
  */
 extern CGSize const AgoraVideoDimension3840x2160;
 #endif

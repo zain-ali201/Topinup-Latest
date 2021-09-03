@@ -114,7 +114,7 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     @IBAction func chatAction(_ sender: Any)
     {
-        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
+        let storyboard = UIStoryboard(name: "UserChat", bundle: nil)
         let rootVC = storyboard.instantiateViewController(withIdentifier: "RootVC")
         UIApplication.shared.keyWindow?.rootViewController = rootVC
     }

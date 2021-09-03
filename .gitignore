@@ -1,3 +1,5 @@
 
 FireApp/Pods/AgoraRtcEngine_iOS/AgoraRtcKit.framework/AgoraRtcKit
 FireApp/Pods/GoogleMaps/Maps/Frameworks/GoogleMapsCore.framework/GoogleMapsCore
+FireApp/Pods/Realm/core/realm-monorepo.xcframework/ios-armv7_arm64/librealm-monorepo.a
+*.a

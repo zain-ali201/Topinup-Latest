@@ -116,7 +116,6 @@
 		1867E9A926270D49000D2735 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E9A226270D48000D2735 /* ChatMessage.swift */; };
 		1867E9AA26270D49000D2735 /* ChatTail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E9A326270D49000D2735 /* ChatTail.swift */; };
 		1867E9AB26270D49000D2735 /* CachingPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E9A426270D49000D2735 /* CachingPlayerItem.swift */; };
-		1867E9B426270D90000D2735 /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E9B226270D8F000D2735 /* ChatDetailViewController.swift */; };
 		1867E9B526270D90000D2735 /* ChatMediaPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1867E9B326270D8F000D2735 /* ChatMediaPlayerController.swift */; };
 		1867EA292627179B000D2735 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1867EA262627179A000D2735 /* SWRevealViewController.m */; };
 		1867EA2A2627179B000D2735 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1867EA272627179B000D2735 /* MyAnnotation.m */; };
@@ -506,6 +505,7 @@
 		A8FAFE1C23D0B99F0014B1E3 /* AutoDownloadPossibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FAFE1B23D0B99F0014B1E3 /* AutoDownloadPossibility.swift */; };
 		A8FAFE2123D10AA60014B1E3 /* ReceivedContactQuotedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FAFE1F23D10AA60014B1E3 /* ReceivedContactQuotedCell.swift */; };
 		A8FAFE2223D10AA60014B1E3 /* ReceivedContactQuotedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8FAFE2023D10AA60014B1E3 /* ReceivedContactQuotedCell.xib */; };
+		FAD0D87926E25BD700848FB9 /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD0D87826E25BD700848FB9 /* ChatDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -666,7 +666,6 @@
 		1867E9A226270D48000D2735 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		1867E9A326270D49000D2735 /* ChatTail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTail.swift; sourceTree = "<group>"; };
 		1867E9A426270D49000D2735 /* CachingPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachingPlayerItem.swift; sourceTree = "<group>"; };
-		1867E9B226270D8F000D2735 /* ChatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
 		1867E9B326270D8F000D2735 /* ChatMediaPlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMediaPlayerController.swift; sourceTree = "<group>"; };
 		1867EA2026271799000D2735 /* Topinup-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Topinup-Bridging-Header.h"; sourceTree = "<group>"; };
 		1867EA252627179A000D2735 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -1001,6 +1000,7 @@
 		D5C999A8BA7056E24E01CEDC /* Pods_myshareextension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myshareextension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5D6173696CB2C5CA8CC305 /* Pods-Topinup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Topinup.release.xcconfig"; path = "Target Support Files/Pods-Topinup/Pods-Topinup.release.xcconfig"; sourceTree = "<group>"; };
 		F80ED6F2C330A6761E8C2755 /* Pods-NotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.release.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.release.xcconfig"; sourceTree = "<group>"; };
+		FAD0D87826E25BD700848FB9 /* ChatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1313,7 +1313,7 @@
 		1867E97126270CF7000D2735 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1867E9B226270D8F000D2735 /* ChatDetailViewController.swift */,
+				FAD0D87826E25BD700848FB9 /* ChatDetailViewController.swift */,
 				1867E9B326270D8F000D2735 /* ChatMediaPlayerController.swift */,
 			);
 			path = Controllers;
@@ -2491,6 +2491,7 @@
 				A8CAF7C0228F60A600BB3FF6 /* User.swift in Sources */,
 				A88DEB1423B5500400DEFD47 /* UnSupportedCell.swift in Sources */,
 				1867E80A26270AC3000D2735 /* SignUpProviderVC.swift in Sources */,
+				FAD0D87926E25BD700848FB9 /* ChatDetailViewController.swift in Sources */,
 				A87EE62823C522E4006A2E59 /* LocalizableView.swift in Sources */,
 				A86420D32333092500DC85A1 /* ContactUtil.swift in Sources */,
 				1867E93F26270CC2000D2735 /* MapManager.swift in Sources */,
@@ -2528,7 +2529,6 @@
 				A87EE62A23C52588006A2E59 /* LocalizableLabel.swift in Sources */,
 				A817CB4722EA77F300A31BA8 /* SentVideoCell.swift in Sources */,
 				A8ED45442325423500AEFA65 /* CustomProgressButton.swift in Sources */,
-				1867E9B426270D90000D2735 /* ChatDetailViewController.swift in Sources */,
 				1867E95D26270CE7000D2735 /* UIImageView+Extensions.swift in Sources */,
 				1867E9AA26270D49000D2735 /* ChatTail.swift in Sources */,
 				A813375223DB726900AD6283 /* CircleView.swift in Sources */,
@@ -2901,7 +2901,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.topinup.user.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Appstopre v1";
+				PROVISIONING_PROFILE_SPECIFIER = "TopinupShareExtension Dist v1";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3078,7 +3078,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.topinup.user;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Topinup Appstore v1";
+				PROVISIONING_PROFILE_SPECIFIER = "Topinup Dist v1";
 				SWIFT_OBJC_BRIDGING_HEADER = "FireApp/Controllers/UserAppVCs/External/Topinup-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

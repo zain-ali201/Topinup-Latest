@@ -534,11 +534,11 @@ class ChatDetailViewController: UIViewController {
         var permissionCheck: Bool = false
         
         switch AVAudioSession.sharedInstance().recordPermission {
-        case AVAudioSessionRecordPermission.granted:
+        case AVAudioSession.RecordPermission.granted:
             permissionCheck = true
-        case AVAudioSessionRecordPermission.denied:
+        case AVAudioSession.RecordPermission.denied:
             permissionCheck = false
-        case AVAudioSessionRecordPermission.undetermined:
+        case AVAudioSession.RecordPermission.undetermined:
             AVAudioSession.sharedInstance().requestRecordPermission({ (granted) in
                 if granted {
                     permissionCheck = true

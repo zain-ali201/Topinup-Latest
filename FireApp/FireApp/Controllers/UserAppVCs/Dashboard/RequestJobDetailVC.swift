@@ -428,7 +428,7 @@ class RequestJobDetailVC: UIViewController {
     @IBAction func btnMessageAction(_ sender: Any) {
         
         
-        let storyBoard = UIStoryboard(name: "Chat", bundle: nil)
+        let storyBoard = UIStoryboard(name: "UserChat", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "ChatDetailViewController") as! ChatDetailViewController
         
         

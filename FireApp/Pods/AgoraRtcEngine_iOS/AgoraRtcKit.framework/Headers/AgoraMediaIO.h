@@ -10,7 +10,6 @@
 #import "AgoraEnumerates.h"
 #import "AgoraObjects.h"
 
-
 /** Video pixel format.
 
  This enumeration defines the pixel format of the video frame. Agora supports three pixel formats on iOS: I420, BGRA, and NV12. For information on the YVU format, see:
@@ -19,45 +18,30 @@
    * [Recommended 8-Bit YUV Formats for Video Rendering](https://docs.microsoft.com/zh-cn/windows/desktop/medfound/recommended-8-bit-yuv-formats-for-video-rendering)
  */
 typedef NS_ENUM(NSUInteger, AgoraVideoPixelFormat) {
-    /** I420 */
-    AgoraVideoPixelFormatI420   = 1,
-    /** BGRA */
-    AgoraVideoPixelFormatBGRA   = 2,
-    /** NV12 */
-    AgoraVideoPixelFormatNV12   = 8,
-};
-
-/** Video rotation.
-
- This enumeration defines the rotating angle of the video. Agora supports rotating clockwise by 0, 90, 180, and 270 degrees.
- */
-typedef NS_ENUM(NSInteger, AgoraVideoRotation) {
-    /** No rotation */
-    AgoraVideoRotationNone      = 0,
-    /** 90 degrees */
-    AgoraVideoRotation90        = 1,
-    /** 180 degrees */
-    AgoraVideoRotation180       = 2,
-    /** 270 degrees */
-    AgoraVideoRotation270       = 3,
+  /** I420 */
+  AgoraVideoPixelFormatI420 = 1,
+  /** BGRA */
+  AgoraVideoPixelFormatBGRA = 2,
+  /** NV12 */
+  AgoraVideoPixelFormatNV12 = 8,
 };
 
 /** Video buffer type */
 typedef NS_ENUM(NSInteger, AgoraVideoBufferType) {
-   /** Use a pixel buffer to transmit the video data. */
-    AgoraVideoBufferTypePixelBuffer = 1,
-    /** Use raw data to transmit the video data. */
-    AgoraVideoBufferTypeRawData     = 2,
+  /** Use a pixel buffer to transmit the video data. */
+  AgoraVideoBufferTypePixelBuffer = 1,
+  /** Use raw data to transmit the video data. */
+  AgoraVideoBufferTypeRawData = 2,
 };
 
 /** The capture type of the custom video source. */
 typedef NS_ENUM(NSInteger, AgoraVideoCaptureType) {
-    /** Unknown type. */
-    AgoraVideoCaptureTypeUnknown = 0,
-    /** (Default) Video captured by the camera. */
-    AgoraVideoCaptureTypeCamera  = 1,
-    /** Video for screen sharing. */
-    AgoraVideoCaptureTypeScreen = 2,
+  /** Unknown type. */
+  AgoraVideoCaptureTypeUnknown = 0,
+  /** (Default) Video captured by the camera. */
+  AgoraVideoCaptureTypeCamera = 1,
+  /** Video for screen sharing. */
+  AgoraVideoCaptureTypeScreen = 2,
 };
 
 /** An object supporting video data in two formats; pixel buffer and raw data.
@@ -73,9 +57,7 @@ typedef NS_ENUM(NSInteger, AgoraVideoCaptureType) {
  @param timestamp   Timestamp (ms) of the video frame. For each video frame, you need to set a timestamp.
  @param rotation    AgoraVideoRotation
  */
-- (void)consumePixelBuffer:(CVPixelBufferRef _Nonnull)pixelBuffer
-             withTimestamp:(CMTime)timestamp
-                  rotation:(AgoraVideoRotation)rotation;
+- (void)consumePixelBuffer:(CVPixelBufferRef _Nonnull)pixelBuffer withTimestamp:(CMTime)timestamp rotation:(AgoraVideoRotation)rotation;
 
 /** Uses the video information in the raw data.
 
@@ -85,11 +67,7 @@ typedef NS_ENUM(NSInteger, AgoraVideoCaptureType) {
  @param size      Size of the raw video data.
  @param rotation  AgoraVideoRotation
  */
-- (void)consumeRawData:(void * _Nonnull)rawData
-         withTimestamp:(CMTime)timestamp
-                format:(AgoraVideoPixelFormat)format
-                  size:(CGSize)size
-              rotation:(AgoraVideoRotation)rotation;
+- (void)consumeRawData:(void* _Nonnull)rawData withTimestamp:(CMTime)timestamp format:(AgoraVideoPixelFormat)format size:(CGSize)size rotation:(AgoraVideoRotation)rotation;
 @end
 
 /** Defines a set of protocols to implement the custom video source and pass it to the underlying media engine to replace the default video source.
@@ -104,7 +82,9 @@ typedef NS_ENUM(NSInteger, AgoraVideoCaptureType) {
  * Enables the Video Source ([shouldStart](shouldStart))
  * Disables the Video Source ([shouldStop](shouldStop))
  * Releases the Video Source ([shouldDispose](shouldDispose))
- * Retrieves the Buffer Type ([bufferType](bufferType))
+ * Gets the Buffer Type (AgoraVideoBufferType)
+ * Gets the capture type of the custom video source (AgoraVideoCaptureType)
+ * Gets the content hint of the custom video source (AgoraVideoContentHint)
 
  Note:
 
@@ -117,8 +97,12 @@ typedef NS_ENUM(NSInteger, AgoraVideoCaptureType) {
  */
 @protocol AgoraVideoSourceProtocol <NSObject>
 @required
-/** See AgoraVideoFrameConsumer */
-@property (strong) id<AgoraVideoFrameConsumer> _Nullable consumer;
+/** An AgoraVideoFrameConsumer object that the SDK passes to you. You need to reserve this object and use it to send the video frame to
+ the SDK once the custom video source is started. See [AgoraVideoFrameConsumer](AgoraVideoFrameConsumer).
+
+ @note The SDK does not support the alpha channel, and discards any alpha value passed to the SDK.
+ */
+@property(strong) id<AgoraVideoFrameConsumer> _Nullable consumer;
 /** Initializes the video source.
 
  The media engine calls this method to initialize the video source. You can also initialize the video source before this method is called and return YES to the media engine in this method. You need to pass YES or NO in this method to tell the media engine if the video source is initialized.
@@ -153,7 +137,7 @@ Call this method when AgoraVideoFrameConsumer is released by the media engine. Y
  */
 - (void)shouldDispose;
 
-/** Retrieves the buffer type.
+/** Gets the buffer type.
 
  Passes the buffer type previously set in `AgoraVideoBufferType` to the media engine. This buffer type is used to set up the correct media engine environment.
 
@@ -165,9 +149,9 @@ Call this method when AgoraVideoFrameConsumer is released by the media engine. Y
 
  @since v3.1.0
 
- Before you initialize the custom video source, the SDK triggers this callback to query the capture type 
- of the video source. You must specify the capture type in the return value and then pass it to the SDK. 
- The SDK enables the corresponding video processing algorithm according to the capture type after 
+ Before you initialize the custom video source, the SDK triggers this callback to query the capture type
+ of the video source. You must specify the capture type in the return value and then pass it to the SDK.
+ The SDK enables the corresponding video processing algorithm according to the capture type after
  receiving the video frame.
 
  @return AgoraVideoCaptureType
@@ -177,10 +161,10 @@ Call this method when AgoraVideoFrameConsumer is released by the media engine. Y
 /** Gets the content hint of the custom video source.
 
  @since v3.1.0
- 
- If you specify the custom video source as a screen-sharing video, the SDK triggers this callback to query 
- the content hint of the video source before you initialize the video source. You must specify the content 
- hint in the return value and then pass it to the SDK. The SDK enables the corresponding video processing 
+
+ If you specify the custom video source as a screen-sharing video, the SDK triggers this callback to query
+ the content hint of the video source before you initialize the video source. You must specify the content
+ hint in the return value and then pass it to the SDK. The SDK enables the corresponding video processing
  algorithm according to the content hint after receiving the video frame.
 
  @return AgoraVideoContentHint
@@ -201,8 +185,8 @@ Call this method when AgoraVideoFrameConsumer is released by the media engine. Y
  * Enables the Video Sink ([shouldStart](shouldStart))
  * Disables the Video Sink ([shouldStop](shouldStop))
  * Releases the Video Sink ([shouldDispose](shouldDispose))
- * Retrieves the Buffer Type ([bufferType](bufferType))
- * Retrieves the Pixel Format ([pixelFormat](pixelFormat))
+ * Gets the Buffer Type ([bufferType](bufferType))
+ * Gets the Pixel Format ([pixelFormat](pixelFormat))
  * (Optional) Outputs the Video in the Pixel Buffer ([renderPixelBuffer](renderPixelBuffer:rotation:))
  * (Optional) Outputs the Video in the Raw Data ([renderRawData](renderRawData:size:rotation:))
 
@@ -248,13 +232,13 @@ Call this method when AgoraVideoFrameConsumer is released by the media engine. Y
  */
 - (void)shouldDispose;
 
-/** Retrieves the buffer type and passes the buffer type specified in `AgoraVideoBufferType` to the media engine.
+/** Gets the buffer type and passes the buffer type specified in `AgoraVideoBufferType` to the media engine.
 
  @return bufferType AgoraVideoBufferType
  */
 - (AgoraVideoBufferType)bufferType;
 
-/** Retrieves the pixel format and passes it to the media engine.
+/** Gets the pixel format and passes it to the media engine.
 
  @return pixelFormat AgoraVideoPixelFormat
  */
@@ -266,8 +250,7 @@ Call this method when AgoraVideoFrameConsumer is released by the media engine. Y
  @param pixelBuffer Video in the pixel buffer.
  @param rotation    Clockwise rotating angle of the video frame. See AgoraVideoRotation.
  */
-- (void)renderPixelBuffer:(CVPixelBufferRef _Nonnull)pixelBuffer
-                 rotation:(AgoraVideoRotation)rotation;
+- (void)renderPixelBuffer:(CVPixelBufferRef _Nonnull)pixelBuffer rotation:(AgoraVideoRotation)rotation;
 
 /** (Optional) Outputs the video in the raw data.
 
@@ -275,59 +258,44 @@ Call this method when AgoraVideoFrameConsumer is released by the media engine. Y
  @param size     Size of the raw video.
  @param rotation Clockwise rotating angle of the video frame. See AgoraVideoRotation.
  */
-- (void)renderRawData:(void * _Nonnull)rawData
-                 size:(CGSize)size
-             rotation:(AgoraVideoRotation)rotation;
+- (void)renderRawData:(void* _Nonnull)rawData size:(CGSize)size rotation:(AgoraVideoRotation)rotation;
 @end
-
 
 #pragma mark - Agora Default Media IO
 /** Default camera position */
 typedef NS_ENUM(NSInteger, AgoraRtcDefaultCameraPosition) {
-    /** Front camera */
-    AgoraRtcDefaultCameraPositionFront = 0,
-    /** Rear camera */
-    AgoraRtcDefaultCameraPositionBack = 1,
+  /** Front camera */
+  AgoraRtcDefaultCameraPositionFront = 0,
+  /** Rear camera */
+  AgoraRtcDefaultCameraPositionBack = 1,
 };
 
-__attribute__((visibility("default"))) @interface AgoraRtcDefaultCamera: NSObject<AgoraVideoSourceProtocol>
-#if defined (TARGET_OS_IPHONE) && TARGET_OS_IPHONE
-@property (nonatomic, assign) AgoraRtcDefaultCameraPosition position;
+__attribute__((visibility("default"))) @interface AgoraRtcDefaultCamera : NSObject<AgoraVideoSourceProtocol>
+#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
+@property(nonatomic, assign) AgoraRtcDefaultCameraPosition position;
 - (instancetype _Nonnull)initWithPosition:(AgoraRtcDefaultCameraPosition)position;
 #endif
 @end
 
 #if (!(TARGET_OS_IPHONE) && (TARGET_OS_MAC))
-__attribute__((visibility("default"))) @interface AgoraRtcScreenCapture: NSObject<AgoraVideoSourceProtocol>
-@property (nonatomic, assign, readonly) BOOL ifWindowShare;
-@property (nonatomic, assign, readonly) NSUInteger displayId;
-@property (nonatomic, assign, readonly) NSUInteger windowId;
-@property (nonatomic, assign, readonly) CGRect rect;
-@property (nonatomic, assign, readonly) CGSize dimensions;
-@property (nonatomic, assign, readonly) NSInteger frameRate;
-@property (nonatomic, assign, readonly) NSInteger bitrate;
-@property (nonatomic, assign, readonly) BOOL captureMouseCursor;
-@property (nonatomic, assign, readonly) BOOL windowFocus;
+__attribute__((visibility("default"))) @interface AgoraRtcScreenCapture : NSObject<AgoraVideoSourceProtocol>
+@property(nonatomic, assign, readonly) BOOL ifWindowShare;
+@property(nonatomic, assign, readonly) NSUInteger displayId;
+@property(nonatomic, assign, readonly) NSUInteger windowId;
+@property(nonatomic, assign, readonly) CGRect rect;
+@property(nonatomic, assign, readonly) CGSize dimensions;
+@property(nonatomic, assign, readonly) NSInteger frameRate;
+@property(nonatomic, assign, readonly) NSInteger bitrate;
+@property(nonatomic, assign, readonly) BOOL captureMouseCursor;
+@property(nonatomic, assign, readonly) BOOL windowFocus;
 
-+ (instancetype _Nonnull)screenCaptureWithId:(NSUInteger)displayId
-                                        rect:(CGRect)rect
-                                  dimensions:(CGSize)dimensions
-                                   frameRate:(NSInteger)frameRate
-                                     bitrate:(NSInteger)bitrate
-                          captureMouseCursor:(BOOL)captureMouseCursor;
-+ (instancetype _Nonnull)windowCaptureWithId:(NSUInteger)windowId
-                                        rect:(CGRect)rect
-                                  dimensions:(CGSize)dimensions
-                                   frameRate:(NSInteger)frameRate
-                                     bitrate:(NSInteger)bitrate
-                          captureMouseCursor:(BOOL)captureMouseCursor
-                                 windowFocus:(BOOL)windowFocus;
++ (instancetype _Nonnull)screenCaptureWithId:(NSUInteger)displayId rect:(CGRect)rect dimensions:(CGSize)dimensions frameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate captureMouseCursor:(BOOL)captureMouseCursor;
++ (instancetype _Nonnull)windowCaptureWithId:(NSUInteger)windowId rect:(CGRect)rect dimensions:(CGSize)dimensions frameRate:(NSInteger)frameRate bitrate:(NSInteger)bitrate captureMouseCursor:(BOOL)captureMouseCursor windowFocus:(BOOL)windowFocus;
 @end
 #endif
 
-__attribute__((visibility("default"))) @interface AgoraRtcDefaultRenderer: NSObject<AgoraVideoSinkProtocol>
-@property (nonatomic, strong, readonly) VIEW_CLASS * _Nonnull view;
-@property (nonatomic, assign) AgoraVideoRenderMode mode;
-- (instancetype _Nonnull)initWithView:(VIEW_CLASS * _Nonnull)view
-                           renderMode:(AgoraVideoRenderMode)mode;
+__attribute__((visibility("default"))) @interface AgoraRtcDefaultRenderer : NSObject<AgoraVideoSinkProtocol>
+@property(nonatomic, strong, readonly) VIEW_CLASS* _Nonnull view;
+@property(nonatomic, assign) AgoraVideoRenderMode mode;
+- (instancetype _Nonnull)initWithView:(VIEW_CLASS* _Nonnull)view renderMode:(AgoraVideoRenderMode)mode;
 @end

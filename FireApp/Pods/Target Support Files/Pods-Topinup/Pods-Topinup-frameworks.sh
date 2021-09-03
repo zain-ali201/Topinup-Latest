@@ -176,7 +176,16 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/ALCameraViewController/ALCameraViewController.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraAIDenoiseExtension.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraCore.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraDav1dExtension.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraFDExtension.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraJNDExtension.framework"
   install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraRtcKit.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraSoundTouch.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraVideoSegmentationExtension.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/Agorafdkaac.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/Agoraffmpeg.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlertBar/AlertBar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework"
@@ -240,7 +249,16 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/ALCameraViewController/ALCameraViewController.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraAIDenoiseExtension.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraCore.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraDav1dExtension.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraFDExtension.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraJNDExtension.framework"
   install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraRtcKit.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraSoundTouch.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraVideoSegmentationExtension.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/Agorafdkaac.framework"
+  install_framework "${PODS_ROOT}/AgoraRtcEngine_iOS/Agoraffmpeg.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlertBar/AlertBar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework"

@@ -107,7 +107,7 @@ class ProposedJobVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
         
         
         
-        let storyBoard = UIStoryboard(name: "Chat", bundle: nil)
+        let storyBoard = UIStoryboard(name: "UserChat", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "ChatDetailViewController") as! ChatDetailViewController
         vc.threadInfo = messageList[indexPath.row]
         vc.jobID = messageList[indexPath.row].jobID ?? ""
