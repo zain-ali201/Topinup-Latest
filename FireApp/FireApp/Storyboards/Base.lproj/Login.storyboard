@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YT5-FM-TR9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YT5-FM-TR9">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -147,14 +147,14 @@
             <objects>
                 <viewController storyboardIdentifier="LoginVC_ID" id="cDo-m8-efm" customClass="UserLoginVC" customModule="Topinup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7pz-43-Ihr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splashbg-1" translatesAutoresizingMaskIntoConstraints="NO" id="ys1-7p-kTy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqc-yL-CJ9">
-                                <rect key="frame" x="16" y="0.0" width="288" height="453"/>
+                                <rect key="frame" x="16" y="0.0" width="288" height="433"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTG-wk-g3k">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="440"/>
@@ -346,7 +346,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3l-b6-L7F">
-                                <rect key="frame" x="16" y="531" width="288" height="21"/>
+                                <rect key="frame" x="16" y="511" width="288" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="QBQ-BQ-3ak"/>
                                 </constraints>
@@ -368,7 +368,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMF-br-NyW">
-                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="498" width="320" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ghn-ds-lqv"/>
                                 </constraints>
@@ -420,14 +420,14 @@
             <objects>
                 <viewController storyboardIdentifier="SignUpMainVC_ID" id="nI7-V6-j8t" customClass="SignUpMainVC" customModule="Topinup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7sO-l7-l3q">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="680"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splashbg-1" translatesAutoresizingMaskIntoConstraints="NO" id="8iq-wh-2zL">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="680"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6CX-Nh-Jdi">
-                                <rect key="frame" x="16" y="0.0" width="288" height="634"/>
+                                <rect key="frame" x="16" y="0.0" width="288" height="614"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZVI-pr-WuJ">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="560"/>
@@ -771,7 +771,7 @@
                                 </connections>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzQ-u8-FQ6">
-                                <rect key="frame" x="16" y="663" width="288" height="21"/>
+                                <rect key="frame" x="16" y="643" width="288" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="lY2-t8-Ej7"/>
                                 </constraints>
@@ -793,7 +793,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5C-2T-Tdn">
-                                <rect key="frame" x="0.0" y="650" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="630" width="320" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="KfQ-pk-Z9b"/>
                                 </constraints>
@@ -870,7 +870,7 @@
             <objects>
                 <viewController storyboardIdentifier="ForgotPasswordVC_ID" id="qpw-XU-SO1" customClass="ForgotPasswordVC" customModule="Topinup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="erB-55-Gjd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="88M-Gr-clJ">
@@ -878,7 +878,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" alpha="0.20000000298023224" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splashbg-1" translatesAutoresizingMaskIntoConstraints="NO" id="bFB-zy-pUf">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="504"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPV-1r-beu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -912,7 +912,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6o-vY-eOv">
-                                <rect key="frame" x="16" y="60" width="288" height="382"/>
+                                <rect key="frame" x="16" y="60" width="288" height="362"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oee-Q7-8Gw">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="370"/>
@@ -1040,8 +1040,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EZe-l8-cf1"/>
-        <segue reference="e0v-8L-ZfV"/>
+        <segue reference="rqd-vB-e1u"/>
+        <segue reference="5Nk-42-enT"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Splashbg-1" width="1080" height="1920"/>

@@ -164,19 +164,13 @@ class UserApi : NSObject {
         
         Alamofire.upload( multipartFormData: { MultipartFormData in
             
-            
-            
             for (key, value) in params {
-                MultipartFormData.append(((value) as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key )
+                MultipartFormData.append(((value) as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
             }
             
             for i in profileImage {
                 
-                
-                
                 let image = self.resize(image: i, toSize: CGSize(width: 200.0, height: 200.0))
-                
-                
                 let timestamp = NSDate().timeIntervalSince1970
                 MultipartFormData.append(image.pngData() ?? Data(), withName: "newProfilePicture", fileName: "\(timestamp).png", mimeType: "image/png")
                 
@@ -380,12 +374,13 @@ class UserApi : NSObject {
         Alamofire.request(URLConfiguration.updateFirebaseToken, method: .post,parameters: params, encoding: URLEncoding.httpBody, headers: URLConfiguration.headers())
             .responseJSON { response in
                 
-                print(params)
+                print("params-----: \(params)")
+                print("serverResponse-----: \(response.result)")
                 if let serverResponse = response.result.value
                 {
-                    print(serverResponse)
                     let swiftyJsonVar = JSON(serverResponse)
                     let isSuccessful = swiftyJsonVar["isSuccess"].boolValue
+                    print(swiftyJsonVar["message"].string)
                     if (!isSuccessful)
                     {
                         let msg = swiftyJsonVar["message"].string

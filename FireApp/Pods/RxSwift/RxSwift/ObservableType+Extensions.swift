@@ -93,7 +93,7 @@ extension Hooks {
     private static var _defaultErrorHandler: DefaultErrorHandler = { subscriptionCallStack, error in
         #if DEBUG
             let serializedCallStack = subscriptionCallStack.joined(separator: "\n")
-            print("Unhandled error happened: \(error)")
+//            print("Unhandled error happened: \(error)")
             if !serializedCallStack.isEmpty {
                 print("subscription called from:\n\(serializedCallStack)")
             }

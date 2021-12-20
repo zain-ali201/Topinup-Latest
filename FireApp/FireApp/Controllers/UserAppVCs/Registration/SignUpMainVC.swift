@@ -8,8 +8,9 @@
 
 import UIKit
 import IQKeyboardManagerSwift
-class SignUpMainVC: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
+class SignUpMainVC: UIViewController, UITextFieldDelegate,  UIImagePickerControllerDelegate, UINavigationControllerDelegate
+{
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var viewFirstName: UIView!
     @IBOutlet weak var viewLastName: UIView!
@@ -50,8 +51,8 @@ class SignUpMainVC: UIViewController, UITextFieldDelegate,  UIImagePickerControl
         super.didReceiveMemoryWarning()
     }
     
-    func viewInitializer() {
-        
+    func viewInitializer()
+    {
         self.viewFirstName.layer.cornerRadius = self.viewFirstName.frame.height/2
         self.viewLastName.layer.cornerRadius = self.viewLastName.frame.height/2
         self.viewEmailAddress.layer.cornerRadius = self.viewEmailAddress.frame.height/2
@@ -82,10 +83,7 @@ class SignUpMainVC: UIViewController, UITextFieldDelegate,  UIImagePickerControl
                     return
                 }
             }
-            
-
         }
-        
         self.performSegue(withIdentifier: "signupToLoginSegue", sender: nil)
     }
     
@@ -153,6 +151,9 @@ class SignUpMainVC: UIViewController, UITextFieldDelegate,  UIImagePickerControl
                 {
                     print(user!)
                     AppUser.setUser(user: user!)
+                    UserApi().updateFirebaseToken(params: ["deviceToken": UserDefaults.standard.string(forKey: AppUser.KEY_DEVICE_TOKEN) ?? "", "deviceType":"ios", "role":"provider"]) { (success, message) in
+                        
+                    }
                     let storyboardId = "Dashboard_ID"
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let initViewController = storyboard.instantiateViewController(withIdentifier: storyboardId)
@@ -163,9 +164,6 @@ class SignUpMainVC: UIViewController, UITextFieldDelegate,  UIImagePickerControl
                     self.showInfoAlertWith(title: "Oooppppsss", message: msg)
                 }
             })
-            
-            
-
         }
         else
         {

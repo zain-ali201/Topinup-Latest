@@ -62,82 +62,56 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
         super.viewWillAppear(true)
         
         viewInitializer()
-        
-            
-        
-        
-        
     }
     
-    @IBAction func btnBackAction(_ sender: Any) {
+    @IBAction func btnBackAction(_ sender: Any)
+    {
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
-    
-    
-    func loadJobHistory() {
-        
-        
+    func loadJobHistory()
+    {
          if jobInfo != nil
+        {
+            self.images = self.jobInfo.images;
+            showProgressHud(viewController: self)
+            self.selectedImagesArray.removeAll()
+            for relativePath in self.images
+            {
+                var newStr = relativePath
+                newStr.remove(at: (newStr.startIndex))
+                let imageURl = URLConfiguration.ServerUrl + newStr
+    
+                DispatchQueue.global().async
                 {
-                    
-        //            self.selectedAddress      = self.jobInfo.wheree
-        //            self.selectedLatitude     = self.jobInfo.latitude
-        //            self.selectedLongitude    = self.jobInfo.longitude
-        //            self.txtWhere.text        = self.jobInfo.wheree
-        //
-        //
-        //            self.setDate(date: self.jobInfo.when.dateFromISO8601!, mode: self.selectedWhenEnum)
-        //            self.setNewJobDetail(detail: self.jobInfo.details, images: self.selectedImagesArray)
-        //            self.setPrice(type: self.jobInfo.type, budget: self.jobInfo.budget)
-                    
-                    
-                    self.images               = self.jobInfo.images;
-                    showProgressHud(viewController: self)
-                    self.selectedImagesArray.removeAll()
-                    for relativePath in self.images  {
-                        
-                        var newStr = relativePath
-                                    newStr.remove(at: (newStr.startIndex))
-                                    let imageURl = URLConfiguration.ServerUrl + newStr
-                        
-                        
-                                    DispatchQueue.global().async {
-                                        if let data = try? Data(contentsOf: URL(string: imageURl)!) //make sure your image in this url does exist, otherwise
-                                        {
-                                            DispatchQueue.main.async {
-                                                
-                                                
-                                                let image = UIImage(data: data)!
-                                                self.selectedImagesArray.append(image)
-                                                hideProgressHud(viewController: self)
-                                                
-                                                self.selectedAddress      = self.jobInfo.wheree
-                                                self.selectedLatitude     = self.jobInfo.latitude
-                                                self.selectedLongitude    = self.jobInfo.longitude
-                                                self.txtWhere.text        = self.jobInfo.wheree
+                    if let data = try? Data(contentsOf: URL(string: imageURl)!) //make sure your image in this url does exist, otherwise
+                    {
+                        DispatchQueue.main.async
+                        {
+                            let image = UIImage(data: data)!
+                            self.selectedImagesArray.append(image)
+                            hideProgressHud(viewController: self)
 
-                                                
-                                                self.setDate(date: self.jobInfo.when.dateFromISO8601!, mode: self.selectedWhenEnum)
-                                                self.setNewJobDetail(detail: self.jobInfo.details, images: self.selectedImagesArray)
-                                                self.setPrice(type: self.jobInfo.type, budget: self.jobInfo.budget)
-                                                self.selectedCategory = self.jobInfo.categoryID
-                                                
-                                            }
-                                        }
-                        
-                                    }
+                            self.selectedAddress      = self.jobInfo.wheree
+                            self.selectedLatitude     = self.jobInfo.latitude
+                            self.selectedLongitude    = self.jobInfo.longitude
+                            self.txtWhere.text        = self.jobInfo.wheree
+
+
+                            self.setDate(date: self.jobInfo.when.dateFromISO8601!, mode: self.selectedWhenEnum)
+                            self.setNewJobDetail(detail: self.jobInfo.details, images: self.selectedImagesArray)
+                            self.setPrice(type: self.jobInfo.type, budget: self.jobInfo.budget)
+                            self.selectedCategory = self.jobInfo.categoryID
+                            
+                        }
                     }
-                    
-                    
-                    
                 }
-        
-        
+            }
+        }
     }
     
-    func viewInitializer() {
-        
+    func viewInitializer()
+    {
         paymentEnum = PaymentEnum(rawValue: PaymentEnum.none.rawValue)
         
         let tapWhen = UITapGestureRecognizer(target: self, action: #selector(NewJobRequestVC.tappedWhen))
@@ -191,19 +165,16 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
         paymentEnum = PaymentEnum(rawValue: PaymentEnum.creditCard.rawValue)
     }
     
-    @IBAction func btnPostJobAction(_ sender: Any) {
-        
+    @IBAction func btnPostJobAction(_ sender: Any)
+    {
         let validationResult = validateFields()
         if (validationResult == kResultIsValid)
         {
             if !Connection.isInternetAvailable()
             {
-                print("FIXXXXXXXX Internet not connected")
                 Connection.showNetworkErrorView()
                 return;
             }
-            
-            
             
             showProgressHud(viewController: self)
             Api.jobApi.createQuotationWith(with: self.params , detailImages: self.selectedImagesArray, completion: { (successful, msg) in
@@ -226,7 +197,6 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
                 }
             })
         }
-            
         else
         {
             self.showInfoAlertWith(title: "Info Required", message: validationResult)
@@ -280,8 +250,8 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
         }
     }
     
-    func validateFields() -> String {
-        
+    func validateFields() -> String
+    {
         var result = kResultIsValid
         
         let address = self.txtWhere.text?.trimmed()
@@ -304,13 +274,11 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
             result = "Please enter some job detail"
             return result
         }
-        else if (price.length()) < 1
-        {
-            result = "Please enter your price"
-            return result
-        }
-        
-        
+//        else if (price.length()) < 1
+//        {
+//            result = "Please enter your price"
+//            return result
+//        }
         
         self.params = [
             "where" : self.selectedAddress,
@@ -322,8 +290,6 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
             "longitude": self.selectedLongitude.roundedStringValue(),
             "category": self.selectedCategory
             ] as NSMutableDictionary
-        
-        
         
         return result
         

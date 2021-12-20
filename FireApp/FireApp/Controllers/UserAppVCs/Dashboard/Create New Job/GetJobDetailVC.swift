@@ -143,7 +143,7 @@ class GetJobDetailVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let proposall = self.txtView.text.trimmed()
         
-        let defaultImage = UIImage(named: "addphoto")
+//        let defaultImage = UIImage(named: "addphoto")
         
 //        if !(self.imgFirst.image?.isEqualToImage(image: defaultImage!))!
 //        {
@@ -162,19 +162,19 @@ class GetJobDetailVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         if proposall == textViewProposalPlaceholder
         {
-            result = "Please enter your job detail"
+            result = "Please enter your request detail"
             return result
         }
         else if (proposall.length()) < 3
         {
-            result = "Please enter your job detail"
+            result = "Please enter your request detail"
             return result
         }
-        else if selectedImagesArray.isEmpty
-        {
-            result = "Please choose images"
-            return result
-        }
+//        else if selectedImagesArray.isEmpty
+//        {
+//            result = "Please choose images"
+//            return result
+//        }
         
         return result
         

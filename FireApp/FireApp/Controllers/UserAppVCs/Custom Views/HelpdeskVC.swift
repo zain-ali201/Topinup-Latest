@@ -22,12 +22,11 @@ class HelpdeskVC: SwiftPopup {
     
     @IBAction func closeButtonClicked(_ sender: Any) {
         dismiss()
-
     }
     
     @IBAction func dialPhone(_ sender: UIButton) {
             
-        guard let number = URL(string: "tel://+921234567") else { return }
+        guard let number = URL(string: "tel://\(Config.phone)") else { return }
         UIApplication.shared.open(number)
         //dismiss()
     }
@@ -35,7 +34,7 @@ class HelpdeskVC: SwiftPopup {
     @IBAction func sendEmail(_ sender: Any) {
         
         
-        let url = NSURL(string: "mailto:info@topinup.com")
+        let url = NSURL(string: "mailto:\(Config.email)")
         UIApplication.shared.openURL(url as! URL)
         
         //dismiss()

@@ -78,11 +78,14 @@ class TextStatusVC: BaseVC {
         btnUploadBottomConstraints.constant = bottomConstraintConstant
     }
 
-    @objc private func btnUploadTapped() {
-        let textStatus = TextStatus(text: textView.text, fontName: fontsNames[currentFontIndex], backgroundColor: colors[currentBackgroundIndex])
-        delegate?.didFinishWithText(textStatus: textStatus)
-        navigationController?.popViewController(animated: true)
-
+    @objc private func btnUploadTapped()
+    {
+        if textView.text != ""
+        {
+            let textStatus = TextStatus(text: textView.text, fontName: fontsNames[currentFontIndex], backgroundColor: colors[currentBackgroundIndex])
+            delegate?.didFinishWithText(textStatus: textStatus)
+            navigationController?.popViewController(animated: true)
+        }
     }
 
     @objc private func btnFontTapped()
@@ -138,7 +141,7 @@ extension TextStatusVC: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView)
     {
         placeholderTextView.isHidden = textView.text.isNotEmpty
-        btnUpload.isHidden = textView.text.isNotEmpty
+//        btnUpload.isHidden = textView.text.isNotEmpty
         textView.resizeFont()
     }
 }

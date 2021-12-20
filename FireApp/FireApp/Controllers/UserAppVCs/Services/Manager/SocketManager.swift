@@ -78,15 +78,7 @@ class SocketManager: NSObject {
     {
         print("Calling ---------- \(name)  ---------- \n params \n \(params) \n\n\n ------------- ")
         socket?.emit(name, params)
-        
-        
-        
     }
-    
-//    func logSocketCall( name : String, )
-//    {
-//        print("Calling ---------- \(name) ------------- on Socket")
-//    }
     
     func closeConnection() {
         socket?.disconnect()

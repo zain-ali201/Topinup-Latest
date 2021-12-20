@@ -102,6 +102,7 @@ class Config
     static let twitter = ""
     static let website = "https://topinup.com"
     static let email = "info@topinup.com"
+    static let phone = "+18884551620"
 
     public static let MAX_GROUP_USERS_COUNT = 50
     public static let MAX_BROADCAST_USERS_COUNT = 100

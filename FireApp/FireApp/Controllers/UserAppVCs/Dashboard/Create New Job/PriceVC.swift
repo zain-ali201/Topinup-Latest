@@ -13,13 +13,12 @@ protocol SetPriceProtocol {
     func setPrice(type: String , budget : String)
 }
 
-class PriceVC: UIViewController {
-
+class PriceVC: UIViewController
+{
     @IBOutlet weak var imgHourlyActive: UIImageView!
     @IBOutlet weak var txtFixedPrice: UITextField!
     @IBOutlet weak var viewBackgroundOr: UIView!
     @IBOutlet weak var viewBackgroundHourlyActive: UIView!
-    
     @IBOutlet weak var lblFixedOrHourly: UILabel!
     
     var isHourly = false
@@ -95,7 +94,7 @@ class PriceVC: UIViewController {
     }
     
     @IBAction func btnBackAction(_ sender: Any) {
-        let _ = self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnSaveAction(_ sender: Any) {

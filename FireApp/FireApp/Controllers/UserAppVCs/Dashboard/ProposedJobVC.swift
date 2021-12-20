@@ -44,8 +44,7 @@ class ProposedJobVC: BaseViewController, UITableViewDelegate, UITableViewDataSou
             Connection.showNetworkErrorView()
             return;
         }
-        
-       // let params = [:] as [String : Any]
+        print("user?._id-----= \(user?._id)")
         let params = ["userId": user?._id ?? ""] as [String : Any]
         SocketManager.shared.sendSocketRequest(name: SocketEvent.GetMessageThreads, params: params)
     }

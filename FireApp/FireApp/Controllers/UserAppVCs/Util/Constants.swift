@@ -47,6 +47,7 @@ struct URLConfiguration
             "Content-Type" : "application/x-www-form-urlencoded",
             "Authorization" : "bearer" + " " + "\(String(describing: user?.token ?? ""))"
         ]
+        print(headers)
         return headers
     }
     

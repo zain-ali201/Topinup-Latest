@@ -332,7 +332,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bi6-0z-MV1" customClass="RoundedLabel" customModule="Topinup" customModuleProvider="target">
-                                                    <rect key="frame" x="355.5" y="37" width="7.5" height="14.5"/>
+                                                    <rect key="frame" x="344.5" y="37" width="18.5" height="18.5"/>
                                                     <color key="backgroundColor" red="0.18823529410000001" green="0.4823529412" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="12"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2571,12 +2571,11 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twP-u5-snH" customClass="RoundedButton" customModule="Topinup" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Atw-BE-fdS">
                                 <rect key="frame" x="298" y="590" width="55" height="55"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="55" id="2yO-3b-mWd"/>
-                                    <constraint firstAttribute="height" constant="55" id="Uyn-o5-fUU"/>
+                                    <constraint firstAttribute="width" constant="55" id="3LS-th-iCk"/>
+                                    <constraint firstAttribute="height" constant="55" id="nOk-gY-8Od"/>
                                 </constraints>
                                 <state key="normal" image="send_button"/>
                             </button>
@@ -2585,13 +2584,13 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="jhh-57-dbh" secondAttribute="trailing" constant="4" id="0mX-Er-76I"/>
-                            <constraint firstItem="bp0-cQ-uGr" firstAttribute="bottom" secondItem="twP-u5-snH" secondAttribute="bottom" constant="22" id="4Kh-8r-1UR"/>
                             <constraint firstItem="uST-A9-73k" firstAttribute="centerY" secondItem="VPp-wN-gz1" secondAttribute="centerY" id="4Wt-Q1-WPi"/>
                             <constraint firstItem="jhh-57-dbh" firstAttribute="centerY" secondItem="VPp-wN-gz1" secondAttribute="centerY" id="7iH-Sc-LMm"/>
-                            <constraint firstItem="bp0-cQ-uGr" firstAttribute="trailing" secondItem="twP-u5-snH" secondAttribute="trailing" constant="22" id="CVI-9J-h7m"/>
+                            <constraint firstItem="bp0-cQ-uGr" firstAttribute="bottom" secondItem="Atw-BE-fdS" secondAttribute="bottom" constant="22" id="9Ty-XU-YKQ"/>
                             <constraint firstItem="ed8-5f-Vue" firstAttribute="leading" secondItem="bp0-cQ-uGr" secondAttribute="leading" constant="10" id="Dpk-XM-YRi"/>
                             <constraint firstItem="jhh-57-dbh" firstAttribute="top" secondItem="CTA-ew-1Ox" secondAttribute="bottom" constant="64" id="Pex-ID-mwY"/>
                             <constraint firstItem="ed8-5f-Vue" firstAttribute="top" secondItem="bp0-cQ-uGr" secondAttribute="top" constant="14" id="Qhm-C6-boH"/>
+                            <constraint firstItem="bp0-cQ-uGr" firstAttribute="trailing" secondItem="Atw-BE-fdS" secondAttribute="trailing" constant="22" id="TE9-Nm-eWk"/>
                             <constraint firstItem="CTA-ew-1Ox" firstAttribute="top" secondItem="bp0-cQ-uGr" secondAttribute="top" constant="16" id="TNM-Vl-o2i"/>
                             <constraint firstItem="bp0-cQ-uGr" firstAttribute="trailing" secondItem="CTA-ew-1Ox" secondAttribute="trailing" constant="20" id="V6X-gg-bsk"/>
                             <constraint firstItem="uST-A9-73k" firstAttribute="top" secondItem="CTA-ew-1Ox" secondAttribute="bottom" constant="64" id="XgR-fG-bbX"/>
@@ -2605,15 +2604,15 @@
                         <outlet property="btnBackground" destination="tBD-NR-zM7" id="9es-PG-EHO"/>
                         <outlet property="btnCross" destination="ed8-5f-Vue" id="djP-us-eWw"/>
                         <outlet property="btnFont" destination="HhK-1W-2d5" id="6Uv-sy-mUZ"/>
-                        <outlet property="btnUpload" destination="twP-u5-snH" id="e1Q-j1-d3o"/>
-                        <outlet property="btnUploadBottomConstraints" destination="4Kh-8r-1UR" id="cQV-Mf-2Uq"/>
+                        <outlet property="btnUpload" destination="Atw-BE-fdS" id="4jB-EM-5Ei"/>
+                        <outlet property="btnUploadBottomConstraints" destination="9Ty-XU-YKQ" id="sGf-bN-Wc6"/>
                         <outlet property="placeholderTextView" destination="uST-A9-73k" id="H4Y-l0-BVN"/>
                         <outlet property="textView" destination="jhh-57-dbh" id="NeL-Fy-Tyl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ci0-e7-CAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-17" y="-1411"/>
+            <point key="canvasLocation" x="-462" y="-1429"/>
         </scene>
         <!--My StatusesVC-->
         <scene sceneID="JY4-zv-O7T">
@@ -2770,13 +2769,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FTJ-4P-Djp">
                                                     <rect key="frame" x="68" y="14.5" width="207" height="41.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World Lorem ipsum Long Text Test FireApp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpM-vf-SzD">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Hello World Lorem ipsum Long Text Test FireApp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpM-vf-SzD">
                                                             <rect key="frame" x="0.0" y="0.0" width="207" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bh6-l7-gVf">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bh6-l7-gVf">
                                                             <rect key="frame" x="0.0" y="24.5" width="207" height="17"/>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4675,13 +4674,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qm1-Ys-VhZ">
                                                     <rect key="frame" x="67" y="9.5" width="210" height="41.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="Demo User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1q6-Bg-2FN">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Demo User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1q6-Bg-2FN">
                                                             <rect key="frame" x="0.0" y="0.0" width="210" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LzQ-Sl-EUv">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LzQ-Sl-EUv">
                                                             <rect key="frame" x="0.0" y="24.5" width="210" height="17"/>
                                                             <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4886,13 +4885,13 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="c49-vW-RgJ">
                                             <rect key="frame" x="67" y="19" width="280" height="42.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Demo User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jvk-5q-pAm">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Demo User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jvk-5q-pAm">
                                                     <rect key="frame" x="0.0" y="0.0" width="280" height="20.5"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Medium" family="SF UI Display" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="913-aN-XH8">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="913-aN-XH8">
                                                     <rect key="frame" x="0.0" y="25.5" width="280" height="17"/>
                                                     <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5724,6 +5723,9 @@
         <designable name="9ey-lw-O71">
             <size key="intrinsicContentSize" width="38" height="18"/>
         </designable>
+        <designable name="Am2-M8-02T">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
         <designable name="FiK-B3-XZI">
             <size key="intrinsicContentSize" width="36" height="36"/>
         </designable>
@@ -5778,6 +5780,9 @@
         <designable name="WlS-Bp-2bn">
             <size key="intrinsicContentSize" width="145" height="18"/>
         </designable>
+        <designable name="XAf-Ga-9iC">
+            <size key="intrinsicContentSize" width="36" height="36"/>
+        </designable>
         <designable name="XeO-yq-cAs">
             <size key="intrinsicContentSize" width="248.5" height="42"/>
         </designable>
@@ -5789,6 +5794,9 @@
         </designable>
         <designable name="bXt-OB-y3E">
             <size key="intrinsicContentSize" width="176" height="18"/>
+        </designable>
+        <designable name="bi6-0z-MV1">
+            <size key="intrinsicContentSize" width="18.5" height="18.5"/>
         </designable>
         <designable name="eAr-ii-Epz">
             <size key="intrinsicContentSize" width="108.5" height="18"/>
@@ -5823,6 +5831,9 @@
         <designable name="qEl-mM-dW2">
             <size key="intrinsicContentSize" width="40" height="39"/>
         </designable>
+        <designable name="qHM-sh-ZJh">
+            <size key="intrinsicContentSize" width="36" height="36"/>
+        </designable>
         <designable name="qXc-OS-end">
             <size key="intrinsicContentSize" width="112" height="24"/>
         </designable>
@@ -5840,9 +5851,6 @@
         </designable>
         <designable name="td2-Dx-btb">
             <size key="intrinsicContentSize" width="36" height="36"/>
-        </designable>
-        <designable name="twP-u5-snH">
-            <size key="intrinsicContentSize" width="35" height="35.5"/>
         </designable>
         <designable name="u1r-A6-PGH">
             <size key="intrinsicContentSize" width="38.5" height="18"/>
@@ -5862,6 +5870,9 @@
         <designable name="xrr-Ek-cDO">
             <size key="intrinsicContentSize" width="45.5" height="18"/>
         </designable>
+        <designable name="z0G-qn-fb0">
+            <size key="intrinsicContentSize" width="19.5" height="8.5"/>
+        </designable>
         <designable name="zPk-y1-ePG">
             <size key="intrinsicContentSize" width="25" height="18"/>
         </designable>
@@ -5877,10 +5888,10 @@
         <segue reference="b5S-xx-pzu"/>
         <segue reference="iKv-Nd-qBO"/>
         <segue reference="oHP-SR-Y19"/>
-        <segue reference="YXZ-b1-cgN"/>
-        <segue reference="4f2-ah-ssv"/>
-        <segue reference="gnB-hF-41W"/>
-        <segue reference="6Do-3u-GLE"/>
+        <segue reference="b8m-N3-LK5"/>
+        <segue reference="YcF-9O-ALL"/>
+        <segue reference="XMG-o0-H5E"/>
+        <segue reference="UWo-xJ-dpR"/>
         <segue reference="9it-pE-ssV"/>
     </inferredMetricsTieBreakers>
     <resources>

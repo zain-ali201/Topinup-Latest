@@ -21,7 +21,6 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
 
     static let KEY_UNREAD_MESSAGES : String = "unreadMessages"
     
-    
     @IBOutlet weak var btnMap: UIButton!
     @IBOutlet weak var btnList: UIButton!
     @IBOutlet weak var viewBarMap: UIView!
@@ -119,6 +118,13 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
         UIApplication.shared.keyWindow?.rootViewController = rootVC
     }
     
+    @IBAction func chatAppAction(_ sender: Any)
+    {
+        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
+        let rootVC = storyboard.instantiateViewController(withIdentifier: "RootVC")
+        UIApplication.shared.keyWindow?.rootViewController = rootVC
+    }
+    
     func addObservers()
     {
         NotificationCenter.default.addObserver(self, selector: #selector(DashboardVC.didReceiveSocketConectionResponse(notification:)), name: .kSocketConnected, object: nil)
@@ -150,13 +156,13 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: notificationButton)
     }
     
-    @objc func gotoMessages(){
+    @objc func gotoMessages()
+    {
         NotificationCenter.default.post(name: .gotoMessagesNotification, object: nil)
     }
     
     @objc func didReceiveUnreadMessageResponse(notification : Notification)
     {
-        
         if let userInfo = notification.userInfo as NSDictionary?
         {
             UserDefaults.standard.set(userInfo["count"] as? Int ?? 0, forKey: DashboardVC.KEY_UNREAD_MESSAGES)
@@ -165,17 +171,10 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
             
             let unreadCount: Int = userInfo["count"] as! Int
             
-            if(unreadCount != 0){
+            if(unreadCount != 0)
+            {
                 self.notificationButton.badge =  "\(unreadCount)"
             }
-            
-            
-            
-            
-            
-            
-            
-            
         }
     }
     @objc func didReceiveSocketDisconectResponse(notification : Notification)
@@ -246,15 +245,15 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     func viewInitializer() {
         
-        if isMapActive {
-            self.btnMap.setTitleColor(UIColor.white, for: UIControl.State.normal)
-            self.btnList.setTitleColor(lightColor, for: UIControl.State.normal)
-            self.viewBarMap.backgroundColor = UIColor.white
-            self.viewBarList.backgroundColor = UIColor.clear
-            self.viewBackgroundListView.isHidden = true
-            self.viewBackgroundMap.isHidden = false
-            lblNoJobs.isHidden = true
-        } else {
+//        if isMapActive {
+//            self.btnMap.setTitleColor(UIColor.white, for: UIControl.State.normal)
+//            self.btnList.setTitleColor(lightColor, for: UIControl.State.normal)
+//            self.viewBarMap.backgroundColor = UIColor.white
+//            self.viewBarList.backgroundColor = UIColor.clear
+//            self.viewBackgroundListView.isHidden = true
+//            self.viewBackgroundMap.isHidden = false
+//            lblNoJobs.isHidden = true
+//        } else {
             self.btnList.setTitleColor(UIColor.white, for: UIControl.State.normal)
             self.btnMap.setTitleColor(lightColor, for: UIControl.State.normal)
             self.viewBarList.backgroundColor = UIColor.white
@@ -262,7 +261,7 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
             self.viewBackgroundMap.isHidden = true
             self.viewBackgroundListView.isHidden = false
             updateJobCategoryBottomViews()
-        }
+//        }
         
         self.FSCalendar.scope = .week
         btnCreateNewJob.layer.cornerRadius = self.btnCreateNewJob.frame.height/2
@@ -507,21 +506,10 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! JobListTVC
         cell.selectionStyle = .none
         let currentIndex = self.dataSource[indexPath.row]
-        //print("Job ID is : \(currentIndex._id)")
-        
-        let newStr = currentIndex.categoryImageURL ?? ""
-//        newStr.remove(at: (newStr.startIndex))
-//        let imageUrl = URLConfiguration.ServerUrl + newStr
-//        
-//        if let url = URL(string: imageUrl) {
-//            cell.imgClient.kf.setImage(with: url)
-//        }
-        
-        
         var imageURl = ""
-        if(!newStr.isEmpty){
-            //newStr.remove(at: (newStr.startIndex))
-            //imageURl = URLConfiguration.ServerUrl + newStr
+        let newStr = currentIndex.categoryImageURL ?? ""
+        if(!newStr.isEmpty)
+        {
             imageURl = newStr
             
             DispatchQueue.global().async {
@@ -533,11 +521,6 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 }
             }
         }
-        
-        
-        
-        
-        
         
         cell.imgClient.layer.cornerRadius = cell.imgClient.frame.height/2
         cell.lblName.text = currentIndex.categoryName
@@ -555,8 +538,21 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
             cell.viewBackground.backgroundColor = UIColor.white
         }
         
-        
-        
+        cell.deleteAction = {()
+            let actionSheetController: UIAlertController = UIAlertController(title: nil, message:nil, preferredStyle: .actionSheet)
+            
+            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            }
+            actionSheetController.addAction(cancel)
+            
+            let delete: UIAlertAction = UIAlertAction(title: "Delete", style: .default)
+            { action -> Void in
+                
+            }
+            actionSheetController.addAction(delete)
+            
+            self.present(actionSheetController, animated: true, completion: nil)
+        }
         
         
         return cell
