@@ -71,7 +71,7 @@ class SideMenuVC: UITableViewController {
         menuItems.append(MenuItem(title: "Profile", icon: "Settings", storyboardId: "Profile_ID"))
         menuItems.append(MenuItem(title: "Support", icon: "help", storyboardId: ""))
         menuItems.append(MenuItem(title: "Invite Friends", icon: "user-invite", storyboardId: ""))
-        menuItems.append(MenuItem(title: "Logout", icon: "logout", storyboardId: ""))
+//        menuItems.append(MenuItem(title: "Logout", icon: "logout", storyboardId: ""))
     }
     
     func userInfoGathering() {
@@ -213,34 +213,34 @@ class SideMenuVC: UITableViewController {
                 present(vc, animated: true)
                 hideProgressHud(viewController: self)
             
-            case 6:
-                let alertController = UIAlertController(title: "Confirmation Required", message: "Are you sure you want to logout?", preferredStyle: .alert)
-                
-                let confirmAction = UIAlertAction(title: "Yes, Logout", style: .destructive, handler: { (action:UIAlertAction) in
-                    
-                    //SocketIOManager.sharedInstance.sendLogoutMessage()
-                    self.dismiss(animated: true) {
-                        SocketManager.shared.closeConnection()
-                        SocketManager.shared.socket = nil
-                        
-                        DataModel.shared.socketConnection = false
-                        AppUser.clearAllUserData()
-                        
-                        let myAppDelegate = UIApplication.shared.delegate as? AppDelegate
-                        myAppDelegate?.setLoginStoryBoardAsRoot()
-                    }
-                })
-                
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action : UIAlertAction) in
-                    
-                    // Do Nothing
-                    
-                })
-                
-                alertController.addAction(confirmAction)
-                alertController.addAction(cancelAction)
-                
-                self.present(alertController, animated: true, completion: nil)
+//            case 6:
+//                let alertController = UIAlertController(title: "Confirmation Required", message: "Are you sure you want to logout?", preferredStyle: .alert)
+//
+//                let confirmAction = UIAlertAction(title: "Yes, Logout", style: .destructive, handler: { (action:UIAlertAction) in
+//
+//                    //SocketIOManager.sharedInstance.sendLogoutMessage()
+//                    self.dismiss(animated: true) {
+//                        SocketManager.shared.closeConnection()
+//                        SocketManager.shared.socket = nil
+//
+//                        DataModel.shared.socketConnection = false
+//                        AppUser.clearAllUserData()
+//
+//                        let myAppDelegate = UIApplication.shared.delegate as? AppDelegate
+//                        myAppDelegate?.setLoginStoryBoardAsRoot()
+//                    }
+//                })
+//
+//                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action : UIAlertAction) in
+//
+//                    // Do Nothing
+//
+//                })
+//
+//                alertController.addAction(confirmAction)
+//                alertController.addAction(cancelAction)
+//
+//                self.present(alertController, animated: true, completion: nil)
 
             default:
                 print("")

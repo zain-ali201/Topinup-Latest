@@ -26,10 +26,6 @@ struct URLConfiguration
         
         if (URLConfiguration.devMode == true)
         {
-            print(" \n\n\n #@$@#$@#$@#$@#$@#$@$   CHANGE TO PRODUCTION BEFORE RELEASE #@$@#$@#$@#$@#$@#$@$\n\n")
-            print("  #@$@#$@#$@#$@#$@#$@$   CHANGE TO PRODUCTION BEFORE RELEASE #@$@#$@#$@#$@#$@#$@$")
-            print("  #@$@#$@#$@#$@#$@#$@$   CHANGE TO PRODUCTION BEFORE RELEASE #@$@#$@#$@#$@#$@#$@$")
-            print("  #@$@#$@#$@#$@#$@#$@$   CHANGE TO PRODUCTION BEFORE RELEASE #@$@#$@#$@#$@#$@#$@$ \n\n")
             return URLConfiguration.devServerUrl
         }
         else
@@ -40,8 +36,6 @@ struct URLConfiguration
 
     static func headers() -> HTTPHeaders {
         let user = AppUser.getUser()
-        
-//        print(String(describing: user!.token!))
         
         let headers: HTTPHeaders = [
             "Content-Type" : "application/x-www-form-urlencoded",
@@ -84,13 +78,15 @@ struct URLConfiguration
     static let providerProfileURL = serverURL + "/api/provider/"
     
     static let jobHistoryURL = serverURL + "/api/jobs"
-    
+    static let blockProviderURL = serverURL + "/api/block"
+    static let muteURL = serverURL + "/api/mute"
     static let jobRatingURL = serverURL + "/api/users/rating/"
     
     static let categoryListURL = serverURL + "/api/categories"
     static let createJobURL = serverURL + "/api/jobs"
     
     static let nearbyProviderURL = serverURL + "/api/providers/near/"
+    static let cityProviderURL = serverURL + "/api/providers/city/"
     static let requestInvitationURL = serverURL + "/api/jobs/"
     static let requestInvitationJobDetailURL = serverURL + "/api/requests/"
     static let jobStatusURL = serverURL + "/api/jobs/status/"

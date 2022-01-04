@@ -180,14 +180,7 @@ class ChatsListVC: BaseSearchableVC
     
     @objc private func leftBarBtnTapped()
     {
-        if AppUser.getUser() == nil
-        {
-            setLoginStoryBoardAsRoot()
-        }
-        else
-        {
-            setMainStoryBoardAsRoot()
-        }
+        setMainStoryBoardAsRoot()
     }
     
     func setLoginStoryBoardAsRoot ()

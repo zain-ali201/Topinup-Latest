@@ -194,7 +194,6 @@ static NSString *const kNextButtonAccessibilityID = @"NextButtonAccessibilityID"
           [[FUIPhoneVerificationViewController alloc] initWithAuthUI:self.authUI
                                                       verificationID:verificationID
                                                          phoneNumber:phoneNumberWithCountryCode];
-
       [self pushViewController:controller];
     };
     if ([NSThread isMainThread]) {

@@ -153,6 +153,45 @@ class JobHistoryApi : NSObject {
         }
     }
     
+    func blockProvider(userID: String, providerID: String, method: HTTPMethod, completion: @escaping ((_ success: Bool, _ message : String) -> Void))
+    {
+        let jobURL = "\(URLConfiguration.blockProviderURL)/\(userID)/\(providerID)"
+        print(jobURL)
+        Alamofire.request(jobURL, method: method, parameters: nil, encoding: URLEncoding.default, headers: URLConfiguration.headers())
+            .responseJSON { response in
+                
+                if let serverResponse = response.result.value
+                {
+                    let swiftyJsonVar = JSON(serverResponse)
+                    print(swiftyJsonVar)
+                    
+                    let success = swiftyJsonVar["status"].string
+                    let isBlocked = swiftyJsonVar["isBlocked"].boolValue
+                    
+                    if success != "success"
+                    {
+                        let msg = swiftyJsonVar["message"].string
+                        completion(false, msg!)
+                    }
+                    else
+                    {
+                        if isBlocked
+                        {
+                            completion(true, "Unblock")
+                        }
+                        else
+                        {
+                            completion(true, "Block")
+                        }
+                    }
+                }
+                else
+                {
+                    completion(false, "Timed out Error.  We’re sorry we’re not able to fetch data at this time. Please try again.")
+                }
+        }
+    }
+    
     
     func removeJobCommunication(messageID: String, params : [String:Any], completion: @escaping ((_ success: Bool, _ message : String) -> Void))
     {

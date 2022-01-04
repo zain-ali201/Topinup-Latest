@@ -152,7 +152,6 @@ class SignUpMainVC: UIViewController, UITextFieldDelegate,  UIImagePickerControl
                     print(user!)
                     AppUser.setUser(user: user!)
                     UserApi().updateFirebaseToken(params: ["deviceToken": UserDefaults.standard.string(forKey: AppUser.KEY_DEVICE_TOKEN) ?? "", "deviceType":"ios", "role":"provider"]) { (success, message) in
-                        
                     }
                     let storyboardId = "Dashboard_ID"
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -161,8 +161,6 @@ class UserLoginVC: UIViewController, UITextFieldDelegate {
     {
         var result = kResultIsValid
         
-       
-        
         let email = txtEmail.text?.trimmed()
         let password = txtPassword.text?.trimmed()
         
@@ -180,9 +178,6 @@ class UserLoginVC: UIViewController, UITextFieldDelegate {
         self.params = ["usernameOrEmail" : email!,
                        "password" : password!
                        ]
-        
         return result
     }
-    
-
 }

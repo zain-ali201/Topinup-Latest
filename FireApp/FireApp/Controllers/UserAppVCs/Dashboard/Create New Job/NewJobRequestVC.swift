@@ -97,7 +97,6 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
                             self.selectedLongitude    = self.jobInfo.longitude
                             self.txtWhere.text        = self.jobInfo.wheree
 
-
                             self.setDate(date: self.jobInfo.when.dateFromISO8601!, mode: self.selectedWhenEnum)
                             self.setNewJobDetail(detail: self.jobInfo.details, images: self.selectedImagesArray)
                             self.setPrice(type: self.jobInfo.type, budget: self.jobInfo.budget)
@@ -136,32 +135,34 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
         self.txtWhere.text = location.address
     }
     
-    func setDate(date: Date, mode: WhenEnum) {
-        
+    func setDate(date: Date, mode: WhenEnum)
+    {
         self.selectedDate = date
         self.selectedWhenEnum = mode
         self.txtWhen.text = DateUtil.getSimpleDateAndTime(self.selectedDate)
     }
     
-    func setNewJobDetail(detail: String, images: [UIImage]) {
+    func setNewJobDetail(detail: String, images: [UIImage])
+    {
         self.selectedJobDetail = detail
         self.selectedImagesArray = images
         self.txtJobDetail.text = self.selectedJobDetail
     }
     
-    func setPrice(type: String, budget: String) {
+    func setPrice(type: String, budget: String)
+    {
         self.selectedBudget = budget
         self.selectedType = type
         self.txtPrice.text = (Currency.currencyCode) + " \(self.selectedBudget)"
     }
     
-    @IBAction func btnCashAction(_ sender: Any) {
-        
+    @IBAction func btnCashAction(_ sender: Any)
+    {
         paymentEnum = PaymentEnum(rawValue: PaymentEnum.cash.rawValue)
     }
     
-    @IBAction func btnCreditCardAction(_ sender: Any) {
-        
+    @IBAction func btnCreditCardAction(_ sender: Any)
+    {
         paymentEnum = PaymentEnum(rawValue: PaymentEnum.creditCard.rawValue)
     }
     
@@ -203,19 +204,23 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
         }
     }
     
-    @objc func tappedWhere() {
+    @objc func tappedWhere()
+    {
         self.performSegue(withIdentifier: "setLocationSegue", sender: nil)
     }
     
-    @objc func tappedWhen() {
+    @objc func tappedWhen()
+    {
         self.performSegue(withIdentifier: "whenSegue", sender: nil)
     }
     
-    @objc func tappedJobDetail() {
+    @objc func tappedJobDetail()
+    {
         self.performSegue(withIdentifier: "getJobDetailSegue", sender: nil)
     }
     
-    @objc func tappedPrice() {
+    @objc func tappedPrice()
+    {
         self.performSegue(withIdentifier: "priceSegue", sender: nil)
     }
     

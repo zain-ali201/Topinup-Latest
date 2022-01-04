@@ -38,9 +38,6 @@ class ProfileVC: BaseViewController, UIImagePickerControllerDelegate, UINavigati
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(user!)
-        
         //self.btnEdit.isHidden = true
         
         self.viewBackgroundCredentials = self.shadowViewForBorder(backgroundView: self.viewBackgroundCredentials)
@@ -61,9 +58,7 @@ class ProfileVC: BaseViewController, UIImagePickerControllerDelegate, UINavigati
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpMainVC.keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
         self.setupSideMenu()
         notificationBtn.setTitle("Turn \(self.isRegisteredForRemoteNotifications() ? "Off":"On") Notifications", for: .normal)
-        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

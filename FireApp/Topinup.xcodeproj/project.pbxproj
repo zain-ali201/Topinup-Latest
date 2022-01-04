@@ -505,6 +505,7 @@
 		A8FAFE1C23D0B99F0014B1E3 /* AutoDownloadPossibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FAFE1B23D0B99F0014B1E3 /* AutoDownloadPossibility.swift */; };
 		A8FAFE2123D10AA60014B1E3 /* ReceivedContactQuotedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FAFE1F23D10AA60014B1E3 /* ReceivedContactQuotedCell.swift */; };
 		A8FAFE2223D10AA60014B1E3 /* ReceivedContactQuotedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8FAFE2023D10AA60014B1E3 /* ReceivedContactQuotedCell.xib */; };
+		FA2560312780A06800BA5164 /* Gill Road.gpx in Resources */ = {isa = PBXBuildFile; fileRef = FA2560302780A06700BA5164 /* Gill Road.gpx */; };
 		FAD0D87926E25BD700848FB9 /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD0D87826E25BD700848FB9 /* ChatDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -1000,6 +1001,7 @@
 		D5C999A8BA7056E24E01CEDC /* Pods_myshareextension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myshareextension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5D6173696CB2C5CA8CC305 /* Pods-Topinup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Topinup.release.xcconfig"; path = "Target Support Files/Pods-Topinup/Pods-Topinup.release.xcconfig"; sourceTree = "<group>"; };
 		F80ED6F2C330A6761E8C2755 /* Pods-NotificationService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.release.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.release.xcconfig"; sourceTree = "<group>"; };
+		FA2560302780A06700BA5164 /* Gill Road.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Gill Road.gpx"; sourceTree = "<group>"; };
 		FAD0D87826E25BD700848FB9 /* ChatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1835,6 +1837,7 @@
 		A8CAF7AA228F57F100BB3FF6 /* FireApp */ = {
 			isa = PBXGroup;
 			children = (
+				FA2560302780A06700BA5164 /* Gill Road.gpx */,
 				A814CDC1232155EC0071C0FB /* Assets.xcassets */,
 				1867E82F26270B6E000D2735 /* UserApp.xcassets */,
 				A8CCFDE12439471700B4F541 /* FireApp.entitlements */,
@@ -2131,6 +2134,7 @@
 				A822610E236CA8270061DEDF /* Roboto-Medium.ttf in Resources */,
 				A8EA28AE2389D1090071A956 /* SentFileCell.xib in Resources */,
 				A8957DD32381C01D00B0CAB8 /* Apex.m4r in Resources */,
+				FA2560312780A06800BA5164 /* Gill Road.gpx in Resources */,
 				A8024B732385684600747946 /* ReceivedImageCell.xib in Resources */,
 				A8957DDE2381C01D00B0CAB8 /* complete.m4r in Resources */,
 				A822610F236CA8270061DEDF /* RobotoMono-Regular.ttf in Resources */,

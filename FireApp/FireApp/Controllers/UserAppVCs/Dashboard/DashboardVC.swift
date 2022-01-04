@@ -60,6 +60,7 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
     var child : JobHistoryVO!
     var jobDotIndicator = false
     static var lastSavedLocation : CLLocation?
+    let geocoder = CLGeocoder()
     
     var selectedIndex = Int()
     
@@ -177,6 +178,7 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
             }
         }
     }
+    
     @objc func didReceiveSocketDisconectResponse(notification : Notification)
     {
         
@@ -189,15 +191,14 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
     }
     
-    func getUnreadMessageCount(){
-        
-        
+    func getUnreadMessageCount()
+    {
         let params = ["userId": user?._id ?? ""] as [String : Any]
         SocketManager.shared.sendSocketRequest(name: SocketEvent.getUnreadMsgs, params: params)
-        
     }
     
-    func updateJobCategoryBottomViews(){
+    func updateJobCategoryBottomViews()
+    {
         self.plottingJobsOnMap(handyman: self.allJobHistory)
         viewBottomActive.isHidden = selectedJobCategory != .active
         viewBottomCompleted.isHidden = !viewBottomActive.isHidden
@@ -437,7 +438,8 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
         print("Tap")
     }
     
-    @IBAction func btnMapAction(_ sender: Any) {
+    @IBAction func btnMapAction(_ sender: Any)
+    {
         isMapActive = true
         viewInitializer()
     }
@@ -493,6 +495,44 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
         print("Error occured \(error.localizedDescription)")
     }
     
+    func deleteRequestAPI(id: String, index: Int)
+    {
+        if !Connection.isInternetAvailable()
+        {
+            print("FIXXXXXXXX Internet not connected")
+            Connection.showNetworkErrorView()
+            return;
+        }
+        
+        let params = [
+            "" : ""
+            ] as [String: Any]
+        
+        showProgressHud(viewController: self)
+        Api.nearbyProviderApi.deleteRequest(id: id, params: params, completion: { (success:Bool, message : String) in
+            hideProgressHud(viewController: self)
+            if success {
+                
+                let alertController = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .default){(action)
+                    in
+                    self.dataSource.remove(at: index)
+                    self.tableView.reloadData()
+                }
+                
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+            else
+            {
+                self.showInfoAlertWith(title: "Error", message: message)
+            }
+        })
+    }
+    
+    //MARL:- UITableViewDelegate
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -539,7 +579,7 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
         
         cell.deleteAction = {()
-            let actionSheetController: UIAlertController = UIAlertController(title: nil, message:nil, preferredStyle: .actionSheet)
+            let actionSheetController: UIAlertController = UIAlertController(title: nil, message:"Are you sure you want to delete this request?", preferredStyle: .actionSheet)
             
             let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
             }
@@ -547,14 +587,12 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
             
             let delete: UIAlertAction = UIAlertAction(title: "Delete", style: .default)
             { action -> Void in
-                
+                self.deleteRequestAPI(id: currentIndex._id, index: indexPath.row)
             }
             actionSheetController.addAction(delete)
             
             self.present(actionSheetController, animated: true, completion: nil)
         }
-        
-        
         return cell
     }
     
@@ -688,13 +726,11 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 controller.jobID = selectiveJobID
                 controller.latitude = lastSavedLocation.coordinate.latitude
                 controller.longitude =  lastSavedLocation.coordinate.longitude
+                controller.location = lastSavedLocation
             }
         }
         else if let controller = segue.destination as? RequestJobDetailVC
-        {
-            
-            
-            
+        {   
             controller.jobID = self.allJobHistory[selectedIndex]._id
             controller.jobInfo = self.allJobHistory[selectedIndex]
             controller.providerID = self.allJobHistory[selectedIndex].providerID ?? ""
@@ -704,5 +740,4 @@ class DashboardVC: BaseViewController, MKMapViewDelegate, CLLocationManagerDeleg
             controller.jobID = self.allJobHistory[selectedIndex]._id
         }
     }
-
 }

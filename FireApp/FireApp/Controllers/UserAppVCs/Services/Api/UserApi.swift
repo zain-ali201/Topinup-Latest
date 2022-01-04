@@ -257,7 +257,6 @@ class UserApi : NSObject {
     
     func updateProfile(params : [String : Any], completion: @escaping ((_ success: Bool, _ message : String, _ userObj: UserVO?) -> Void))
     {
-        
         Alamofire.request(URLConfiguration.updateProfileURL, method: .put, parameters: params, encoding: URLEncoding.httpBody, headers: URLConfiguration.headers())
             .responseJSON { response in
                 

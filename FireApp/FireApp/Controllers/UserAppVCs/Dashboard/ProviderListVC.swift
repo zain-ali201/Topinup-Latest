@@ -35,8 +35,14 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var viewBackgroundOr: UIView!
     @IBOutlet weak var btnOK: UIButton!
     
+    @IBOutlet weak var nearbyBtn: UIButton!
+    @IBOutlet weak var cityBtn: UIButton!
+    @IBOutlet weak var nearbyLine: UIView!
+    @IBOutlet weak var cityLine: UIView!
+    
     var statusEnum : StatusEnum?
     
+    var location:CLLocation?
     var latitude = Double()
     var longitude = Double()
     var jobID = String()
@@ -52,9 +58,17 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
     var selectedRequestID = String()
     
     var selectedID = String()
+    
+    var type = "nearby"
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        
+        if location != nil
+        {
+            getAddress(location: location!)
+        }
         
         self.tableView.isHidden = true
         self.popupInitializer()
@@ -63,26 +77,14 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         self.btnHireUnSelected()
         
         var assignJobStatus : AssignJobStatus!
-        
         NotificationCenter.default.addObserver(self, selector: #selector(ProviderListVC.didReceiveSocketConectionResponse(notification:)), name: .kSocketConnected, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(ProviderListVC.didReceiveSocketDisconectResponse(notification:)), name: .kSocketDisconnected, object: nil)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-//        callApiAssignedJobs()
     }
-    
-//    func callApiAssignedJobs() {
-//
-//        let params = ["" : ""] as [String : Any]
-//        SocketManager.shared.sendSocketRequest(name: SocketEvent.GetAssignedJobs, params: params)
-//        //showProgressLoader(withMessage: "")
-//
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -93,29 +95,53 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func btnPopupCrossAction(_ sender: Any) {
-        
+    @IBAction func typeAction(button: UIButton)
+    {
+        if button.tag == 1001
+        {
+            type = "near"
+            nearbyBtn.setTitleColor(.black, for: .normal)
+            cityBtn.setTitleColor(.gray, for: .normal)
+            nearbyLine.isHidden = false
+            cityLine.isHidden = true
+            self.allNearbyProvidersList.removeAll()
+            self.callApiNearybyProviderList()
+        }
+        else
+        {
+            type = "city"
+            cityBtn.setTitleColor(.black, for: .normal)
+            nearbyBtn.setTitleColor(.gray, for: .normal)
+            nearbyLine.isHidden = true
+            cityLine.isHidden = false
+            self.allNearbyProvidersList.removeAll()
+            callApiCityProviderList()
+        }
+    }
+    
+    @IBAction func btnPopupCrossAction(_ sender: Any)
+    {
         self.popupHide()
     }
     
-    
-    func popupInitializer() {
+    func popupInitializer()
+    {
         self.btnQuote.layer.cornerRadius = self.btnQuote.frame.height/2
         self.btnOK.layer.cornerRadius = self.btnOK.frame.height/2
         self.btnHire.layer.cornerRadius = self.btnHire.frame.height/2
         self.viewBackgroundOr.layer.cornerRadius = self.viewBackgroundOr.frame.height/2
 //        self.viewBackgroundBlue.layer.cornerRadius = 15
         self.viewBackgroundPopup.layer.cornerRadius = 15
-        
     }
     
-    func popupHide() {
+    func popupHide()
+    {
         self.viewAlpha.isHidden = true
         self.viewBackgroundPopup.isHidden = true
     }
     
-    func popupShow() {
-        
+    func popupShow()
+    {
         self.viewAlpha.isHidden = false
         self.viewBackgroundPopup.isHidden = false
         
@@ -138,7 +164,6 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
             {
                 self.btnHire.setTitle("Want to Hire", for: .normal)
             }
-            
         }
         else
         {
@@ -147,20 +172,20 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func btnQuoteSelected() {
+    func btnQuoteSelected()
+    {
         self.btnQuote.backgroundColor = UIColor(red: 19/255, green: 151/255, blue: 245/255, alpha: 1)
     }
     
-    func btnQuoteUnSelected() {
-        
+    func btnQuoteUnSelected()
+    {
         self.btnQuote.backgroundColor = UIColor.white
         self.btnQuote.layer.borderWidth = 1
         self.btnQuote.layer.borderColor = UIColor(red: 19/255, green: 151/255, blue: 245/255, alpha: 1).cgColor
-        
     }
     
-    func btnHireSelected() {
-        
+    func btnHireSelected()
+    {
         self.btnHire.backgroundColor = UIColor(red: 19/255, green: 151/255, blue: 245/255, alpha: 1)
     }
     
@@ -186,8 +211,6 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
             "longitude" : self.longitude
         ] as [String: Any]
         
-       
-        
         showProgressHud(viewController: self)
         
         Api.nearbyProviderApi.getNearbyProviderList(id: self.jobID, params: params, completion: { (success:Bool, message : String, nearybyProviders : [NearbyProviderVO]?) in
@@ -199,7 +222,6 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
                 if nearybyProviders != nil
                 {
                     self.tableView.isHidden = false
-                    self.allNearbyProvidersList.removeAll()
                     self.allNearbyProvidersList = nearybyProviders!
                     self.tableView.reloadData()
                 }
@@ -215,8 +237,44 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         })
     }
     
-    @IBAction func btnQuoteAction(_ sender: Any) {
+    func callApiCityProviderList() {
         
+        if !Connection.isInternetAvailable()
+        {
+            print("FIXXXXXXXX Internet not connected")
+            Connection.showNetworkErrorView()
+            return;
+        }
+        
+        showProgressHud(viewController: self)
+        let city = UserDefaults.standard.string(forKey: "UserCity")
+        
+        Api.nearbyProviderApi.getCityProviderList(id: self.jobID, city: city ?? "", completion: { (success:Bool, message : String, nearybyProviders : [NearbyProviderVO]?) in
+            
+            hideProgressHud(viewController: self)
+            
+            if success
+            {
+                if nearybyProviders != nil
+                {
+                    self.tableView.isHidden = false
+                    self.allNearbyProvidersList = nearybyProviders!
+                    self.tableView.reloadData()
+                }
+                else
+                {
+                    self.showInfoAlertWith(title: "Internal Error", message: message)
+                }
+            }
+            else
+            {
+                self.showInfoAlertWith(title: "Error", message: message)
+            }
+        })
+    }
+    
+    @IBAction func btnQuoteAction(_ sender: Any)
+    {
         if isQuoteSelected
         {
             isQuoteSelected = false
@@ -231,8 +289,8 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    @IBAction func btnHireAction(_ sender: Any) {
-        
+    @IBAction func btnHireAction(_ sender: Any)
+    {
         if isHireSelected
         {
             isHireSelected = false
@@ -247,24 +305,22 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    @IBAction func btnOKAction(_ sender: Any) {
-        
+    @IBAction func btnOKAction(_ sender: Any)
+    {
         self.popupHide()
-        
         if isQuoteSelected
         {
             self.selectedType = "quote"
             self.selectedProviderID = allNearbyProvidersList[selectedProviderIndex]._id
             apiCallRequestInvitation()
-            
         }
         else if isHireSelected
         {
             self.selectedType = "hire"
             self.selectedProviderID = allNearbyProvidersList[selectedProviderIndex]._id
             apiCallRequestInvitation()
-            
-        } else if self.allNearbyProvidersList[selectedProviderIndex].status == "invite" ||
+        }
+        else if self.allNearbyProvidersList[selectedProviderIndex].status == "invite" ||
             self.allNearbyProvidersList[selectedProviderIndex].status == "hire" {
             showInfoAlertWith(title: "Alert", message: "You must select an option")
         }
@@ -278,8 +334,8 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         return self.allNearbyProvidersList.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! NearbyProviderTVC
         cell.selectionStyle = .none
         
@@ -296,8 +352,6 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
 //        {
 //            cell.lblPrice.text =  (Currency.currencyCode) + "\(currentIndex.hourlyRate!)"
 //        }
-        
-        
         var newStr = currentIndex.profileImageURL! as String
         
         if newStr.first == "." {
@@ -341,8 +395,6 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.btnQuote.tag = indexPath.row
         cell.btnQuote.addTarget(self, action: #selector(ProviderListVC.btnQuoteActionCell), for: UIControl.Event.touchUpInside)
         
-        
-        
         cell.cosmosView.settings.fillMode = .precise
         cell.cosmosView.rating = currentIndex.rating ?? 0.0
         
@@ -354,55 +406,43 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         return 105
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         vc.providerID = allNearbyProvidersList[indexPath.row]._id
         vc.jobID = jobID
         self.navigationController?.pushViewController(vc, animated: true)
-        
-        
-
     }
     
-    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ())
+    {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds)
+        {
             completion()
         }
     }
     
-    @objc func btnQuoteActionCell(sender:UIButton) {
-        print(sender.tag)
-        
+    @objc func btnQuoteActionCell(sender:UIButton)
+    {
         self.selectedProviderIndex = sender.tag
-        print(allNearbyProvidersList[self.selectedProviderIndex].status)
-        
-                if allNearbyProvidersList[self.selectedProviderIndex].status == JobStatus.quoted.rawValue
-                {
-                    self.selectedProviderIDForStatus = allNearbyProvidersList[self.selectedProviderIndex].providerID
-                    self.selectedRequestID = allNearbyProvidersList[self.selectedProviderIndex].requestID
-                    self.performSegue(withIdentifier: "RequestJobDetailSegue", sender: nil)
-                }
-                else if allNearbyProvidersList[self.selectedProviderIndex].status == JobStatus.invited.rawValue
-                {
-                   
-        
-        
-                }else{
-                    self.popupShow() 
-        
-                }
-        
-        
-        
-        
-        
+        if allNearbyProvidersList[self.selectedProviderIndex].status == JobStatus.quoted.rawValue
+        {
+            self.selectedProviderIDForStatus = allNearbyProvidersList[self.selectedProviderIndex].providerID
+            self.selectedRequestID = allNearbyProvidersList[self.selectedProviderIndex].requestID
+            self.performSegue(withIdentifier: "RequestJobDetailSegue", sender: nil)
+        }
+        else if allNearbyProvidersList[self.selectedProviderIndex].status == JobStatus.invited.rawValue
+        {
+        }
+        else
+        {
+            self.popupShow()
+        }
     }
     
-    func apiCallRequestInvitation() {
-        
+    func apiCallRequestInvitation()
+    {
         print(self.jobID)
         print(self.selectedType)
         print(self.selectedProviderID)
@@ -430,7 +470,14 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
                 let defaultAction = UIAlertAction(title: "OK", style: .default){(action)
                     in
                     //let _ = self.navigationController?.popViewController(animated: true)
-                    self.callApiNearybyProviderList()
+                    if self.type == "near"
+                    {
+                        self.callApiNearybyProviderList()
+                    }
+                    else
+                    {
+                        self.callApiCityProviderList()
+                    }
                 }
                 
                 alertController.addAction(defaultAction)
@@ -462,7 +509,28 @@ class ProviderListVC: UIViewController, UITableViewDataSource, UITableViewDelega
             controller.requestID = self.selectedRequestID
         }
     }
-    
-    
+}
 
+func getAddress(location: CLLocation) {
+        let geoCoder: CLGeocoder = CLGeocoder()
+
+    geoCoder.reverseGeocodeLocation(location, completionHandler:
+    {(placemarks, error) in
+        if (error != nil)
+        {
+            print("reverse geodcode fail: \(error!.localizedDescription)")
+        }
+        let pm = placemarks! as [CLPlacemark]
+
+        if pm.count > 0 {
+            let pm = placemarks![0]
+            
+            if pm.locality != nil {
+                UserDefaults.standard.set(pm.locality, forKey: "UserCity")
+            }
+            if pm.country != nil {
+                UserDefaults.standard.set(pm.locality, forKey: "UserCountry")
+            }
+        }
+    })
 }

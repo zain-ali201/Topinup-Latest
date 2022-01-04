@@ -24,8 +24,6 @@ class JobApi : NSObject {
     
     func createQuotationWith(with params : NSMutableDictionary,detailImages : [UIImage], completion: @escaping ((_ success: Bool, _ message : String) -> Void))
     {
-        
-        
         Alamofire.upload(multipartFormData: { MultipartFormData in
             
             print(params)
@@ -35,7 +33,6 @@ class JobApi : NSObject {
                 print(value)
                 MultipartFormData.append(((value) as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key as! String)
             }
-            
             
             for i in detailImages {
                 
@@ -54,12 +51,7 @@ class JobApi : NSObject {
             case .success(let upload, _, _):
                 
                 upload.responseJSON { response in
-                    print(response.result.value as Any)
-                    
-                    if response == nil
-                    {
-                        return;
-                    }
+                    print(response.result)
                     
                     let swiftyJsonVar = JSON(response.result.value!)
                     print(swiftyJsonVar)
@@ -76,14 +68,12 @@ class JobApi : NSObject {
                         completion(true, msg!)
                     }
                 }
-                
                 break
                 
             case .failure(let encodingError):
                 print(encodingError)
                 completion(false, encodingError as! String)
                 break
-                
             }
         }
      }

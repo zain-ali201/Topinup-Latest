@@ -16,10 +16,50 @@ class NearbyProviderApi : NSObject {
     
     func getNearbyProviderList(id : String , params : [String:Any], completion: @escaping ((_ success: Bool, _ message : String, _ nearybyProviders : [NearbyProviderVO]?) -> Void))
     {
-        
         let urlString = URLConfiguration.nearbyProviderURL + id
         
-        Alamofire.request(urlString, method: .post,parameters: params, encoding: URLEncoding.httpBody, headers: URLConfiguration.headersContentType())
+        Alamofire.request(urlString, method: .post, parameters: params, encoding: URLEncoding.httpBody, headers: URLConfiguration.headersContentType())
+            .responseJSON { response in
+                
+                if let serverResponse = response.result.value
+                {
+                    let swiftyJsonVar = JSON(serverResponse)
+                    let isSuccessful = swiftyJsonVar["isSuccess"].boolValue
+                    if (!isSuccessful)
+                    {
+                        let msg = swiftyJsonVar["message"].string
+                        completion(false, msg!, nil)
+                    }
+                    else
+                    {
+                        if let providers = swiftyJsonVar["providers"].arrayObject as NSArray?
+                        {
+                            var nearbyObject = [NearbyProviderVO]()
+                            
+                            for i in providers {
+                                nearbyObject.append(NearbyProviderVO(withJSON: i as! NSDictionary))
+                            }
+                            completion(true, "", nearbyObject)
+                            
+                        }
+                        else
+                        {
+                            completion(false, "Error occurred", [])
+                        }
+                    }
+                }
+                else
+                {
+                    completion(false, "Timed out Error.  We’re sorry we’re not able to fetch data at this time. Please try again.", nil)
+                }
+        }
+    }
+    
+    func getCityProviderList(id : String, city : String, completion: @escaping ((_ success: Bool, _ message : String, _ nearybyProviders : [NearbyProviderVO]?) -> Void))
+    {
+        let urlString = URLConfiguration.cityProviderURL + id + "/" + city
+        print(urlString)
+        Alamofire.request(urlString, method: .get, parameters: nil, encoding: URLEncoding.httpBody, headers: URLConfiguration.headersContentType())
             .responseJSON { response in
                 
                 if let serverResponse = response.result.value
@@ -62,6 +102,36 @@ class NearbyProviderApi : NSObject {
         let urlString = URLConfiguration.requestInvitationURL + id
         
         Alamofire.request(urlString, method: .post,parameters: params, encoding: URLEncoding.httpBody, headers: URLConfiguration.headersContentType())
+            .responseJSON { response in
+                
+                if let serverResponse = response.result.value
+                {
+                    let swiftyJsonVar = JSON(serverResponse)
+                    print(swiftyJsonVar)
+                    let isSuccessful = swiftyJsonVar["isSuccess"].boolValue
+                    if (!isSuccessful)
+                    {
+                        let msg = swiftyJsonVar["message"].string
+                        completion(false, msg!)
+                    }
+                    else
+                    {
+                        let msg = swiftyJsonVar["message"].string
+                        completion(true, msg!)
+                    }
+                }
+                else
+                {
+                    completion(false, "Timed out Error. Please try again.")
+                }
+        }
+    }
+    
+    func deleteRequest(id : String , params : [String:Any], completion: @escaping ((_ success: Bool, _ message : String) -> Void))
+    {
+        let urlString = URLConfiguration.requestInvitationURL + id
+        
+        Alamofire.request(urlString, method: .delete,parameters: params, encoding: URLEncoding.httpBody, headers: URLConfiguration.headersContentType())
             .responseJSON { response in
                 
                 if let serverResponse = response.result.value

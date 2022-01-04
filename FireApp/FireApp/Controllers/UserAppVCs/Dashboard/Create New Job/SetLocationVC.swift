@@ -90,8 +90,8 @@ class SetLocationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     @IBAction func btnDonePressed(_ sender: Any) {
         
-        if selectedAddress != "" {
-            
+        if selectedAddress != ""
+        {
             let selectedLocation = LocationVO(lat: selectedCoordinates.latitude, long: selectedCoordinates.longitude, addr: selectedAddress)
             
             if let delegate = delegate
@@ -101,7 +101,9 @@ class SetLocationVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 return;
             }
   
-        } else {
+        }
+        else
+        {
             self.showAlert(title: "Input Required", message: "Please select a location first")
         }
     }

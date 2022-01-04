@@ -84,7 +84,8 @@ extension MainVC: FUIAuthDelegate {
                 user.uid = uid
 
                 RealmHelper.getInstance(appRealm).saveObjectToRealm(object: user, update: true)
-                
+                print(phoneNumber)
+                UserDefaults.standard.set(phoneNumber, forKey: "phoneNumber")
                 goToRoot()
             }
         }

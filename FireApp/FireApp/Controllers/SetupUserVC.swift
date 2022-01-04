@@ -19,6 +19,8 @@ class SetupUserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControll
 {
     @IBOutlet weak var imgBtn: UIButton!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var txtLastName: UITextField!
+    @IBOutlet weak var txtEmail: UITextField!
 
     var pickedImage: UIImage?
     var currentUserPhotoUrl = ""
@@ -40,13 +42,16 @@ class SetupUserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControll
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
 
     }
-    @objc private func doneTapped() {
-        Permissions.requestContactsPermissions { (_) in
-            self.completeSetup()
-        }  
+    @objc private func doneTapped()
+    {
+//        Permissions.requestContactsPermissions { (_) in
+//            self.completeSetup()
+//        }
+        signInAction()
     }
 
-    fileprivate func goToRoot() {
+    fileprivate func goToRoot()
+    {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
 
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "RootVC") as! RootNavController
@@ -77,28 +82,103 @@ class SetupUserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControll
         RealmHelper.getInstance(appRealm).saveObjectToRealm(object: user, update: true)
     }
     
-    private func completeSetup()
+    func signInAction()
     {
-        if textField.text?.isEmpty ?? true {
-            showAlert(type: .error, message: Strings.user_name_empty)
+        self.view.endEditing(true)
+        
+        if !Connection.isInternetAvailable()
+        {
+            print("FIXXXXXXXX Internet not connected")
+            Connection.showNetworkErrorView()
             return
         }
-
-        let userName = textField.text ?? ""
-
+        
+        let phone = UserDefaults.standard.string(forKey: "phoneNumber") ?? ""
+        
+        let params : [String : Any] = ["phone" : phone, "password" : "Topinup@123"]
+         
+        showProgressHud(viewController: self)
+        
+        Api.userApi.loginUserWith(params: params, completion: { (success:Bool, message : String, user : UserVO?) in
+            
+            hideProgressHud(viewController: self)
+            
+            if success
+            {
+                if user != nil
+                {
+                    AppUser.setUser(user: user!)
+                    self.callApiChangeProfile()
+                }
+                else
+                {
+                    self.callApiForSignUp()
+                }
+            }
+            else
+            {
+                self.callApiForSignUp()
+            }
+        })
+    }
+    
+    func callApiChangeProfile()
+    {
+        if !Connection.isInternetAvailable()
+        {
+            print("FIXXXXXXXX Internet not connected")
+            Connection.showNetworkErrorView()
+            return;
+        }
+        
+        let firstName = textField.text?.trimmed() ?? ""
+        let lastName = txtLastName.text?.trimmed() ?? ""
+        let email = txtEmail.text?.trimmed() ?? ""
+        let phone = UserDefaults.standard.string(forKey: "phoneNumber") ?? ""
+        
+        let params = [
+            "firstName" : firstName,
+            "lastName" : lastName,
+            "email" : email,
+            "phone" : phone
+        ]
+        
+        showProgressHud(viewController: self)
+        Api.userApi.updateProfile(params: params as [String : Any], completion: { (success:Bool, message : String, user : UserVO?) in
+            
+            hideProgressHud(viewController: self)
+            
+            if success
+            {
+                if user != nil
+                {
+                    AppUser.setUser(user: user!)
+                    self.updateFireBaseUser()
+                }
+                else
+                {
+                    self.showInfoAlertWith(title: "Internal Error", message: "Please try again later.")
+                }
+            }
+            else
+            {
+                self.showInfoAlertWith(title: "Error", message: message)
+            }
+        })
+    }
+    
+    func updateFireBaseUser()
+    {
+        let userName = "\(textField.text ?? "") \(txtLastName.text ?? "")"
         
         showLoadingViewAlert()
 
-        //if the user picked a new image
-
         if let image = pickedImage
         {
-            //upload this image
             FireManager.changeMyPhotoObservable(image: image, appRealm: appRealm)
                 .flatMap { (thumb, localUrl, photoUrl) -> Observable<DatabaseReference> in
 
                     let userDict = self.getUserInfoDict(userName: userName, photoUrl: photoUrl, thumb: thumb, filePath: localUrl)
-
 
                     //save user info locally
                     self.saveUserInfo(userName: userName, thumb: thumb, photo: photoUrl, localPhoto: localUrl)
@@ -130,90 +210,55 @@ class SetupUserVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControll
                         UserDefaultsManager.setUserInfoSaved(true)
                         self.goToRoot()
                     }).disposed(by: disposeBag)
-
         }
         else
         {
             self.saveUserInfo(userName: userName, thumb: "", photo: "", localPhoto: "")
-            
-//            if currentUserPhotoUrl != ""
-//            {
-//                //download this image locally
-//                FireManager.downloadPhoto(photoUrl: self.currentUserPhotoUrl).map { photo -> String in
-//                    self.saveUserInfo(userName: userName, thumb: self.currentUserPhotoThumb, photo: self.currentUserPhotoUrl, localPhoto: photo)
-//
-//                    let number = FireManager.number!
-//                    let countryCode = ContactsUtil.extractCountryCodeFromNumber(number)
-//
-//                    UserDefaultsManager.setCountryCode(countryCode)
-//                    return photo
-//                }.flatMap { photo -> Observable<([User], [String], DatabaseReference, Void)> in
-//                    let fetchGroups = GroupManager.fetchUserGroups()
-//                    let fetchBroadcasts = BroadcastManager.fetchBroadcasts(uid: FireManager.getUid())
-//
-//                    let userDict = self.getUserInfoDict(userName: userName, photoUrl: self.currentUserPhotoUrl, thumb: self.currentUserPhotoThumb, filePath: photo)
-//
-//                    //set user info in Firebase
-//                    let setUserInfo = FireConstants.usersRef.child(FireManager.getUid()).rx.updateChildValues(userDict).asObservable()
-//                    let subscribeToTopic = self.subscribeToHisOwnTopic()
-//                    return Observable.zip(fetchGroups, fetchBroadcasts, setUserInfo, subscribeToTopic)
-//
-//                }.subscribe(onError: { error in
-//                    self.hideAndShowAlert()
-//                }, onCompleted: {
-//                        UserDefaultsManager.setUserInfoSaved(true)
-//                        self.goToRoot()
-//                    }).disposed(by: disposeBag)
-//            }
-//            else
-//            {
-//                fetchUserImageDisposable.dispose()
-//
-//                let fetchGroups = GroupManager.fetchUserGroups()
-//                let fetchBroadcasts = BroadcastManager.fetchBroadcasts(uid: FireManager.getUid())
-//
-//                getDefaultUserProfilePhoto()
-//                    .map { tuple -> [String: Any] in
-//                        let localPhotoUrl = tuple.0
-//                        let photoUrl = tuple.1
-//                        let thumb = tuple.2
-//
-//                        let number = FireManager.number!
-//
-//                        let user = User()
-//                        user.uid = FireManager.getUid()
-//                        user.userName = userName
-//                        user.thumbImg = thumb
-//                        user.photo = photoUrl
-//                        user.userLocalPhoto = localPhotoUrl
-//                        user.phone = number
-//
-//                        RealmHelper.getInstance(appRealm).saveObjectToRealm(object: user, update: true)
-//
-//                        self.saveUserInfo(userName: userName, thumb: thumb, photo: photoUrl, localPhoto: localPhotoUrl)
-//
-//                        let countryCode = ContactsUtil.extractCountryCodeFromNumber(number)
-//
-//                        UserDefaultsManager.setCountryCode(countryCode)
-//
-//                        let userDict = self.getUserInfoDict(userName: userName, photoUrl: photoUrl, thumb: thumb, filePath: localPhotoUrl)
-//
-//                        return userDict
-//                    }.flatMap { userDict -> Observable<([User], [String], DatabaseReference, Void)> in
-//
-//                        let setUserInfo = FireConstants.usersRef.child(FireManager.getUid()).rx.updateChildValues(userDict).asObservable()
-//                        let subscribeToTopic = self.subscribeToHisOwnTopic()
-//
-//                        let observables = Observable.zip(fetchGroups, fetchBroadcasts, setUserInfo, subscribeToTopic)
-//                        return observables
-//                    }.subscribe(onError: { error in
-//                        self.hideAndShowAlert()
-//                    }, onCompleted: {
-//                            UserDefaultsManager.setUserInfoSaved(true)
-//                            self.goToRoot()
-//                        }).disposed(by: self.disposeBag)
-//            }
+            self.goToRoot()
         }
+    }
+    
+    func callApiForSignUp()
+    {
+        self.view.endEditing(true)
+        if !Connection.isInternetAvailable()
+        {
+            print("FIXXXXXXXX Internet not connected")
+            Connection.showNetworkErrorView()
+            return;
+        }
+        
+        let email = txtEmail.text?.trimmed()
+        let firstName = textField.text?.trimmed()
+        let lastName = txtLastName.text?.trimmed()
+        let phone = UserDefaults.standard.string(forKey: "phoneNumber")
+        
+        let params : [String : Any] = ["firstName" : firstName!, "lastName" : lastName!, "email" : email!, "password" : "Topinup@123", "countryCode": "", "phone": phone ?? ""]
+        
+        showProgressHud(viewController: self)
+        
+        var imagesArray = [UIImage]()
+        if let image = pickedImage
+        {
+            imagesArray.append(image)
+        }
+        
+        Api.userApi.signUpUser(with: params, profileImage: imagesArray, completion: { (successful, msg , user) in
+            hideProgressHud(viewController: self)
+            
+            if successful
+            {
+                print(user!)
+                AppUser.setUser(user: user!)
+                UserApi().updateFirebaseToken(params: ["deviceToken": UserDefaults.standard.string(forKey: AppUser.KEY_DEVICE_TOKEN) ?? "", "deviceType":"ios", "role":"provider"]) { (success, message) in
+                }
+                self.updateFireBaseUser()
+            }
+            else
+            {
+                self.showInfoAlertWith(title: "Oooppppsss", message: msg)
+            }
+        })
     }
         
     private func getUserInfoDict(userName: String, photoUrl: String, thumb: String, filePath: String? = nil) -> [String: Any] {

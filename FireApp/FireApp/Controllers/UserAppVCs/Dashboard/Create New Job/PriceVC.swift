@@ -13,7 +13,7 @@ protocol SetPriceProtocol {
     func setPrice(type: String , budget : String)
 }
 
-class PriceVC: UIViewController
+class PriceVC: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var imgHourlyActive: UIImageView!
     @IBOutlet weak var txtFixedPrice: UITextField!
@@ -31,6 +31,7 @@ class PriceVC: UIViewController
         super.viewDidLoad()
         
         txtFixedPrice.placeholder = (Currency.currencyCode) + " 0.00"
+        txtFixedPrice.delegate = self
         
         self.viewInitializer()
         self.viewInitializerForSavedParams()
@@ -48,7 +49,7 @@ class PriceVC: UIViewController
         
         let tapFirst = UITapGestureRecognizer(target: self, action: #selector(PriceVC.tappedHourlyActive))
         self.viewBackgroundHourlyActive.addGestureRecognizer(tapFirst)
-        self.lblFixedOrHourly.text = "What's your budget (Fixed)"
+//        self.lblFixedOrHourly.text = "What's your budget (Fixed)"
     }
     
     func viewInitializerForSavedParams()
@@ -137,4 +138,22 @@ class PriceVC: UIViewController
         
     }
 
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let oldText = textField.text, let r = Range(range, in: oldText) else {
+            return true
+        }
+
+        let newText = oldText.replacingCharacters(in: r, with: string)
+        let isNumeric = newText.isEmpty || (Double(newText) != nil)
+        let numberOfDots = newText.components(separatedBy: ".").count - 1
+
+        let numberOfDecimalDigits: Int
+        if let dotIndex = newText.index(of: ".") {
+            numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
+        } else {
+            numberOfDecimalDigits = 0
+        }
+
+        return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
+    }
 }

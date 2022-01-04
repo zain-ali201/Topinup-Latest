@@ -430,9 +430,7 @@ class RequestJobDetailVC: UIViewController {
         
         let storyBoard = UIStoryboard(name: "UserChat", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "ChatDetailViewController") as! ChatDetailViewController
-        
-        
-        
+             
         if jobDetail != nil
         {
             vc.jobID = self.jobDetail._id
