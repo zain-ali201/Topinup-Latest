@@ -40,7 +40,7 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
     var selectedJobDetail = String()
     var selectedImagesArray = [UIImage]()
     var images = [String]()
-    var selectedType = String()
+    var selectedType = "fixed"
     var selectedBudget = String()
     
     var params = NSMutableDictionary()

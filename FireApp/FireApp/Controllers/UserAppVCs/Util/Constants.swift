@@ -80,7 +80,7 @@ struct URLConfiguration
     static let jobHistoryURL = serverURL + "/api/jobs"
     static let blockProviderURL = serverURL + "/api/block"
     static let muteURL = serverURL + "/api/mute"
-    static let jobRatingURL = serverURL + "/api/users/rating/"
+    static let jobRatingURL = serverURL + "/api/users/rating"
     
     static let categoryListURL = serverURL + "/api/categories"
     static let createJobURL = serverURL + "/api/jobs"

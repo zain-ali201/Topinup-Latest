@@ -116,40 +116,38 @@ class JobHistoryApi : NSObject {
                 }
                 else
                 {
-                    completion(false, "Timed out Error.  We’re sorry we’re not able to fetch data at this time. Please try again.", nil)
+                    completion(false, "Timed out Error. We’re sorry we’re not able to fetch data at this time. Please try again.", nil)
                 }
         }
     }
     
     func jobFeedback(jobID: String, params : [String:Any], completion: @escaping ((_ success: Bool, _ message : String) -> Void))
     {
-        let jobURL = URLConfiguration.jobRatingURL// + jobID
-        
-        Alamofire.request(jobURL, method: .post, parameters: params, encoding: URLEncoding.default, headers: URLConfiguration.headers())
+        Alamofire.request(URLConfiguration.jobRatingURL, method: .post, parameters: params, encoding: URLEncoding.httpBody, headers: URLConfiguration.headers())
             .responseJSON { response in
                 
-                if let serverResponse = response.result.value
+            if let serverResponse = response.result.value
+            {
+                let swiftyJsonVar = JSON(serverResponse)
+                print(swiftyJsonVar)
+                
+                let isSuccessful = swiftyJsonVar["isSuccess"].boolValue
+                
+                if (!isSuccessful)
                 {
-                    let swiftyJsonVar = JSON(serverResponse)
-                    print(swiftyJsonVar)
-                    
-                    let isSuccessful = swiftyJsonVar["isSuccess"].boolValue
-                    
-                    if (!isSuccessful)
-                    {
-                        let msg = swiftyJsonVar["message"].string
-                        completion(false, msg!)
-                    }
-                    else
-                    {
-                        let msg = swiftyJsonVar["message"].string
-                        completion(true, msg!)
-                    }
+                    let msg = swiftyJsonVar["message"].string
+                    completion(false, msg!)
                 }
                 else
                 {
-                    completion(false, "Timed out Error.  We’re sorry we’re not able to fetch data at this time. Please try again.")
+                    let msg = swiftyJsonVar["message"].string
+                    completion(true, msg!)
                 }
+            }
+            else
+            {
+                completion(false, "Timed out Error. We’re sorry we’re not able to fetch data at this time. Please try again.")
+            }
         }
     }
     

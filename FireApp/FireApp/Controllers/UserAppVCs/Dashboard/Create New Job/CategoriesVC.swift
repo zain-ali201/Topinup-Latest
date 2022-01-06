@@ -101,19 +101,6 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             }
         }
         
-        
-        
-        
-        
-//        DispatchQueue.global().async {
-//            if let data = try? Data(contentsOf: URL(string: imageURl)!) //make sure your image in this url does exist, otherwise
-//            {
-//                DispatchQueue.main.async {
-//                    cell.imgView.image = UIImage(data: data)
-//                }
-//            }
-//        }
-        
         cell.lblCategoryName.text = currentIndex.name.uppercased()
         cell.lblCategoryDescription.text = currentIndex.descriptionn
         
@@ -134,8 +121,4 @@ class CategoriesVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             controller.selectedCategory = self.categoryID
         }
     }
-    
-    
- 
-
 }
