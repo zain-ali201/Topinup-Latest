@@ -107,9 +107,7 @@ class SocketManager: NSObject {
             }
             
             URLConfiguration.delay(0.75, closure: {
-                
                 NotificationCenter.default.post(name: .kSocketConnected, object: nil, userInfo: nil)
-                
             })
         }
         
@@ -126,37 +124,28 @@ class SocketManager: NSObject {
             
         }
         
-        //Assigning tune to audio object
-        //audio = try! AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: Bundle.main.path(forResource: kTune, ofType: "mp3")!) as URL)
-        
         socket?.on(SocketEvent.ClientNotifications) { (data, ack) in
-            
             if let responseDict = data[0] as? NSDictionary
             {
                 NotificationCenter.default.post(name: .KClientNotifications , object: nil, userInfo: responseDict as? [AnyHashable : Any])
             }
             return
-            
         }
         
         socket?.on(SocketEvent.CurrentLocation) { (data, ack) in
-            
             if let responseDict = data[0] as? NSDictionary
             {
                 NotificationCenter.default.post(name: .KCurrentLocation , object: nil, userInfo: responseDict as? [AnyHashable : Any])
             }
             return
-            
         }
         
         socket?.on(SocketEvent.JoinRoom) { (data, ack) in
-            
             if let responseDict = data[0] as? NSDictionary
             {
                 NotificationCenter.default.post(name: .KJoinRoom , object: nil, userInfo: responseDict as? [AnyHashable : Any])
             }
             return
-            
         }
         
         socket?.on(SocketEvent.leaveRoom) { (data, ack) in

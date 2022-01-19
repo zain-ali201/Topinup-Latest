@@ -75,8 +75,8 @@ class ReceiptVC: UIViewController {
             return;
         }
         
-        let params = ["rating": self.rating, "details": remarksTV.text ?? "", "userId": AppUser.getUser()?._id ?? "", "raterId": self.providerID ] as [String:Any]
-        
+        let params = ["rating": self.rating, "details": remarksTV.text ?? "", "userId": self.providerID, "raterId":  AppUser.getUser()?._id ?? ""] as [String:Any]
+        print(params)
         showProgressHud(viewController: self)
         Api.jobHistoryApi.jobFeedback(jobID: self.jobID, params: params, completion: { (success : Bool, message : String) in
             

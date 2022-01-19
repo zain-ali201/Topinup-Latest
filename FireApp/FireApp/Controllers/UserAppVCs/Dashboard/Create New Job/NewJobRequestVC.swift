@@ -45,7 +45,6 @@ class NewJobRequestVC: UIViewController, SetLocationViewControllerDelegate, SetD
     
     var params = NSMutableDictionary()
     var paymentEnum : PaymentEnum!
-    
     var jobInfo : JobHistoryVO!
     
     override func viewDidLoad() {
